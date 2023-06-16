@@ -102,7 +102,17 @@ namespace App.EndPoint.AdminUi.Models
             return com;
         }
 
+        public Product GetIdProduct(int Id)
+        {
+            var product = Contaxtdb.Products.Where(x => x.Id == Id).FirstOrDefault();
+            return product;
 
+        }
+        public User GetIdUser(int Id)
+        {
+            var User = Contaxtdb.Users.Where(x => x.Id == Id).FirstOrDefault();
+            return User;
+        }
 
 
 
