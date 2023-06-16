@@ -81,19 +81,25 @@ namespace App.EndPoint.AdminUi.Models
             return Users;
 
         }
-        public void ConfirmComment(Comment comment)
+        public void ConfirmComment(int Id)
         {
-            var com = Contaxtdb.Comments.Where(x => x.Id == comment.Id).FirstOrDefault();
+            var com = Contaxtdb.Comments.Where(x => x.Id == Id).FirstOrDefault();
         
             com.Status = Contaxtdb.Statuses.Where(x => x.Id == 5).FirstOrDefault();
             Contaxtdb.SaveChanges();
          
         }
-        public void RejectComment( Comment comment)
+        public void RejectComment( int Id)
         {
-            var com = Contaxtdb.Comments.Where(x => x.Id == comment.Id).FirstOrDefault();
+            var com = Contaxtdb.Comments.Where(x => x.Id == Id).FirstOrDefault();
             com.Status = Contaxtdb.Statuses.Where(x=>x.Id==6).FirstOrDefault();
             Contaxtdb.SaveChanges();
+        }
+        public ICollection ReadComment()
+        {
+
+            var com = Contaxtdb.Comments.ToList();
+            return com;
         }
 
 

@@ -1,20 +1,27 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿using App.EndPoint.AdminUi.Models;
+using Microsoft.AspNetCore.Mvc;
 
 namespace App.EndPoint.AdminUi.Controllers
 {
     public class CommentController : Controller
     {
+        Repository repository = new Repository();
         public IActionResult Read()
         {
-            return View();
+            var model = repository.ReadComment();
+
+
+            return View(model);
         }
-        public IActionResult Delete()
+        public IActionResult  Rejectete(int Id)
         {
-            return View();
+            repository.RejectComment(Id);
+            return RedirectToAction("Read");
         }
-        public IActionResult Insert()
+        public IActionResult Confirm(int  Id)
         {
-            return View();
+            repository.ConfirmComment(Id);
+            return RedirectToAction("Read");
         }
 
 
