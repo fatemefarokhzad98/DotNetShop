@@ -1,26 +1,33 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿using App.EndPoint.AdminUi.Models;
+using App.Infrastructure.DataBase.Entities;
+using Microsoft.AspNetCore.Mvc;
 
 namespace App.EndPoint.AdminUi.Controllers
 {
     public class UserController : Controller
     {
+        Repository repository = new Repository();
         public IActionResult Read()
         {
-            return View();
+            var Users = repository.ReadUsers();
+            return View(Users);
         }
         [HttpPost]
-        public IActionResult Update()
+        public IActionResult Update(User  user )
         {
-            return View();
+            repository.UpdateUser(user);
+            return RedirectToAction("Read");
         }
         [HttpGet]
-        public IActionResult Update()
+        public IActionResult Update(int Id)
         {
-            return View();
+            var user = repository.GetIdUser(Id);
+            return View(user);
         }
-        public IActionResult Delete()
+        public IActionResult Delete(int Id)
         {
-            return View();
+            repository.DeleteUser(Id);
+            return RedirectToAction("Read");
         }
     }
 }
