@@ -1,0 +1,64 @@
+﻿@using App.Infrastructure.DataBase.Entities
+@model List<Product>
+
+<div chass="Card">
+ <div class="card-header">
+              <h3 class="card-title">جدول محصولات</h3>
+            </div>
+            <!-- /.card-header -->
+            <div class="card-body">
+              <table id="example2" class="table table-bordered table-hover">
+                <thead>
+                <tr>
+                  <th>شناسه</th>
+                  <th>نام محصول</th>
+                  <th>دسته بندی</th>
+                  <th>مدل</th>
+                  
+                  <th>برند</th>
+                  <th>موجودی</th>
+                  <th>کاربرثبت کننده</th>
+                  <th>تاریخ ثبت</th>
+                
+                  <th>قیمت</th>
+                  <th>عملیات</th>
+                  
+                </tr>
+                </thead>
+                @foreach(var item in Model){
+                <tbody>
+                <tr>
+                  <td>@item.Id</td>
+                  <td> @item.Name </td>
+                
+                  <td>@item.Category</td>
+                  <td> @item.Model</td>
+                  <td>@item.Brand</td>
+                  <td>@item.Count</td>
+                  <td>@item.SubmitOperatorId</td>
+                  <td>@item.SubmitTime</td>
+                  <td>@item.Price</td>
+                  <td>
+                      <a asp-controller="Product" asp-action="Update" >
+                          <i class="material-icons">mode_edit</i>
+                      </a>
+                       <a asp-controller="Product" asp-action="Details" >
+                         <i class="material-icons">visibility</i>
+                      </a>
+                         <a asp-controller="Product" asp-action="Delete" >                    
+                         <i class="material-icons">delete</i>
+                      </a>
+                       
+
+
+
+                  </td>
+                </tr>
+               
+                </tbody>}
+              
+              </table>
+            </div>
+            <!-- /.card-body -->
+          </div>
+          <!-- /.card -->

@@ -114,7 +114,11 @@ namespace App.EndPoint.AdminUi.Models
             return User;
         }
 
-
+       public Product DetailsPeoduct(int Id)
+        {
+            var product = Contaxtdb.Products.Where(x => x.Id == Id).FirstOrDefault();
+            return product;
+        }
 
 
 

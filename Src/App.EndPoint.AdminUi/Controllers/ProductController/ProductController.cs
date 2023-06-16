@@ -40,6 +40,11 @@ namespace App.EndPoint.AdminUi.Controllers
            var product= repository.GetProduct();
             return View(product);
         }
+        public IActionResult Details(int Id)
+        {
+            var product = repository.DetailsPeoduct(Id);
+            return View(product);
+        }
 
 
     }
