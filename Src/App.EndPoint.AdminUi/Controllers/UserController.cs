@@ -6,7 +6,12 @@ namespace App.EndPoint.AdminUi.Controllers
 {
     public class UserController : Controller
     {
-        Repository repository = new Repository();
+        private readonly Repository repository;
+        public UserController( Repository _repository)
+        {
+            _repository = repository;
+
+        }
         public IActionResult Read()
         {
             var Users = repository.ReadUsers();

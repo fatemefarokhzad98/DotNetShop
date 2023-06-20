@@ -6,7 +6,12 @@ namespace App.EndPoint.AdminUi.Controllers
 {
     public class ProductController : Controller
     {
-        Repository repository = new Repository();
+        private readonly Repository repository;
+        public ProductController(Repository _repository)
+        {
+            _repository = repository;
+
+        }
         [HttpGet]
         public IActionResult Apdate(int Id)
         {

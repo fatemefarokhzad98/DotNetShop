@@ -5,7 +5,12 @@ namespace App.EndPoint.AdminUi.Controllers
 {
     public class CommentController : Controller
     {
-        Repository repository = new Repository();
+        private readonly Repository repository;
+        public CommentController( Repository _repository)
+        {
+            _repository = repository;
+                
+        }      
         public IActionResult Read()
         {
             var model = repository.ReadComment();
