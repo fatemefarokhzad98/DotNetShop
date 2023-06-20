@@ -6,7 +6,12 @@ namespace App.EndPoint.AdminUi.Models
 {
     public class Repository
     {
-        AppDbContext Contaxtdb = new AppDbContext();
+        private readonly AppDbContext Contaxtdb; 
+
+        public Repository( AppDbContext appDbContext)
+        {
+         appDbContext = Contaxtdb;
+        }
         
         public void InsertProduct(Product product)
         {
