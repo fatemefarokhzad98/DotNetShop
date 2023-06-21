@@ -15,7 +15,7 @@ namespace App.EndPoint.AdminUi.Controllers
         public IActionResult Read()
         {
             var Users = repository.ReadUsers();
-            return View(Users);
+            return View("Read",Users);
         }
         [HttpPost]
         public IActionResult Update(User  user )
@@ -27,7 +27,7 @@ namespace App.EndPoint.AdminUi.Controllers
         public IActionResult Update(int Id)
         {
             var user = repository.GetIdUser(Id);
-            return View(user);
+            return View("Update",user);
         }
         public IActionResult Delete(int Id)
         {
