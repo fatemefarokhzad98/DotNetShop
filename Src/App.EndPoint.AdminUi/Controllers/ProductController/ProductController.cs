@@ -13,10 +13,10 @@ namespace App.EndPoint.AdminUi.Controllers
 
         }
         [HttpGet]
-        public IActionResult Apdate(int Id)
+        public IActionResult Update(int Id)
         {
             var product = repository.GetIdProduct(Id);
-            return View(product);
+            return View("Update",product);
         }
         [HttpPost]
         public IActionResult Apdate( Product product)
@@ -43,12 +43,12 @@ namespace App.EndPoint.AdminUi.Controllers
         public IActionResult Read()
         {
            var product= repository.GetProduct();
-            return View(product);
+            return View("Read",product);
         }
         public IActionResult Details(int Id)
         {
-            var product = repository.DetailsPeoduct(Id);
-            return View(product);
+            var product = repository.DetailsProduct(Id);
+            return View("Details",product);
         }
 
 

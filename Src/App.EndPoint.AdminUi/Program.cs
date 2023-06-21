@@ -6,14 +6,15 @@ var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
 builder.Services
-    .AddControllersWithViews()
-    .AddRazorRuntimeCompilation();
+    .AddControllersWithViews();
+  //.AddRazorRuntimeCompilation();
 builder.Services.AddDbContext<AppDbContext>(option =>
 {
 
     option.UseSqlServer("Data Source=DESKTOP-CGR2LP5\\MSSQLSERVER2022;Initial Catalog=DotNetShopDb; Encrypt=False; TrustServerCertificate=True;Integrated Security=true");
 });
 builder.Services.AddScoped<Repository>();
+builder.Services.AddScoped<AppDbContext>();
 
 
 

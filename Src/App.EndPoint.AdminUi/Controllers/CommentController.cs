@@ -16,7 +16,7 @@ namespace App.EndPoint.AdminUi.Controllers
             var model = repository.ReadComment();
 
 
-            return View(model);
+            return View("Read",model);
         }
         public IActionResult  Rejectete(int Id)
         {
