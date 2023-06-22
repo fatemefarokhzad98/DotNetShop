@@ -9,7 +9,7 @@ namespace App.EndPoint.AdminUi.Controllers
         private readonly Repository repository;
         public UserController( Repository _repository)
         {
-            _repository = repository;
+            repository =_repository;
 
         }
         public IActionResult Read()
