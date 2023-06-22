@@ -5,8 +5,8 @@ namespace App.EndPoint.AdminUi.Controllers
 {
     public class CommentController : Controller
     {
-        private readonly Repository repository;
-        public CommentController( Repository _repository)
+        private readonly ProductRepository repository;
+        public CommentController( ProductRepository _repository)
         {
             repository = _repository;
                 

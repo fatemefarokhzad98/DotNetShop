@@ -6,8 +6,8 @@ namespace App.EndPoint.AdminUi.Controllers
 {
     public class UserController : Controller
     {
-        private readonly Repository repository;
-        public UserController( Repository _repository)
+        private readonly ProductRepository repository;
+        public UserController( ProductRepository _repository)
         {
             repository =_repository;
 

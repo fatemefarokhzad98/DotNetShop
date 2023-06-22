@@ -2,35 +2,35 @@
 using App.Infrastructure.DataBase.Entities;
 using System.Collections;
 
-namespace App.EndPoint.AdminUi.Models
+namespace App.Infrastructure.DataBase.Servises
 {
-    public class Repository
+    public class ProductRepository
     {
-        private readonly AppDbContext Contaxtdb; 
+        private readonly AppDbContext _appDbContext; 
 
-        public Repository( AppDbContext appDbContext)
+        public ProductRepository( AppDbContext appDbContext)
         {
-         appDbContext = Contaxtdb;
+            _appDbContext = appDbContext;
         }
         
         public void InsertProduct(Product product)
         {
-           product.Status  = Contaxtdb.Statuses.Where(x => x.Id == 11).FirstOrDefault();
-           
+           product.Status  = _appDbContext.Statuses.Where(x => x.Id == 11).FirstOrDefault();
 
-            Contaxtdb.Products.Add(product);
-            Contaxtdb.SaveChanges();
+
+            _appDbContext.Products.Add(product);
+            _appDbContext.SaveChanges();
         }
         public void DeleteProduct(int Id)
         {
-            var product=Contaxtdb.Products.Where(i=>i.Id==Id).FirstOrDefault();
+            var product= _appDbContext.Products.Where(i=>i.Id==Id).FirstOrDefault();
 
-            Contaxtdb.Products.Remove(product);
-            Contaxtdb.SaveChanges();
+            _appDbContext.Products.Remove(product);
+            _appDbContext.SaveChanges();
         }
         public ICollection GetProduct()
         {
-            var products = Contaxtdb.Products.ToList();
+            var products = _appDbContext.Products.ToList();
 
 
             return products;
@@ -38,7 +38,7 @@ namespace App.EndPoint.AdminUi.Models
         }
         public void UpdateProduct( Product product)
         {
-            var product1 = Contaxtdb.Products.Where(x=>x.Id==product.Id).FirstOrDefault();   
+            var product1 = _appDbContext.Products.Where(x=>x.Id==product.Id).FirstOrDefault();   
             product1.Brand = product.Brand;
             product1.Name = product.Name;
             product1.Description = product.Description;
@@ -49,24 +49,24 @@ namespace App.EndPoint.AdminUi.Models
             product1.Price = product.Price;
             product1.ProductColors = product.ProductColors;
             product1.ProductTags = product.ProductTags;
-            product1.Status = Contaxtdb.Statuses.Where(x => x.Id == 13).FirstOrDefault();
+            product1.Status = _appDbContext.Statuses.Where(x => x.Id == 13).FirstOrDefault();
             product1.SubmitOperator = product.SubmitOperator;
             product1.IsActive = product.IsActive;
             product1.IsShowPrice = product.IsShowPrice;
-            Contaxtdb.SaveChanges();
+            _appDbContext.SaveChanges();
 
         }
         public void DeleteUser(int Id)
         {
-            var user = Contaxtdb.Users.Where(x => x.Id == Id).FirstOrDefault();
-            Contaxtdb.Users.Remove(user);
-            Contaxtdb.SaveChanges();
+            var user = _appDbContext.Users.Where(x => x.Id == Id).FirstOrDefault();
+            _appDbContext.Users.Remove(user);
+            _appDbContext.SaveChanges();
 
 
         }
         public void UpdateUser(User user)
         {
-            var user1 = Contaxtdb.Users.Where(x => x.Id == user.Id).FirstOrDefault();
+            var user1 = _appDbContext.Users.Where(x => x.Id == user.Id).FirstOrDefault();
             user1.Role = user.Role;
             user1.Mobile = user.Mobile;
             user1.Email=user.Email;
@@ -75,53 +75,53 @@ namespace App.EndPoint.AdminUi.Models
             user1.PassWord = user.PassWord;
             user1.UserName= user.UserName;
             user1.BrithDay = user.BrithDay;
-            user1.Status = Contaxtdb.Statuses.Where(x => x.Id == 7).FirstOrDefault();
+            user1.Status = _appDbContext.Statuses.Where(x => x.Id == 7).FirstOrDefault();
             user1.Products = user.Products;
 
 
         }
         public ICollection ReadUsers()
         {
-            var Users = Contaxtdb.Users.ToList();
+            var Users = _appDbContext.Users.ToList();
             return Users;
 
         }
         public void ConfirmComment(int Id)
         {
-            var com = Contaxtdb.Comments.Where(x => x.Id == Id).FirstOrDefault();
+            var com = _appDbContext.Comments.Where(x => x.Id == Id).FirstOrDefault();
         
-            com.Status = Contaxtdb.Statuses.Where(x => x.Id == 5).FirstOrDefault();
-            Contaxtdb.SaveChanges();
+            com.Status = _appDbContext.Statuses.Where(x => x.Id == 5).FirstOrDefault();
+            _appDbContext.SaveChanges();
          
         }
         public void RejectComment( int Id)
         {
-            var com = Contaxtdb.Comments.Where(x => x.Id == Id).FirstOrDefault();
-            com.Status = Contaxtdb.Statuses.Where(x=>x.Id==6).FirstOrDefault();
-            Contaxtdb.SaveChanges();
+            var com = _appDbContext.Comments.Where(x => x.Id == Id).FirstOrDefault();
+            com.Status = _appDbContext.Statuses.Where(x=>x.Id==6).FirstOrDefault();
+            _appDbContext.SaveChanges();
         }
         public ICollection ReadComment()
         {
 
-            var com = Contaxtdb.Comments.ToList();
+            var com = _appDbContext.Comments.ToList();
             return com;
         }
 
         public Product GetIdProduct(int Id)
         {
-            var product = Contaxtdb.Products.Where(x => x.Id == Id).FirstOrDefault();
+            var product = _appDbContext.Products.Where(x => x.Id == Id).FirstOrDefault();
             return product;
 
         }
         public User GetIdUser(int Id)
         {
-            var User = Contaxtdb.Users.Where(x => x.Id == Id).FirstOrDefault();
+            var User = _appDbContext.Users.Where(x => x.Id == Id).FirstOrDefault();
             return User;
         }
 
        public Product DetailsProduct(int Id)
         {
-            var product = Contaxtdb.Products.Where(x => x.Id == Id).FirstOrDefault();
+            var product = _appDbContext.Products.Where(x => x.Id == Id).FirstOrDefault();
             return product;
         }
 

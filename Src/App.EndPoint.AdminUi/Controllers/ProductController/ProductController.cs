@@ -2,12 +2,12 @@
 using App.Infrastructure.DataBase.Entities;
 using Microsoft.AspNetCore.Mvc;
 
-namespace App.EndPoint.AdminUi.Controllers
+namespace App.EndPoint.AdminUi.Controllers.ProductController
 {
     public class ProductController : Controller
     {
-        private readonly Repository repository;
-        public ProductController(Repository _repository)
+        private readonly ProductRepository _repository;
+        public ProductController(ProductRepository repository)
         {
             _repository = repository;
 
@@ -15,25 +15,25 @@ namespace App.EndPoint.AdminUi.Controllers
         [HttpGet]
         public IActionResult Update(int Id)
         {
-            var product = repository.GetIdProduct(Id);
+            var product = _repository.GetIdProduct(Id);
             return View("Update",product);
         }
         [HttpPost]
         public IActionResult Apdate( Product product)
         {
-            repository.UpdateProduct(product);
+            _repository.UpdateProduct(product);
             return RedirectToAction("Read");
         }
         
         public IActionResult Delete(int id)
         {
-            repository.DeleteProduct(id);
+            _repository.DeleteProduct(id);
             return RedirectToAction("Read");
         }
        [HttpPost]
         public IActionResult Insert(Product product)
         {
-            repository.InsertProduct(product);
+            _repository.InsertProduct(product);
             return RedirectToAction("Read");
         }
         public IActionResult Insert()
@@ -42,12 +42,12 @@ namespace App.EndPoint.AdminUi.Controllers
         }
         public IActionResult Read()
         {
-           var product= repository.GetProduct();
+           var product= _repository.GetProduct();
             return View("Read",product);
         }
         public IActionResult Details(int Id)
         {
-            var product = repository.DetailsProduct(Id);
+            var product = _repository.DetailsProduct(Id);
             return View("Details",product);
         }
 

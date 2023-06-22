@@ -13,7 +13,7 @@ builder.Services.AddDbContext<AppDbContext>(option =>
 
     option.UseSqlServer("Data Source=DESKTOP-CGR2LP5\\MSSQLSERVER2022;Initial Catalog=DotNetShopDb; Encrypt=False; TrustServerCertificate=True;Integrated Security=true");
 });
-builder.Services.AddScoped<Repository>();
+builder.Services.AddScoped<ProductRepository>();
 builder.Services.AddScoped<AppDbContext>();
 
 
