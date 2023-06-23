@@ -1,0 +1,31 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>net6.0</TargetFramework>
+    <ImplicitUsings>enable</ImplicitUsings>
+    <Nullable>enable</Nullable>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <Folder Include="BaseData\Contracts\AppServices\" />
+    <Folder Include="BaseData\Contracts\Services\" />
+    <Folder Include="BaseData\Contracts\Repositories\" />
+    <Folder Include="BaseData\Dtos\" />
+    <Folder Include="BaseData\Enums\" />
+    <Folder Include="Comment\Contracts\AppServices\" />
+    <Folder Include="Comment\Contracts\Services\" />
+    <Folder Include="Comment\Contracts\Repositories\" />
+    <Folder Include="Comment\Enums\" />
+    <Folder Include="Comment\Dtos\" />
+    <Folder Include="Product\Contracts\AppServices\" />
+    <Folder Include="Product\Contracts\Services\" />
+    <Folder Include="Product\Dtos\" />
+    <Folder Include="Product\Enums\" />
+    <Folder Include="User\Contracts\AppServices\" />
+    <Folder Include="User\Contracts\Services\" />
+    <Folder Include="User\Contracts\Repositories\" />
+    <Folder Include="User\Dtos\" />
+    <Folder Include="User\Enums\" />
+  </ItemGroup>
+
+</Project>
