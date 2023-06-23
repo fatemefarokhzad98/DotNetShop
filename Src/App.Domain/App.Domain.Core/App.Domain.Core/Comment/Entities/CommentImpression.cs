@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 
-namespace App.Infrastructure.DataBase.Entities;
+namespace App.Domain.Core.Comment.Entities;
 
 public partial class CommentImpression
 {

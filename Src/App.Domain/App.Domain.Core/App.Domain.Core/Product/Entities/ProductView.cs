@@ -1,8 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 
-namespace App.Infrastructure.DataBase.Entities;
-
+namespace App.Domain.Core.Product.Entities;
 public partial class ProductView
 {
     public int Id { get; set; }

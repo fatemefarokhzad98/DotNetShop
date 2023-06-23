@@ -4,9 +4,9 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace App.Domain.Core.Product.Contracts.Repositories
+namespace App.Domain.Core.BaseData.Contracts.Repositories
 {
-    public interface IBrandRepository
+    public interface IColorRepository
     {
     }
 }

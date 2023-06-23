@@ -9,7 +9,6 @@
   <ItemGroup>
     <Folder Include="BaseData\Contracts\AppServices\" />
     <Folder Include="BaseData\Contracts\Services\" />
-    <Folder Include="BaseData\Contracts\Repositories\" />
     <Folder Include="BaseData\Dtos\" />
     <Folder Include="BaseData\Enums\" />
     <Folder Include="Comment\Contracts\AppServices\" />

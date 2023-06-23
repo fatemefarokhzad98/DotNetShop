@@ -1,7 +1,8 @@
-﻿using System;
+﻿using App.Domain.Core.Product.Entities;
+using System;
 using System.Collections.Generic;
 
-namespace App.Infrastructure.DataBase.Entities;
+namespace App.Domain.Core.User.Entities;
 
 public partial class User
 {
