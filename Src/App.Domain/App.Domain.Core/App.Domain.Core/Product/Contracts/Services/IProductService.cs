@@ -13,6 +13,6 @@ namespace App.Domain.Core.Product.Contracts.Services
         void CreateBrand(Brand brand);
         void UpdateBrand(Brand brand);
         void RemoveBrand(int Id);
-        bool Exist(int Id);
+        Brand Exist(int Id);
     }
 }

@@ -1,4 +1,5 @@
 ﻿using App.Domain.Core.Product.Contracts.AppServices;
+using App.Domain.Core.Product.Contracts.Services;
 using App.Domain.Core.Product.Entities;
 using System;
 using System.Collections.Generic;
@@ -10,37 +11,38 @@ namespace App.Domain.AppServices.Product
 {
     public class ProductAppService : IProductAppService
     {
-        public ProductAppService(IProductAppService productAppService)
+        private readonly IProductService _productService;
+        public ProductAppService(IProductService productService)
         {
-            _ProductAppService = productAppService;
+            _productService = productService;
 
         }
 
-        private readonly IProductAppService _ProductAppService;
+        
 
         public void CreateBrand(Brand brand)
         {
-            _ProductAppService.CreateBrand(brand);
+            _productService.CreateBrand(brand);
         }
 
-        public bool Exist(int Id)
+        public Brand Exist(int Id)
         {
-            return _ProductAppService.Exist(Id);
+            return _productService.Exist(Id);
         }
 
         public List<Brand> GetAllBrnds()
         {
-          return  _ProductAppService.GetAllBrnds();
+          return _productService.GetAllBrnds();
         }
 
         public void RemoveBrand(int Id)
         {
-            _ProductAppService.RemoveBrand(Id);
+            _productService.RemoveBrand(Id);
         }
 
         public void UpdateBrand(Brand brand)
         {
-            _ProductAppService.UpdateBrand(brand);
+            _productService.UpdateBrand(brand);
         }
     }
 }

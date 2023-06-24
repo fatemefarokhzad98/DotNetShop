@@ -9,7 +9,7 @@ using System.Threading.Tasks;
 
 namespace App.Domain.Services.Product
 {
-    internal class ProductService : IProductService
+    public class ProductService : IProductService
     {
         private readonly IBrandRepository _brandRepository;
 
@@ -24,7 +24,7 @@ namespace App.Domain.Services.Product
             _brandRepository.CreateBrand(brand);
         }
 
-        public bool Exist(int Id)
+        public Brand Exist(int Id)
         {
             return _brandRepository.Exist(Id);
         }

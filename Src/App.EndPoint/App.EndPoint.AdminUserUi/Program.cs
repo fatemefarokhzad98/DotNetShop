@@ -1,6 +1,10 @@
 using App.Domain.AppServices.Product;
 using App.Domain.Core.Product.Contracts.AppServices;
+using App.Domain.Core.Product.Contracts.Repositories;
+using App.Domain.Core.Product.Contracts.Services;
+using App.Domain.Services.Product;
 using App.Infrastructure.DataBase.Data;
+using App.Infrastructure.DataBase.Servises;
 using Microsoft.EntityFrameworkCore;
 
 var builder = WebApplication.CreateBuilder(args);
@@ -16,7 +20,8 @@ builder.Services.AddDbContext<AppDbContext>(option =>
 builder.Services.AddScoped<AppDbContext>();
 
 builder.Services.AddScoped<IProductAppService,ProductAppService>();
-builder.Services.AddScoped<IProductAppService, ProductAppService>();
+builder.Services.AddScoped<IProductService, ProductService>();
+builder.Services.AddScoped<IBrandRepository, BrandRepository>();
 
 
 

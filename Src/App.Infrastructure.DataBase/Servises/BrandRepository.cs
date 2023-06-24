@@ -26,11 +26,13 @@ namespace App.Infrastructure.DataBase.Servises
            
         }
 
-        public bool Exist(int Id)
+        public Brand Exist(int Id)
         {
-            var brand= _AppDbContext.Brands.Any(x=> x.Id == Id);
+            var brand= _AppDbContext.Brands.Where(x=>x.Id==Id).FirstOrDefault();
+           
             return brand;
-            
+
+
         }
 
         public List<Brand> GetAllBrnds()

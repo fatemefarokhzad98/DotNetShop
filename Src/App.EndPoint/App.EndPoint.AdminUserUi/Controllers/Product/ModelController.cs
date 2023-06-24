@@ -2,7 +2,7 @@
 
 namespace App.EndPoint.AdminUserUi.Controllers.Product
 {
-    public class BrandController : Controller
+    public class ModelController : Controller
     {
         public IActionResult Index()
         {
