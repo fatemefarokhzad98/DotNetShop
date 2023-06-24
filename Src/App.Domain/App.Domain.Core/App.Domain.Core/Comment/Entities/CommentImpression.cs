@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using USerEntities = App.Domain.Core.User.Entities;
 
 namespace App.Domain.Core.Comment.Entities;
 
@@ -19,5 +20,5 @@ public partial class CommentImpression
 
     public virtual ImpressionType ImpressionType { get; set; } = null!;
 
-    public virtual User SubmmitUser { get; set; } = null!;
+    public virtual USerEntities.User SubmmitUser { get; set; } = null!;
 }

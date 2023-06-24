@@ -5,15 +5,14 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace App.Domain.Core.Product.Contracts.Repositories
+namespace App.Domain.Core.Product.Contracts.Services
 {
-    public interface IBrandRepository
+    public interface IProductService
     {
         List<Brand> GetAllBrnds();
         void CreateBrand(Brand brand);
         void UpdateBrand(Brand brand);
         void RemoveBrand(int Id);
-        bool Exist (int Id);
-
+        bool Exist(int Id);
     }
 }

@@ -1,5 +1,8 @@
 ﻿using System;
 using System.Collections.Generic;
+using ProductEntities = App.Domain.Core.Product.Entities;
+using StatusEntities = App.Domain.Core.BaseData.Entities;
+using USerEntities = App.Domain.Core.User.Entities;
 
 namespace App.Domain.Core.Comment.Entities;
 
@@ -27,9 +30,9 @@ public partial class Comment
 
     public virtual ICollection<CommentImpression> CommentImpressions { get; set; } = new List<CommentImpression>();
 
-    public virtual Product Product { get; set; } = null!;
+    public virtual ProductEntities.Product Product { get; set; } = null!;
 
-    public virtual Status Status { get; set; } = null!;
+    public virtual StatusEntities.Status Status { get; set; } = null!;
 
-    public virtual User SubmitUser { get; set; } = null!;
+    public virtual USerEntities.User SubmitUser { get; set; } = null!;
 }

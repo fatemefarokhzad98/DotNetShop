@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using UserEntities = App.Domain.Core.User.Entities;
 
 namespace App.Domain.Core.Product.Entities;
 public partial class ProductView
@@ -14,5 +15,5 @@ public partial class ProductView
 
     public virtual Product Product { get; set; } = null!;
 
-    public virtual User? ViewerUser { get; set; }
+    public virtual UserEntities.User? ViewerUser { get; set; }
 }

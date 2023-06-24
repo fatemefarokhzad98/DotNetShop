@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using ColorEntities = App.Domain.Core.BaseData.Entities;
 
 namespace App.Domain.Core.Product.Entities;
 
@@ -13,7 +14,7 @@ public partial class ProductColor
 
     public bool Isexit { get; set; }
 
-    public virtual Color Color { get; set; } = null!;
+    public virtual ColorEntities.Color Color { get; set; } = null!;
 
     public virtual Product Product { get; set; } = null!;
 }

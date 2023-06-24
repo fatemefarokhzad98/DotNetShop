@@ -4,6 +4,9 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using CommentEntities = App.Domain.Core.Comment.Entities;
+using StatusEntities = App.Domain.Core.BaseData.Entities;
+using UserEntities = App.Domain.Core.User.Entities;
 
 namespace App.Domain.Core.Product.Entities
 {
@@ -43,7 +46,7 @@ namespace App.Domain.Core.Product.Entities
 
         public virtual ICollection<CollectionProduct> CollectionProducts { get; set; } = new List<CollectionProduct>();
 
-        public virtual ICollection<Comment> Comments { get; set; } = new List<Comment>();
+        public virtual ICollection<CommentEntities.Comment> Comments { get; set; } = new List<CommentEntities.Comment>();
 
         public virtual Model? Model { get; set; }
 
@@ -55,8 +58,8 @@ namespace App.Domain.Core.Product.Entities
 
         public virtual ICollection<ProductView> ProductViews { get; set; } = new List<ProductView>();
 
-        public virtual Status Status { get; set; } = null!;
+        public virtual StatusEntities.Status Status { get; set; } = null!;
 
-        public virtual User SubmitOperator { get; set; } = null!;
+        public virtual UserEntities.User SubmitOperator { get; set; } = null!;
     }
 }

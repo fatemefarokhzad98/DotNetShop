@@ -1,5 +1,8 @@
 ﻿using System;
 using System.Collections.Generic;
+using CommnetEntities = App.Domain.Core.Comment.Entities;
+using ProductEntities = App.Domain.Core.Product.Entities;
+using UserEntities = App.Domain.Core.User.Entities;
 
 namespace App.Domain.Core.BaseData.Entities;
 
@@ -15,9 +18,9 @@ public partial class Status
 
     public bool ForProduct { get; set; }
 
-    public virtual ICollection<Comment> Comments { get; set; } = new List<Comment>();
+    public virtual ICollection<CommnetEntities.Comment> Comments { get; set; } = new List<CommnetEntities.Comment>();
 
-    public virtual ICollection<Product> Products { get; set; } = new List<Product>();
+    public virtual ICollection<ProductEntities.Product> Products { get; set; } = new List<ProductEntities.Product>();
 
-    public virtual ICollection<User> Users { get; set; } = new List<User>();
+    public virtual ICollection<UserEntities.User> Users { get; set; } = new List<UserEntities.User>();
 }

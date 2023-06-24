@@ -1,7 +1,14 @@
 ﻿using System;
 using System.Collections.Generic;
-using App.Infrastructure.DataBase.Entities;
+using System.Drawing;
+using App.Domain.Core.BaseData.Entities;
+using App.Domain.Core.Comment.Entities;
+using App.Domain.Core.Product.Entities;
+using ColorEntities = App.Domain.Core.BaseData.Entities;
+
 using Microsoft.EntityFrameworkCore;
+
+using App.Domain.Core.User.Entities;
 
 namespace App.Infrastructure.DataBase.Data;
 
@@ -21,7 +28,7 @@ public partial class AppDbContext : DbContext
 
     public virtual DbSet<CollectionProduct> CollectionProducts { get; set; }
 
-    public virtual DbSet<Color> Colors { get; set; }
+    public virtual DbSet<ColorEntities.Color> Colors { get; set; }
 
     public virtual DbSet<Comment> Comments { get; set; }
 
@@ -86,7 +93,7 @@ public partial class AppDbContext : DbContext
                 .HasConstraintName("FK_CollectionProducts_Products");
         });
 
-        modelBuilder.Entity<Color>(entity =>
+        modelBuilder.Entity<ColorEntities.Color>(entity =>
         {
             entity.Property(e => e.ColorCode).HasMaxLength(150);
             entity.Property(e => e.Name).HasMaxLength(150);
