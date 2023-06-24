@@ -5,29 +5,29 @@ namespace App.EndPoint.AdminUserUi.Controllers.Comment
     public class CommentController : Controller
     {
 
-        private readonly ProductRepository repository;
-        public CommentController(ProductRepository _repository)
-        {
-            repository = _repository;
+        //private readonly ProductRepository repository;
+        //public CommentController(ProductRepository _repository)
+        //{
+        //    repository = _repository;
 
-        }
-        public IActionResult Read()
-        {
-            var model = repository.ReadComment();
+        //}
+        //public IActionResult Read()
+        //{
+        //    var model = repository.ReadComment();
 
 
-            return View("Read", model);
-        }
-        public IActionResult Rejectete(int Id)
-        {
-            repository.RejectComment(Id);
-            return RedirectToAction("Read");
-        }
-        public IActionResult Confirm(int Id)
-        {
-            repository.ConfirmComment(Id);
-            return RedirectToAction("Read");
-        }
+        //    return View("Read", model);
+        //}
+        //public IActionResult Rejectete(int Id)
+        //{
+        //    repository.RejectComment(Id);
+        //    return RedirectToAction("Read");
+        //}
+        //public IActionResult Confirm(int Id)
+        //{
+        //    repository.ConfirmComment(Id);
+        //    return RedirectToAction("Read");
+        //}
 
     }
 }

@@ -1,5 +1,7 @@
-﻿using App.Infrastructure.DataBase.Data;
-using App.Infrastructure.DataBase.Entities;
+﻿using App.Domain.Core.Product.Entities;
+using App.Domain.Core.User.Entities;
+using App.Infrastructure.DataBase.Data;
+
 using System.Collections;
 
 namespace App.Infrastructure.DataBase.Servises

@@ -5,12 +5,12 @@ namespace App.EndPoint.AdminUserUi.Controllers.Product
 {
     public class ProductController : Controller
     {
-        private readonly IProductRepository _productRepository;
-        public ProductController(IProductRepository productRepository )
-        {
-            _productRepository = productRepository;
+        //private readonly IProductRepository _productRepository;
+        //public ProductController(IProductRepository productRepository )
+        //{
+        //    _productRepository = productRepository;
 
-        }
+        //}
         //[HttpGet]
         //public IActionResult Update(int Id)
         //{
