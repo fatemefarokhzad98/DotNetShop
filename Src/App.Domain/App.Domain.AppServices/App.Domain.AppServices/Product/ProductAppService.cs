@@ -13,6 +13,7 @@ namespace App.Domain.AppServices.Product
         public ProductAppService(IProductAppService productAppService)
         {
             _ProductAppService = productAppService;
+
         }
 
         private readonly IProductAppService _ProductAppService;
