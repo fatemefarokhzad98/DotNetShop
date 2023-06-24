@@ -27,7 +27,7 @@ namespace App.EndPoint.AdminUserUi.Controllers.Product
         [HttpGet]
         public IActionResult Update(int Id)
         {
-          var brand=  _productAppService.Exist(Id);
+          var brand=  _productAppService.GetId(Id);
             return View(brand);
 
 

@@ -20,16 +20,16 @@ namespace App.Infrastructure.DataBase.Servises
 
         public void CreateBrand(Brand brand)
         {
-           _AppDbContext.Brands.Add(brand);
+            _AppDbContext.Brands.Add(brand);
             _AppDbContext.SaveChanges();
 
-           
+
         }
 
-        public Brand Exist(int Id)
+        public Brand? GetId(int Id)
         {
-            var brand= _AppDbContext.Brands.Where(x=>x.Id==Id).FirstOrDefault();
-           
+            var brand = _AppDbContext.Brands.Where(x => x.Id == Id).FirstOrDefault();
+
             return brand;
 
 
@@ -40,31 +40,32 @@ namespace App.Infrastructure.DataBase.Servises
             var brands = _AppDbContext.Brands.ToList();
             return brands;
 
-          
+
         }
 
         public void RemoveBrand(int Id)
         {
-            var brand = _AppDbContext.Brands.Where(x => x.Id == Id).FirstOrDefault();
-            if (brand != null)
-            _AppDbContext.Remove(brand);
+            var brand = GetId(Id);
+           
+                _AppDbContext.Remove(brand);
             _AppDbContext.SaveChanges();
         }
 
         public void UpdateBrand(Brand brand)
         {
-            var _brand = _AppDbContext.Brands.Where(x => x.Id == brand.Id).FirstOrDefault();
-            if (_brand != null)
-            {
-                _brand.Name = brand.Name;
-                _brand.DisplayOrder = brand.DisplayOrder;
-                _brand.Products = brand.Products;
-                _brand.Models = brand.Models;
-            }
+            var _brand = GetId(brand.Id);
+            _brand.Name = brand.Name;
+            _brand.DisplayOrder = brand.DisplayOrder;
+            _brand.Products = brand.Products;
+            _brand.Models = brand.Models;
             _AppDbContext.SaveChanges();
 
+        }
+        public Brand? GetName(string Name)
+        {
+            var brand = _AppDbContext.Brands.Where(x => x.Name == Name).FirstOrDefault();
+            return brand;
 
-            
         }
     }
 }

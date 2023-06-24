@@ -24,9 +24,9 @@ namespace App.Domain.Services.Product
             _brandRepository.CreateBrand(brand);
         }
 
-        public Brand Exist(int Id)
+        public Brand? GetId(int Id)
         {
-            return _brandRepository.Exist(Id);
+            return _brandRepository.GetId(Id);
         }
 
         public List<Brand> GetAllBrnds()
@@ -43,6 +43,10 @@ namespace App.Domain.Services.Product
         {
             _brandRepository.UpdateBrand(brand);
             
+        }
+        public Brand? GetName(string name)
+        {
+          return  _brandRepository.GetName(name);
         }
     }
 }
