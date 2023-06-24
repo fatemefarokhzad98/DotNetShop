@@ -1,3 +1,8 @@
+using App.Domain.AppServices.Product;
+using App.Domain.Core.Product.Contracts.AppServices;
+using App.Infrastructure.DataBase.Data;
+using Microsoft.EntityFrameworkCore;
+
 var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
@@ -7,8 +12,12 @@ builder.Services.AddDbContext<AppDbContext>(option =>
 
     option.UseSqlServer("Data Source=DESKTOP-CGR2LP5\\MSSQLSERVER2022;Initial Catalog=DotNetShopDb; Encrypt=False; TrustServerCertificate=True;Integrated Security=true");
 });
-builder.Services.AddScoped<ProductRepository>();
+
 builder.Services.AddScoped<AppDbContext>();
+
+builder.Services.AddScoped<IProductAppService,ProductAppService>();
+builder.Services.AddScoped<IProductAppService, ProductAppService>();
+
 
 
 
