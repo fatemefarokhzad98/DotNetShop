@@ -27,7 +27,7 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "App.EndPoint.ShopUi", "Src\
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "App.EndPoint.AdminUserUi", "Src\App.EndPoint\App.EndPoint.AdminUserUi\App.EndPoint.AdminUserUi.csproj", "{F81FD2B3-B088-463A-BF0D-4C4CCFC484A0}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "App.Infrastructure.Repository.Ef", "Src\App.Infrastructure.DataBase\App.Infrastructure.Repository.Ef\App.Infrastructure.Repository.Ef.csproj", "{C13597AC-D816-4F01-AA30-774147DDFF96}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "App.Infrastructure.Repository.Ef", "Src\App.Infrastructure.Repository.Ef\App.Infrastructure.Repository.Ef.csproj", "{21BF6E4A-9D12-4A21-A6E6-C1ACC8709071}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -59,10 +59,10 @@ Global
 		{F81FD2B3-B088-463A-BF0D-4C4CCFC484A0}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{F81FD2B3-B088-463A-BF0D-4C4CCFC484A0}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{F81FD2B3-B088-463A-BF0D-4C4CCFC484A0}.Release|Any CPU.Build.0 = Release|Any CPU
-		{C13597AC-D816-4F01-AA30-774147DDFF96}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{C13597AC-D816-4F01-AA30-774147DDFF96}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{C13597AC-D816-4F01-AA30-774147DDFF96}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{C13597AC-D816-4F01-AA30-774147DDFF96}.Release|Any CPU.Build.0 = Release|Any CPU
+		{21BF6E4A-9D12-4A21-A6E6-C1ACC8709071}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{21BF6E4A-9D12-4A21-A6E6-C1ACC8709071}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{21BF6E4A-9D12-4A21-A6E6-C1ACC8709071}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{21BF6E4A-9D12-4A21-A6E6-C1ACC8709071}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -79,7 +79,7 @@ Global
 		{E085726E-A80A-480D-A7F7-BDB2E797766A} = {930836C9-1B24-4E58-82AC-ED4A35E5191F}
 		{3C02932A-839E-40A0-9879-5D0A6764839D} = {CC082298-471A-4B33-8172-5D467EBB1491}
 		{F81FD2B3-B088-463A-BF0D-4C4CCFC484A0} = {CC082298-471A-4B33-8172-5D467EBB1491}
-		{C13597AC-D816-4F01-AA30-774147DDFF96} = {4B3A297A-2731-4249-B8DB-1FCA2279D297}
+		{21BF6E4A-9D12-4A21-A6E6-C1ACC8709071} = {4B3A297A-2731-4249-B8DB-1FCA2279D297}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {3039105C-3952-4A67-B859-8B3B26681E2E}

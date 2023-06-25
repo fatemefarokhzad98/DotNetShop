@@ -9,13 +9,13 @@
   <ItemGroup>
     <Folder Include="BaseData\Contracts\AppServices\" />
     <Folder Include="BaseData\Contracts\Services\" />
-    <Folder Include="BaseData\Dtos\" />
     <Folder Include="BaseData\Enums\" />
     <Folder Include="Comment\Contracts\AppServices\" />
     <Folder Include="Comment\Contracts\Repositories\" />
     <Folder Include="Comment\Contracts\Services\" />
     <Folder Include="Comment\Enums\" />
     <Folder Include="Comment\Dtos\" />
+    <Folder Include="Product\Contracts\AppServices\" />
     <Folder Include="Product\Dtos\" />
     <Folder Include="Product\Enums\" />
     <Folder Include="User\Contracts\AppServices\" />
