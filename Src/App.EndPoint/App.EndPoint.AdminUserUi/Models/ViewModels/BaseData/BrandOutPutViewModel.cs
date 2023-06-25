@@ -6,7 +6,7 @@
         public string  Name { get; set; }
         public DateTime CreationDate { get; set; }
         public int DisPlayOrder { get; set; }
-       
+        public  bool IsDeleted { get; set; }
 
 
     }

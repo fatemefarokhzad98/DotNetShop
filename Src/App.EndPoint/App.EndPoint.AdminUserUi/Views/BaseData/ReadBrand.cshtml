@@ -11,14 +11,16 @@
 
         </tr>
     </thead>
+      @foreach(var Item in Model){
     
     <tbody>
-        @foreach(var Item in Model){
+       
         <tr>
-            <th scope="row" >
+           
+            @*<th scope="row" >
                 @rowCount
 
-            </th>
+            </th>*@
             <td>Item.Id</td>
             <td>Item.Name</td>
             <td>Item.CreationDate</td>
@@ -32,9 +34,9 @@
             </td>
 
 
-        </tr>}
+        </tr>
 
 
 
-    </tbody>
+    </tbody>}
 </table>

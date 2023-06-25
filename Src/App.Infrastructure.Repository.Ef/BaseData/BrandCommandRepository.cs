@@ -1,4 +1,5 @@
 ﻿using App.Domain.Core.BaseData.Contracts.Repositories;
+using App.Domain.Core.BaseData.Dtos;
 using App.Domain.Core.BaseData.Entities;
 using App.Infrastructure.DataBase.Data;
 using System;
@@ -19,19 +20,29 @@ namespace App.Infrastructure.Repository.Ef.BaseData
 
 
         }
-        public void CreateBrand(Brand brand)
+       
+
+        public void CreateBrand(string name, int displayOrder, DateTime dateTime, bool isDeleted)
         {
-            throw new NotImplementedException();
+            Brand brand = new()
+            {
+                Name = name,
+                CreationDate = dateTime,
+                IsDeleted = isDeleted,
+                DisplayOrder = displayOrder,
+
+            };
+            _appDbContext.Add(brand);
+            _appDbContext.SaveChanges();
         }
 
         public void RemoveBrand(int Id)
         {
-            throw new NotImplementedException();
         }
 
         public void UpdateBrand(Brand brand)
         {
-            throw new NotImplementedException();
+           
         }
     }
 }

@@ -5,17 +5,16 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace App.Domain.Core.BaseData.Contracts.AppServices
+namespace App.Domain.Core.BaseData.Contracts.Services
 {
-    public interface IBrandAppService
+    public interface IBrandService
     {
         List<BrandDto> GetBrands();
         void SetBrand(int displayOrder, string name);
         BrandDto GetBrand(int id);
         BrandDto GetBrand(string name);
-        void UpdateBrand(int id,int displayOrder, string name);
+        void UpdateBrand(int id, int displayOrder, string name);
         void RemoveBrand(int id);
-
 
     }
 }

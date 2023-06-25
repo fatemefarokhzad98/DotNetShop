@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace App.Domain.Core.Product.Contracts.Services
+namespace App.Domain.Core.BaseData.Contracts.Services
 {
     public interface IBrandSurenessService
     {

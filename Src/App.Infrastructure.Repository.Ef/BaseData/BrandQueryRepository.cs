@@ -2,6 +2,7 @@
 using App.Domain.Core.BaseData.Dtos;
 using App.Domain.Core.BaseData.Entities;
 using App.Infrastructure.DataBase.Data;
+using Microsoft.EntityFrameworkCore;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -17,22 +18,48 @@ namespace App.Infrastructure.Repository.Ef.BaseData
         {
             _appDbContext = appDbContext;
 
-
         }
 
-        public List<BrandDto> GetAllBrnds()
+        public List<BrandDto> GetBrnds()
         {
-            throw new NotImplementedException();
+           return _appDbContext.Brands.AsNoTracking().Select(b => new BrandDto()
+            {
+                Id=b.Id,
+                 Name=b.Name,
+                 CreationDate=b.CreationDate,
+                 DisplayOrder=b.DisplayOrder,
+                 IsDeleted=b.IsDeleted 
+
+
+            }).ToList();
         }
 
         public BrandDto? GetBrand(int Id)
         {
-            throw new NotImplementedException();
+            return _appDbContext.Brands.AsNoTracking().Where(b => b.Id == Id).Select(p => new BrandDto()
+            {
+                Name = p.Name,
+                DisplayOrder = p.DisplayOrder,
+                Id = p.Id,
+                CreationDate = p.CreationDate,
+                IsDeleted = p.IsDeleted
+
+            }).FirstOrDefault();
+
         }
 
         public BrandDto? GetBrand(string Name)
         {
-            throw new NotImplementedException();
+            return _appDbContext.Brands.AsNoTracking().Where(b => b.Name == Name).Select(p => new BrandDto()
+            {
+                Name = p.Name,
+                DisplayOrder = p.DisplayOrder,
+                Id = p.Id,
+                CreationDate = p.CreationDate,
+                IsDeleted = p.IsDeleted
+
+            }).SingleOrDefault();
+           
         }
     }
 }

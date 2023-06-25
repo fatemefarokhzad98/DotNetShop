@@ -12,6 +12,8 @@ public partial class Brand
     public string Name { get; set; } = null!;
 
     public int DisplayOrder { get; set; }
+    public DateTime CreationDate { get; set; }
+    public bool IsDeleted { get; set; }
 
     public virtual ICollection<Model> Models { get; set; } = new List<Model>();
 

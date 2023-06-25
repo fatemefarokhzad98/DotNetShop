@@ -11,9 +11,9 @@ namespace App.Domain.Core.BaseData.Contracts.Repositories
     public interface IBrandCommandRepository
     {
        
-        void CreateBrand(Brand brand);
+        void CreateBrand(string name,int displayOrder,DateTime dateTime,bool isDeleted);
         void UpdateBrand(Brand brand);
-        void RemoveBrand(int Id);
+        void RemoveBrand(int id);
        
       
 
