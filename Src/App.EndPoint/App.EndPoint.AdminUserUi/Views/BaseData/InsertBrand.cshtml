@@ -1,0 +1,30 @@
+﻿@using App.EndPoint.AdminUserUi.Models.ViewModels.BaseData
+@model BrandInPutViewModel
+@{
+    ViewData["Title"] = "اضافه کردن برند جدید";   
+}
+<h3>اضافه کردن برند جدید</h3>
+<form>
+
+    <div  class="form-group"> 
+        <label asp-for="Name"  > </label>
+      <input   class="form-control" asp-for="Name" />
+
+    </div>
+     <div  class="form-group">
+      <label asp-for="DisPlayOrder"  > </label>
+      <input   class="form-control" asp-for="DisPlayOrder" />
+
+    </div>
+    <div style="float:left; margin-top:5px;   " >
+       
+        <button type="submit" class="btn btn-primary" asp-action="InsertBrand" asp-controller="Brand" formmethod="post"  >ثبت برند</button>
+        <button type="submit" class="btn btn-danger"  asp-action="ReadBrand" asp-controller="Brand" >انصراف</button>
+
+    </div>
+   
+
+
+
+
+</form>

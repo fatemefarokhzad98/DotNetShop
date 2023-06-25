@@ -1,4 +1,5 @@
-﻿using App.Domain.Core.BaseData.Entities;
+﻿using App.Domain.Core.BaseData.Dtos;
+using App.Domain.Core.BaseData.Entities;
 using App.Domain.Core.Product.Entities;
 using System;
 using System.Collections.Generic;
@@ -10,10 +11,10 @@ namespace App.Domain.Core.BaseData.Contracts.Repositories
 {
     public interface IBrandQueryRepository
     {
-        List<Brand> GetAllBrnds();
+        List<BrandDto> GetAllBrnds();
         
-        Brand? GetId (int Id);
-        Brand? GetName(string Name);
+        BrandDto? GetBrand (int Id);
+        BrandDto? GetBrand(string Name);
 
     }
 }
