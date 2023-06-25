@@ -1,4 +1,5 @@
-﻿using App.Domain.Core.Product.Contracts.Repositories;
+﻿
+using App.Domain.Core.Product.Contracts.Repositories;
 using App.Domain.Core.Product.Entities;
 using App.Infrastructure.DataBase.Data;
 using System;
@@ -7,7 +8,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace App.Infrastructure.DataBase.Servises
+namespace App.Infrastructure.Repository.Ef.BaseData
 {
     public class BrandRepository : IBrandRepository
     {

@@ -1,10 +1,9 @@
-﻿using App.Domain.Core.Product.Entities;
-using App.Domain.Core.User.Entities;
+﻿using ProductEntities = App.Domain.Core.Product.Entities;
+using UserEntities = App.Domain.Core.User.Entities;
 using App.Infrastructure.DataBase.Data;
-
 using System.Collections;
 
-namespace App.Infrastructure.DataBase.Servises
+namespace App.Infrastructure.Repository.Ef.Product
 {
     public class ProductRepository
     {
@@ -15,7 +14,7 @@ namespace App.Infrastructure.DataBase.Servises
             _appDbContext = appDbContext;
         }
         
-        public void InsertProduct(Product product)
+        public void InsertProduct(ProductEntities.Product product)
         {
            product.Status  = _appDbContext.Statuses.Where(x => x.Id == 11).FirstOrDefault();
 
@@ -38,7 +37,7 @@ namespace App.Infrastructure.DataBase.Servises
             return products;
 
         }
-        public void UpdateProduct( Product product)
+        public void UpdateProduct(ProductEntities.Product product)
         {
             var product1 = _appDbContext.Products.Where(x=>x.Id==product.Id).FirstOrDefault();   
             product1.Brand = product.Brand;
@@ -66,7 +65,7 @@ namespace App.Infrastructure.DataBase.Servises
 
 
         }
-        public void UpdateUser(User user)
+        public void UpdateUser(UserEntities.User user)
         {
             var user1 = _appDbContext.Users.Where(x => x.Id == user.Id).FirstOrDefault();
             user1.Role = user.Role;
@@ -109,19 +108,19 @@ namespace App.Infrastructure.DataBase.Servises
             return com;
         }
 
-        public Product GetIdProduct(int Id)
+        public ProductEntities.Product GetIdProduct(int Id)
         {
             var product = _appDbContext.Products.Where(x => x.Id == Id).FirstOrDefault();
             return product;
 
         }
-        public User GetIdUser(int Id)
+        public UserEntities.User GetIdUser(int Id)
         {
             var User = _appDbContext.Users.Where(x => x.Id == Id).FirstOrDefault();
             return User;
         }
 
-       public Product DetailsProduct(int Id)
+       public ProductEntities.Product DetailsProduct(int Id)
         {
             var product = _appDbContext.Products.Where(x => x.Id == Id).FirstOrDefault();
             return product;
