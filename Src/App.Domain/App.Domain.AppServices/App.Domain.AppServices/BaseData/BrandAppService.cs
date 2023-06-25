@@ -31,7 +31,8 @@ namespace App.Domain.AppServices.BaseData
 
         public BrandDto GetBrand(string name)
         {
-            return _brandService.GetBrand(name);
+           
+              return  _brandService.GetBrand(name);
         }
 
         public List<BrandDto> GetBrands()
@@ -42,6 +43,8 @@ namespace App.Domain.AppServices.BaseData
 
         public void RemoveBrand(int id)
         {
+            //دسترس چک شود
+            _brandSurenessService.EnsureBrandIsExist(id);
             _brandService.RemoveBrand(id);
         }
 
@@ -55,6 +58,10 @@ namespace App.Domain.AppServices.BaseData
 
         public void UpdateBrand(int id, int displayOrder, string name)
         {
+            //دسترسی رو اول چک میکنیم
+            _brandSurenessService.EnsureBrandIsExist(id);
+
+
             _brandService.UpdateBrand(id, displayOrder, name);
         }
     }

@@ -12,7 +12,7 @@ namespace App.Domain.Core.BaseData.Contracts.Repositories
     {
        
         void CreateBrand(string name,int displayOrder,DateTime dateTime,bool isDeleted);
-        void UpdateBrand(Brand brand);
+        void UpdateBrand(string name, int displayOrder,int id);
         void RemoveBrand(int id);
        
       

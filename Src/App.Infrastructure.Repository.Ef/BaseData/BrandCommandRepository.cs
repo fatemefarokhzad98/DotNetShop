@@ -38,13 +38,20 @@ namespace App.Infrastructure.Repository.Ef.BaseData
 
         public void RemoveBrand(int Id)
         {
+            var brand = _appDbContext.Brands.Where(x => x.Id == Id).Single();
+            _appDbContext.Remove(brand);
+            _appDbContext.SaveChanges();
 
 
         }
 
-        public void UpdateBrand(Brand brand)
+        public void UpdateBrand(string name, int displayOrder,int id)
         {
-           
+          var brand=  _appDbContext.Brands.Where(x => x.Id == id).Single();
+            brand.Name= name;
+            brand.DisplayOrder= displayOrder;
+            brand.Id= id;
+            _appDbContext.SaveChanges();
         }
     }
 }

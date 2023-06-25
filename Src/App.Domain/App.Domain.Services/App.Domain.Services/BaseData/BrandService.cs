@@ -22,12 +22,18 @@ namespace App.Domain.Services.BaseData
 
         public BrandDto GetBrand(int id)
         {
-          return  _brandQueryRepository.GetBrand(id);
+         var brand= _brandQueryRepository.GetBrand(id);
+            if (brand == null)
+                throw new Exception();
+            return brand;
         }
 
         public BrandDto GetBrand(string name)
         {
-            return _brandQueryRepository.GetBrand(name);
+            var brand = _brandQueryRepository.GetBrand(name);
+            if (brand == null)
+                throw new Exception();
+            return brand;
         }
 
         public List<BrandDto> GetBrands()
@@ -37,7 +43,7 @@ namespace App.Domain.Services.BaseData
 
         public void RemoveBrand(int id)
         {
-            throw new NotImplementedException();
+            _brandCommandRepository.RemoveBrand(id);
         }
 
         public void SetBrand(int displayOrder, string name)
@@ -47,7 +53,7 @@ namespace App.Domain.Services.BaseData
 
         public void UpdateBrand(int id, int displayOrder, string name)
         {
-            throw new NotImplementedException();
+            _brandCommandRepository.UpdateBrand(name, displayOrder, id);
         }
     }
 }

@@ -39,14 +39,19 @@ namespace App.Domain.Services.BaseData
        
         public void EnSureBrandIsExist(string brandName)
         {
-          
 
+            var brand = _brandQueryRepository.GetBrand(brandName);
+            if (brand == null)
+                throw new Exception();
 
         }
 
         public void EnsureBrandIsExist(int brandId)
         {
-            
+            var brand = _brandQueryRepository.GetBrand(brandId);
+            if (brand == null)
+
+                throw new Exception();
         }
     }
 }
