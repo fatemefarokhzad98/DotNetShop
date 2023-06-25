@@ -20,28 +20,29 @@ namespace App.Domain.AppServices.BaseData
         public BrandAppService(IBrandService brandService , IBrandSurenessService brandSurenessService)
         {
             _brandService = brandService;
-            _brandSurenessService= brandSurenessService
+            _brandSurenessService = brandSurenessService;
 
         }
 
         public BrandDto GetBrand(int id)
         {
-            throw new NotImplementedException();
+            return _brandService.GetBrand(id);
         }
 
-        public BrandDto GetBrand(string Name)
+        public BrandDto GetBrand(string name)
         {
-            throw new NotImplementedException();
+            return _brandService.GetBrand(name);
         }
 
         public List<BrandDto> GetBrands()
         {
+            return _brandService.GetBrands();
             
         }
 
         public void RemoveBrand(int id)
         {
-            throw new NotImplementedException();
+            _brandService.RemoveBrand(id);
         }
 
         public void SetBrand(int disPlayOrder, string name)
@@ -54,7 +55,7 @@ namespace App.Domain.AppServices.BaseData
 
         public void UpdateBrand(int id, int displayOrder, string name)
         {
-            throw new NotImplementedException();
+            _brandService.UpdateBrand(id, displayOrder, name);
         }
     }
 }

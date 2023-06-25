@@ -38,6 +38,8 @@ namespace App.Infrastructure.Repository.Ef.BaseData
 
         public void RemoveBrand(int Id)
         {
+
+
         }
 
         public void UpdateBrand(Brand brand)
