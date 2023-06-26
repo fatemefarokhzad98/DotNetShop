@@ -20,40 +20,40 @@ namespace App.Domain.Services.BaseData
 
         }
 
-        public BrandDto GetBrand(int id)
+        public async Task< BrandDto> GetBrand(int id)
         {
-         var brand= _brandQueryRepository.GetBrand(id);
+         var brand=await _brandQueryRepository.GetBrand(id);
             if (brand == null)
                 throw new Exception();
             return brand;
         }
 
-        public BrandDto GetBrand(string name)
+        public async Task< BrandDto> GetBrand(string name)
         {
-            var brand = _brandQueryRepository.GetBrand(name);
+            var brand = await  _brandQueryRepository.GetBrand(name);
             if (brand == null)
                 throw new Exception();
             return brand;
         }
 
-        public List<BrandDto> GetBrands()
+        public async Task< List<BrandDto>> GetBrands()
         {
-           return _brandQueryRepository.GetBrnds();
+           return await _brandQueryRepository.GetBrnds();
         }
 
-        public void RemoveBrand(int id)
+        public async Task RemoveBrand(int id)
         {
-            _brandCommandRepository.RemoveBrand(id);
+          await  _brandCommandRepository.RemoveBrand(id);
         }
 
-        public void SetBrand(int displayOrder, string name)
+        public async Task  SetBrand(int displayOrder, string name)
         {
-            _brandCommandRepository.CreateBrand( name, displayOrder, DateTime.Now,false);
+          await  _brandCommandRepository.CreateBrand( name, displayOrder, DateTime.Now,false);
         }
 
-        public void UpdateBrand(int id, int displayOrder, string name)
+        public async Task UpdateBrand(int id, int displayOrder, string name)
         {
-            _brandCommandRepository.UpdateBrand(name, displayOrder, id);
+          await  _brandCommandRepository.UpdateBrand(name, displayOrder, id);
         }
     }
 }

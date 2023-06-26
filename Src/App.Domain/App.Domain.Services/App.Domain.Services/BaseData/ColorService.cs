@@ -25,13 +25,19 @@ namespace App.Domain.Services.BaseData
         }
         public async Task<ColorDto> GetColor(int id)
         {
-          return  await _colorQueryRepository.GetColor(id);
+          var color=  await _colorQueryRepository.GetColor(id);
+            if (color == null)
+                throw new Exception();
+            return color;
             
         }
 
         public async Task<ColorDto> GetColor(string name)
         {
-            return await _colorQueryRepository.GetColor(name);
+            var color = await _colorQueryRepository.GetColor(name);
+            if (color == null)
+                throw new Exception();
+            return color;
         }
 
         public async Task<List<ColorDto>> GetColors()

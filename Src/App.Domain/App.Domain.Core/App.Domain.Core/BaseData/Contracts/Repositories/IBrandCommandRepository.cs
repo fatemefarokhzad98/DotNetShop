@@ -11,9 +11,9 @@ namespace App.Domain.Core.BaseData.Contracts.Repositories
     public interface IBrandCommandRepository
     {
        
-        void CreateBrand(string name,int displayOrder,DateTime dateTime,bool isDeleted);
-        void UpdateBrand(string name, int displayOrder,int id);
-        void RemoveBrand(int id);
+        Task CreateBrand(string name,int displayOrder,DateTime dateTime,bool isDeleted);
+        Task UpdateBrand(string name, int displayOrder,int id);
+        Task RemoveBrand(int id);
        
       
 

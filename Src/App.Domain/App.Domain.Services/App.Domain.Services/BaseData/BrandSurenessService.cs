@@ -21,34 +21,34 @@ namespace App.Domain.Services.BaseData
 
         }
 
-        public void EnsureBrandIsNotExist(int brandId)
+        public async Task EnsureBrandIsNotExist(int brandId)
         {
-            var brand = _brandQueryRepository.GetBrand(brandId);
+            var brand = await _brandQueryRepository.GetBrand(brandId);
             if (brandId != 0)
                 throw new Exception();
         
 
         }
-        public void EnsureBrandIsNotExist(string brandName)
+        public async Task EnsureBrandIsNotExist(string brandName)
         {
-           var brand= _brandQueryRepository.GetBrand(brandName);
+           var brand= await _brandQueryRepository.GetBrand(brandName);
             if (brand != null)
                 throw new Exception();
            
         }
        
-        public void EnSureBrandIsExist(string brandName)
+        public async Task EnSureBrandIsExist(string brandName)
         {
 
-            var brand = _brandQueryRepository.GetBrand(brandName);
+            var brand = await _brandQueryRepository.GetBrand(brandName);
             if (brand == null)
                 throw new Exception();
 
         }
 
-        public void EnsureBrandIsExist(int brandId)
+        public async Task EnsureBrandIsExist(int brandId)
         {
-            var brand = _brandQueryRepository.GetBrand(brandId);
+            var brand = await _brandQueryRepository.GetBrand(brandId);
             if (brand == null)
 
                 throw new Exception();

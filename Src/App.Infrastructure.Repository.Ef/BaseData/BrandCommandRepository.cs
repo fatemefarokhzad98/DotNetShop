@@ -2,6 +2,7 @@
 using App.Domain.Core.BaseData.Dtos;
 using App.Domain.Core.BaseData.Entities;
 using App.Infrastructure.DataBase.Data;
+using Microsoft.EntityFrameworkCore;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -22,7 +23,7 @@ namespace App.Infrastructure.Repository.Ef.BaseData
         }
        
 
-        public void CreateBrand(string name, int displayOrder, DateTime dateTime, bool isDeleted)
+        public async Task CreateBrand(string name, int displayOrder, DateTime dateTime, bool isDeleted)
         {
             Brand brand = new()
             {
@@ -32,26 +33,26 @@ namespace App.Infrastructure.Repository.Ef.BaseData
                 DisplayOrder = displayOrder,
 
             };
-            _appDbContext.Add(brand);
-            _appDbContext.SaveChanges();
+           await _appDbContext.AddAsync(brand);
+           await _appDbContext.SaveChangesAsync();
         }
 
-        public void RemoveBrand(int Id)
+        public async Task RemoveBrand(int Id)
         {
-            var brand = _appDbContext.Brands.Where(x => x.Id == Id).Single();
+            var brand = await _appDbContext.Brands.Where(x => x.Id == Id).SingleAsync();
             _appDbContext.Remove(brand);
-            _appDbContext.SaveChanges();
+           await _appDbContext.SaveChangesAsync();
 
 
         }
 
-        public void UpdateBrand(string name, int displayOrder,int id)
+        public async Task UpdateBrand(string name, int displayOrder,int id)
         {
-          var brand=  _appDbContext.Brands.Where(x => x.Id == id).Single();
+          var brand=await  _appDbContext.Brands.Where(x => x.Id == id).SingleAsync();
             brand.Name= name;
             brand.DisplayOrder= displayOrder;
             brand.Id= id;
-            _appDbContext.SaveChanges();
+           await _appDbContext.SaveChangesAsync();
         }
     }
 }

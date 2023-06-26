@@ -20,23 +20,23 @@ namespace App.Infrastructure.Repository.Ef.BaseData
 
         }
 
-        public List<BrandDto> GetBrnds()
+        public async Task< List<BrandDto>> GetBrnds()
         {
-           return _appDbContext.Brands.AsNoTracking().Select(b => new BrandDto()
+            return await _appDbContext.Brands.AsNoTracking().Select(b => new BrandDto()
             {
-                Id=b.Id,
-                 Name=b.Name,
-                 CreationDate=b.CreationDate,
-                 DisplayOrder=b.DisplayOrder,
-                 IsDeleted=b.IsDeleted 
+                Id = b.Id,
+                Name = b.Name,
+                CreationDate = b.CreationDate,
+                DisplayOrder = b.DisplayOrder,
+                IsDeleted = b.IsDeleted
 
 
-            }).ToList();
+            }).ToListAsync();
         }
 
-        public BrandDto? GetBrand(int Id)
+        public async Task <BrandDto?> GetBrand(int Id)
         {
-            return _appDbContext.Brands.AsNoTracking().Where(b => b.Id == Id).Select(p => new BrandDto()
+            return await _appDbContext.Brands.AsNoTracking().Where(b => b.Id == Id).Select(p => new BrandDto()
             {
                 Name = p.Name,
                 DisplayOrder = p.DisplayOrder,
@@ -44,13 +44,13 @@ namespace App.Infrastructure.Repository.Ef.BaseData
                 CreationDate = p.CreationDate,
                 IsDeleted = p.IsDeleted
 
-            }).FirstOrDefault();
+            }).FirstOrDefaultAsync();
 
         }
 
-        public BrandDto? GetBrand(string Name)
+        public async Task< BrandDto?> GetBrand(string Name)
         {
-            return _appDbContext.Brands.AsNoTracking().Where(b => b.Name == Name).Select(p => new BrandDto()
+            return await _appDbContext.Brands.AsNoTracking().Where(b => b.Name == Name).Select(p => new BrandDto()
             {
                 Name = p.Name,
                 DisplayOrder = p.DisplayOrder,
@@ -58,7 +58,7 @@ namespace App.Infrastructure.Repository.Ef.BaseData
                 CreationDate = p.CreationDate,
                 IsDeleted = p.IsDeleted
 
-            }).SingleOrDefault();
+            }).SingleOrDefaultAsync();
            
         }
     }

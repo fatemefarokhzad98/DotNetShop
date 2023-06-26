@@ -9,12 +9,12 @@ namespace App.Domain.Core.BaseData.Contracts.AppServices
 {
     public interface IBrandAppService
     {
-        List<BrandDto> GetBrands();
-        void SetBrand(int displayOrder, string name);
-        BrandDto GetBrand(int id);
-        BrandDto GetBrand(string name);
-        void UpdateBrand(int id,int displayOrder, string name);
-        void RemoveBrand(int id);
+      Task<  List<BrandDto>> GetBrands();
+        Task SetBrand(int displayOrder, string name);
+       Task <BrandDto> GetBrand(int id);
+       Task <BrandDto > GetBrand(string name);
+        Task  UpdateBrand(int id,int displayOrder, string name);
+        Task RemoveBrand(int id);
 
 
     }

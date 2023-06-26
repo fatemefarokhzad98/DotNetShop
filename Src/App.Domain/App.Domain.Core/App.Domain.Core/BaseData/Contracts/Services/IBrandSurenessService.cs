@@ -8,10 +8,10 @@ namespace App.Domain.Core.BaseData.Contracts.Services
 {
     public interface IBrandSurenessService
     {
-        void EnsureBrandIsNotExist(int brandId);
-        void EnsureBrandIsNotExist(string brandName);
-        void EnsureBrandIsExist(int brandId);
-        void EnSureBrandIsExist(string brandName);
+        Task EnsureBrandIsNotExist(int brandId);
+        Task EnsureBrandIsNotExist(string brandName);
+        Task EnsureBrandIsExist(int brandId);
+        Task EnSureBrandIsExist(string brandName);
 
     }
 }

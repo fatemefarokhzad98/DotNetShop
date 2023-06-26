@@ -11,10 +11,10 @@ namespace App.Domain.Core.BaseData.Contracts.Repositories
 {
     public interface IBrandQueryRepository
     {
-        List<BrandDto> GetBrnds();
+      Task<List<BrandDto>> GetBrnds();
         
-        BrandDto? GetBrand (int id);
-        BrandDto? GetBrand(string name);
+       Task <BrandDto?> GetBrand (int id);
+      Task  <BrandDto?> GetBrand(string name);
 
     }
 }

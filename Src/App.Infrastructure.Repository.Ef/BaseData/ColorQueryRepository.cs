@@ -18,7 +18,7 @@ namespace App.Infrastructure.Repository.Ef.BaseData
             _appDbContext = appDbContext;
 
         }
-        public async Task<ColorDto> GetColor(int id)
+        public async Task<ColorDto?> GetColor(int id)
         {
             var color = await _appDbContext.Colors.AsNoTracking().Where(x => x.Id == id).Select(c => new ColorDto()
             {
@@ -31,7 +31,7 @@ namespace App.Infrastructure.Repository.Ef.BaseData
             return color;
         }
 
-        public  async Task<ColorDto> GetColor(string name)
+        public  async Task<ColorDto?> GetColor(string name)
         {
             var color = await _appDbContext.Colors.AsNoTracking().Where(x => x.Name == name).Select(c => new ColorDto()
             {

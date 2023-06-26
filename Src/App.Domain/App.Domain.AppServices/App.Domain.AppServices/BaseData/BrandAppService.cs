@@ -24,45 +24,45 @@ namespace App.Domain.AppServices.BaseData
 
         }
 
-        public BrandDto GetBrand(int id)
+        public async Task< BrandDto> GetBrand(int id)
         {
-            return _brandService.GetBrand(id);
+            return await _brandService.GetBrand(id);
         }
 
-        public BrandDto GetBrand(string name)
+        public async Task < BrandDto> GetBrand(string name)
         {
            
-              return  _brandService.GetBrand(name);
+              return await _brandService.GetBrand(name);
         }
 
-        public List<BrandDto> GetBrands()
-        {
-            return _brandService.GetBrands();
+        public async Task< List<BrandDto>> GetBrands()
+        { 
+            return await _brandService.GetBrands();
             
         }
 
-        public void RemoveBrand(int id)
+        public async Task RemoveBrand(int id)
         {
             //دسترس چک شود
-            _brandSurenessService.EnsureBrandIsExist(id);
-            _brandService.RemoveBrand(id);
+           await _brandSurenessService.EnsureBrandIsExist(id);
+           await _brandService.RemoveBrand(id);
         }
 
-        public void SetBrand(int disPlayOrder, string name)
+        public async Task SetBrand(int disPlayOrder, string name)
         {
             //دسترسی رو اول چک میکنیم
-            _brandSurenessService.EnsureBrandIsNotExist(name);
-            _brandService.SetBrand(disPlayOrder, name);
+          await  _brandSurenessService.EnsureBrandIsNotExist(name);
+          await  _brandService.SetBrand(disPlayOrder, name);
             
         }
 
-        public void UpdateBrand(int id, int displayOrder, string name)
+        public async Task UpdateBrand(int id, int displayOrder, string name)
         {
             //دسترسی رو اول چک میکنیم
-            _brandSurenessService.EnsureBrandIsExist(id);
+           await _brandSurenessService.EnsureBrandIsExist(id);
 
 
-            _brandService.UpdateBrand(id, displayOrder, name);
+          await  _brandService.UpdateBrand(id, displayOrder, name);
         }
     }
 }
