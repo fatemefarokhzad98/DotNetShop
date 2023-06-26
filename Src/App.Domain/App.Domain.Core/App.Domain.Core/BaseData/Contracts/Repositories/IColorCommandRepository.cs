@@ -8,8 +8,8 @@ namespace App.Domain.Core.BaseData.Contracts.Repositories
 {
     public interface IColorCommandRepository
     {
-        Task UpdateColor(int id ,int name,string ColorCode);
-        Task InsertColor(int id, int name, string ColorCode);
+        Task UpdateColor(int id ,string name,string colorCode,bool isDeleted);
+        Task InsertColor( string name, string colorCode, bool isDeleted);
         Task RemoveColor(int id);
     }
 }

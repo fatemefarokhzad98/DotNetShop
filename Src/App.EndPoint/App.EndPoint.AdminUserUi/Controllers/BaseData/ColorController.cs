@@ -1,4 +1,6 @@
 ﻿using App.Domain.Core.BaseData.Contracts.AppServices;
+using App.Domain.Core.BaseData.Dtos;
+using App.EndPoint.AdminUserUi.Models.ViewModels.BaseData;
 using Microsoft.AspNetCore.Mvc;
 
 namespace App.EndPoint.AdminUserUi.Controllers.BaseData
@@ -14,35 +16,51 @@ namespace App.EndPoint.AdminUserUi.Controllers.BaseData
 
         public async Task<IActionResult> ReadColor()
         {
-            return View();
-        }
-        public async Task<IActionResult> InsertColor()
-        {
+         var color= await  _colorAppService.GetColors();
+            var colorMolel = color.Select(c => new ColorOutPutViewModel()
+            {
+                Name=c.Name,
+                ColorCode=c.ColorCode,
+                Id=c.Id
 
+            }).ToList();
+            return View(colorMolel);
+        }
+        public  IActionResult InsertColor()
+        {
             return View();
+            
         }
         [HttpPost]
-        public async Task<IActionResult> InsertColor()
+        public async Task<IActionResult> InsertColor(ColorOutPutViewModel color )
         {
 
-            return View();
+            await _colorAppService.InsertColor( color.Name, color.ColorCode);
+            return RedirectToAction("Read");
+           
+
+
         }
 
-
-        public async Task<IActionResult> UpdateColor()
-        {
-            return View ();
-
-        }
         [HttpPost]
+        public async Task<IActionResult> UpdateColor(ColorInPutViewModel color)
+        {
+            await _colorAppService.UpdateColor(color.Name, color.ColorCode, color.IsDelete, color.Id);
+
+
+            return RedirectToAction("Read");
+
+        }
+        [HttpGet]
         public async Task<IActionResult> UpdateColor(int id)
         {
-
-            return View();
+            var color = await _colorAppService.GetColor(id);
+            return View(color);
         }
         public async Task <IActionResult> RemoveColor(int id)
         {
-            return View();
+            await _colorAppService.RemoveColor(id);
+            return RedirectToAction("Read");
         }
 
 

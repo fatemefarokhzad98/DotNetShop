@@ -11,6 +11,7 @@ public partial class Color
     public string Name { get; set; } = null!;
 
     public string ColorCode { get; set; } = null!;
+    public bool IsDeleted { get; set; }
 
     public virtual ICollection<ProductColor> ProductColors { get; set; } = new List<ProductColor>();
 }
