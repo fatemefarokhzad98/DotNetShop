@@ -35,7 +35,7 @@ namespace App.EndPoint.AdminUserUi.Controllers.BaseData
         public async Task<IActionResult> InsertColor(ColorOutPutViewModel color )
         {
 
-            await _colorAppService.InsertColor( color.Name, color.ColorCode);
+            await _colorAppService.InsertColor( color.Name, color.ColorCode,color.is);
             return RedirectToAction("Read");
            
 
