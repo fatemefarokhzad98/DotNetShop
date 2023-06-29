@@ -23,32 +23,43 @@ namespace App.Domain.AppServices.BaseData
 
         public async Task<CollectionDto> GetCollection(int id)
         {
-            return await 
+            var collection= await _collectionService.GetCollection(id);
+            if (collection == null)
+                throw new Exception();
+            return collection;
         }
 
-        public Task<CollectionDto> GetCollection(string name)
+        public async Task<CollectionDto> GetCollection(string name)
         {
-            throw new NotImplementedException();
+            var collection = await _collectionService.GetCollection(name);
+            if (collection == null)
+                throw new Exception();
+            return collection;
         }
 
-        public Task<List<CollectionDto>> GetCollectionDtos()
+        public async Task<List<CollectionDto>> GetCollectionDtos()
         {
-            throw new NotImplementedException();
+            return await _collectionService.GetCollectionDtos();
         }
 
-        public Task<int> InsertCollection(string name, bool isDeleted)
+        public async Task<int> InsertCollection(string name, bool isDeleted)
         {
-            throw new NotImplementedException();
+            await _collectionSurnessService.EnsureModelIsNotExist(name);
+            return await _collectionService.InsertCollection(name, isDeleted);
         }
 
-        public Task<CollectionDto> RemoveCollection(int id)
+        public async Task<CollectionDto> RemoveCollection(int id)
         {
-            throw new NotImplementedException();
+            await _collectionSurnessService.EnsureModelIsExist(id);
+            return await _collectionService.RemoveCollection(id);
+                
+                
         }
 
-        public Task<int> UpdateCollection(string name, bool isDeleted, int id)
+        public async Task<int> UpdateCollection(string name, bool isDeleted, int id)
         {
-            throw new NotImplementedException();
+            await _collectionSurnessService.EnsureModelIsExist(id);
+            return await _collectionService.UpdateCollection(name, isDeleted, id);
         }
     }
 }

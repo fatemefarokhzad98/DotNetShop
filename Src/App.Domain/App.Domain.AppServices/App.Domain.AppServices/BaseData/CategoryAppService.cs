@@ -20,34 +20,46 @@ namespace App.Domain.AppServices.BaseData
 
         }
 
-        public Task<List<CategoryDto>> GetCategories()
+        public async Task<List<CategoryDto>> GetCategories()
         {
-            throw new NotImplementedException();
+            
+              return await  _categoryService.GetCategories();
+
         }
 
-        public Task<CategoryDto> GetCategory(int id)
+        public async Task<CategoryDto> GetCategory(int id)
         {
-            throw new NotImplementedException();
+            var category = await _categoryService.GetCategory(id);
+            if (category == null)
+                throw new Exception();
+            return category;
         }
 
-        public Task<CategoryDto> GetCategory(string name)
+        public async Task<CategoryDto> GetCategory(string name)
         {
-            throw new NotImplementedException();
+            var category = await _categoryService.GetCategory(name);
+            if (category == null)
+                throw new Exception();
+            return category;
+
         }
 
-        public Task<int> InsertCategory(bool isDeleted, bool isActive, int displayOrder, string name, int categoryParentId)
+        public async Task<int> InsertCategory(bool isDeleted, bool isActive, int displayOrder, string name, int parentCategoryId)
         {
-            throw new NotImplementedException();
+            await _categorySurnessService.EnsureModelIsNotExist(name);
+            return await _categoryService.InsertCategory(isDeleted, isActive, displayOrder, name, parentCategoryId);
         }
 
-        public Task<CategoryDto> RemoveCategory(int id)
+        public async Task<CategoryDto> RemoveCategory(int id)
         {
-            throw new NotImplementedException();
+            await _categorySurnessService.EnsureModelIsExist(id);
+            return await _categoryService.RemoveCategory(id);
         }
 
-        public Task<int> UpdateCategory(bool isDeleted, bool isActive, int displayOrder, string name, int categoryParentId, int id)
+        public async Task<int> UpdateCategory(bool isDeleted, bool isActive, int displayOrder, string name, int parentCategoryId, int id)
         {
-            throw new NotImplementedException();
+            await _categorySurnessService.EnsureModelIsExist(id);
+            return await _categoryService.UpdateCategory(isDeleted, isActive, displayOrder,name,parentCategoryId,id);
         }
     }
 }
