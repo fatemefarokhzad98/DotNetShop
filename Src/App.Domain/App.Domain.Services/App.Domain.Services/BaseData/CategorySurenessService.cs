@@ -8,12 +8,42 @@ using System.Threading.Tasks;
 
 namespace App.Domain.Services.BaseData
 {
-    public class CategorySurenessService:ICategorySurenessService
+    public class CategorySurenessService:ISurenessService
     {
         private readonly ICategoryQueryRepository _categoryQueryRepository;
-        public CategorySurenessService(ICategoryQueryRepository categoryQueryRepository)
+        private readonly ICategoryCommandRepository _categoryCommandRepository;
+        public CategorySurenessService(ICategoryQueryRepository categoryQueryRepository,ICategoryCommandRepository categoryCommandRepository)
         {
             _categoryQueryRepository = categoryQueryRepository;
+            _categoryCommandRepository = categoryCommandRepository;
+        }
+
+        public async Task EnsureModelIsExist(int id)
+        {
+            var category = await _categoryQueryRepository.GetCategory(id);
+            if (category == null)
+                throw new Exception();
+        }
+
+        public async Task EnSureModelIsExist(string name)
+        {
+            var category = await _categoryQueryRepository.GetCategory(name);
+            if (category == null)
+                throw new Exception();
+        }
+
+        public async Task EnsureModelIsNotExist(int id)
+        {
+            var category = await _categoryQueryRepository.GetCategory(id);
+            if (category != null)
+                throw new Exception();
+        }
+
+        public async Task EnsureModelIsNotExist(string name)
+        {
+            var category = await _categoryQueryRepository.GetCategory(name);
+            if (category == null)
+                throw new Exception();
         }
     }
 }

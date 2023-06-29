@@ -15,6 +15,6 @@ namespace App.Domain.Core.BaseData.Contracts.Services
         Task<int> UpdateCategory(bool isDeleted, bool isActive, int displayOrder, string name, int categoryParentId,int id);
         Task<CategoryDto> RemoveCategory(int id);
 
-        Task<int> InsertCategory(bool isDeleted, bool isActive, int displayOrder, string name, int categoryParentId);
+        Task<int> InsertCategory(bool isDeleted, bool isActive, int displayOrder, string name, int parentCategoryId);
     }
 }

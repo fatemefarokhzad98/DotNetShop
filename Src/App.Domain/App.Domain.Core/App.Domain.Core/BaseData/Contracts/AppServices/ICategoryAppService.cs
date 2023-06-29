@@ -12,9 +12,9 @@ namespace App.Domain.Core.BaseData.Contracts.AppServices
         Task<List<CategoryDto>> GetCategories();
         Task <CategoryDto> GetCategory(int id);
         Task <CategoryDto> GetCategory(string name);
-        Task<int> UpdateCategory(bool isDeleted, bool isActive, int displayOrder, string name, int categoryParentId,int id);
+        Task<int> UpdateCategory(bool isDeleted, bool isActive, int displayOrder, string name, int parentCategorytId, int id);
         Task<CategoryDto> RemoveCategory(int id);
 
-        Task<int> InsertCategory(bool isDeleted, bool isActive, int displayOrder, string name, int categoryParentId);
+        Task<int> InsertCategory(bool isDeleted, bool isActive, int displayOrder, string name, int parentCategorytId);
     }
 }

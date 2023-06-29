@@ -1,5 +1,6 @@
 ﻿using App.Domain.Core.BaseData.Contracts.Repositories;
 using App.Domain.Core.BaseData.Contracts.Services;
+using App.Domain.Core.BaseData.Dtos;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -18,5 +19,34 @@ namespace App.Domain.Services.BaseData
             _categoryQueryRepository = categoryQueryRepository;
         }
 
+        public async Task<List<CategoryDto>> GetCategories()
+        {
+         return await  _categoryQueryRepository.ReadCategory();
+        }
+
+        public async Task<CategoryDto> GetCategory(int id)
+        {
+            return await _categoryQueryRepository.GetCategory(id);
+        }
+
+        public async Task<CategoryDto> GetCategory(string name)
+        {
+            return await _categoryQueryRepository.GetCategory(name);
+        }
+
+        public async Task<int> InsertCategory(bool isDeleted, bool isActive, int displayOrder, string name, int categoryParentId)
+        {
+            return await _categoryCommandRepository.InsertCategory(false, true, displayOrder, name, categoryParentId);
+        }
+
+        public async Task<CategoryDto> RemoveCategory(int id)
+        {
+            return await _categoryCommandRepository.RemoveCategory(id);
+        }
+
+        public async Task<int> UpdateCategory(bool isDeleted, bool isActive, int displayOrder, string name, int parentCategoryId, int id)
+        {
+            return await _categoryCommandRepository.UpdateCategory(isDeleted, isActive, displayOrder, name, parentCategoryId, id);
+        }
     }
 }

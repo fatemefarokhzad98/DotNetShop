@@ -1,7 +1,7 @@
 ﻿using App.Domain.Core.BaseData.Contracts.Repositories;
 using App.Domain.Core.BaseData.Contracts.Services;
-using App.Domain.Core.Product.Contracts.Repositories;
-using App.Domain.Core.Product.Contracts.Services;
+
+
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -10,7 +10,7 @@ using System.Threading.Tasks;
 
 namespace App.Domain.Services.BaseData
 {
-    public  class BrandSurenessService: IBrandSurenessService
+    public  class BrandSurenessService: ISurenessService
     {
         private readonly IBrandCommandRepository _brandCommandRepository;
         private readonly IBrandQueryRepository _brandQueryRepository;
@@ -21,36 +21,33 @@ namespace App.Domain.Services.BaseData
 
         }
 
-        public async Task EnsureBrandIsNotExist(int brandId)
+    
+        public async Task EnsureModelIsNotExist(int id)
         {
-            var brand = await _brandQueryRepository.GetBrand(brandId);
-            if (brandId != 0)
+            var brand = await _brandQueryRepository.GetBrand(id);
+            if (brand !=null)
                 throw new Exception();
-        
 
         }
-        public async Task EnsureBrandIsNotExist(string brandName)
+
+        public async Task EnsureModelIsNotExist(string name)
         {
-           var brand= await _brandQueryRepository.GetBrand(brandName);
+            var brand = await _brandQueryRepository.GetBrand(name);
             if (brand != null)
                 throw new Exception();
-           
         }
-       
-        public async Task EnSureBrandIsExist(string brandName)
-        {
 
-            var brand = await _brandQueryRepository.GetBrand(brandName);
+        public async Task EnsureModelIsExist(int id)
+        {
+            var brand = await _brandQueryRepository.GetBrand(id);
             if (brand == null)
                 throw new Exception();
-
         }
 
-        public async Task EnsureBrandIsExist(int brandId)
+        public async Task EnSureModelIsExist(string name)
         {
-            var brand = await _brandQueryRepository.GetBrand(brandId);
+            var brand = await _brandQueryRepository.GetBrand(name);
             if (brand == null)
-
                 throw new Exception();
         }
     }
