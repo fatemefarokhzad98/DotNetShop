@@ -11,7 +11,7 @@ namespace App.Domain.Core.BaseData.Contracts.Repositories
     {
         Task<ModelDto?> GetModel(string name);
         Task<ModelDto?> GetModel(int id);
-        Task<List<ModelDto>> ReadMole();
+        Task<List<ModelDto>> ReadModle();
 
     }
 }

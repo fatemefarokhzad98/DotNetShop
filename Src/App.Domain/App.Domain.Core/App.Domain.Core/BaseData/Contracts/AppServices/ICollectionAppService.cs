@@ -12,7 +12,7 @@ namespace App.Domain.Core.BaseData.Contracts.AppServices
         Task<List<CollectionDto>> GetCollectionDtos();
         Task<CollectionDto> GetCollection(int id);
         Task<CollectionDto> GetCollection(string name);
-        Task<int> UpdateCollection(string name, bool isDeleted);
+        Task<int> UpdateCollection(string name, bool isDeleted,int id);
         Task<CollectionDto> RemoveCollection(int id);
         Task<int> InsertCollection(string name, bool isDeleted);
     }

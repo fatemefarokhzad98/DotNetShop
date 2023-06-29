@@ -9,7 +9,7 @@ namespace App.Domain.Core.BaseData.Contracts.Repositories
 {
     public interface ICategoryCommandRepository
     {
-        Task<int> UpdateCategory(bool isDeleted,bool isActive,int displayOrder,string name,int categoryParentId);
+        Task<int> UpdateCategory(bool isDeleted,bool isActive,int displayOrder,string name,int parentCategoryId,int id);
         Task<CategoryDto> RemoveCategory(int id);
 
         Task<int> InsertCategory(bool isDeleted, bool isActive, int displayOrder, string name, int categoryParentId);

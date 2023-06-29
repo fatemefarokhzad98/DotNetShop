@@ -11,7 +11,7 @@ namespace App.Domain.Core.BaseData.Contracts.Repositories
     {
         Task<ModelDto> RemoveModel(int id);
         Task<int> InsertModel(int brandid, bool isDeleted, int parentModelId,string name);
-        Task<int> UpdateModel(int brandid, bool isDeleted, int parentModelId,string name);
+        Task<int> UpdateModel(int brandid, bool isDeleted, int parentModelId,string name,int id);
 
     }
 }
