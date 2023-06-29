@@ -1,4 +1,5 @@
-﻿using System;
+﻿using App.Domain.Core.BaseData.Dtos;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -8,5 +9,11 @@ namespace App.Domain.Core.BaseData.Contracts.Services
 {
     public interface ICollectionService
     {
+        Task<List<CollectionDto>> GetCollectionDtos();
+        Task<CollectionDto> GetCollection(int id);
+        Task<CollectionDto> GetCollection(string name);
+        Task<int> UpdateCollection(string name, bool isDeleted);
+        Task<CollectionDto> RemoveCollection(int id);
+        Task<int> InsertCollection(string name, bool isDeleted);
     }
 }

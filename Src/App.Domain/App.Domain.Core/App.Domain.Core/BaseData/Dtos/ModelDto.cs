@@ -18,6 +18,6 @@ namespace App.Domain.Core.BaseData.Dtos
 
         public string Name { get; set; } = null!;
 
-        public virtual Brand Brand { get; set; } = null!;
+       
     }
 }
