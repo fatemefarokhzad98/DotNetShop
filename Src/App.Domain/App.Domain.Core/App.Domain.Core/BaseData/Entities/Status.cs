@@ -17,6 +17,7 @@ public partial class Status
     public bool ForUser { get; set; }
 
     public bool ForProduct { get; set; }
+    public bool IsDeleted { get; set; }
 
     public virtual ICollection<CommnetEntities.Comment> Comments { get; set; } = new List<CommnetEntities.Comment>();
 

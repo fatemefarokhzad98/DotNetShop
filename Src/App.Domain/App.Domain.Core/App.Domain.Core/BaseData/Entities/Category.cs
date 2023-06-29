@@ -14,6 +14,7 @@ public partial class Category
     public bool IsActive { get; set; }
 
     public int DisplayOrder { get; set; }
+    public bool IsDeleted { get; set; }
 
     public virtual ICollection<Product> Products { get; set; } = new List<Product>();
 }

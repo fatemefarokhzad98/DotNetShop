@@ -1,4 +1,5 @@
-﻿using System;
+﻿using App.Domain.Core.BaseData.Entities;
+using System;
 using System.Collections.Generic;
 
 namespace App.Domain.Core.Product.Entities;
@@ -10,6 +11,7 @@ public partial class Model
     public int BrandId { get; set; }
 
     public int ParentModelId { get; set; }
+    public bool IsDeleted { get; set; }
 
     public string Name { get; set; } = null!;
 
