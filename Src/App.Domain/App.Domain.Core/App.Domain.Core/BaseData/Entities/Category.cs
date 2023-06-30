@@ -1,7 +1,8 @@
 ﻿using System;
 using System.Collections.Generic;
+using ProductEntities = App.Domain.Core.Product.Entities;
 
-namespace App.Domain.Core.Product.Entities;
+namespace App.Domain.Core.BaseData.Entities;
 
 public partial class Category
 {
@@ -16,5 +17,5 @@ public partial class Category
     public int DisplayOrder { get; set; }
     public bool IsDeleted { get; set; }
 
-    public virtual ICollection<Product> Products { get; set; } = new List<Product>();
+    public virtual ICollection<ProductEntities.Product> Products { get; set; } = new List<ProductEntities.Product>();
 }

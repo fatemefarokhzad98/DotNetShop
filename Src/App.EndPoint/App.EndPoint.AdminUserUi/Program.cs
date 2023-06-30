@@ -1,10 +1,11 @@
-using App.Domain.AppServices.Product;
-using App.Domain.Core.Product.Contracts.AppServices;
-using App.Domain.Core.Product.Contracts.Repositories;
-using App.Domain.Core.Product.Contracts.Services;
-using App.Domain.Services.Product;
+
+using App.Domain.AppServices.BaseData;
+using App.Domain.Core.BaseData.Contracts.AppServices;
+using App.Domain.Core.BaseData.Contracts.Repositories;
+using App.Domain.Core.BaseData.Contracts.Services;
+using App.Domain.Services.BaseData;
 using App.Infrastructure.DataBase.Data;
-using App.Infrastructure.DataBase.Servises;
+using App.Infrastructure.Repository.Ef.BaseData;
 using Microsoft.EntityFrameworkCore;
 
 var builder = WebApplication.CreateBuilder(args);
@@ -16,12 +17,36 @@ builder.Services.AddDbContext<AppDbContext>(option =>
 
     option.UseSqlServer("Data Source=DESKTOP-CGR2LP5\\MSSQLSERVER2022;Initial Catalog=DotNetShopDb; Encrypt=False; TrustServerCertificate=True;Integrated Security=true");
 });
+//brand
 
+builder.Services.AddScoped<IBrandAppService, BrandAppService>();
+builder.Services.AddScoped<IBrandService, BrandService>();
+builder.Services.AddScoped<ISurenessService, BrandSurenessService>();
+builder.Services.AddScoped<IBrandCommandRepository, BrandCommandRepository>();
+builder.Services.AddScoped<IBrandQueryRepository, BrandQueryRepository>();
 builder.Services.AddScoped<AppDbContext>();
+builder.Services.AddScoped <IColorAppService, ColorAppService>();
+builder.Services.AddScoped < IColorService, ColorService>();
+builder.Services.AddScoped<IColorCommandRepository, ColorCommandRepository>();
+builder.Services.AddScoped<IColorQueryRepository, ColorQueryRepository>();
 
-builder.Services.AddScoped<IProductAppService,ProductAppService>();
-builder.Services.AddScoped<IProductService, ProductService>();
-builder.Services.AddScoped<IBrandRepository, BrandRepository>();
+builder.Services.AddScoped<IModelAppService, ModelAppService>();
+builder.Services.AddScoped<IModelService, ModelService>();
+builder.Services.AddScoped<IModelCommandRepository, ModelCommandRepository>();
+builder.Services.AddScoped<IModelQueryRepository, ModelQueryRepository>();
+
+builder.Services.AddScoped<ICategoryAppService, CategoryAppService>();
+builder.Services.AddScoped<ICategoryService, CategoryService>();
+builder.Services.AddScoped<ICategoryCommandRepository, CategoryCommandRepository>();
+builder.Services.AddScoped<ICategoryQueryRepository, CategoryQueryRepository>();
+
+builder.Services.AddScoped<ICollectionAppService, CollectionAppService>();
+builder.Services.AddScoped<ICollectionService, CollectionService>();
+builder.Services.AddScoped<ICollectionCommandRepository, CollectionCommandRepository>();
+builder.Services.AddScoped<ICollectionQueryRepository, CollectionQueryRepository>();
+
+
+
 
 
 

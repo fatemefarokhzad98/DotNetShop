@@ -1,6 +1,5 @@
 ﻿using App.Domain.Core.BaseData.Dtos;
-using App.Domain.Core.BaseData.Entities;
-using App.Domain.Core.Product.Entities;
+
 using System;
 using System.Collections.Generic;
 using System.Linq;

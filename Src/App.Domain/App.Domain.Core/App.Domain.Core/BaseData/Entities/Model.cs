@@ -1,8 +1,8 @@
-﻿using App.Domain.Core.BaseData.Entities;
+﻿using ProductEntities = App.Domain.Core.Product.Entities;
 using System;
 using System.Collections.Generic;
 
-namespace App.Domain.Core.Product.Entities;
+namespace App.Domain.Core.BaseData.Entities;
 
 public partial class Model
 {
@@ -17,5 +17,5 @@ public partial class Model
 
     public virtual Brand Brand { get; set; } = null!;
 
-    public virtual ICollection<Product> Products { get; set; } = new List<Product>();
+    public virtual ICollection<ProductEntities.Product> Products { get; set; } = new List<ProductEntities.Product>();
 }

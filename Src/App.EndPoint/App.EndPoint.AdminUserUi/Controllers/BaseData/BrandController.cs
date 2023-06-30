@@ -2,8 +2,7 @@
 
 
 using App.Domain.Core.BaseData.Contracts.AppServices;
-using App.Domain.Core.BaseData.Entities;
-using App.Domain.Core.Product.Entities;
+
 using App.EndPoint.AdminUserUi.Models.ViewModels.BaseData;
 using Microsoft.AspNetCore.Mvc;
 

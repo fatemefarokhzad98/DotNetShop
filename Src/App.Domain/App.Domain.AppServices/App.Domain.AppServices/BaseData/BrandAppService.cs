@@ -1,5 +1,5 @@
 ﻿using App.Domain.Core.BaseData.Contracts.AppServices;
-using App.Domain.Core.BaseData.Contracts.Repositories;
+
 using App.Domain.Core.BaseData.Contracts.Services;
 using App.Domain.Core.BaseData.Dtos;
 using System;

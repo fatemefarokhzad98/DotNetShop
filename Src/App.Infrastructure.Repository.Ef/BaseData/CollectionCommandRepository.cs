@@ -1,10 +1,11 @@
 ﻿using App.Domain.Core.BaseData.Contracts.Repositories;
 using App.Domain.Core.BaseData.Dtos;
-using App.Domain.Core.Product.Entities;
+using App.Domain.Core.BaseData.Entities;
 using App.Infrastructure.DataBase.Data;
 using Microsoft.EntityFrameworkCore;
 using System;
 using System.Collections.Generic;
+
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;

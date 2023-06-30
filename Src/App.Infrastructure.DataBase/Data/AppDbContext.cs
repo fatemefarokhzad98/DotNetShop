@@ -1,6 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Drawing;
+
 using App.Domain.Core.BaseData.Entities;
 using App.Domain.Core.Comment.Entities;
 using App.Domain.Core.Product.Entities;
