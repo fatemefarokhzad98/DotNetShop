@@ -10,8 +10,8 @@ namespace App.Domain.Core.BaseData.Contracts.Repositories
     public interface IModelCommandRepository
     {
         Task<ModelDto> RemoveModel(int id);
-        Task<int> InsertModel(int brandid, bool isDeleted, int parentModelId,string name);
-        Task<int> UpdateModel(int brandid, bool isDeleted, int parentModelId,string name,int id);
+        Task<int> InsertModel(int brandid, bool isDeleted, int ?parentModelId,string name);
+        Task<int> UpdateModel(int brandid,  int? parentModelId,string name,int id);
 
     }
 }

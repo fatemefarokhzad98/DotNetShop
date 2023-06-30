@@ -19,14 +19,14 @@ namespace App.Infrastructure.Repository.Ef.BaseData
             _appDbContext = appDbContext;
         }
 
-        public async Task<int> InsertModel(int brandid, bool isDeleted, int parentModelId, string name)
+        public async Task<int> InsertModel(int brandid, bool isDeleted, int? parentModelId, string name)
         {
             Model model = new()
             {
                 BrandId = brandid,
                 IsDeleted = isDeleted,
                 Name = name,
-                ParentModelId = parentModelId
+                ParentModelId = parentModelId,
 
             };
              await _appDbContext.Models.AddAsync(model);
@@ -45,7 +45,7 @@ namespace App.Infrastructure.Repository.Ef.BaseData
                 BrandId = c.BrandId,
                 IsDeleted = c.IsDeleted,
                 Name = c.Name,
-                ParentModelId = c.ParentModelId
+                ParentModelId =c.ParentModelId
 
             }).FirstOrDefaultAsync();
             _appDbContext.Remove(model);
@@ -54,11 +54,11 @@ namespace App.Infrastructure.Repository.Ef.BaseData
 
         }
 
-        public async Task<int> UpdateModel(int brandid, bool isDeleted, int parentModelId, string name, int id)
+        public async Task<int> UpdateModel(int brandid, int ?parentModelId, string name, int id)
         {
            var model=await _appDbContext.Models.Where(x=>x.Id==id).SingleAsync();
             model.Name= name;
-            model.IsDeleted = isDeleted;
+           
             model.BrandId= brandid;
             model.ParentModelId= parentModelId;
             await _appDbContext.SaveChangesAsync();

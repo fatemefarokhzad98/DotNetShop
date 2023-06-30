@@ -9,8 +9,8 @@ namespace App.Domain.Core.BaseData.Contracts.AppServices
 {
     public interface IColorAppService
     {
-        Task UpdateColor(int id, string name, string colorCode,bool isDeleted);
-        Task InsertColor(string name, string colorCode,bool isDeleted);
+        Task UpdateColor(int id, string name, string colorCode);
+        Task InsertColor(string name, string colorCode);
         Task RemoveColor(int id);
         Task<List<ColorDto>> GetColors();
         Task<ColorDto> GetColor(int id);

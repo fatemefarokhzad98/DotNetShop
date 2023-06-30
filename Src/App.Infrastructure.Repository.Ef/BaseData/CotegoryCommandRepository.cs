@@ -19,7 +19,7 @@ namespace App.Infrastructure.Repository.Ef.BaseData
             _appDbContext = appDbContext;
         }
 
-        public async Task<int> InsertCategory(bool isDeleted, bool isActive, int displayOrder, string name, int parentCategoryId)
+        public async Task<int> InsertCategory(bool isDeleted, bool isActive, int displayOrder, string name, int? parentCategoryId)
         {
             Category category = new()
             {
@@ -55,14 +55,14 @@ namespace App.Infrastructure.Repository.Ef.BaseData
             return categoryDto;
         }
 
-        public async Task<int> UpdateCategory(bool isDeleted, bool isActive, int displayOrder, string name, int parentCategoryId, int id)
+        public async Task<int> UpdateCategory(bool isActive, int displayOrder, string name, int? parentCategoryId, int id)
         {
             var collection = await _appDbContext.Categories.Where(x => x.Id == id).FirstOrDefaultAsync();
             collection.Name = name;
             collection.ParentCategoryId = parentCategoryId;
            collection.DisplayOrder= displayOrder;
             collection.IsActive = isActive;
-            collection.IsDeleted = isDeleted;
+           
             await _appDbContext.SaveChangesAsync();
             return collection.Id;
 

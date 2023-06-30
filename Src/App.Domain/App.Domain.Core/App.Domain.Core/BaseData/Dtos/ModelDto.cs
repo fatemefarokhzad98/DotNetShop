@@ -13,7 +13,7 @@ namespace App.Domain.Core.BaseData.Dtos
 
         public int BrandId { get; set; }
 
-        public int ParentModelId { get; set; }
+        public int? ParentModelId { get; set; }
         public bool IsDeleted { get; set; }
 
         public string Name { get; set; } = null!;

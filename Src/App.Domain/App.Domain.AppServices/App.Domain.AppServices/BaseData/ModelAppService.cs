@@ -41,10 +41,10 @@ namespace App.Domain.AppServices.BaseData
             return await _modelService.GetModels();
         }
 
-        public async Task<int> InsertModel(int brandid, bool isDeleted, int parentModelId, string name)
+        public async Task<int> InsertModel(int brandid, int? parentModelId, string name)
         {
             await _modelSurnessService.EnsureModelIsNotExist(name);
-            return await _modelService.InsertModel(brandid, isDeleted, parentModelId, name);
+            return await _modelService.InsertModel(brandid,parentModelId, name);
         }
 
         public async Task<ModelDto> RemoveModel(int id)
@@ -53,10 +53,12 @@ namespace App.Domain.AppServices.BaseData
             return await _modelService.RemoveModel(id);
         }
 
-        public async Task<int> UpdateModel(int brandid, bool isDeleted, int parentModelId, string name, int id)
+        public async Task<int> UpdateModel(int brandid, int? parentModelId, string name, int id)
         {
             await _modelSurnessService.EnsureModelIsExist(id);
-            return await _modelService.UpdateModel(brandid, isDeleted, parentModelId, name, id);
+            return await _modelService.UpdateModel(brandid, parentModelId, name, id);
         }
+
+      
     }
 }

@@ -42,7 +42,7 @@ namespace App.Domain.Services.BaseData
            
         }
 
-        public async Task InsertColor(string name, string colorCode,bool isDeleted)
+        public async Task InsertColor(string name, string colorCode)
         {
            
             await _colorCommandRepository.InsertColor(name,colorCode,false);
@@ -54,10 +54,10 @@ namespace App.Domain.Services.BaseData
             await _colorCommandRepository.RemoveColor(id);
         }
 
-        public async Task UpdateColor(int id, string name, string colorCode,bool isDeleted)
+        public async Task UpdateColor(int id, string name, string colorCode)
         {
            
-            await _colorCommandRepository.UpdateColor(id, name, colorCode,isDeleted);
+            await _colorCommandRepository.UpdateColor(id, name, colorCode);
         }
     }
 }

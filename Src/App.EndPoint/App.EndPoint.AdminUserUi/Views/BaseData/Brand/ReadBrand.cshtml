@@ -1,9 +1,14 @@
 ﻿@using App.EndPoint.AdminUserUi.Models.ViewModels.BaseData
-@model List<BrandOutPutViewModel>
+
+@model List<BrandInPutViewModel>
+@{
+    ViewData["Title"] = "لیست برند ها";   
+}
+<h3>لیست برند ها</h3>
 <table>
     <thead>
         <tr>
-            <th>#</th>
+            
             <th>شناسه</th>
             <th>نام برند</th>
             <th>تاریخ ثبت برند</th>
@@ -11,19 +16,16 @@
 
         </tr>
     </thead>
-      @foreach(var Item in Model){
+      
     
     <tbody>
-       
+       @foreach(var Item in Model){
         <tr>
            
-            @*<th scope="row" >
-                @rowCount
-
-            </th>*@
-            <td>Item.Id</td>
-            <td>Item.Name</td>
-            <td>Item.CreationDate</td>
+        
+            <td>@Item.Id</td>
+            <td>@Item.Name</td>
+            <td>@Item.CreationDate</td>
             <td>
                 <a  class="btn btn-primary"  asp-controller="Brand"  asp-action="UpdateBrand">
                     ویرایش 
@@ -34,9 +36,9 @@
             </td>
 
 
-        </tr>
+        </tr>}
 
 
 
-    </tbody>}
+    </tbody>
 </table>

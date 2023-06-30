@@ -11,8 +11,8 @@ namespace App.Domain.Core.BaseData.Contracts.AppServices
     {
 
         Task<ModelDto> RemoveModel(int id);
-        Task<int> InsertModel(int brandid, bool isDeleted, int parentModelId, string name);
-        Task<int> UpdateModel(int brandid, bool isDeleted, int parentModelId, string name,int id);
+        Task<int> InsertModel(int brandid,int? parentModelId, string name);
+        Task<int> UpdateModel(int brandid, int ?parentModelId, string name,int id);
         Task<List<ModelDto>> GetModels();
         Task<ModelDto> GetModel(int id);
         Task<ModelDto> GetModel(string name);

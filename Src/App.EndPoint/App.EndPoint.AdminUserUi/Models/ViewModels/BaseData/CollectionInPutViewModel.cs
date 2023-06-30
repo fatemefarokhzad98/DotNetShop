@@ -2,5 +2,6 @@
 {
     public class CollectionInPutViewModel
     {
+        public string Name { get; set; } 
     }
 }

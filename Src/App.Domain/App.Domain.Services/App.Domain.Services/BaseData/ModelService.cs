@@ -35,7 +35,7 @@ namespace App.Domain.Services.BaseData
             return await _modelQueryRepository.ReadModle();
         }
 
-        public async Task<int> InsertModel(int brandid, bool isDeleted, int parentModelId, string name)
+        public async Task<int> InsertModel(int brandid, int? parentModelId, string name)
         {
             return await _modelCommandRepository.InsertModel(brandid, false, parentModelId, name);
         }
@@ -45,9 +45,9 @@ namespace App.Domain.Services.BaseData
             return await  _modelCommandRepository.RemoveModel(id);
         }
 
-        public async Task<int> UpdateModel(int brandid, bool isDeleted, int parentModelId, string name, int id)
+        public async Task<int> UpdateModel(int brandid, int? parentModelId, string name, int id)
         {
-           return await _modelCommandRepository.UpdateModel(brandid,isDeleted,parentModelId,name,id);
+           return await _modelCommandRepository.UpdateModel(brandid,parentModelId,name,id);
         }
     }
 }

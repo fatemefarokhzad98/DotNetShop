@@ -36,9 +36,9 @@ namespace App.Domain.Services.BaseData
             return await _collectionQueryRepository.ReadCollection();
         }
 
-        public async Task<int> InsertCollection(string name, bool isDeleted)
+        public async Task<int> InsertCollection(string name)
         {
-            return await _collectionCommandRepository.InsertCollection(name, isDeleted);
+            return await _collectionCommandRepository.InsertCollection(name, false);
         }
 
         public async Task<CollectionDto> RemoveCollection(int id)
@@ -47,9 +47,9 @@ namespace App.Domain.Services.BaseData
 
         }
 
-        public async Task<int> UpdateCollection(string name, bool isDeleted, int id)
+        public async Task<int> UpdateCollection(string name, int id)
         {
-            return await _collectionCommandRepository.UpdateCollection(name, false, id);
+            return await _collectionCommandRepository.UpdateCollection(name, id);
 
         }
     }

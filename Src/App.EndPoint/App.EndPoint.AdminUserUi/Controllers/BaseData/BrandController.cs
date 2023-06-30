@@ -20,10 +20,10 @@ namespace App.EndPoint.AdminUserUi.Controllers.Product
             _brandAppService = brandAppService;
         }
         [HttpPost]
-        public IActionResult UpdateBrand(BrandOutPutViewModel brand )
+        public async Task< IActionResult> UpdateBrand(BrandOutPutViewModel brand )
         {
 
-             _brandAppService.UpdateBrand(brand.Id,brand.DisPlayOrder,brand.Name);
+            await _brandAppService.UpdateBrand(brand.Id,brand.DisPlayOrder,brand.Name);
 
 
             return RedirectToAction("ReadBrand");
@@ -32,33 +32,37 @@ namespace App.EndPoint.AdminUserUi.Controllers.Product
 
         }
         [HttpGet]
-        public IActionResult UpdateBrand(int id)
+        public async Task< IActionResult> UpdateBrand(int id)
         {
-            var brand = _brandAppService.GetBrand(id);
-            BrandOutPutViewModel brandInput = new BrandOutPutViewModel()
+            var brand = await _brandAppService.GetBrand(id);
+            BrandOutPutViewModel brandviewmodel = new()
             {
-                Id=id,
+                Id = id,
                 Name=brand.Name,
+              
                 DisPlayOrder=brand.DisplayOrder
+
+            
 
             };
 
 
-            return View(brandInput);
+            return View(brandviewmodel);
 
 
 
         }
-        public IActionResult ReadBrand()
+        public async Task< IActionResult> ReadBrand()
         {
-          var brands= _brandAppService.GetBrands();
-            var brandsModel = brands.Select(b => new BrandOutPutViewModel()
+          var brands= await _brandAppService.GetBrands();
+            var brandsModel = brands.Select(b => new BrandInPutViewModel()
             {
-                Id = b.Id,
+               Id=b.Id,
+
                 Name = b.Name,
                 DisPlayOrder = b.DisplayOrder,
-                CreationDate = b.CreationDate,
-                IsDeleted=b.IsDeleted
+                CreationDate=b.CreationDate,
+              
 
 
 
@@ -66,10 +70,10 @@ namespace App.EndPoint.AdminUserUi.Controllers.Product
             return View(brandsModel);
 
         }
-        public IActionResult RemoveBrand(int Id)
+        public async Task< IActionResult> RemoveBrand(int Id)
         {
-            _brandAppService.RemoveBrand(Id);
-            return RedirectToAction("Read");
+         await   _brandAppService.RemoveBrand(Id);
+            return RedirectToAction("ReadBrand");
 
         }
         [HttpGet]
@@ -79,9 +83,9 @@ namespace App.EndPoint.AdminUserUi.Controllers.Product
 
         }
         [HttpPost]
-        public IActionResult InsertBrand(BrandInPutViewModel brand)
+        public async Task< IActionResult> InsertBrand(BrandOutPutViewModel brand)
         {
-            _brandAppService.SetBrand(brand.DisPlayOrder,brand.Name);
+           await _brandAppService.SetBrand(brand.DisPlayOrder,brand.Name);
             return RedirectToAction("ReadBrand");
 
         }

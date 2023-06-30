@@ -46,7 +46,7 @@ namespace App.Infrastructure.Repository.Ef.BaseData
 
         }
 
-        public async Task UpdateColor(int id, string name, string ColorCode, bool isDeleted)
+        public async Task UpdateColor(int id, string name, string ColorCode)
         {
            var color= await _appDbContext.Colors.Where(x => x.Id == id).SingleAsync();
             color.Name = name;

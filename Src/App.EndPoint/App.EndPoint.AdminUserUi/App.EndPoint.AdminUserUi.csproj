@@ -26,4 +26,10 @@
     <ProjectReference Include="..\..\App.Infrastructure.DataBase\App.Infrastructure.DataBase.csproj" />
   </ItemGroup>
 
+  <ItemGroup>
+    <Folder Include="Controllers\Comment\" />
+    <Folder Include="Controllers\Product\" />
+    <Folder Include="Controllers\User\" />
+  </ItemGroup>
+
 </Project>

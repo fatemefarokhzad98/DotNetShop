@@ -44,10 +44,15 @@ namespace App.Domain.AppServices.BaseData
 
         }
 
-        public async Task<int> InsertCategory(bool isDeleted, bool isActive, int displayOrder, string name, int parentCategoryId)
+        public async Task<int> InsertCategory( bool isActive, int displayOrder, string name, int? parentCategoryId)
         {
             await _categorySurnessService.EnsureModelIsNotExist(name);
-            return await _categoryService.InsertCategory(isDeleted, isActive, displayOrder, name, parentCategoryId);
+            return await _categoryService.InsertCategory(isActive, displayOrder, name, parentCategoryId);
+        }
+
+        public Task<int> InsertCategory(int displayOrder, string name, int? parentCategorytId)
+        {
+            throw new NotImplementedException();
         }
 
         public async Task<CategoryDto> RemoveCategory(int id)
@@ -56,10 +61,12 @@ namespace App.Domain.AppServices.BaseData
             return await _categoryService.RemoveCategory(id);
         }
 
-        public async Task<int> UpdateCategory(bool isDeleted, bool isActive, int displayOrder, string name, int parentCategoryId, int id)
+        public async Task<int> UpdateCategory( bool isActive, int displayOrder, string name, int? parentCategoryId, int id)
         {
             await _categorySurnessService.EnsureModelIsExist(id);
-            return await _categoryService.UpdateCategory(isDeleted, isActive, displayOrder,name,parentCategoryId,id);
+            return await _categoryService.UpdateCategory(isActive, displayOrder,name,parentCategoryId,id);
         }
+
+
     }
 }

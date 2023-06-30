@@ -9,7 +9,7 @@ namespace App.Domain.Core.BaseData.Contracts.Repositories
 {
     public interface ICollectionCommandRepository
     {
-        Task<int> UpdateCollection(string name,bool isDeleted,int id);
+        Task<int> UpdateCollection(string name,int id);
         Task<CollectionDto> RemoveCollection(int id);
         Task<int> InsertCollection(string name,bool isDeleted);
     }

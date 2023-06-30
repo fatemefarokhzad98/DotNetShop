@@ -50,10 +50,10 @@ namespace App.Infrastructure.Repository.Ef.BaseData
            
         }
 
-        public async Task<int> UpdateCollection(string name, bool isDeleted,int id)
+        public async Task<int> UpdateCollection(string name,int id)
         {
             var collection = await _appDbContext.Collections.Where(x => x.Id == id).SingleAsync();
-            collection.IsDeleted = isDeleted;
+          
             collection.Name = name;
             return collection.Id;
         }

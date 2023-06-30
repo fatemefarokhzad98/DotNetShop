@@ -1,4 +1,5 @@
 ﻿using App.Domain.Core.BaseData.Contracts.AppServices;
+using App.EndPoint.AdminUserUi.Models.ViewModels.BaseData;
 using Microsoft.AspNetCore.Mvc;
 
 namespace App.EndPoint.AdminUserUi.Controllers.BaseData
@@ -10,9 +11,34 @@ namespace App.EndPoint.AdminUserUi.Controllers.BaseData
         {
             _coolectionAppService = coolectionAppService;
         }
-        public IActionResult Index()
+        public async Task< IActionResult> ReadCollection()
+        {
+          var collection=  await _coolectionAppService.GetCollectionDtos();
+            var collectionviewmodel = collection.Select(c => new CollectionInPutViewModel()
+            {
+                
+                Name=c.Name,
+               
+
+            }).ToList();
+                return View(collectionviewmodel);
+        }
+        public async Task<IActionResult> RemoveCollection(int id)
+        {
+            await _coolectionAppService.RemoveCollection(id);
+            return RedirectToAction("ReadCollection");
+        }
+        [HttpGet]
+        public IActionResult InsertCollection()
         {
             return View();
+        }
+        [HttpPost]
+        public async Task<IActionResult> InsertCollection(CollectionOutPutViewModel collection)
+        {
+            await _coolectionAppService.InsertCollection(collection.Name );
+            return RedirectToAction("ReadCollection");
+
         }
     }
 }

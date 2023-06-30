@@ -34,9 +34,9 @@ namespace App.Domain.Services.BaseData
             return await _categoryQueryRepository.GetCategory(name);
         }
 
-        public async Task<int> InsertCategory(bool isDeleted, bool isActive, int displayOrder, string name, int categoryParentId)
+        public async Task<int> InsertCategory(bool isActive, int displayOrder, string name, int? parentCategoryId)
         {
-            return await _categoryCommandRepository.InsertCategory(false, true, displayOrder, name, categoryParentId);
+            return await _categoryCommandRepository.InsertCategory(false, isActive, displayOrder, name, parentCategoryId);
         }
 
         public async Task<CategoryDto> RemoveCategory(int id)
@@ -44,9 +44,9 @@ namespace App.Domain.Services.BaseData
             return await _categoryCommandRepository.RemoveCategory(id);
         }
 
-        public async Task<int> UpdateCategory(bool isDeleted, bool isActive, int displayOrder, string name, int parentCategoryId, int id)
+        public async Task<int> UpdateCategory( bool isActive, int displayOrder, string name, int? parentCategoryId, int id)
         {
-            return await _categoryCommandRepository.UpdateCategory(isDeleted, isActive, displayOrder, name, parentCategoryId, id);
+            return await _categoryCommandRepository.UpdateCategory(isActive, displayOrder, name, parentCategoryId, id);
         }
     }
 }

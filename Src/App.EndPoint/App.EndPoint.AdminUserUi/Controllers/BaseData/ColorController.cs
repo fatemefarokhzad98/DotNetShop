@@ -35,32 +35,39 @@ namespace App.EndPoint.AdminUserUi.Controllers.BaseData
         public async Task<IActionResult> InsertColor(ColorOutPutViewModel color )
         {
 
-            await _colorAppService.InsertColor( color.Name, color.ColorCode,color.is);
-            return RedirectToAction("Read");
+            await _colorAppService.InsertColor( color.Name,color.ColorCode);
+            return RedirectToAction("ReadColor");
            
-
-
         }
 
         [HttpPost]
-        public async Task<IActionResult> UpdateColor(ColorInPutViewModel color)
+        public async Task<IActionResult> UpdateColor(ColorOutPutViewModel color)
         {
-            await _colorAppService.UpdateColor(color.Name, color.ColorCode, color.IsDelete, color.Id);
+            await _colorAppService.UpdateColor(color.Id, color.Name, color.ColorCode);
 
-
-            return RedirectToAction("Read");
+            return RedirectToAction("ReadColor");
 
         }
         [HttpGet]
         public async Task<IActionResult> UpdateColor(int id)
         {
             var color = await _colorAppService.GetColor(id);
-            return View(color);
+            ColorOutPutViewModel colorviewmodel = new()
+            {
+                Id=id,
+                Name=color.Name,
+                ColorCode=color.ColorCode,
+                isDeleted=color.IsDeleted
+
+            };
+            return View(colorviewmodel);
+
+            
         }
         public async Task <IActionResult> RemoveColor(int id)
         {
             await _colorAppService.RemoveColor(id);
-            return RedirectToAction("Read");
+            return RedirectToAction("ReadColor");
         }
 
 

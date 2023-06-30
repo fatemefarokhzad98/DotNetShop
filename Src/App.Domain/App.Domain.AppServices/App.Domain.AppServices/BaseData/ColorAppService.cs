@@ -43,10 +43,10 @@ namespace App.Domain.AppServices.BaseData
             return await _colorService.GetColors();
         }
 
-        public async Task InsertColor(string name, string colorCode,bool isDeleted)
+        public async Task InsertColor(string name, string colorCode)
         {
             await _colorSurenessService.EnsureModelIsNotExist(name);
-            await _colorService.InsertColor(name, colorCode,isDeleted);
+            await _colorService.InsertColor(name, colorCode);
         }
 
         public async Task RemoveColor(int id)
@@ -55,10 +55,10 @@ namespace App.Domain.AppServices.BaseData
             await _colorService.RemoveColor(id);
         }
 
-        public  async Task UpdateColor(int id, string name, string colorCode,bool isDeleted)
+        public  async Task UpdateColor(int id, string name, string colorCode)
         {
             await _colorSurenessService.EnsureModelIsExist(id);
-            await _colorService.UpdateColor(id, name, colorCode,isDeleted);
+            await _colorService.UpdateColor(id, name, colorCode);
             
         }
     }
