@@ -29,21 +29,23 @@ builder.Services.AddScoped <IColorAppService, ColorAppService>();
 builder.Services.AddScoped < IColorService, ColorService>();
 builder.Services.AddScoped<IColorCommandRepository, ColorCommandRepository>();
 builder.Services.AddScoped<IColorQueryRepository, ColorQueryRepository>();
+builder.Services.AddScoped<ISurenessService, ColorSurenessService>();
 
 builder.Services.AddScoped<IModelAppService, ModelAppService>();
 builder.Services.AddScoped<IModelService, ModelService>();
 builder.Services.AddScoped<IModelCommandRepository, ModelCommandRepository>();
 builder.Services.AddScoped<IModelQueryRepository, ModelQueryRepository>();
-
+builder.Services.AddScoped<ISurenessService, ModelSurenessService>();
 builder.Services.AddScoped<ICategoryAppService, CategoryAppService>();
 builder.Services.AddScoped<ICategoryService, CategoryService>();
 builder.Services.AddScoped<ICategoryCommandRepository, CategoryCommandRepository>();
 builder.Services.AddScoped<ICategoryQueryRepository, CategoryQueryRepository>();
-
+builder.Services.AddScoped<ISurenessService, CategorySurenessService>();
 builder.Services.AddScoped<ICollectionAppService, CollectionAppService>();
 builder.Services.AddScoped<ICollectionService, CollectionService>();
 builder.Services.AddScoped<ICollectionCommandRepository, CollectionCommandRepository>();
 builder.Services.AddScoped<ICollectionQueryRepository, CollectionQueryRepository>();
+builder.Services.AddScoped<ISurenessService, CollectionSurenessService>();
 
 
 
