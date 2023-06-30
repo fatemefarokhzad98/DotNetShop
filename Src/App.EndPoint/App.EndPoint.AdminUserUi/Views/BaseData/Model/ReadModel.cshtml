@@ -1,0 +1,46 @@
+﻿@using App.EndPoint.AdminUserUi.Models.ViewModels.BaseData
+
+@model List<ModelInPutViewModel>
+@{
+    ViewData["Title"] = "لیست مدل ها";   
+}
+<h3>لیست مدل ها</h3>
+<table>
+    <thead>
+        <tr>
+            
+            <th>شناسه</th>
+            <th>نام مدل</th>
+            <th>زیرمجوعه</th>
+            <th>برند</th>
+            <th>عملیات</th>
+
+        </tr>
+    </thead>
+      
+    
+    <tbody>
+       @foreach(var Item in Model){
+        <tr>
+           
+        
+            <td>@Item.Id</td>
+            <td>@Item.Name</td>
+            <td>@Item.ParentModelId</td>
+            <td>@Item.BrandId</td>
+            <td>
+                <a  class="btn btn-primary"  asp-controller="Model"  asp-action="UpdateModel">
+                    ویرایش 
+                </a>
+                <a   class="btn btn-danger" asp-controller="Model" asp-action="RemoveModel" >
+                    حذف
+                </a>
+            </td>
+
+
+        </tr>}
+
+
+
+    </tbody>
+</table>

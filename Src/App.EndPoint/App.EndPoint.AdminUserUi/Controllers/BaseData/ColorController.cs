@@ -57,7 +57,7 @@ namespace App.EndPoint.AdminUserUi.Controllers.BaseData
                 Id=id,
                 Name=color.Name,
                 ColorCode=color.ColorCode,
-                isDeleted=color.IsDeleted
+             
 
             };
             return View(colorviewmodel);

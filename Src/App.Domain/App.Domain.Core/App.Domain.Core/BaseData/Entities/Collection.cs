@@ -13,5 +13,6 @@ public partial class Collection
     public string Name { get; set; } = null!;
 
     public bool IsDeleted { get; set; }
+    public DateTime CreationDate { get; set; }
     public virtual ICollection<CollectionProduct> CollectionProducts { get; set; } = new List<CollectionProduct>();
 }

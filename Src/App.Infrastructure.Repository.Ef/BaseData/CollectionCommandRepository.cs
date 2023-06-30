@@ -20,12 +20,14 @@ namespace App.Infrastructure.Repository.Ef.BaseData
             _appDbContext = appDbContext;
         }
 
-        public async Task<int> InsertCollection(string name, bool isDeleted)
+        public async Task<int> InsertCollection(string name, bool isDeleted,DateTime CreationDate)
         {
             Collection collection = new()
             {
                 Name = name,
-                IsDeleted = isDeleted
+                IsDeleted = isDeleted,
+                CreationDate= CreationDate
+
             };
             await _appDbContext.Collections.AddAsync(collection);
             await _appDbContext.SaveChangesAsync();
@@ -51,11 +53,12 @@ namespace App.Infrastructure.Repository.Ef.BaseData
            
         }
 
-        public async Task<int> UpdateCollection(string name,int id)
+        public async Task<int> UpdateCollection(string name,int id,DateTime CreationDate)
         {
             var collection = await _appDbContext.Collections.Where(x => x.Id == id).SingleAsync();
           
             collection.Name = name;
+            collection.CreationDate = CreationDate;
             return collection.Id;
         }
 

@@ -2,8 +2,8 @@
 {
     public class ModelInPutViewModel
     {
-       
 
+        public int Id { get; set; }
         public int BrandId { get; set; }
 
         public int? ParentModelId { get; set; }

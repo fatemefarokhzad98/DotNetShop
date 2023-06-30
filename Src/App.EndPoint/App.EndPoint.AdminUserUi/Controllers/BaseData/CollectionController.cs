@@ -18,6 +18,7 @@ namespace App.EndPoint.AdminUserUi.Controllers.BaseData
             {
                 
                 Name=c.Name,
+                CreationDate=c.CreationDate
                
 
             }).ToList();
@@ -36,7 +37,7 @@ namespace App.EndPoint.AdminUserUi.Controllers.BaseData
         [HttpPost]
         public async Task<IActionResult> InsertCollection(CollectionOutPutViewModel collection)
         {
-            await _coolectionAppService.InsertCollection(collection.Name );
+            await _coolectionAppService.InsertCollection(collection.Name,collection.CreationDate );
             return RedirectToAction("ReadCollection");
 
         }

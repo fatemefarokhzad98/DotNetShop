@@ -42,10 +42,10 @@ namespace App.Domain.AppServices.BaseData
             return await _collectionService.GetCollectionDtos();
         }
 
-        public async Task<int> InsertCollection(string name)
+        public async Task<int> InsertCollection(string name,DateTime CreationDate)
         {
             await _collectionSurnessService.EnsureModelIsNotExist(name);
-            return await _collectionService.InsertCollection(name);
+            return await _collectionService.InsertCollection(name, CreationDate);
         }
 
         public async Task<CollectionDto> RemoveCollection(int id)
@@ -56,10 +56,10 @@ namespace App.Domain.AppServices.BaseData
                 
         }
 
-        public async Task<int> UpdateCollection(string name, int id)
+        public async Task<int> UpdateCollection(string name, int id,DateTime CreationDate)
         {
             await _collectionSurnessService.EnsureModelIsExist(id);
-            return await _collectionService.UpdateCollection(name  ,id);
+            return await _collectionService.UpdateCollection(name  ,id, CreationDate);
         }
     }
 }

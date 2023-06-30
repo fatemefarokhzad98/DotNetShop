@@ -18,7 +18,7 @@ namespace App.EndPoint.AdminUserUi.Controllers.BaseData
             var categoryviewmodel = categories.Select(c => new CategoryInPurViewModel()
             {
                 Name = c.Name,
-                DisplayOrder = c.DisplayOrder,
+             
                 IsActive = c.IsActive,
                 ParentCategoryId = c.ParentCategoryId
 

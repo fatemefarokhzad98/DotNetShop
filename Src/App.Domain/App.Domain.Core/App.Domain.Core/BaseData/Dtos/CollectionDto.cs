@@ -13,5 +13,6 @@ namespace App.Domain.Core.BaseData.Dtos
         public string Name { get; set; } = null!;
 
         public bool IsDeleted { get; set; }
+        public DateTime CreationDate { get; set; }
     }
 }
