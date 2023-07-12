@@ -272,7 +272,7 @@
         </div>
         <!-- /.content-wrapper -->
         <footer class="main-footer">
-            <strong>CopyLeft &copy; 2018 <a href="http://github.com/hesammousavi/">حسام موسوی</a>.</strong>
+            <strong>CopyLeft &copy; 2018 <a href="http://github.com/hesammousavi/">فاطمه فرخزاد</a>.</strong>
         </footer>
 
         <!-- Control Sidebar -->
@@ -286,9 +286,20 @@
     <script src="~/plugins/jquery/jquery.min.js"></script>
     <!-- jQuery UI 1.11.4 -->
     <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.min.js"></script>
+    <script src="~/plugins/jquery-validate/jquery.validate.js"> </script>
+     <script src="~/plugins/jquery-validation-unobtrusive/jquery.validate.unobtrusive.min.js"> </script>
     <!-- Resolve conflict in jQuery UI tooltip with Bootstrap tooltip -->
     <script>
         $.widget.bridge('uibutton', $.ui.button)
+        $(document).ready(function()
+        {
+          //  alert('tesr');
+          $("input.input-validation-error").addClass("is-invalid");
+          $("span.field-validation-error").addClass("text-danger");
+
+
+
+        });
     </script>
     <!-- Bootstrap 4 -->
     <script src="~/plugins/bootstrap/js/bootstrap.bundle.min.js"></script>

@@ -19,18 +19,25 @@ namespace App.EndPoint.AdminUserUi.Controllers.Product
         [HttpPost]
         public async Task< IActionResult> UpdateBrand(BrandUpdateViewModel brand )
         {
-
-            await _brandAppService.UpdateBrand(brand.Id,brand.DisPlayOrder,brand.Name);
-
-
-            return RedirectToAction("ReadBrand");
-           
+            if (ModelState.IsValid)
+            {
 
 
+                await _brandAppService.UpdateBrand(brand.Id, brand.DisPlayOrder, brand.Name);
+
+
+                return RedirectToAction("ReadBrand");
+
+            }
+            else
+            {
+                return View(brand);
+            }
         }
         [HttpGet]
         public async Task< IActionResult> UpdateBrand(int id)
         {
+         
             var brand = await _brandAppService.GetBrand(id);
             BrandUpdateViewModel brandviewmodel = new()
             {
@@ -39,9 +46,10 @@ namespace App.EndPoint.AdminUserUi.Controllers.Product
                 DisPlayOrder=brand.DisplayOrder,
                
             };
+            
 
-
-            return View(brandviewmodel);
+                return View(brandviewmodel);
+            
 
 
 
@@ -74,10 +82,17 @@ namespace App.EndPoint.AdminUserUi.Controllers.Product
 
         }
         [HttpPost]
-        public async Task< IActionResult> InsertBrand(BrandUpdateViewModel brand)
+        public async Task< IActionResult> InsertBrand(BrandInsertViewModel brand)
         {
-           await _brandAppService.SetBrand(brand.DisPlayOrder,brand.Name);
-            return RedirectToAction("ReadBrand");
+            if (ModelState.IsValid)
+            {
+                await _brandAppService.SetBrand(brand.DisPlayOrder, brand.Name);
+                return RedirectToAction("ReadBrand");
+            }
+            else
+            {
+                return View(brand);
+            }
 
         }
 
