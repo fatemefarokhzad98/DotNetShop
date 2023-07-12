@@ -53,12 +53,13 @@ namespace App.Infrastructure.Repository.Ef.BaseData
            
         }
 
-        public async Task<int> UpdateCollection(string name,int id,DateTime CreationDate)
+        public async Task<int> UpdateCollection(string name,int id,bool isDeleted,DateTime CreationDate)
         {
             var collection = await _appDbContext.Collections.Where(x => x.Id == id).SingleAsync();
           
             collection.Name = name;
             collection.CreationDate = CreationDate;
+            collection.IsDeleted = isDeleted;
             return collection.Id;
         }
 

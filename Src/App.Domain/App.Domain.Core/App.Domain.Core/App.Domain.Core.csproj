@@ -13,9 +13,6 @@
     <Folder Include="Comment\Contracts\Services\" />
     <Folder Include="Comment\Enums\" />
     <Folder Include="Comment\Dtos\" />
-    <Folder Include="Product\Contracts\AppServices\" />
-    <Folder Include="Product\Contracts\Repositories\" />
-    <Folder Include="Product\Dtos\" />
     <Folder Include="Product\Enums\" />
     <Folder Include="User\Contracts\AppServices\" />
     <Folder Include="User\Contracts\Services\" />

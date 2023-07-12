@@ -8,7 +8,7 @@ using System.Threading.Tasks;
 
 namespace App.Domain.Services.BaseData
 {
-    public class ModelSurenessService:ISurenessService
+    public class ModelSurenessService:IModelSurnessService
     {
         private readonly IModelQueryRepository _modelQueryRepository;
         private readonly IModelCommandRepository _modelCommandRepository;

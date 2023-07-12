@@ -18,5 +18,7 @@ namespace App.Domain.Core.BaseData.Dtos
 
         public int DisplayOrder { get; set; }
         public bool IsDeleted { get; set; }
+
+        public string? ParentName { get; set; }
     }
 }

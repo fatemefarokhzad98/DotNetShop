@@ -53,7 +53,7 @@ namespace App.Domain.Services.BaseData
 
         public async Task UpdateBrand(int id, int displayOrder, string name)
         {
-          await  _brandCommandRepository.UpdateBrand(name, displayOrder, id);
+          await  _brandCommandRepository.UpdateBrand(name, displayOrder, id,DateTime.Now);
         }
     }
 }

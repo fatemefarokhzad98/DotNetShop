@@ -26,7 +26,9 @@ namespace App.Infrastructure.Repository.Ef.BaseData
                 Name = c.Name,
                 BrandId = c.BrandId,
                 IsDeleted = c.IsDeleted,
-                ParentModelId = c.ParentModelId
+                ParentModelId = c.ParentModelId,
+                ParentName=c.ParentModel.Name,
+                BrandName=c.Brand.Name
 
 
             }).SingleOrDefaultAsync();
@@ -42,7 +44,9 @@ namespace App.Infrastructure.Repository.Ef.BaseData
                 Name = c.Name,
                 BrandId = c.BrandId,
                 IsDeleted = c.IsDeleted,
-                ParentModelId = c.ParentModelId
+                ParentModelId = c.ParentModelId,
+                BrandName=c.Brand.Name,
+                ParentName=c.ParentModel.Name
 
 
             }).FirstOrDefaultAsync();
@@ -57,7 +61,9 @@ namespace App.Infrastructure.Repository.Ef.BaseData
                 Name = c.Name,
                 BrandId = c.BrandId,
                 IsDeleted = c.IsDeleted,
-                ParentModelId = c.ParentModelId
+                ParentModelId = c.ParentModelId,
+                ParentName=c.ParentModel.Name,
+                BrandName=c.Brand.Name
 
 
             }).ToListAsync();

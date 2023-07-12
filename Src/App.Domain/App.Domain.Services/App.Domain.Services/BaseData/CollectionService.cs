@@ -24,11 +24,13 @@ namespace App.Domain.Services.BaseData
         public async Task<CollectionDto> GetCollection(int id)
         {
             return await _collectionQueryRepository.GetCollection(id);
+           
         }
 
         public async Task<CollectionDto> GetCollection(string name)
         {
             return await _collectionQueryRepository.GetCollection(name);
+          
         }
 
         public async Task<List<CollectionDto>> GetCollectionDtos()
@@ -36,7 +38,7 @@ namespace App.Domain.Services.BaseData
             return await _collectionQueryRepository.ReadCollection();
         }
 
-        public async Task<int> InsertCollection(string name,DateTime CreationDate)
+        public async Task<int> InsertCollection(string name)
         {
             return await _collectionCommandRepository.InsertCollection(name, false,DateTime.Now);
         }
@@ -47,9 +49,9 @@ namespace App.Domain.Services.BaseData
 
         }
 
-        public async Task<int> UpdateCollection(string name, int id,DateTime CreationDate)
+        public async Task<int> UpdateCollection(string name, int id)
         {
-            return await _collectionCommandRepository.UpdateCollection(name, id,DateTime.Now);
+            return await _collectionCommandRepository.UpdateCollection(name, id,false,DateTime.Now);
 
         }
     }

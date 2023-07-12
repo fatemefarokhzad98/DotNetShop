@@ -21,17 +21,22 @@ namespace App.Domain.Services.BaseData
 
         public async Task<List<CategoryDto>> GetCategories()
         {
-         return await  _categoryQueryRepository.ReadCategory();
+         return await  _categoryQueryRepository.GetCategories();
         }
 
-        public async Task<CategoryDto> GetCategory(int id)
+        public async Task<CategoryDto> GetCategory(int? id)
         {
-            return await _categoryQueryRepository.GetCategory(id);
+           var category= await _categoryQueryRepository.GetCategory(id);
+            
+            return category;
         }
 
         public async Task<CategoryDto> GetCategory(string name)
         {
-            return await _categoryQueryRepository.GetCategory(name);
+            var category = await _categoryQueryRepository.GetCategory(name);
+            if (category == null)
+                throw new Exception();
+            return category;
         }
 
         public async Task<int> InsertCategory(bool isActive, int displayOrder, string name, int? parentCategoryId)

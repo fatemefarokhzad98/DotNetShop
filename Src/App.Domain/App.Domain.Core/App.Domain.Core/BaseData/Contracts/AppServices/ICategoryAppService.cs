@@ -10,11 +10,11 @@ namespace App.Domain.Core.BaseData.Contracts.AppServices
     public interface ICategoryAppService
     {
         Task<List<CategoryDto>> GetCategories();
-        Task <CategoryDto> GetCategory(int id);
+        Task <CategoryDto> GetCategory(int? id);
         Task <CategoryDto> GetCategory(string name);
-        Task<int> UpdateCategory( bool isActive, int displayOrder, string name, int? parentCategorytId, int id);
+        Task<int> UpdateCategory( bool isActive, int displayOrder, string name, int? parentCategoryId, int id);
         Task<CategoryDto> RemoveCategory(int id);
 
-        Task<int> InsertCategory(int displayOrder, string name, int? parentCategorytId);
+        Task<int> InsertCategory(bool isActive,int displayOrder, string name, int? parentCategoryId);
     }
 }

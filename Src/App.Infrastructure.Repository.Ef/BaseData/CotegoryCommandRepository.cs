@@ -28,10 +28,8 @@ namespace App.Infrastructure.Repository.Ef.BaseData
                 IsActive = isActive,
                 Name = name,
                 ParentCategoryId = parentCategoryId,
-                DisplayOrder = displayOrder
-
-
-
+                DisplayOrder = displayOrder,
+            
             };
             await _appDbContext.Categories.AddAsync(category);
             await _appDbContext.SaveChangesAsync();
@@ -48,7 +46,9 @@ namespace App.Infrastructure.Repository.Ef.BaseData
                 IsActive = c.IsActive,
                 IsDeleted = c.IsDeleted,
                 Name = c.Name,
-                ParentCategoryId = c.ParentCategoryId
+                ParentCategoryId = c.ParentCategoryId,
+                 ParentName=c.ParentCategory.Name
+                
             }).FirstOrDefaultAsync();
 
              _appDbContext.Remove(category);
@@ -58,14 +58,14 @@ namespace App.Infrastructure.Repository.Ef.BaseData
 
         public async Task<int> UpdateCategory(bool isActive, int displayOrder, string name, int? parentCategoryId, int id)
         {
-            var collection = await _appDbContext.Categories.Where(x => x.Id == id).FirstOrDefaultAsync();
-            collection.Name = name;
-            collection.ParentCategoryId = parentCategoryId;
-           collection.DisplayOrder= displayOrder;
-            collection.IsActive = isActive;
+            var category = await _appDbContext.Categories.Where(x => x.Id == id).FirstOrDefaultAsync();
+            category.Name = name;
+            category.ParentCategoryId = parentCategoryId;
+            category.DisplayOrder= displayOrder;
+            category.IsActive = isActive;
            
             await _appDbContext.SaveChangesAsync();
-            return collection.Id;
+            return category.Id;
 
         }
     }

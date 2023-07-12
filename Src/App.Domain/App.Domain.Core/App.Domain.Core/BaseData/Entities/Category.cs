@@ -12,6 +12,7 @@ public partial class Category
 
     public int? ParentCategoryId { get; set; }
 
+    public Category ParentCategory { get; set; }
     public bool IsActive { get; set; }
 
     public int DisplayOrder { get; set; }

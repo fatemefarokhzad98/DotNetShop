@@ -20,20 +20,7 @@ namespace App.Infrastructure.Repository.Ef.BaseData
         }
         public async Task<ColorDto?> GetColor(int id)
         {
-            var color = await _appDbContext.Colors.AsNoTracking().Where(x => x.Id == id).Select(c => new ColorDto()
-            {
-                Id = c.Id,
-                Name = c.Name,
-                ColorCode = c.ColorCode,
-                IsDeleted=c.IsDeleted
-                
-            }).SingleOrDefaultAsync();
-            return color;
-        }
-
-        public  async Task<ColorDto?> GetColor(string name)
-        {
-            var color = await _appDbContext.Colors.AsNoTracking().Where(x => x.Name == name).Select(c => new ColorDto()
+            return await _appDbContext.Colors.AsNoTracking().Where(x => x.Id == id).Select(c => new ColorDto()
             {
                 Id = c.Id,
                 Name = c.Name,
@@ -41,12 +28,25 @@ namespace App.Infrastructure.Repository.Ef.BaseData
                 IsDeleted=c.IsDeleted
                 
             }).FirstOrDefaultAsync();
-            return color;
+            
+        }
+
+        public  async Task<ColorDto?> GetColor(string name)
+        {
+           return await _appDbContext.Colors.AsNoTracking().Where(x => x.Name == name).Select(c => new ColorDto()
+            {
+                Id = c.Id,
+                Name = c.Name,
+                ColorCode = c.ColorCode,
+                IsDeleted=c.IsDeleted
+                
+            }).SingleOrDefaultAsync();
+            
         }
 
         public async Task<List<ColorDto>> GetColors()
         {
-            var color = await _appDbContext.Colors.AsNoTracking().Select(x => new ColorDto()
+            return await _appDbContext.Colors.AsNoTracking().Select(x => new ColorDto()
             {
                 Id = x.Id,
                 Name = x.Name,
@@ -54,7 +54,7 @@ namespace App.Infrastructure.Repository.Ef.BaseData
                 IsDeleted=x.IsDeleted
                 
             }).ToListAsync();
-            return color;
+          
         }
 
 

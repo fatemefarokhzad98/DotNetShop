@@ -10,7 +10,7 @@ using System.Threading.Tasks;
 
 namespace App.Domain.Services.BaseData
 {
-    public  class BrandSurenessService: ISurenessService
+    public  class BrandSurenessService: IBrandSurnessService
     {
         private readonly IBrandCommandRepository _brandCommandRepository;
         private readonly IBrandQueryRepository _brandQueryRepository;

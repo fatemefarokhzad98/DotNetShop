@@ -18,16 +18,20 @@ namespace App.Infrastructure.Repository.Ef.BaseData
             _appDbContext = appDbContext;
         }
 
-        public async Task<CategoryDto?> GetCategory(int id)
+        public async Task<CategoryDto?> GetCategory(int? id)
         {
-            var category = await _appDbContext.Categories.Where(x => x.Id == id).AsNoTracking().Select(c => new CategoryDto()
+            var category = await _appDbContext.Categories
+                .Where(x => x.Id == id).AsNoTracking()
+              
+                .Select(c => new CategoryDto()
             {
                 Id = c.Id,
                 Name = c.Name,
                 DisplayOrder = c.DisplayOrder,
                 IsActive = c.IsActive,
                 ParentCategoryId = c.ParentCategoryId,
-                IsDeleted = c.IsDeleted
+                IsDeleted = c.IsDeleted,
+                ParentName=c.ParentCategory.Name
             }).FirstOrDefaultAsync();
             return category;
 
@@ -42,22 +46,25 @@ namespace App.Infrastructure.Repository.Ef.BaseData
                 DisplayOrder = c.DisplayOrder,
                 IsActive = c.IsActive,
                 ParentCategoryId = c.ParentCategoryId,
-                IsDeleted = c.IsDeleted
+                IsDeleted = c.IsDeleted,
+                ParentName=c.ParentCategory.Name
             }).SingleOrDefaultAsync();
             return category;
 
         }
 
-        public async Task<List<CategoryDto>> ReadCategory()
+        public async Task<List<CategoryDto>> GetCategories()
         {
+
             var categories = await _appDbContext.Categories.AsNoTracking().Select(c => new CategoryDto()
             {
-                DisplayOrder=c.DisplayOrder,
-                Id=c.Id,
+                 DisplayOrder=c.DisplayOrder,
+                 Id=c.Id,
                  IsActive=c.IsActive,
                  IsDeleted=c.IsDeleted,
                  Name=c.Name,
-                 ParentCategoryId=c.ParentCategoryId
+                 ParentCategoryId=c.ParentCategoryId,
+                 ParentName=c.ParentCategory.Name
 
             }).ToListAsync();
             return categories;

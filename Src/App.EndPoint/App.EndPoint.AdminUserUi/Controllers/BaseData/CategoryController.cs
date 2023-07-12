@@ -1,7 +1,7 @@
 ﻿using App.Domain.Core.BaseData.Contracts.AppServices;
 using App.EndPoint.AdminUserUi.Models.ViewModels.BaseData;
 using Microsoft.AspNetCore.Mvc;
-
+using Microsoft.AspNetCore.Mvc.Rendering;
 
 namespace App.EndPoint.AdminUserUi.Controllers.BaseData
 {
@@ -15,54 +15,64 @@ namespace App.EndPoint.AdminUserUi.Controllers.BaseData
         public async Task< IActionResult> ReadCategory()
         {
             var categories = await _categoryAppService.GetCategories();
-            var categoryviewmodel = categories.Select(c => new CategoryInPurViewModel()
+            
+
+            var categoryviewmodel = categories.Select(  c => new CategoryReadViewModel()
             {
-                Name = c.Name,
-             
-                IsActive = c.IsActive,
-                ParentCategoryId = c.ParentCategoryId
+              Name=c.Name,
+              IsActive=c.IsActive,
+              DisplayOrder=c.DisplayOrder,
+             ParentName=c.ParentName,
+             Id=c.Id
 
             }).ToList();
- 
+            
             return  View(categoryviewmodel);
         }
         [HttpPost]
-        public async Task< IActionResult> UpdateCategory(CategoryOutPutViewModel category)
+        public async Task< IActionResult> UpdateCategory(CategoryUpdateViewModel category)
         {
-             await _categoryAppService.UpdateCategory( category.IsActive, category.DisplayOrder,category.Name,category.ParentCategoryId, category.Id);
+          await _categoryAppService.UpdateCategory( category.IsActive, category.DisplayOrder,category.Name,category.ParentCategoryId, category.Id);
           return  RedirectToAction("ReadCategory");
         }
         [HttpGet]
         public async Task<IActionResult> UpdateCategory(int id)
         {
             var category=await _categoryAppService.GetCategory(id);
-            CategoryOutPutViewModel categoriViewModel = new()
+            CategoryUpdateViewModel categoryViewModel = new()
             {
                 Id = id,
-                ParentCategoryId = category.ParentCategoryId,
+                ParentCategoryId=category.ParentCategoryId,
+                ParentName=category.ParentName,
                 Name = category.Name,
                 DisplayOrder = category.DisplayOrder,
                 IsActive = category.IsActive,
-                IsDeleted = category.IsDeleted
+               
             };
-            return View(categoriViewModel);
+            ViewBag.Categories = new SelectList(await _categoryAppService.GetCategories(), "Id", "Name");
+
+            return View(categoryViewModel);
 
         }
         public async Task<IActionResult> RemoveCategory(int id)
-        {
-            var category = await _categoryAppService.RemoveCategory(id);
+         {
+             await _categoryAppService.RemoveCategory(id);
             return RedirectToAction("ReadCategory");
         }
         [HttpGet]
-        public  IActionResult InsertCategory()
+       
+        public  async Task< IActionResult> InsertCategory()
         {
+           
+            ViewBag.Categories = new SelectList(await _categoryAppService.GetCategories(), "Id", "Name");
+            
             return View();
 
         }
         [HttpPost]
-        public async Task<IActionResult> InsertCategory(CategoryOutPutViewModel category)
+        public async Task<IActionResult> InsertCategory(CategoryInsertViewModel category)
         {
-            await _categoryAppService.InsertCategory( category.DisplayOrder, category.Name, category.ParentCategoryId);
+            await _categoryAppService.InsertCategory( category.IsActive,category.DisplayOrder, category.Name, category.ParentCategoryId);
             return RedirectToAction("ReadCategory");
         }
 

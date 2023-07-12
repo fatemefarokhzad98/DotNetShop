@@ -1,22 +1,31 @@
 ﻿using App.Domain.Core.BaseData.Contracts.AppServices;
 using App.EndPoint.AdminUserUi.Models.ViewModels.BaseData;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.AspNetCore.Mvc.Rendering;
 
 namespace App.EndPoint.AdminUserUi.Controllers.BaseData
 {
     public class ModelController : Controller
     {
         private readonly IModelAppService _modelAppService;
-        public ModelController(IModelAppService modelAppService)
+        private readonly IBrandAppService _brandAppService;
+        public ModelController(IModelAppService modelAppService,IBrandAppService brandAppService)
         {
             _modelAppService = modelAppService;
+            _brandAppService = brandAppService;
+
         }
-        public IActionResult InsertModel()
+        public async Task< IActionResult> InsertModel()
         {
+
+            ViewBag.Models = new SelectList(await _modelAppService.GetModels(), "Id", "Name");
+            ViewBag.Brands = new SelectList(await _brandAppService.GetBrands(), "Id", "Name");
+          
+
             return View();
         }
         [HttpPost]
-        public async Task<IActionResult> InsertModel(ModelOutPutViewModel model )
+        public async Task<IActionResult> InsertModel(ModelInsertViewModel model )
         {
 
             await _modelAppService.InsertModel(model.BrandId, model.ParentModelId, model.Name);
@@ -29,21 +38,22 @@ namespace App.EndPoint.AdminUserUi.Controllers.BaseData
         public async Task<IActionResult> UpdateModel(int id)
         {
             var model = await _modelAppService.GetModel(id);
-            ModelOutPutViewModel modelviewmodel = new()
+            ModelUpdateViewModel modelviewmodel = new()
             {
                 Id=id,
                 Name=model.Name,
                 BrandId=model.BrandId,
                 ParentModelId=model.ParentModelId,
-                IsDeleted = model.IsDeleted
-                
+               
 
             };
+            ViewBag.Models = new SelectList(await _modelAppService.GetModels(), "Id", "Name");
+            ViewBag.Brands = new SelectList(await _brandAppService.GetBrands(), "Id", "Name");
             return View(modelviewmodel);
 
         }
         [HttpPost]
-        public async Task<IActionResult> UpdateModel(ModelOutPutViewModel model)
+        public async Task<IActionResult> UpdateModel(ModelUpdateViewModel model)
         {
             await _modelAppService.UpdateModel(model.BrandId, model.ParentModelId, model.Name, model.Id);
             return RedirectToAction("ReadModel");
@@ -57,11 +67,15 @@ namespace App.EndPoint.AdminUserUi.Controllers.BaseData
         public async Task<IActionResult> ReadModel()
         {
             var model=  await _modelAppService.GetModels();
-            var modelviewmodel = model.Select(m => new ModelInPutViewModel()
+            var modelviewmodel = model.Select(m => new ModelReadViewModel()
             {
                 Name=m.Name,
                 BrandId=m.BrandId,
-                ParentModelId=m.ParentModelId
+                ParentModelId=m.ParentModelId,
+                BrandName=m.BrandName,
+                Id=m.Id,
+                ParentName=m.ParentName,
+    
             }).ToList();
             return View(modelviewmodel);
        

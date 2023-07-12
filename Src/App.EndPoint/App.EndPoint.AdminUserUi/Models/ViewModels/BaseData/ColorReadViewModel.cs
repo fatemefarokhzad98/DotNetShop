@@ -1,0 +1,11 @@
+﻿namespace App.EndPoint.AdminUserUi.Models.ViewModels.BaseData
+{
+    public class ColorReadViewModel
+    {
+        public int Id { get; set; }
+        public string Name { get; set; }
+        public string ColorCode { get; set; }
+       
+
+    }
+}

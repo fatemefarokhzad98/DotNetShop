@@ -11,9 +11,9 @@ namespace App.Domain.AppServices.BaseData
 {
     public class ColorAppService : IColorAppService
     {
-        private readonly ISurenessService _colorSurenessService;
+        private readonly IColorSurnessService _colorSurenessService;
         private readonly IColorService _colorService;
-        public ColorAppService(ISurenessService colorSurenessService,IColorService colorService)
+        public ColorAppService(IColorSurnessService colorSurenessService,IColorService colorService)
         {
             _colorSurenessService = colorSurenessService;
             _colorService = colorService;
@@ -22,8 +22,7 @@ namespace App.Domain.AppServices.BaseData
         public async Task<ColorDto> GetColor(int id)
         {
             var color = await _colorService.GetColor(id);
-            if (color == null)
-                throw new Exception();
+            
             return color;
 
 
@@ -32,8 +31,7 @@ namespace App.Domain.AppServices.BaseData
         public async Task<ColorDto> GetColor(string name)
         {
             var color= await _colorService.GetColor(name);
-            if (color == null)
-                throw new Exception();
+          
             return color;
             
         }

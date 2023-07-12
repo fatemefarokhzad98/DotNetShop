@@ -3,6 +3,7 @@
 using App.EndPoint.AdminUserUi.Models.ViewModels.BaseData;
 using Microsoft.AspNetCore.Mvc;
 
+
 namespace App.EndPoint.AdminUserUi.Controllers.BaseData
 {
     public class ColorController : Controller
@@ -13,11 +14,11 @@ namespace App.EndPoint.AdminUserUi.Controllers.BaseData
             _colorAppService = colorAppService;
 
         }
-
+        [HttpGet]
         public async Task<IActionResult> ReadColor()
         {
          var color= await  _colorAppService.GetColors();
-            var colorMolel = color.Select(c => new ColorOutPutViewModel()
+            var colorMolel =  color.Select(c => new ColorReadViewModel()
             {
                 Name=c.Name,
                 ColorCode=c.ColorCode,
@@ -25,6 +26,7 @@ namespace App.EndPoint.AdminUserUi.Controllers.BaseData
 
             }).ToList();
             return View(colorMolel);
+           
         }
         public  IActionResult InsertColor()
         {
@@ -32,7 +34,7 @@ namespace App.EndPoint.AdminUserUi.Controllers.BaseData
             
         }
         [HttpPost]
-        public async Task<IActionResult> InsertColor(ColorOutPutViewModel color )
+        public async Task<IActionResult> InsertColor(ColorInsertViewModel color )
         {
 
             await _colorAppService.InsertColor( color.Name,color.ColorCode);
@@ -41,7 +43,7 @@ namespace App.EndPoint.AdminUserUi.Controllers.BaseData
         }
 
         [HttpPost]
-        public async Task<IActionResult> UpdateColor(ColorOutPutViewModel color)
+        public async Task<IActionResult> UpdateColor(ColorUpdateViewModel color)
         {
             await _colorAppService.UpdateColor(color.Id, color.Name, color.ColorCode);
 
@@ -52,7 +54,7 @@ namespace App.EndPoint.AdminUserUi.Controllers.BaseData
         public async Task<IActionResult> UpdateColor(int id)
         {
             var color = await _colorAppService.GetColor(id);
-            ColorOutPutViewModel colorviewmodel = new()
+            ColorUpdateViewModel colorviewmodel = new()
             {
                 Id=id,
                 Name=color.Name,

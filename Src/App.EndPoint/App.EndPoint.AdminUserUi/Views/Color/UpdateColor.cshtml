@@ -1,0 +1,31 @@
+﻿@using App.EndPoint.AdminUserUi.Models.ViewModels.BaseData
+@model ColorUpdateViewModel
+@{
+    ViewData["Title"] = "ویرایش رنگ ها";   
+}
+<h3>ویرایش رنگ ها</h3>
+
+<form asp-controller="Color" asp-action="UpdateColor" method="post" >
+    <div  class="form-group"> 
+        <label asp-for=" Id"  hidden="hidden" > </label>
+      <input   class="form-control" asp-for="Id"  hidden="hidden" />
+
+    </div>
+
+    <div  class="form-group"> 
+        <label asp-for="Name"  > </label>
+      <input   class="form-control" asp-for="Name" />
+
+    </div>
+     <div  class="form-group">
+      <label asp-for="ColorCode"  > </label>
+      <input   class="form-control" asp-for="ColorCode" />
+
+    </div>
+   
+        <div class="form-group">
+
+
+        <input type="submit" value="ثبت " class="btn btn-primary"  style="float:right"  />
+    </div>
+    </form>

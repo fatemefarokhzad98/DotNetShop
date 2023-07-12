@@ -8,7 +8,7 @@ using System.Threading.Tasks;
 
 namespace App.Domain.Services.BaseData
 {
-    public class CollectionSurenessService:ISurenessService
+    public class CollectionSurenessService:IColletionSurnessService
     {
         private readonly ICollectionQueryRepository _collectionQueryRepository;
         private readonly ICollectionCommandRepository _collectionCommandRepository;
@@ -43,7 +43,7 @@ namespace App.Domain.Services.BaseData
         public async Task EnsureModelIsNotExist(string name)
         {
             var collection = await _collectionQueryRepository.GetCollection(name);
-            if (collection == null)
+            if (collection != null)
                 throw new Exception();
         }
     }

@@ -1,6 +1,4 @@
 ﻿
-
-
 using App.Domain.Core.BaseData.Contracts.AppServices;
 
 using App.EndPoint.AdminUserUi.Models.ViewModels.BaseData;
@@ -19,7 +17,7 @@ namespace App.EndPoint.AdminUserUi.Controllers.Product
             _brandAppService = brandAppService;
         }
         [HttpPost]
-        public async Task< IActionResult> UpdateBrand(BrandOutPutViewModel brand )
+        public async Task< IActionResult> UpdateBrand(BrandUpdateViewModel brand )
         {
 
             await _brandAppService.UpdateBrand(brand.Id,brand.DisPlayOrder,brand.Name);
@@ -34,15 +32,12 @@ namespace App.EndPoint.AdminUserUi.Controllers.Product
         public async Task< IActionResult> UpdateBrand(int id)
         {
             var brand = await _brandAppService.GetBrand(id);
-            BrandOutPutViewModel brandviewmodel = new()
+            BrandUpdateViewModel brandviewmodel = new()
             {
                 Id = id,
                 Name=brand.Name,
-              
-                DisPlayOrder=brand.DisplayOrder
-
-            
-
+                DisPlayOrder=brand.DisplayOrder,
+               
             };
 
 
@@ -54,17 +49,14 @@ namespace App.EndPoint.AdminUserUi.Controllers.Product
         public async Task< IActionResult> ReadBrand()
         {
           var brands= await _brandAppService.GetBrands();
-            var brandsModel = brands.Select(b => new BrandInPutViewModel()
+            var brandsModel = brands.Select(b => new BrandReadViewModel()
             {
                Id=b.Id,
 
                 Name = b.Name,
-                DisPlayOrder = b.DisplayOrder,
+                DisplayOrder = b.DisplayOrder,
                 CreationDate=b.CreationDate,
               
-
-
-
             }).ToList();
             return View(brandsModel);
 
@@ -82,7 +74,7 @@ namespace App.EndPoint.AdminUserUi.Controllers.Product
 
         }
         [HttpPost]
-        public async Task< IActionResult> InsertBrand(BrandOutPutViewModel brand)
+        public async Task< IActionResult> InsertBrand(BrandUpdateViewModel brand)
         {
            await _brandAppService.SetBrand(brand.DisPlayOrder,brand.Name);
             return RedirectToAction("ReadBrand");

@@ -8,7 +8,7 @@ using System.Threading.Tasks;
 
 namespace App.Domain.Services.BaseData
 {
-    public class CategorySurenessService:ISurenessService
+    public class CategorySurenessService:ICategorySurnessService
     {
         private readonly ICategoryQueryRepository _categoryQueryRepository;
         private readonly ICategoryCommandRepository _categoryCommandRepository;
@@ -42,8 +42,13 @@ namespace App.Domain.Services.BaseData
         public async Task EnsureModelIsNotExist(string name)
         {
             var category = await _categoryQueryRepository.GetCategory(name);
-            if (category == null)
+            if (category != null)
                 throw new Exception();
         }
+       
+
+
+
+
     }
 }

@@ -14,11 +14,12 @@ namespace App.EndPoint.AdminUserUi.Controllers.BaseData
         public async Task< IActionResult> ReadCollection()
         {
           var collection=  await _coolectionAppService.GetCollectionDtos();
-            var collectionviewmodel = collection.Select(c => new CollectionInPutViewModel()
+            var collectionviewmodel = collection.Select(c => new CollectionReadViewModel()
             {
                 
                 Name=c.Name,
-                CreationDate=c.CreationDate
+                CreationDate=c.CreationDate,
+                Id=c.Id
                
 
             }).ToList();
@@ -35,11 +36,29 @@ namespace App.EndPoint.AdminUserUi.Controllers.BaseData
             return View();
         }
         [HttpPost]
-        public async Task<IActionResult> InsertCollection(CollectionOutPutViewModel collection)
+        public async Task<IActionResult> InsertCollection(CollectionInsertViewModel collection)
         {
-            await _coolectionAppService.InsertCollection(collection.Name,collection.CreationDate );
+            await _coolectionAppService.InsertCollection(collection.Name );
             return RedirectToAction("ReadCollection");
 
         }
+        [HttpPost]
+        public async Task< IActionResult> UpdateCollection(CollectionUpdateViewModel collection )
+        {
+            await _coolectionAppService.UpdateCollection(collection.Name, collection.Id);
+            return RedirectToAction("ReadCollection");
+        }
+        public async Task<IActionResult> UpdateCollection(int id)
+        {
+            var collection = await _coolectionAppService.GetCollection(id);
+            CollectionUpdateViewModel collectionViewModel = new()
+            {
+                Id = id,
+                Name = collection.Name
+            };
+            return View(collectionViewModel);
+        }
+
+
     }
 }

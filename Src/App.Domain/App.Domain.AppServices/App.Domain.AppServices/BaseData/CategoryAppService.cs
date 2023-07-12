@@ -12,8 +12,8 @@ namespace App.Domain.AppServices.BaseData
     public class CategoryAppService: ICategoryAppService
     {
         private readonly ICategoryService _categoryService;
-        private readonly ISurenessService _categorySurnessService;
-        public CategoryAppService(ICategoryService categoryService , ISurenessService categorySurnessService)
+        private readonly ICategorySurnessService _categorySurnessService;
+        public CategoryAppService(ICategoryService categoryService , ICategorySurnessService categorySurnessService)
         {
             _categoryService = categoryService;
             _categorySurnessService = categorySurnessService;
@@ -22,37 +22,29 @@ namespace App.Domain.AppServices.BaseData
 
         public async Task<List<CategoryDto>> GetCategories()
         {
-            
               return await  _categoryService.GetCategories();
-
+          
         }
 
-        public async Task<CategoryDto> GetCategory(int id)
+        public async Task<CategoryDto> GetCategory(int? id)
         {
-            var category = await _categoryService.GetCategory(id);
-            if (category == null)
-                throw new Exception();
-            return category;
+           return  await _categoryService.GetCategory(id);
+            
+
         }
 
         public async Task<CategoryDto> GetCategory(string name)
         {
-            var category = await _categoryService.GetCategory(name);
-            if (category == null)
-                throw new Exception();
-            return category;
+            return await _categoryService.GetCategory(name);
+           
 
         }
 
-        public async Task<int> InsertCategory( bool isActive, int displayOrder, string name, int? parentCategoryId)
+      
+        public async Task<int> InsertCategory(bool isActive, int displayOrder, string name, int? parentCategoryId)
         {
             await _categorySurnessService.EnsureModelIsNotExist(name);
-            return await _categoryService.InsertCategory(isActive, displayOrder, name, parentCategoryId);
-        }
-
-        public Task<int> InsertCategory(int displayOrder, string name, int? parentCategorytId)
-        {
-            throw new NotImplementedException();
+           return await _categoryService.InsertCategory(isActive, displayOrder, name, parentCategoryId);
         }
 
         public async Task<CategoryDto> RemoveCategory(int id)
@@ -64,7 +56,10 @@ namespace App.Domain.AppServices.BaseData
         public async Task<int> UpdateCategory( bool isActive, int displayOrder, string name, int? parentCategoryId, int id)
         {
             await _categorySurnessService.EnsureModelIsExist(id);
-            return await _categoryService.UpdateCategory(isActive, displayOrder,name,parentCategoryId,id);
+          return  await _categoryService.UpdateCategory(isActive, displayOrder, name, parentCategoryId, id);
+         
+
+            
         }
 
 

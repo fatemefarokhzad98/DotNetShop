@@ -13,8 +13,8 @@ namespace App.Domain.AppServices.BaseData
     {
         private readonly ICollectionService _collectionService;
        
-        private readonly ISurenessService _collectionSurnessService;
-        public CollectionAppService(ICollectionService collectionService, ISurenessService collectionSurnessService)
+        private readonly IColletionSurnessService _collectionSurnessService;
+        public CollectionAppService(ICollectionService collectionService, IColletionSurnessService collectionSurnessService)
         {
             _collectionService = collectionService;
             _collectionSurnessService = collectionSurnessService;
@@ -42,10 +42,10 @@ namespace App.Domain.AppServices.BaseData
             return await _collectionService.GetCollectionDtos();
         }
 
-        public async Task<int> InsertCollection(string name,DateTime CreationDate)
+        public async Task<int> InsertCollection(string name)
         {
             await _collectionSurnessService.EnsureModelIsNotExist(name);
-            return await _collectionService.InsertCollection(name, CreationDate);
+            return await _collectionService.InsertCollection(name);
         }
 
         public async Task<CollectionDto> RemoveCollection(int id)
@@ -56,10 +56,10 @@ namespace App.Domain.AppServices.BaseData
                 
         }
 
-        public async Task<int> UpdateCollection(string name, int id,DateTime CreationDate)
+        public async Task<int> UpdateCollection(string name, int id)
         {
             await _collectionSurnessService.EnsureModelIsExist(id);
-            return await _collectionService.UpdateCollection(name  ,id, CreationDate);
+            return await _collectionService.UpdateCollection(name  ,id);
         }
     }
 }

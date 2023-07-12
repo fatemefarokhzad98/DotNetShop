@@ -9,8 +9,9 @@ namespace App.Domain.Core.BaseData.Contracts.Repositories
 {
     public interface ICategoryQueryRepository
     {
-        Task<List<CategoryDto>> ReadCategory();
-        Task<CategoryDto?> GetCategory(int id);
+        Task<List<CategoryDto>> GetCategories();
+
+        Task<CategoryDto?> GetCategory(int? id);
         Task<CategoryDto?> GetCategory(string name);
 
 

@@ -1,5 +1,4 @@
-﻿
-using App.Domain.Core.BaseData.Entities;
+﻿using App.Domain.Core.BaseData.Entities;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -18,6 +17,7 @@ namespace App.Domain.Core.Product.Entities
         public string Name { get; set; } = null!;
 
         public int CategoryId { get; set; }
+        public bool IsDeleted { get; set; }
 
         public int BrandId { get; set; }
 

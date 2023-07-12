@@ -1,5 +1,4 @@
 ﻿using App.Domain.Core.BaseData.Contracts.Repositories;
-
 using App.Domain.Core.BaseData.Entities;
 using App.Infrastructure.DataBase.Data;
 using Microsoft.EntityFrameworkCore;
@@ -46,12 +45,13 @@ namespace App.Infrastructure.Repository.Ef.BaseData
 
         }
 
-        public async Task UpdateBrand(string name, int displayOrder,int id)
+        public async Task UpdateBrand(string name, int displayOrder,int id,DateTime datetime)
         {
           var brand=await  _appDbContext.Brands.Where(x => x.Id == id).SingleAsync();
             brand.Name= name;
             brand.DisplayOrder= displayOrder;
             brand.Id= id;
+            brand.CreationDate = datetime;
            await _appDbContext.SaveChangesAsync();
         }
     }

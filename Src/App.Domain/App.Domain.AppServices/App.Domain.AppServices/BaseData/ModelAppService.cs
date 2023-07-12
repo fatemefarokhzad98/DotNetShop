@@ -12,8 +12,8 @@ namespace App.Domain.AppServices.BaseData
     public class ModelAppService: IModelAppService
     {
         private readonly IModelService _modelService;
-        private readonly ISurenessService _modelSurnessService;
-        public ModelAppService(IModelService modelService, ISurenessService modelSurnessService )
+        private readonly IModelSurnessService _modelSurnessService;
+        public ModelAppService(IModelService modelService, IModelSurnessService modelSurnessService )
         {
             
             _modelService = modelService;

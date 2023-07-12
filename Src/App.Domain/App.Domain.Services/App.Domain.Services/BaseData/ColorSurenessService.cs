@@ -8,7 +8,7 @@ using System.Threading.Tasks;
 
 namespace App.Domain.Services.BaseData
 {
-    public class ColorSurenessService : ISurenessService
+    public class ColorSurenessService : IColorSurnessService
     {
         private readonly IColorQueryRepository _colorQueryRepository;
         private readonly ICategoryCommandRepository _categoryCommandRepository;

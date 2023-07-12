@@ -12,8 +12,8 @@ namespace App.Domain.Core.BaseData.Contracts.AppServices
         Task<List<CollectionDto>> GetCollectionDtos();
         Task<CollectionDto> GetCollection(int id);
         Task<CollectionDto> GetCollection(string name);
-        Task<int> UpdateCollection(string name,int id,DateTime CreationDate);
+        Task<int> UpdateCollection(string name,int id);
         Task<CollectionDto> RemoveCollection(int id);
-        Task<int> InsertCollection(string name,DateTime CreationDate);
+        Task<int> InsertCollection(string name);
     }
 }

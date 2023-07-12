@@ -1,0 +1,28 @@
+﻿@using App.EndPoint.AdminUserUi.Models.ViewModels.BaseData
+@model CollectionUpdateViewModel
+@{
+    ViewData["Title"] = "ویرایش دسته بندی نمایش ها";   
+}
+<h3>ویرایش دسته بندی نمایش ها</h3>
+
+<form asp-controller="Collection" asp-action="UpdateCollection" method="post" >
+    <div  class="form-group"> 
+        <label asp-for=" Id"  hidden="hidden" > </label>
+      <input   class="form-control" asp-for="Id"  hidden="hidden" />
+
+    </div>
+
+    <div  class="form-group"> 
+        <label asp-for="Name"  > </label>
+      <input   class="form-control" asp-for="Name" />
+
+    </div>
+   
+    
+     <div class="form-group">
+
+
+        <input type="submit" value="ثبت " class="btn btn-primary"  style="float:left"  />
+    </div>
+
+    </form>

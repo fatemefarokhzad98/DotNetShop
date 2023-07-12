@@ -15,9 +15,9 @@ namespace App.Domain.AppServices.BaseData
 
       
         private readonly IBrandService _brandService;
-        private readonly ISurenessService _brandSurenessService;
+        private readonly IBrandSurnessService _brandSurenessService;
 
-        public BrandAppService(IBrandService brandService , ISurenessService brandSurenessService)
+        public BrandAppService(IBrandService brandService , IBrandSurnessService brandSurenessService)
         {
             _brandService = brandService;
             _brandSurenessService = brandSurenessService;
@@ -44,25 +44,25 @@ namespace App.Domain.AppServices.BaseData
         public async Task RemoveBrand(int id)
         {
             //دسترس چک شود
-           await _brandSurenessService.EnsureModelIsExist(id);
-           await _brandService.RemoveBrand(id);
+            await _brandSurenessService.EnsureModelIsExist(id);
+            await _brandService.RemoveBrand(id);
         }
 
         public async Task SetBrand(int disPlayOrder, string name)
         {
             //دسترسی رو اول چک میکنیم
-          await  _brandSurenessService.EnsureModelIsNotExist(name);
-          await  _brandService.SetBrand(disPlayOrder, name);
+            await _brandSurenessService.EnsureModelIsNotExist(name);
+            await  _brandService.SetBrand(disPlayOrder, name);
             
         }
 
         public async Task UpdateBrand(int id, int displayOrder, string name)
         {
             //دسترسی رو اول چک میکنیم
-           await _brandSurenessService.EnsureModelIsExist(id);
+            await _brandSurenessService.EnsureModelIsExist(id);
 
 
-          await  _brandService.UpdateBrand(id, displayOrder, name);
+            await  _brandService.UpdateBrand(id, displayOrder, name);
         }
     }
 }
