@@ -32,8 +32,13 @@ namespace App.EndPoint.AdminUserUi.Controllers.BaseData
         [HttpPost]
         public async Task< IActionResult> UpdateCategory(CategoryUpdateViewModel category)
         {
-          await _categoryAppService.UpdateCategory( category.IsActive, category.DisplayOrder,category.Name,category.ParentCategoryId, category.Id);
-          return  RedirectToAction("ReadCategory");
+            if (ModelState.IsValid)
+            {
+
+                await _categoryAppService.UpdateCategory(category.IsActive, category.DisplayOrder, category.Name, category.ParentCategoryId, category.Id);
+                return RedirectToAction("ReadCategory");
+            }
+            return View(category);
         }
         [HttpGet]
         public async Task<IActionResult> UpdateCategory(int id)
@@ -72,8 +77,14 @@ namespace App.EndPoint.AdminUserUi.Controllers.BaseData
         [HttpPost]
         public async Task<IActionResult> InsertCategory(CategoryInsertViewModel category)
         {
-            await _categoryAppService.InsertCategory( category.IsActive,category.DisplayOrder, category.Name, category.ParentCategoryId);
-            return RedirectToAction("ReadCategory");
+            if (ModelState.IsValid)
+            {
+
+
+                await _categoryAppService.InsertCategory(category.IsActive, category.DisplayOrder, category.Name, category.ParentCategoryId);
+                return RedirectToAction("ReadCategory");
+            }
+            return View(category);
         }
 
 

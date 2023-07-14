@@ -26,6 +26,7 @@
               <th scope="col">موجودی</th>
               <th scope="col">اپراتورثبت کننده</th>
               <th scope="col">وضعیت</th>
+              <th scope="col">تاریخ ثبت</th>
               <th scope="col">توضیحات</th>
 
         </tr>
@@ -48,6 +49,7 @@
             <td>@Item.Count</td>
             <td>@Item.SubmitOperatorName</td>
             <td>@Item.StatusName</td>
+            <td>@Item.SubmitTime</td>
             <td>@Item.Description</td>
             <td>
                 <a  class="btn btn-primary"  asp-controller="Product"  asp-action="UpdateProduct" asp-route-id="@Item.Id">

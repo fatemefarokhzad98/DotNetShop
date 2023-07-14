@@ -10,6 +10,7 @@
     <div  class="form-group"> 
         <label asp-for="Name"  > </label>
       <input   class="form-control" asp-for="Name" />
+        <span asp-validation-for="Name"  ></span>
 
     </div>
          <div  class="form-group">
@@ -21,6 +22,8 @@
             <option style="display:none;" value="">انتخاب کنید</option>
 
         </select>
+          <span asp-validation-for="BrandId"  ></span>
+        
 
     </div>
      <div  class="form-group">
@@ -32,31 +35,37 @@
             <option style="display:none;" value="">انتخاب کنید</option>
 
         </select>
+          <span asp-validation-for="ModelId"  ></span>
 
     </div>
      <div  class="form-group"> 
         <label asp-for="Price"  > </label>
       <input   class="form-control" asp-for="Price" />
+        <span asp-validation-for="Price"  ></span>
 
     </div>
        <div  class="form-group"> 
         <label asp-for="Count"  > </label>
       <input   class="form-control" asp-for="Count" />
+        <span asp-validation-for="Count"  ></span>
 
     </div>
          <div  class="form-group"> 
         <label asp-for="Description"  > </label>
       <input   class="form-control" asp-for="Description" />
+        <span asp-validation-for="Description"  ></span>
 
     </div>
          <div  class="form-group"> 
         <label asp-for="IsActive"  > </label>
       <input   class="form-control" asp-for="IsActive" />
+        <span asp-validation-for="IsActive"  ></span>
 
     </div>
            <div  class="form-group"> 
         <label asp-for="IsOrginal"  > </label>
       <input   class="form-control" asp-for="IsOrginal" />
+        <span asp-validation-for="IsOrginal"  ></span>
 
     </div>
          <div  class="form-group">
@@ -68,6 +77,7 @@
             <option style="display:none;" value="">انتخاب کنید</option>
 
         </select>
+          <span asp-validation-for="SubmitOperatorId"  ></span>
 
     </div>
            <div  class="form-group">
@@ -79,6 +89,7 @@
             <option style="display:none;" value="">انتخاب کنید</option>
 
         </select>
+         <span asp-validation-for="StatusId"  ></span>
 
     </div>
 
@@ -93,6 +104,7 @@
             <option style="display:none;" value="">انتخاب کنید</option>
 
         </select>
+         <span asp-validation-for="CategoryId"  ></span>
 
     </div>
     <div style="float:left; margin-top:5px;   " >

@@ -9,7 +9,6 @@ namespace App.EndPoint.AdminUserUi.Models.ViewModels.BaseData
         public string Name { get; set; }
         [Display(Name ="ترتیب نمایش")]
         [Required(ErrorMessage = "این فیلد اجباری است")]
-
         public int DisPlayOrder { get; set; }
        
 

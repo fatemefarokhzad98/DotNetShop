@@ -16,6 +16,7 @@
     <div class="form-group">
         <label asp-for="Name"> </label>
         <input class="form-control" asp-for="Name" />
+         <span asp-validation-for="Name"  ></span>
 
     </div>
 
@@ -28,18 +29,21 @@
             <option style="display:none;" value="">انتخاب کنید</option>
 
         </select>
+         <span asp-validation-for="ParentCategoryId"  ></span>
 
     </div>
 
     <div class="form-group">
         <label asp-for="DisplayOrder"> </label>
         <input class="form-control" asp-for="DisplayOrder" />
+         <span asp-validation-for="DisplayOrder"  ></span>
 
     </div>
 
     <div class="form-group">
         <label asp-for="IsActive"> </label>
         <input class="form-control" asp-for="IsActive" />
+                 <span asp-validation-for="IsActive"  ></span>
 
     </div>
 

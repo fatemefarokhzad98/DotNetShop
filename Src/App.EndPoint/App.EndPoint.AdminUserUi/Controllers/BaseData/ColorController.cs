@@ -36,18 +36,30 @@ namespace App.EndPoint.AdminUserUi.Controllers.BaseData
         [HttpPost]
         public async Task<IActionResult> InsertColor(ColorInsertViewModel color )
         {
+            if (ModelState.IsValid)
+            {
 
-            await _colorAppService.InsertColor( color.Name,color.ColorCode);
-            return RedirectToAction("ReadColor");
+
+
+                await _colorAppService.InsertColor(color.Name, color.ColorCode);
+                return RedirectToAction("ReadColor");
+            }
+            return View(color);
            
         }
 
         [HttpPost]
         public async Task<IActionResult> UpdateColor(ColorUpdateViewModel color)
         {
-            await _colorAppService.UpdateColor(color.Id, color.Name, color.ColorCode);
+            if (ModelState.IsValid)
+            {
 
-            return RedirectToAction("ReadColor");
+
+                await _colorAppService.UpdateColor(color.Id, color.Name, color.ColorCode);
+
+                return RedirectToAction("ReadColor");
+            }
+            return View(color);
 
         }
         [HttpGet]

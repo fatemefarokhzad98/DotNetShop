@@ -54,30 +54,37 @@ namespace App.EndPoint.AdminUserUi.Controllers.Product
         [HttpPost]
         public async Task<IActionResult> UpdateProduct(ProductUpdateViewModel product)
         {
-            ProductDto productDto = new()
+            if (ModelState.IsValid)
             {
-                Id = product.Id,
-                Name = product.Name,
-                BrandId = product.BrandId,
-                BrandName = product.BrandName,
-                CategoryId = product.CategoryId,
-                CategoryName = product.CategoryName,
-                Count = product.Count,
-                Description = product.Description,
-                IsActive = product.IsActive,
-                IsOrginal = product.IsOrginal,
-                ModelId = product.ModelId,
-                ModelName = product.ModelName,
-                Price = product.Price,
-                StatusId = product.StatusId,
-                StatusName = product.StatusName,
-                SubmitOperatorId = product.SubmitOperatorId,
-                SubmitOperatorName = product.SubmitOperatorName,
 
-            };
-            await _productAppService.UpdateProduct(productDto);
 
-            return RedirectToAction("ReadProduct");
+                ProductDto productDto = new()
+                {
+                    Id = product.Id,
+                    Name = product.Name,
+                    BrandId = product.BrandId,
+                    BrandName = product.BrandName,
+                    CategoryId = product.CategoryId,
+                    CategoryName = product.CategoryName,
+                    Count = product.Count,
+                    Description = product.Description,
+                    IsActive = product.IsActive,
+                    IsOrginal = product.IsOrginal,
+                    ModelId = product.ModelId,
+                    ModelName = product.ModelName,
+                    Price = product.Price,
+                    StatusId = product.StatusId,
+                    StatusName = product.StatusName,
+                    SubmitOperatorId = product.SubmitOperatorId,
+                    SubmitOperatorName = product.SubmitOperatorName,
+
+                };
+                await _productAppService.UpdateProduct(productDto);
+
+                return RedirectToAction("ReadProduct");
+            }
+            return View(product);
+            
         }
         [HttpGet]
         public async Task<IActionResult> UpdateProduct(int id)
@@ -130,30 +137,36 @@ namespace App.EndPoint.AdminUserUi.Controllers.Product
         [HttpPost]
         public async Task<IActionResult> InsertProduct(ProductInsertViewModel product)
         {
-            ProductInsertDto productInsertDto = new()
+            if (ModelState.IsValid)
             {
-                Name = product.Name,
-                BrandId = product.BrandId,
-                BrandName = product.BrandName,
-                CategoryId = product.CategoryId,
-                CategoryName = product.CategoryName,
-                Count = product.Count,
-                Description = product.Description,
-                IsActive = product.IsActive,
-                IsOrginal = product.IsOrginal,
-                ModelId = product.ModelId,
-                ModelName = product.ModelName,
-                Price = product.Price,
-                StatusId = product.StatusId,
-                StatusName = product.StatusName,
-                SubmitOperatorId = product.SubmitOperatorId,
-                SubmitOperatorName = product.SubmitOperatorName,
-
-            };
-            await _productAppService.InsertProduct(productInsertDto);
 
 
-            return RedirectToAction("ReadProduct");
+                ProductInsertDto productInsertDto = new()
+                {
+                    Name = product.Name,
+                    BrandId = product.BrandId,
+                    BrandName = product.BrandName,
+                    CategoryId = product.CategoryId,
+                    CategoryName = product.CategoryName,
+                    Count = product.Count,
+                    Description = product.Description,
+                    IsActive = product.IsActive,
+                    IsOrginal = product.IsOrginal,
+                    ModelId = product.ModelId,
+                    ModelName = product.ModelName,
+                    Price = product.Price,
+                    StatusId = product.StatusId,
+                    StatusName = product.StatusName,
+                    SubmitOperatorId = product.SubmitOperatorId,
+                    SubmitOperatorName = product.SubmitOperatorName,
+
+                };
+                await _productAppService.InsertProduct(productInsertDto);
+
+
+                return RedirectToAction("ReadProduct");
+            }
+            return View(product);
         }
 
     }

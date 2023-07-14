@@ -38,15 +38,27 @@ namespace App.EndPoint.AdminUserUi.Controllers.BaseData
         [HttpPost]
         public async Task<IActionResult> InsertCollection(CollectionInsertViewModel collection)
         {
-            await _coolectionAppService.InsertCollection(collection.Name );
-            return RedirectToAction("ReadCollection");
+            if (ModelState.IsValid)
+            {
+
+
+                await _coolectionAppService.InsertCollection(collection.Name);
+                return RedirectToAction("ReadCollection");
+            }
+            return View(collection);
 
         }
         [HttpPost]
         public async Task< IActionResult> UpdateCollection(CollectionUpdateViewModel collection )
         {
-            await _coolectionAppService.UpdateCollection(collection.Name, collection.Id);
-            return RedirectToAction("ReadCollection");
+            if (ModelState.IsValid)
+            {
+
+
+                await _coolectionAppService.UpdateCollection(collection.Name, collection.Id);
+                return RedirectToAction("ReadCollection");
+            }
+            return View(collection);
         }
         public async Task<IActionResult> UpdateCollection(int id)
         {

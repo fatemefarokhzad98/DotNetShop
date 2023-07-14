@@ -28,9 +28,14 @@ namespace App.EndPoint.AdminUserUi.Controllers.BaseData
         public async Task<IActionResult> InsertModel(ModelInsertViewModel model )
         {
 
-            await _modelAppService.InsertModel(model.BrandId, model.ParentModelId, model.Name);
-            return RedirectToAction("ReadModel");
+            if (ModelState.IsValid)
+            {
 
+
+                await _modelAppService.InsertModel(model.BrandId, model.ParentModelId, model.Name);
+                return RedirectToAction("ReadModel");
+            }
+            return View(model);
 
         }
 
@@ -55,8 +60,14 @@ namespace App.EndPoint.AdminUserUi.Controllers.BaseData
         [HttpPost]
         public async Task<IActionResult> UpdateModel(ModelUpdateViewModel model)
         {
-            await _modelAppService.UpdateModel(model.BrandId, model.ParentModelId, model.Name, model.Id);
-            return RedirectToAction("ReadModel");
+            if (ModelState.IsValid)
+            {
+
+
+                await _modelAppService.UpdateModel(model.BrandId, model.ParentModelId, model.Name, model.Id);
+                return RedirectToAction("ReadModel");
+            }
+            return View(model);
         }
 
         public async Task<IActionResult> RemoveModel(int id)
