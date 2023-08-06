@@ -1,0 +1,56 @@
+﻿@using App.Domain.Core.BaseData.Dtos
+@using App.EndPoint.ShopUi.Area.Admin.Models.ViewModels.BaseData
+
+
+@model CategoryInsertViewModel
+@{
+    ViewData["Title"] = "اضافه کردن دسته بندی جدید";
+}
+<h3>اضافه کردن دسته بندی جدید</h3>
+<form>
+
+    <div class="form-group">
+        <label asp-for="Name"> </label>
+        <input class="form-control" asp-for="Name" />
+         <span asp-validation-for="Name"  ></span>
+
+    </div>
+
+    <div class="form-group">
+
+        <label asp-for="ParentCategoryId" class="control-label"></label>
+
+        <br />
+
+        <select  asp-for="ParentCategoryId" asp-items="@ViewBag.Categories"  class="form-control">
+
+            <option style="display:none;" value="">انتخاب کنید</option>
+
+        </select>
+         <span asp-validation-for="ParentCategoryId"  ></span>
+
+    </div>
+    <div class="form-group">
+        <label asp-for="DisplayOrder"> </label>
+        <input class="form-control" asp-for="DisplayOrder" />
+         <span asp-validation-for="DisplayOrder"  ></span>
+
+    </div>
+    <div class="form-group">
+        <label asp-for="IsActive"> </label>
+        <input class="form-control" asp-for="IsActive" />
+         <span asp-validation-for="IsActive"  ></span>
+    </div>
+
+    <div style="float:left; margin-top:5px;   ">
+
+        <button type="submit" class="btn btn-primary" asp-action="InsertCategory" asp-area="Admin" asp-controller="Category" formmethod="post"> ثبت دسته بندی </button>
+        <button type="submit" class="btn btn-danger" asp-action="ReadCategory"  asp-area="Admin" asp-controller="Category">انصراف</button>
+
+    </div>
+
+
+
+
+
+</form>

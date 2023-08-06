@@ -27,7 +27,7 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "App.EndPoint.ShopUi", "Src\
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "App.EndPoint.AdminUserUi", "Src\App.EndPoint\App.EndPoint.AdminUserUi\App.EndPoint.AdminUserUi.csproj", "{F81FD2B3-B088-463A-BF0D-4C4CCFC484A0}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "App.Infrastructure.Repository.Ef", "Src\App.Infrastructure.Repository.Ef\App.Infrastructure.Repository.Ef.csproj", "{21BF6E4A-9D12-4A21-A6E6-C1ACC8709071}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "App.Infrastructure.Repository.Ef", "Src\App.Infrastructure.Repository.Ef\App.Infrastructure.Repository.Ef.csproj", "{21BF6E4A-9D12-4A21-A6E6-C1ACC8709071}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

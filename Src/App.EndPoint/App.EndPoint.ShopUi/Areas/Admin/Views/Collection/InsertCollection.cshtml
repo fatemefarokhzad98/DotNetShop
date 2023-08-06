@@ -1,0 +1,30 @@
+﻿@using App.EndPoint.ShopUi.Area.Admin.Models.ViewModels.BaseData
+
+
+@model CollectionInsertViewModel
+@{
+    ViewData["Title"] = "اضافه کردن دسته بندی نمایش جدید";   
+}
+<h3>اضافه کردن دسته بندی نمایش جدید</h3>
+<form>
+
+    <div  class="form-group"> 
+        <label asp-for="Name"  > </label>
+      <input   class="form-control" asp-for="Name" />
+       <span asp-validation-for="Name"  ></span>
+
+    </div>
+  
+  
+    <div style="float:left; margin-top:5px;   " >
+       
+        <button type="submit" class="btn btn-primary" asp-action="InsertCollection" asp-area="Admin" asp-controller="Collection" formmethod="post"  >ثبت دسته بندی نمایش</button>
+        <button type="submit" class="btn btn-danger"  asp-action="ReadCollection" asp-area="Admin" asp-controller="Collection" >انصراف</button>
+
+    </div>
+   
+
+
+
+
+</form>

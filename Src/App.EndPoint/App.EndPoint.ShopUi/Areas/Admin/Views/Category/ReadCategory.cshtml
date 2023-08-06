@@ -1,0 +1,55 @@
+﻿@using App.EndPoint.ShopUi.Area.Admin.Models.ViewModels.BaseData
+
+
+@model List<CategoryReadViewModel>
+@{
+    ViewData["Title"] = "لیست دسته بندی ها";
+
+    Model.OrderBy(x => x.DisplayOrder);
+   int countRow = 1;
+
+}
+<h3 style="float:right">لیست دسته بندی ها</h3>
+<div style="float:left">
+    <a class="btn btn-success" asp-controller="Category" asp-action="InsertCategory" asp-area="Admin">جدید  </a>
+</div>
+<br />
+<table class=" table table-striped">
+    <thead>
+        <tr>
+             <th scope="col">#</th>
+            <th scope="col" >نام دسته بندی</th>
+            <th scope="col" >مجموعه</th>
+            <th scope="col" >فعال یا غیرفعال </th>
+           
+            <th scope="col" >عملیات</th>
+
+        </tr>
+    </thead>
+      
+    
+    <tbody>
+       @foreach(var Item in Model){
+        <tr>
+           
+        
+            <td scope="row">@countRow</td>
+            <td>@Item.Name</td>
+            <td>@Item.ParentName</td>
+            <td>@Item.IsActive</td>
+            <td>
+                <a  class="btn btn-primary"  asp-controller="Category"  asp-action="UpdateCategory" asp-area="Admin"  asp-route-id="@Item.Id">
+                    ویرایش 
+                </a>
+                <a   class="btn btn-danger" asp-controller="Category" asp-action="RemoveCategory" asp-area="Admin" asp-route-id="@Item.Id" >
+                    حذف
+                </a>
+            </td>
+
+
+        </tr>}
+
+
+
+    </tbody>
+</table>
