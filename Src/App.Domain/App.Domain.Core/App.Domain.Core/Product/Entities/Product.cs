@@ -34,7 +34,7 @@ namespace App.Domain.Core.Product.Entities
         public bool IsShowPrice { get; set; }
 
         public bool IsActive { get; set; }
-
+        //TODO:
         public DateTime SubmitTime { get; set; }
 
         public int StatusId { get; set; }

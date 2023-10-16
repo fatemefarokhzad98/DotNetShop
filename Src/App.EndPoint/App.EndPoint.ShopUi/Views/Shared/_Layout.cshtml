@@ -4,9 +4,9 @@
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0,user-scalable=no">
-    <title>قالب رستا</title>
-    <link rel=" stylesheet" href="~/css/bootstrap.rtl.min.css">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>فروشگاه دات نت</title>
+    <link rel="stylesheet" href="~/css/bootstrap.rtl.min.css">
     <link rel="stylesheet" href="~/font/bootstrap-icon/bootstrap-icons.css">
     <link rel="stylesheet" href="~/plugin/waves/waves.min.css">
     <link rel="stylesheet" href="~/plugin/swiper/swiper-bundle.min.css">
@@ -15,701 +15,365 @@
     <link rel="stylesheet" href="~/plugin/bootstrap-touchspin/jquery.bootstrap-touchspin.min.css">
     <link rel="stylesheet" href="~/css/style.css">
     <link rel="stylesheet" href="~/css/responsive.css">
-
 </head>
-
 <body>
+@*header
+//menu*@
+<partial name="_Header" />
+<partial  name="_Menu" />
 
-    <header>
-    
-        <div class="header-bottom shadow-box">
-            <div class="container-fluid">
-                <div class="row align-items-center">
-                    <div class="col-lg-4 col-7 order-lg-3 order-1">
-                        <div class="d-flex flex-column d-lg-flex d-none flex-wrap justify-content-center">
-                            <div class="header-bottom-btn">
-                                <a href=""
-                                    class="header-bottom-link waves-effect waves-light d-flex align-items-center justify-content-center flex-wrap">
-                                    <svg xmlns="http://www.w3.org/2000/svg" width="13" height="13" fill="currentColor"
-                                        class="bi bi-heart me-2" viewBox="0 0 16 16">
-                                        <path
-                                            d="m8 2.748-.717-.737C5.6.281 2.514.878 1.4 3.053c-.523 1.023-.641 2.5.314 4.385.92 1.815 2.834 3.989 6.286 6.357 3.452-2.368 5.365-4.542 6.286-6.357.955-1.886.838-3.362.314-4.385C13.486.878 10.4.28 8.717 2.01L8 2.748zM8 15C-7.333 4.868 3.279-3.04 7.824 1.143c.06.055.119.112.176.171a3.12 3.12 0 0 1 .176-.17C12.72-3.042 23.333 4.867 8 15z" />
-                                    </svg>
-                                    <span class="text-overflow fw-bold font-14">علاقه مندی ها</span>
-                                </a>
-                                <a class="header-bottom-link waves-effect waves-light d-flex align-items-center justify-content-center flex-wrap"
-                                    data-bs-toggle="offcanvas" href="#cartCanvas" role="button"
-                                    aria-controls="cart canvas">
-                                    <svg xmlns="http://www.w3.org/2000/svg" width="13" height="13" fill="currentColor"
-                                        class="bi bi-bag me-2" viewBox="0 0 16 16">
-                                        <path
-                                            d="M8 1a2.5 2.5 0 0 1 2.5 2.5V4h-5v-.5A2.5 2.5 0 0 1 8 1zm3.5 3v-.5a3.5 3.5 0 1 0-7 0V4H1v10a2 2 0 0 0 2 2h10a2 2 0 0 0 2-2V4h-3.5zM2 5h12v9a1 1 0 0 1-1 1H3a1 1 0 0 1-1-1V5z" />
-                                    </svg>
-                                    <span class="text-overflow fw-bold font-14">سبد خرید</span>
-                                </a>
-                                <a href="#loginModal"
-                                    class="header-bottom-link-cat waves-effect waves-light rounded-pill ms-1 font-14 d-flex align-items-center justify-content-center flex-wrap"
-                                    data-bs-toggle="modal" data-bs-target="#loginModal" role="button">
-                                    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor"
-                                        class="bi bi-person-circle me-2" viewBox="0 0 16 16">
-                                        <path d="M11 6a3 3 0 1 1-6 0 3 3 0 0 1 6 0z" />
-                                        <path fill-rule="evenodd"
-                                            d="M0 8a8 8 0 1 1 16 0A8 8 0 0 1 0 8zm8-7a7 7 0 0 0-5.468 11.37C3.242 11.226 4.805 10 8 10s4.757 1.225 5.468 2.37A7 7 0 0 0 8 1z" />
-                                    </svg>
-                                    <span class="fw-bold text-overflow">حساب کاربری</span>
-                                </a>
-                            </div>
-                        </div>
-                        <div class="responsive-menu d-lg-none d-block">
-                            <button class="btn border-0 btn-responsive-menu" type="button" data-bs-toggle="offcanvas"
-                                data-bs-target="#responsiveMenu" aria-controls="responsive menu">
-                                <svg xmlns="http://www.w3.org/2000/svg" width="40" height="40" fill="currentColor"
-                                    class="bi bi-list" viewBox="0 0 16 16">
-                                    <path fill-rule="evenodd"
-                                        d="M2.5 12a.5.5 0 0 1 .5-.5h10a.5.5 0 0 1 0 1H3a.5.5 0 0 1-.5-.5zm0-4a.5.5 0 0 1 .5-.5h10a.5.5 0 0 1 0 1H3a.5.5 0 0 1-.5-.5zm0-4a.5.5 0 0 1 .5-.5h10a.5.5 0 0 1 0 1H3a.5.5 0 0 1-.5-.5z" />
-                                </svg>
-                            </button>
-                            <div class="offcanvas offcanvas-start" tabindex="-1" id="responsiveMenu"
-                                aria-labelledby="responsive menu">
-                                <div class="offcanvas-header">
-                                    <h5 class="offcanvas-title" id="offcanvasRightLabel">فروشگاه نازنین</h5>
-                                    <button type="button" class="btn-close" data-bs-dismiss="offcanvas"
-                                        aria-label="Close"></button>
-                                </div>
-                                <div class="offcanvas-body">
-                                    <a href="" class="text-center d-block mb-3">
-                                        <img src="assets/image/logo.png" alt="" class="img-fluid" width="200">
-                                    </a>
-                                    <div class="header-bottom-form mb-4 w-100">
-                                        <form action="index.html">
-                                            <div class="position-relative">
-                                                <input type="text" name="search"
-                                                    class="form-control font-14 rounded-pill text-muted py-3 border-muted bg-light"
-                                                    placeholder="نام محصول مورد نظر خود را وارد کنید">
-                                                <button type="submit"
-                                                    class="position-absolute top-50 translate-middle-y btn rounded-circle border-0"
-                                                    style="left: 5px;">
-                                                    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16"
-                                                        fill="currentColor" class="bi bi-search" viewBox="0 0 16 16">
-                                                        <path
-                                                            d="M11.742 10.344a6.5 6.5 0 1 0-1.397 1.398h-.001c.03.04.062.078.098.115l3.85 3.85a1 1 0 0 0 1.415-1.414l-3.85-3.85a1.007 1.007 0 0 0-.115-.1zM12 6.5a5.5 5.5 0 1 1-11 0 5.5 5.5 0 0 1 11 0z" />
-                                                    </svg>
-                                                </button>
-                                            </div>
-                                        </form>
+@RenderBody()
+@*mobile footer
+    amazing
+    productbanner
+    categorybox
+    productbox
+    productbox2
+*@
+<partial name="_MobileFooter" />
+    <partial name="_Amazing" />
+    <partial name="_ProductBanner" />
+    <partial name="_CategoryBox" />
+        <partial name="_ProductBox" />
+            <partial name="_ProductBoxTwo" />
+
+ <div class="banner py-20">
+        <div class="container-fluid">
+            <div class="row">
+                <div class="col-md-6 mt-md-0 mt-2">
+                    <a href="">
+                        <img src="~/image/banner-2.jpg" class="img-fluid rounded-3 shadow-box" alt="">
+                    </a>
+                </div>
+                <div class="col-md-6 mt-md-0 mt-2">
+                    <a href="">
+                        <img src="~/image/banner-3.jpg" class="img-fluid rounded-3 shadow-box" alt="">
+                    </a>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- end banner -->
+
+    @*
+        productbox3
+        brandbox
+        footer
+    *@
+    <partial name="_ProductBoxThree" />
+    <partial name="_BrandBox" />
+    <partial name="_Footer"   />
+    <!-- cart canvas -->
+    <div class="offcanvas offcanvas-end" tabindex="-1" id="cartCanvas" aria-labelledby="cart canvas">
+        <div class="offcanvas-header border-bottom border-1 border-muted">
+            <h5 class="offcanvas-title">سبد خرید</h5>
+            <button type="button" class="btn-close" data-bs-dismiss="offcanvas" aria-label="Close"></button>
+        </div>
+        <div class="offcanvas-body">
+            <div class="row">
+                <div class="col-12">
+                    <div class="row align-items-center">
+                        <div class="col-11">
+                            <a href="">
+                                <div
+                                    class="product-row bg-white d-flex align-items-center justify-content-between rounded-4 shadow-md">
+                                    <div class="image">
+                                        <img src="~/image/product/wach2.jpg" class="img-fluid" width="100" alt="">
                                     </div>
-                                    <ul class="rm-item-menu navbar-nav">
-                                        <li class="nav-item bg-ul-f7"><a href="index.html" class="nav-link">صفحه
-                                                اصلی</a>
-                                        </li>
-                                        <li class="nav-item bg-ul-f7">
-                                            <a href="" class="nav-link">گوشی موبایل</a>
-                                            <span class="showSubMenu"><i class="bi bi-chevron-left"></i></span>
-                                            <ul class="navbar-nav h-0">
-                                                <li class="nav-item">
-                                                    <a class="nav-link" href="">برند</a>
-                                                    <span class="showSubMenu"><i class="bi bi-chevron-left"></i></span>
-                                                    <ul class="navbar-nav h-0 bg-ul-f7">
-                                                        <li class="nav-item"><a href="" class="nav-link">سامسونگ</a>
-                                                        </li>
-                                                        <li class="nav-item"><a href="" class="nav-link">هوآوی</a></li>
-                                                        <li class="nav-item"><a href="" class="nav-link">شیائومی</a>
-                                                        </li>
-                                                        <li class="nav-item"><a href="" class="nav-link">الجی</a></li>
-                                                        <li class="nav-item"><a href="" class="nav-link">سونی</a></li>
-                                                    </ul>
-                                                </li>
-                                                <li class="nav-item">
-                                                    <a class="nav-link" href="">بر اساس رده بندی</a>
-                                                    <span class="showSubMenu"><i class="bi bi-chevron-left"></i></span>
-                                                    <ul class="navbar-nav h-0 bg-ul-f7">
-                                                        <li class="nav-item"><a href="" class="nav-link">لمسی</a></li>
-                                                        <li class="nav-item"><a href="" class="nav-link">دکمه ای</a>
-                                                        </li>
-                                                        <li class="nav-item"><a href="" class="nav-link">نظامی</a></li>
-                                                    </ul>
-                                                </li>
-                                            </ul>
-                                        </li>
-                                        <li class="nav-item bg-ul-f7">
-                                            <a href="" class="nav-link">تبلت</a>
-                                            <span class="showSubMenu"><i class="bi bi-chevron-left"></i></span>
-                                            <ul class="navbar-nav h-0">
-                                                <li class="nav-item">
-                                                    <a class="nav-link" href="">کشور</a>
-                                                    <span class="showSubMenu"><i class="bi bi-chevron-left"></i></span>
-                                                    <ul class="navbar-nav h-0 bg-ul-f7">
-                                                        <li class="nav-item"><a href="" class="nav-link">ژاپن</a></li>
-                                                        <li class="nav-item"><a href="" class="nav-link">کره جنوبی</a>
-                                                        </li>
-                                                        <li class="nav-item"><a href="" class="nav-link">آمریکایی</a>
-                                                        </li>
-                                                    </ul>
-                                                </li>
-                                                <li class="nav-item">
-                                                    <a class="nav-link" href="">بر اساس رده بندی</a>
-                                                    <span class="showSubMenu"><i class="bi bi-chevron-left"></i></span>
-                                                    <ul class="navbar-nav h-0 bg-ul-f7">
-                                                        <li class="nav-item"><a href="" class="nav-link">لمسی</a></li>
-                                                        <li class="nav-item"><a href="" class="nav-link">دانش آموزی</a>
-                                                        </li>
-                                                        <li class="nav-item"><a href="" class="nav-link">مخصوص بازی</a>
-                                                        </li>
-                                                    </ul>
-                                                </li>
-                                            </ul>
-                                        </li>
-                                        <li class="nav-item bg-ul-f7">
-                                            <a href="" class="nav-link">لپتاپ</a>
-                                            <span class="showSubMenu"><i class="bi bi-chevron-left"></i></span>
-                                            <ul class="navbar-nav h-0">
-                                                <li class="nav-item">
-                                                    <a class="nav-link" href="">برند</a>
-                                                    <span class="showSubMenu"><i class="bi bi-chevron-left"></i></span>
-                                                    <ul class="navbar-nav h-0 bg-ul-f7">
-                                                        <li class="nav-item"><a href="" class="nav-link">ایسر</a></li>
-                                                        <li class="nav-item"><a href="" class="nav-link">مایکروسافت</a>
-                                                        </li>
-                                                        <li class="nav-item"><a href="" class="nav-link">ایسوس</a></li>
-                                                        <li class="nav-item"><a href="" class="nav-link">اپل</a></li>
-                                                        <li class="nav-item"><a href="" class="nav-link">سونی</a></li>
-                                                    </ul>
-                                                </li>
-                                                <li class="nav-item">
-                                                    <a class="nav-link" href="">بر اساس قیمت</a>
-                                                    <span class="showSubMenu"><i class="bi bi-chevron-left"></i></span>
-                                                    <ul class="navbar-nav h-0 bg-ul-f7">
-                                                        <li class="nav-item"><a href="" class="nav-link">ارزان</a></li>
-                                                        <li class="nav-item"><a href="" class="nav-link">اقتصادی</a>
-                                                        </li>
-                                                        <li class="nav-item"><a href="" class="nav-link">گران</a></li>
-                                                    </ul>
-                                                </li>
-                                            </ul>
-                                        </li>
-                                        <li class="nav-item bg-ul-f7">
-                                            <a href="" class="nav-link">صفحات</a>
-                                            <span class="showSubMenu"><i class="bi bi-chevron-left"></i></span>
-                                            <ul class="navbar-nav h-0">
-                                                <li><a href="index.html">صفحه اصلی</a></li>
-                                                <li class="nav-item"><a class="nav-link" href="product.html">صفحه
-                                                        محصول</a>
-                                                </li>
-                                                <li class="nav-item"><a class="nav-link" href="category.html">صفحه دسته
-                                                        بندی</a></li>
-                                                <li class="nav-item"><a class="nav-link" href="cart.html">صفحه سبد
-                                                        خرید</a>
-                                                </li>
-                                                <li class="nav-item"><a class="nav-link" href="search.html">صفحه
-                                                        جستجو</a>
-                                                </li>
-                                                <li class="nav-item"><a class="nav-link"
-                                                        href="category-product-row.html">دسته بندی محصولات خطی</a></li>
-                                                <li class="nav-item"><a class="nav-link" href="404.html">صفحه 404</a>
-                                                </li>
-                                                <li class="nav-item"><a class="nav-link" href="login.html">صفحه ورود</a>
-                                                </li>
-                                                <li class="nav-item"><a class="nav-link" href="register.html">صفحه ثبت
-                                                        نام</a></li>
-                                                <li class="nav-item"><a class="nav-link" href="forget.html">صفحه فراموشی
-                                                        رمز
-                                                        عبور</a></li>
-                                                <li class="nav-item"><a class="nav-link" href="blog.html">صفحه وبلاگ</a>
-                                                </li>
-                                                <li class="nav-item"><a class="nav-link" href="blog-detail.html">صفحه
-                                                        جزییات
-                                                        وبلاگ</a></li>
-                                                <li class="nav-item"><a class="nav-link" href="compare.html">صفحه مقایسه
-                                                        محصول</a></li>
-                                                <li class="nav-item"><a class="nav-link" href="checkout.html">پرداخت
-                                                        مرحله
-                                                        ای</a></li>
-                                                <li class="nav-item"><a class="nav-link" href="payment-ok.html">پرداخت
-                                                        موفق</a></li>
-                                                <li class="nav-item"><a class="nav-link" href="payment-nok.html">پرداخت
-                                                        ناموفق</a></li>
-                                                <li class="nav-item"><a class="nav-link"
-                                                        href="product-not-found.html">محصول
-                                                        ناموجود</a></li>
-                                                <li class="nav-item"><a class="nav-link" href="empty-cart.html">سبد خرید
-                                                        خالی</a></li>
-                                                <li class="nav-item"><a class="nav-link" href="dashboard.html"> داشبورد
-                                                        کاربری</a></li>
-                                                <li class="nav-item"><a class="nav-link" href="order.html">سفارشات</a>
-                                                </li>
-                                                <li class="nav-item"><a class="nav-link" href="favorite.html">محصولات
-                                                        مورد
-                                                        علاقه</a></li>
-                                                <li class="nav-item"><a class="nav-link"
-                                                        href="notification.html">اطلاعیه</a></li>
-                                                <li class="nav-item"><a class="nav-link" href="comments.html">نظرات</a>
-                                                </li>
-                                                <li class="nav-item"><a class="nav-link" href="address.html">آدرس ها</a>
-                                                </li>
-                                                <li class="nav-item"><a class="nav-link" href="last-seen.html">آخرین
-                                                        بازدید
-                                                        ها</a></li>
-                                            </ul>
-                                        </li>
-                                    </ul>
+                                    <div class="desc">
+                                        <h6 class="font-14 title text-overflow">گوشی موبایل سامسونگ مدل Galaxy A32
+                                            SM-A325F/DS
+                                            دو سیم‌کارت ظرفیت 128 گیگابایت </h6>
+                                        <div class="price d-flex flex-column justify-content-end mt-2">
+                                            <div class="text-end">
+                                                <span class="fw-bold font-18 def-color">299,000</span>
+                                                <span class="badge main-color-two-bg rounded-pill">25%</span>
+                                            </div>
+                                            <div class="text-end">
+                                                <span
+                                                    class="text-muted font-14 text-decoration-line-through">150,000</span>
+                                                <span class="text-muted font-14">تومان</span>
+                                            </div>
+                                        </div>
+                                    </div>
                                 </div>
-                            </div>
+                            </a>
                         </div>
-                    </div>
-                    <div class="col-lg-2 col-5 order-lg-1 order-2">
-                        <div class="row">
-                            <a href="" class="text-lg-start text-end d-block">
-                                <img src="~/image/logo.png" alt="" class="img-fluid" width="200">
+                        <div class="col-1 ps-0">
+                            <a href="" data-hint="حذف از سبد" class="hint--right">
+                                <i class="bi bi-x-circle-fill text-danger fs-4"></i>
                             </a>
                         </div>
                     </div>
-                    <div class="col-6 d-lg-flex d-none order-lg-2 order-3">
-                        <div class="header-bottom-form me-2 w-100">
-                            <form action="index.html">
-                                <div class="position-relative">
-                                    <input type="text" name="search"
-                                        class="form-control font-14 rounded-pill text-muted py-3 border-muted bg-light"
-                                        placeholder="نام محصول مورد نظر خود را وارد کنید">
-                                    <button type="submit"
-                                        class="position-absolute top-50 translate-middle-y btn rounded-circle border-0"
-                                        style="left: 5px;">
-                                        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16"
-                                            fill="currentColor" class="bi bi-search" viewBox="0 0 16 16">
-                                            <path
-                                                d="M11.742 10.344a6.5 6.5 0 1 0-1.397 1.398h-.001c.03.04.062.078.098.115l3.85 3.85a1 1 0 0 0 1.415-1.414l-3.85-3.85a1.007 1.007 0 0 0-.115-.1zM12 6.5a5.5 5.5 0 1 1-11 0 5.5 5.5 0 0 1 11 0z" />
-                                        </svg>
-                                    </button>
+                </div>
+                <div class="col-12">
+                    <div class="row align-items-center">
+                        <div class="col-11">
+                            <a href="">
+                                <div
+                                    class="product-row bg-white d-flex align-items-center justify-content-between rounded-4 shadow-md">
+                                    <div class="image">
+                                        <img src="~/image/product/television2.jpg" class="img-fluid" width="100"
+                                            alt="">
+                                    </div>
+                                    <div class="desc">
+                                        <h6 class="font-14 title text-overflow">گوشی موبایل سامسونگ مدل Galaxy A32
+                                            SM-A325F/DS
+                                            دو سیم‌کارت ظرفیت 128 گیگابایت </h6>
+                                        <div class="price d-flex flex-column justify-content-end mt-2">
+                                            <div class="text-end">
+                                                <span class="fw-bold font-18 def-color">299,000</span>
+                                                <span class="badge main-color-two-bg rounded-pill">25%</span>
+                                            </div>
+                                            <div class="text-end">
+                                                <span
+                                                    class="text-muted font-14 text-decoration-line-through">150,000</span>
+                                                <span class="text-muted font-14">تومان</span>
+                                            </div>
+                                        </div>
+                                    </div>
                                 </div>
-                            </form>
+                            </a>
+                        </div>
+                        <div class="col-1 ps-0">
+                            <a href="" data-hint="حذف از سبد" class="hint--right">
+                                <i class="bi bi-x-circle-fill text-danger fs-4"></i>
+                            </a>
                         </div>
                     </div>
                 </div>
             </div>
         </div>
-    </header>
-     
-    <!-- start mege menu -->
-    <div class="mega-menu d-lg-flex d-none">
-        <div class="container-fluid">
-            <div class="row align-items-center">
-                <div class="col-10">
-                    <div class="top-menu-menu">
-                        <ul class="navbar-nav">
-                            <li class="position-relative m-0"></li>
-                            <li class="nav-item main-menu-head"><a href=""
-                                    class="nav-link border-animate fromRight fw-bold"><i class="bi bi-list"></i>
-                                    دسته بندی کالاها
-                                </a>
-                                <ul class="main-menu mega-container">
-                                    <li class="main-menu-sub-active-li"><a href=""><i class="bi bi-phone"></i>
-                                            موبایل</a>
-                                        <ul class="main-menu-sub back-menu"
-                                            style=" background: #fff url('~/image/509-5092096_offering-high-quality-mobile-repair-service-main-image_prev_ui.png') no-repeat;">
-                                            <li><a class="title my-flex-baseline" href="">زیر منو شماره 1 </a></li>
-                                            <li><a href="">زیر منو شماره 1</a></li>
-                                            <li><a href="">زیر منو شماره 1</a></li>
-                                            <li><a href="">زیر منو شماره 1</a></li>
-                                            <li><a href="">زیر منو شماره 1</a></li>
-                                            <li><a href="">زیر منو شماره 1</a></li>
-                                            <li><a class="title my-flex-baseline" href="">زیر منو شماره 1 </a></li>
-                                            <li><a href="">زیر منو شماره 1</a></li>
-                                            <li><a href="">زیر منو شماره 1</a></li>
-                                            <li><a href="">زیر منو شماره 1</a></li>
-                                            <li><a href="">زیر منو شماره 1</a></li>
-                                            <li><a href="">زیر منو شماره 1</a></li>
-                                            <li><a href="">زیر منو شماره 1</a></li>
-                                            <li><a class="title my-flex-baseline" href="">زیر منو شماره 1 </a></li>
-                                            <li><a href="">زیر منو شماره 1</a></li>
-                                            <li><a href="">زیر منو شماره 1</a></li>
-                                            <li><a href="">زیر منو شماره 1</a></li>
-                                            <li><a href="">زیر منو شماره 1</a></li>
-                                            <li><a href="">زیر منو شماره 1</a></li>
-                                            <li><a href="">زیر منو شماره 1</a></li>
-                                            <li><a class="title my-flex-baseline" href="">زیر منو شماره 1 </a></li>
-                                            <li><a href="">زیر منو شماره 1</a></li>
-                                            <li><a href="">زیر منو شماره 1</a></li>
-                                            <li><a href="">زیر منو شماره 1</a></li>
-                                        </ul>
-                                    </li>
-                                    <li><a href=""><i class="bi bi-tablet"></i> تبلت</a>
-                                        <ul class="main-menu-sub back-menu"
-                                            style=" background: #fff url('~/image/labtop.png') no-repeat;">
-                                            <li><a class="title my-flex-baseline" href="">زیر منو شماره 1 </a></li>
-                                            <li><a href="">زیر منو شماره 1</a></li>
-                                            <li><a href="">زیر منو شماره 1</a></li>
-                                            <li><a href="">زیر منو شماره 1</a></li>
-                                            <li><a href="">زیر منو شماره 1</a></li>
-                                            <li><a href="">زیر منو شماره 1</a></li>
-                                            <li><a class="title my-flex-baseline" href="">زیر منو شماره 1 </a></li>
-                                            <li><a href="">زیر منو شماره 1</a></li>
-                                            <li><a href="">زیر منو شماره 1</a></li>
-                                            <li><a href="">زیر منو شماره 1</a></li>
-                                            <li><a href="">زیر منو شماره 1</a></li>
-                                            <li><a href="">زیر منو شماره 1</a></li>
-                                            <li><a href="">زیر منو شماره 1</a></li>
-                                            <li><a class="title my-flex-baseline" href="">زیر منو شماره 1 </a></li>
-                                            <li><a href="">زیر منو شماره 1</a></li>
-                                            <li><a href="">زیر منو شماره 1</a></li>
-                                            <li><a href="">زیر منو شماره 1</a></li>
-                                            <li><a href="">زیر منو شماره 1</a></li>
-                                            <li><a href="">زیر منو شماره 1</a></li>
-                                            <li><a href="">زیر منو شماره 1</a></li>
-                                            <li><a class="title my-flex-baseline" href="">زیر منو شماره 1 </a></li>
-                                            <li><a href="">زیر منو شماره 1</a></li>
-                                            <li><a href="">زیر منو شماره 1</a></li>
-                                            <li><a href="">زیر منو شماره 1</a></li>
-                                        </ul>
-                                    </li>
-                                  
-                                    <li><a href=""><i class="bi bi-laptop"></i>لبتاپ</a>
-                                        <ul class="main-menu-sub back-menu"
-                                            style=" background: #fff url('~/image/509-5092096_offering-high-quality-mobile-repair-service-main-image_prev_ui.png') no-repeat;">
-                                            <li><a class="title my-flex-baseline" href="">زیر منو شماره 1 </a></li>
-                                            <li><a href="">زیر منو شماره 1</a></li>
-                                            <li><a href="">زیر منو شماره 1</a></li>
-                                            <li><a href="">زیر منو شماره 1</a></li>
-                                            <li><a href="">زیر منو شماره 1</a></li>
-                                            <li><a href="">زیر منو شماره 1</a></li>
-                                            <li><a class="title my-flex-baseline" href="">زیر منو شماره 1 </a></li>
-                                            <li><a href="">زیر منو شماره 1</a></li>
-                                            <li><a href="">زیر منو شماره 1</a></li>
-                                            <li><a href="">زیر منو شماره 1</a></li>
-                                            <li><a href="">زیر منو شماره 1</a></li>
-                                            <li><a href="">زیر منو شماره 1</a></li>
-                                            <li><a href="">زیر منو شماره 1</a></li>
-                                            <li><a class="title my-flex-baseline" href="">زیر منو شماره 1 </a></li>
-                                            <li><a href="">زیر منو شماره 1</a></li>
-                                            <li><a href="">زیر منو شماره 1</a></li>
-                                            <li><a href="">زیر منو شماره 1</a></li>
-                                            <li><a href="">زیر منو شماره 1</a></li>
-                                            <li><a href="">زیر منو شماره 1</a></li>
-                                            <li><a href="">زیر منو شماره 1</a></li>
-                                            <li><a class="title my-flex-baseline" href="">زیر منو شماره 1 </a></li>
-                                            <li><a href="">زیر منو شماره 1</a></li>
-                                            <li><a href="">زیر منو شماره 1</a></li>
-                                            <li><a href="">زیر منو شماره 1</a></li>
-                                        </ul>
-                                    </li>
-                                        <li><a href=""><i class="bi bi-tools"></i>تجهیزات دیجیتال</a>
-                                        <ul class="main-menu-sub back-menu"
-                                            style=" background: #fff url('~/image/509-5092096_offering-high-quality-mobile-repair-service-main-image_prev_ui.png') no-repeat;">
-                                            <li><a class="title my-flex-baseline" href="">زیر منو شماره 1 </a></li>
-                                            <li><a href="">زیر منو شماره 1</a></li>
-                                            <li><a href="">زیر منو شماره 1</a></li>
-                                            <li><a href="">زیر منو شماره 1</a></li>
-                                            <li><a href="">زیر منو شماره 1</a></li>
-                                            <li><a href="">زیر منو شماره 1</a></li>
-                                            <li><a class="title my-flex-baseline" href="">زیر منو شماره 1 </a></li>
-                                            <li><a href="">زیر منو شماره 1</a></li>
-                                            <li><a href="">زیر منو شماره 1</a></li>
-                                            <li><a href="">زیر منو شماره 1</a></li>
-                                            <li><a href="">زیر منو شماره 1</a></li>
-                                            <li><a href="">زیر منو شماره 1</a></li>
-                                            <li><a href="">زیر منو شماره 1</a></li>
-                                            <li><a class="title my-flex-baseline" href="">زیر منو شماره 1 </a></li>
-                                            <li><a href="">زیر منو شماره 1</a></li>
-                                            <li><a href="">زیر منو شماره 1</a></li>
-                                            <li><a href="">زیر منو شماره 1</a></li>
-                                            <li><a href="">زیر منو شماره 1</a></li>
-                                            <li><a href="">زیر منو شماره 1</a></li>
-                                            <li><a href="">زیر منو شماره 1</a></li>
-                                            <li><a class="title my-flex-baseline" href="">زیر منو شماره 1 </a></li>
-                                            <li><a href="">زیر منو شماره 1</a></li>
-                                            <li><a href="">زیر منو شماره 1</a></li>
-                                            <li><a href="">زیر منو شماره 1</a></li>
-                                        </ul>
-                                    </li>
-                                   
-                                    
-                                </ul>
-                            </li>
-                            <li class="nav-item"><a href="" class="nav-link border-animate fromRight">دسته بندی ها براساس<i
-                                        class="bi bi-tablet"></i></a>
-                                <ul class="list-unstyled shadow-lg back-menu sub-menu mega-container"
-                                    style="background: #fff url('~/image/mega-img-1.jpg') no-repeat;background-size: 400px !important;">
-                                    <li><a href="" class="title">بـرند</a></li>
-                                    <li><a href="">سامـسونگ</a></li>
-                                    <li><a href="">اپـل</a></li>
-                                    <li><a href="">شیـائومی</a></li>
-                                    <li><a href="">ال جی</a></li>
-                                    <li><a href="">وان پـلاس</a></li>
-                                    <li><a href="">جی ال ایـکس</a></li>
-                                    <li><a href="">هـو آوی</a></li>
-                                    <li><a href="">بلک بـری</a></li>
-                                    <li><a href="">توشـیبا</a></li>
-                                    <li><a href="">دایـناکورد</a></li>
-                                   
-                                   
-                                    <li><a href="" class="title">براساس رنگ</a></li>
-                                    <li><a href="">قرمز</a></li>
-                                    <li><a href="">قهوه ای</a></li>
-                                    <li><a href="">سبز</a></li>
-                                    <li><a href="">بنفش</a></li>
-                                    <li><a href="">نارنجی</a></li>
-                                    <li><a href="">نیلی</a></li>
-                                </ul>
-                            </li>
-                           
-                            <li class="nav-item"><a href="" class="nav-link border-animate fromRight"> <i
-                                        class="bi bi-tag"></i>
-                                    تخفیف ها و پیشنهاد ها</a></li>
-                                     <li class="nav-item"><a href="" class="nav-link border-animate fromRight"> <i
-                                        class="bi bi-fire"></i>
-                                    پرفروش ترین ها</a></li>
-                            <li class="nav-item"><a href="" class="nav-link border-animate fromRight">سوالی دارید؟</a>
-                            </li>
-                            <li class="nav-item"><a href="" class="nav-link border-animate fromRight">دردات نت شاپ
-                                    بفروشید</a></li>
-                        </ul>
-                    </div>
+    </div>
+    <!-- end cart canvas -->
+
+    <!-- login modal -->
+    <div class="modal fade auth" id="loginModal" tabindex="-1" aria-labelledby="loginModalLabel" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered">
+            <div class="modal-content rounded-5">
+                <div class="modal-header">
+                    <h1 class="modal-title fs-5" id="loginModalLabel">ورود به سایت</h1>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                 </div>
-                <div class="col-2">
-                     <div><svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="currentColor"
-                                    class="bi bi-person main-color-one-color" viewBox="0 0 16 16">
-                                    <path
-                                        d="M8 8a3 3 0 1 0 0-6 3 3 0 0 0 0 6Zm2-3a2 2 0 1 1-4 0 2 2 0 0 1 4 0Zm4 8c0 1-1 1-1 1H3s-1 0-1-1 1-4 6-4 6 3 6 4Zm-1-.004c-.001-.246-.154-.986-.832-1.664C11.516 10.68 10.289 10 8 10c-2.29 0-3.516.68-4.168 1.332-.678.678-.83 1.418-.832 1.664h10Z" />
-                                </svg>  <span class="fw-bold main-color-one-color font-14 ms-3 me-1">امیر رضایی</span>
-                            <span class="text-muted font-12">خوش آمدید</span>
-                                </div>
-                 
-                </div>
-            </div>
-        </div>
-    </div>
-    <!-- end mega menu -->
-
-    <div class="mobile-footer d-lg-none d-table justify-content-center shadow-box bg-white position-fixed bottom-0 p-2 w-100"
-        style="z-index: 100;table-layout: fixed;">
-        <ul class="d-table-row">
-            <li class="d-table-cell pointer" onclick="topFunction()">
-                <div class="mf-link nav-link text-center">
-                    <span class="d-block mf-link-icon"><i class="bi bi-chevron-up font-20"></i></span>
-                    <span class="mt-1 font-12 fw-bold mf-link-title">بالا</span>
-                </div>
-            </li>
-            <li class="d-table-cell"><a href="" class="mf-link nav-link text-center">
-                    <div class="mf-link-icon position-relative d-table mx-auto">
-                        <i class="bi bi-heart font-20"></i>
-                        <span class="position-absolute main-color-one-bg rounded-pill font-10 text-white badge"
-                            style="right:-40%;bottom:-5px;">0</span>
-                    </div>
-                    <span class="mt-1 font-12 fw-bold mf-link-title">علاقه مندی ها</span>
-                </a></li>
-            <li class="d-table-cell"><a href="" class="mf-link nav-link text-center">
-                    <span class="d-block mf-link-icon"><i class="bi bi-house font-20"></i></span>
-                    <span class="mt-1 font-12 fw-bold mf-link-title">صفحه اصلی</span>
-                </a></li>
-            <li class="d-table-cell"><a href="" class="mf-link nav-link text-center">
-                    <div class="position-relative mf-link-icon d-table mx-auto">
-                        <span class="d-block mf-link-icon"><i class="bi bi-arrow-left-right font-20"></i></span>
-                        <span class="position-absolute main-color-one-bg rounded-pill font-10 text-white badge"
-                            style="right:-60%;bottom:-5px;">0</span>
-                    </div>
-                    <span class="mt-1 font-12 fw-bold mf-link-title">مقایسه</span>
-                </a></li>
-            <li class="d-table-cell"><a class="mf-link nav-link text-center" data-bs-toggle="offcanvas"
-                    href="#cartCanvas" role="button" aria-controls="cart canvas">
-                    <div class="position-relative mf-link-icon d-table mx-auto">
-                        <span class="d-block mf-link-icon"><i class="bi bi-bag font-20"></i></span>
-                        <span class="position-absolute main-color-one-bg rounded-pill font-10 text-white badge"
-                            style="right:-60%;bottom:-5px;">0</span>
-                    </div>
-                    <span class="mt-1 font-12 fw-bold mf-link-title">سبد خرید</span>
-                </a></li>
-        </ul>
-    </div>
-    <!-- end mobile footer -->
-
-    <!-- bread croumb -->
-    <div class="content">
-        <div class="container-fluid">
-            <nav aria-label="breadcrumb" class="my-lg-0 my-2">
-                <ol class="breadcrumb mb-0">
-                    <li class="breadcrumb-item"><a href="#" class="font-14 text-muted">خانه</a></li>
-                    <li class="breadcrumb-item"><a href="#" class="font-14 text-muted">فروشگاه</a></li>
-                    <li class="breadcrumb-item"><a href="#" class="font-14 text-muted">گوشی هوشمند</a></li>
-                    <li class="breadcrumb-item"><a href="#" class="font-14 text-muted">اپل</a></li>
-                    <li class="breadcrumb-item active main-color-one-color font-14" aria-current="page">گوشی موبایل
-                        اپل مدل iPhone XR ظرفیت ۱۲۸ گیگابایت</li>
-                </ol>
-            </nav>
-        </div>
-    </div>
-
-    <!-- start main-data -->
-    <div class="content">
-        <div class="container-fluid">
-            <div class="content-box">
-                @RenderBody()
-
-            </div>
-        </div>
-    </div>
-    <!-- end main-data -->
-    
-    <footer class="py-20 border-top border-4 border-muted shadow-box">
-        <div class="container-fluid">
-            <div class="row justify-content-center">
-                <div class="col-md-4 mt-md-0 mt-3">
-                    <h6 class="font-16 mb-2">خبرنامه</h6>
-                    <p class="font-14 text-muted">با ثبت نام در خبرنامه از جدیدترین محصولات ، جشنواره ها و فروش های ویژه
-                        مطلع شوید</p>
+                <div class="modal-body">
                     <form action="">
-                        <div class="form-group my-3 position-relative">
-                            <input type="text" class="form-control rounded-pill font-14 shadow-inner"
-                                placeholder="برای دریافت آخرین پیشنهاد ها ایمیل خود را وارد کنید">
+                        <div class="form-floating mb-3">
+                            <input type="text" class="form-control float-input" id="floatingInput"
+                                placeholder="تلفن همراه / ایمیل">
+                            <label for="floatingInput">تلفن همره / ایمیل</label>
+                        </div>
+                        <div class="form-floating mb-3">
+                            <input type="password" class="form-control float-input" id="floatingPassword"
+                                placeholder="کلمه عبور">
+                            <label for="floatingPassword">کلمه عبور</label>
+                        </div>
+                        <div class="d-flex align-items-center justify-content-between flex-wrap mb-3">
+                            <div class="form-check form-switch">
+                                <input class="form-check-input" type="checkbox" id="rememberME">
+                                <label class="form-check-label" for="rememberME">مرا به خاطر بسپار</label>
+                            </div>
+                            <div class="form-group">
+                                <a href="" class="text-primary">فراموشی رمز عبور</a>
+                            </div>
+                        </div>
+                        <div class="form-group">
                             <button type="submit"
-                                class="bg-transparent border-0 btn position-absolute top-50 end-0 translate-middle-y">
-                                <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="currentColor"
-                                    class="bi bi-arrow-left-short" viewBox="0 0 16 16">
-                                    <path fill-rule="evenodd"
-                                        d="M12 8a.5.5 0 0 1-.5.5H5.707l2.147 2.146a.5.5 0 0 1-.708.708l-3-3a.5.5 0 0 1 0-.708l3-3a.5.5 0 1 1 .708.708L5.707 7.5H11.5a.5.5 0 0 1 .5.5z" />
-                                </svg>
-                            </button>
+                                class="btn main-color-three-bg border-0 rounded-pill w-100 text-white waves-effect waves-light">ورود</button>
                         </div>
                     </form>
-                    <div class="d-flex my-2">
-                        <span class="main-color-one-color">
-                            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor"
-                                class="bi bi-geo-alt" viewBox="0 0 16 16">
-                                <path
-                                    d="M12.166 8.94c-.524 1.062-1.234 2.12-1.96 3.07A31.493 31.493 0 0 1 8 14.58a31.481 31.481 0 0 1-2.206-2.57c-.726-.95-1.436-2.008-1.96-3.07C3.304 7.867 3 6.862 3 6a5 5 0 0 1 10 0c0 .862-.305 1.867-.834 2.94zM8 16s6-5.686 6-10A6 6 0 0 0 2 6c0 4.314 6 10 6 10z" />
-                                <path d="M8 8a2 2 0 1 1 0-4 2 2 0 0 1 0 4zm0 1a3 3 0 1 0 0-6 3 3 0 0 0 0 6z" />
-                            </svg>
-                        </span>
-                        <span class="ms-3 font-14 text-muted">
-                            لرستان خرم آباد خیابان شهدا ساختمان رستا
-                        </span>
+                    <div class="divider">
+                        <span>یا</span>
                     </div>
-                    <div class="d-flex align-items-center justify-content-between flex-wrap">
-                        <div class="d-flex my-2">
-                            <span class="main-color-one-color">
-                                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor"
-                                    class="bi bi-phone" viewBox="0 0 16 16">
-                                    <path
-                                        d="M11 1a1 1 0 0 1 1 1v12a1 1 0 0 1-1 1H5a1 1 0 0 1-1-1V2a1 1 0 0 1 1-1h6zM5 0a2 2 0 0 0-2 2v12a2 2 0 0 0 2 2h6a2 2 0 0 0 2-2V2a2 2 0 0 0-2-2H5z" />
-                                    <path d="M8 14a1 1 0 1 0 0-2 1 1 0 0 0 0 2z" />
-                                </svg>
-                            </span>
-                            <span class="ms-3 font-16 main-color-one-color text-muted fw-bold">
-                                09332223311
-                            </span>
-                        </div>
-                        <div class="d-flex my-2">
-                            <span class="main-color-one-color">
-                                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor"
-                                    class="bi bi-envelope" viewBox="0 0 16 16">
-                                    <path
-                                        d="M0 4a2 2 0 0 1 2-2h12a2 2 0 0 1 2 2v8a2 2 0 0 1-2 2H2a2 2 0 0 1-2-2V4Zm2-1a1 1 0 0 0-1 1v.217l7 4.2 7-4.2V4a1 1 0 0 0-1-1H2Zm13 2.383-4.708 2.825L15 11.105V5.383Zm-.034 6.876-5.64-3.471L8 9.583l-1.326-.795-5.64 3.47A1 1 0 0 0 2 13h12a1 1 0 0 0 .966-.741ZM1 11.105l4.708-2.897L1 5.383v5.722Z" />
-                                </svg>
-                            </span>
-                            <span class="ms-3 font-14 text-muted">
-                                amir@gmail.com
-                            </span>
-                        </div>
+                    <div class="d-flex justify-content-center">
+                        <a href="">عضو نیستی؟ ثبت نام در فروشگاه</a>
                     </div>
                 </div>
-                <div class="col-md-2 col-6 mt-md-0 mt-3">
-                    <h6 class="font-16 mb-2">راهنمای مشتریان</h6>
-                    <ul class="navbar-nav flex-column">
-                        <li class="nav-item"><a href="" class="nav-link font-14">پاسخ به پرسش های متداول</a></li>
-                        <li class="nav-item"><a href="" class="nav-link font-14">رویه بازگرداندن کالا</a></li>
-                        <li class="nav-item"><a href="" class="nav-link font-14">شرایط استفاده</a></li>
-                        <li class="nav-item"><a href="" class="nav-link font-14">حریم خصوصی</a></li>
-                        <li class="nav-item"><a href="" class="nav-link font-14">استفاده از تخفیف ها</a></li>
-                        <li class="nav-item"><a href="" class="nav-link font-14">نحوه ارسال محصول در سایت</a></li>
-                    </ul>
+            </div>
+        </div>
+    </div>
+    <!-- end login modal -->
+
+    <!-- product modal -->
+    <div class="modal fade modal-product" id="productModal" tabindex="-1" aria-labelledby="" aria-hidden="true">
+        <div class="modal-dialog modal-xl modal-dialog-centered modal-dialog-scrollable">
+            <div class="modal-content rounded-4">
+                <div class="modal-header">
+                    <h1 class="modal-title fs-6">گوشی موبایل اپل مدل iPhone XR ظرفیت 128 گیگابایت
+                    </h1>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                 </div>
-                <div class="col-md-2 col-6 mt-md-0 mt-3">
-                    <h6 class="font-16 mb-2">حساب کاربری</h6>
-                    <ul class="navbar-nav flex-column">
-                        <li class="nav-item"><a href="" class="nav-link font-14">حساب کاربری</a></li>
-                        <li class="nav-item"><a href="" class="nav-link font-14">تاریخچه سفارشات</a></li>
-                        <li class="nav-item"><a href="" class="nav-link font-14">لیست دلخواه</a></li>
-                        <li class="nav-item"><a href="" class="nav-link font-14">اشتراک خبرنامه</a></li>
-                        <li class="nav-item"><a href="" class="nav-link font-14">ورود</a></li>
-                        <li class="nav-item"><a href="" class="nav-link font-14">ثبت نام</a></li>
-                    </ul>
-                </div>
-                <div class="col-md-2 col-6 mt-md-0 mt-3">
-                    <h6 class="font-16 mb-2">اطلاعات</h6>
-                    <ul class="navbar-nav flex-column">
-                        <li class="nav-item"><a href="" class="nav-link font-14">شماره حساب ها</a></li>
-                        <li class="nav-item"><a href="" class="nav-link font-14">وبلاگ</a></li>
-                        <li class="nav-item"><a href="" class="nav-link font-14">صفحه خدمات</a></li>
-                        <li class="nav-item"><a href="" class="nav-link font-14">همکاری با ما</a></li>
-                        <li class="nav-item"><a href="" class="nav-link font-14">تماس با ما</a></li>
-                        <li class="nav-item"><a href="" class="nav-link font-14">درباره ما</a></li>
-                    </ul>
-                </div>
-                <div class="col-md-2 mt-md-5 mt-2 col-6">
-                    <div class="small-slider">
-                        <div class="swiper swiper-small-slider">
-                            <div class="swiper-wrapper">
-                                <div class="swiper-slide">
-                                    <div class="item text-center">
-                                        <img src="~/image/enamad.png" class="img-fluid" alt="">
+                <div class="modal-body">
+                    <div class="row">
+                        <div class="col-md-3 mb-md-0 mb-3">
+                            <div class="swiper sw-modal-product">
+                                <div class="swiper-wrapper" title="برای بزرگنمایی تصویر دابل کلیک کنید">
+                                    <div class="swiper-slide">
+                                        <div class="swiper-zoom-container">
+                                            <img class="img-fluid" src="~/image/product/product-image1.jpg" />
+                                        </div>
+                                    </div>
+                                    <div class="swiper-slide">
+                                        <div class="swiper-zoom-container">
+                                            <img class="img-fluid" src="~/image/product/product-image2.jpg" />
+                                        </div>
+                                    </div>
+                                    <div class="swiper-slide">
+                                        <div class="swiper-zoom-container">
+                                            <img class="img-fluid" src="~/image/product/product-image3.jpg" />
+                                        </div>
+                                    </div>
+                                    <div class="swiper-slide">
+                                        <div class="swiper-zoom-container">
+                                            <img class="img-fluid" src="~/image/product/product-image4.jpg" />
+                                        </div>
+                                    </div>
+                                    <div class="swiper-slide">
+                                        <div class="swiper-zoom-container">
+                                            <img class="img-fluid" src="~/image/product/product-image5.jpg" />
+                                        </div>
+                                    </div>
+                                    <div class="swiper-slide">
+                                        <div class="swiper-zoom-container">
+                                            <img class="img-fluid" src="~/image/product/product-image6.jpg" />
+                                        </div>
                                     </div>
                                 </div>
-                                <div class="swiper-slide">
-                                    <div class="item text-center">
-                                        <img src="~/image/rezi.png" class="img-fluid" alt="">
-                                    </div>
+                                <div class="swiper-button-next"></div>
+                                <div class="swiper-button-prev"></div>
+                                <div class="swiper-pagination"></div>
+                            </div>
+                        </div>
+                        <div class="col-md-9">
+                            <div class="product-meta">
+                                <div class="feature py-3">
+                                    <nav class="navbar">
+                                        <ul class="navbar-nav">
+                                            <li class="nav-item pb-1 font-14">
+                                                <span class="nav-title me-1 fw-bold">برند:</span>
+                                                <span class="nav-title-desc text-muted">اپل</span>
+                                            </li>
+                                            <li class="nav-item pb-1 font-14">
+                                                <span class="nav-title me-1 fw-bold">حافظه داخلی:</span>
+                                                <span class="nav-title-desc text-muted">256 گیگابایت</span>
+                                            </li>
+                                            <li class="nav-item pb-1 font-14">
+                                                <span class="nav-title me-1 fw-bold">مقدار رم :</span>
+                                                <span class="nav-title-desc text-muted">3 گیگابایت</span>
+                                            </li>
+                                            <li class="nav-item pb-1 font-14">
+                                                <span class="nav-title me-1 fw-bold">رزولوشن عکس:</span>
+                                                <span class="nav-title-desc text-muted">12 مگاپیکسل</span>
+                                            </li>
+                                            <li class="nav-item pb-1 font-14">
+                                                <span class="nav-title me-1 fw-bold">تعداد سیم کارت:</span>
+                                                <span class="nav-title-desc text-muted">تک</span>
+                                            </li>
+                                            <li class="nav-item pb-1 font-14">
+                                                <span class="nav-title me-1 fw-bold">ویژگی‌های خاص:</span>
+                                                <span class="nav-title-desc text-muted">مقاوم در برابر آب مناسب عکاسی
+                                                    مناسب عکاسی سلفی مناسب بازی مجهز به حس‌گر تشخیص چهره</span>
+                                            </li>
+                                        </ul>
+                                    </nav>
                                 </div>
-                                <div class="swiper-slide">
-                                    <div class="item text-center">
-                                        <img src="~/image/kasbokar.png" width="100" class="img-fluid" alt="">
+                            </div>
+                        </div>
+                        <div class="col-12">
+                            <div class="product-variable py-4">
+                                <div class="row">
+                                    <div class="col-md-4 mb-md-0 mb-3">
+                                        <div class="box">
+                                            <label class="box-label">گارانتی</label>
+                                            <form action="">
+                                                <select name="" id="" class="form-select">
+                                                    <option value="">12 ماه گارانتی شرکتی</option>
+                                                    <option value="">24 ماه گرانتی گرین</option>
+                                                    <option value="">36 ماه گارانتی شرکتی</option>
+                                                </select>
+                                            </form>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-4 mb-md-0 mb-3">
+                                        <div class="box">
+                                            <label class="box-label">ظرفیت</label>
+                                            <form action="">
+                                                <select name="" id="" class="form-select">
+                                                    <option value="">128 گیگابایت</option>
+                                                    <option value="">256 گیگابایت</option>
+                                                    <option value="">512 گیگابایت</option>
+                                                </select>
+                                            </form>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-4 mb-md-0 mb-3">
+                                        <div class="box">
+                                            <label class="box-label">انتخاب رنگ</label>
+                                            <div class="box-item">
+                                                <div class="color-box">
+                                                    <div class="color-box-item" data-toggle="tooltip"
+                                                        data-hint="نام رنگ مورد نظر">
+                                                        <span class="color bg-danger hint--top"></span>
+                                                    </div>
+                                                    <div class="color-box-item" data-toggle="tooltip"
+                                                        data-hint="نام رنگ مورد نظر">
+                                                        <span class="color bg-primary hint--top"></span>
+                                                    </div>
+                                                    <div class="color-box-item" data-toggle="tooltip"
+                                                        data-hint="نام رنگ مورد نظر">
+                                                        <span class="color bg-warning hint--top"></span>
+                                                    </div>
+                                                    <div class="color-box-item active" data-toggle="tooltip"
+                                                        data-hint="نام رنگ مورد نظر">
+                                                        <span class="color bg-success hint--top"></span>
+                                                    </div>
+                                                    <div class="color-box-item" data-toggle="tooltip"
+                                                        data-hint="نام رنگ مورد نظر">
+                                                        <span class="color bg-secondary hint--top"></span>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
                                     </div>
                                 </div>
                             </div>
-                            <div class="swiper-button-next d-sm-flex d-none"></div>
-                            <div class="swiper-button-prev d-sm-flex d-none"></div>
                         </div>
-                    </div>
-                </div>
-            </div>
-            <div class="footer-desc">
-                <div class="row">
-                    <div class="col-12">
-                        <div class="footer-desc-item">
-                            <h3 class="font-16 my-3">فروشگاه رستا ، بررسی ، انتخاب و خرید آنلاین</h3>
-                            <p class="text-muted font-14">
-                                یک خرید اینترنتی مطمئن، نیازمند فروشگاهی است که بتواند کالاهایی متنوع، باکیفیت و
-                                دارای قیمت مناسب را در مدت زمانی کوتاه به دست مشتریان خود برساند و ضمانت بازگشت
-                                کالا
-                                هم داشته باشد؛ ویژگی‌هایی که فروشگاه اینترنتی رستا سال‌هاست بر روی آن‌ها کار
-                                کرده و
-                                توانسته از این طریق مشتریان ثابت خود را داشته باشد
-                            </p>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            <div class="copy-right">
-                <div class="row align-items-center">
-                    <div class="col-md-8">
-                        <p class="text-muted mb-sm-0 mb-3 font-14">برای استفاده از مطالب فروشگاه، داشتن «هدف غیرتجاری» و
-                            ذکر «منبع» کافیست.
-                            تمام
-                            حقوق اين وب‌سايت نیز برای شرکت رستا است.
-                        </p>
-                    </div>
-                    <div class="col-md-4">
-                        <div class="social mt-md-0 mt-2">
-                            <div class="social-link justify-content-md-end justify-content-center">
-                                <a href="" class="bi bi-instagram"></a>
-                                <a href="" class="bi bi-twitter"></a>
-                                <a href="" class="bi bi-whatsapp"></a>
-                                <a href="" class="bi bi-youtube"></a>
-                                <a href="" class="bi bi-linkedin"></a>
+                        <div class="col-12">
+                            <div class="product-action py-3">
+                                <div class="row justify-content-center">
+                                    <div class="col-md-8">
+                                        <form action="">
+                                            <div class="d-flex align-items-center justify-content-between flex-wrap">
+                                                <div class="cart-counter mb-2 me-2">
+                                                    <input type="text" name="count" class="counter" value="1">
+                                                </div>
+                                                <button
+                                                    class="btn border-0 mb-2 main-color-one-bg flex-grow-1 rounded-pill py-2 font-14 waves-effect waves-light">
+                                                    <i class="bi bi-cart-plus"></i>
+                                                    افزودن به سبد خرید</button>
+                                            </div>
+                                        </form>
+                                    </div>
+                                    <div class="col-md-4">
+                                        <div class="price d-flex flex-column justify-content-end">
+                                            <div class="text-end">
+                                                <span class="fw-bold font-20 main-color-two-color">299,000</span>
+                                                <span class="badge main-color-two-bg rounded-pill">25%</span>
+                                            </div>
+                                            <div class="d-flex justify-content-end align-items-center">
+                                                <span
+                                                    class="text-muted font-14 text-decoration-line-through">150,000</span>
+                                                <span class="text-muted font-14 ms-2">تومان</span>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
                             </div>
                         </div>
                     </div>
                 </div>
             </div>
         </div>
-    </footer>
-    <!-- end footer -->
+    </div>
 
     <!-- go top top -->
     <div class="progress-wrap d-lg-block d-none">
@@ -766,8 +430,8 @@
     </script>
     <!-- ===== end new update -->
 
-
-
 </body>
 
 </html>
+
+   
