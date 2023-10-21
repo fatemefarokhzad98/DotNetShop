@@ -43,6 +43,11 @@ namespace App.Domain.AppServices.Product
             return await _productService.GetProducts();
         }
 
+        //public Task<List<ProductBriefDto>> GetProductsList(int? categoryId, string? keyWord, int? minPrice, int? maxPrice, int? brandId)
+        //{
+        //    throw new NotImplementedException();
+        //}
+
         public async Task<int> InsertProduct(ProductInsertDto product)
         {
             await _productSurnessService.EnsureModelIsNotExist(product.Name);
@@ -61,5 +66,6 @@ namespace App.Domain.AppServices.Product
             return await _productService.UpdateProduct(product);
 
         }
+       
     }
 }

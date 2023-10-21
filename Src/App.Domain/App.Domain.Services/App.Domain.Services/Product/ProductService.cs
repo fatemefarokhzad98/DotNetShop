@@ -41,6 +41,11 @@ namespace App.Domain.Services.Product
             return await _productQueryRepsitory.GetProducts();
         }
 
+        public Task<List<ProductBriefDto>> GetProductsList(int? categoryId, string? keyWord, int? minPrice, int? maxPrice, int? brandId)
+        {
+            throw new NotImplementedException();
+        }
+
         public async Task<int> InsertProduct(ProductInsertDto product)
         {
            return await _productCommandRepository.InsertProduct(product);

@@ -15,6 +15,8 @@ namespace App.Domain.Core.Product.Contracts.AppServices
         Task<ProductDto?> GetProduct(int id);
         Task<ProductDto?> GetProduct(string name);
         Task<List<ProductDto>> GetProducts();
+        //Task<List<ProductBriefDto>> GetProductsList(int? categoryId,string? keyWord,int? minPrice,int? maxPrice,int?brandId);
+
 
     }
 }

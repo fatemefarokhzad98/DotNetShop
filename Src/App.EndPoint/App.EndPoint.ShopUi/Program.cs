@@ -11,6 +11,7 @@ using App.Domain.Services.Product;
 using App.Infrastructure.DataBase.Data;
 using App.Infrastructure.Repository.Ef.BaseData;
 using App.Infrastructure.Repository.Ef.Product;
+using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
 
 var builder = WebApplication.CreateBuilder(args);
@@ -23,7 +24,28 @@ builder.Services.AddDbContext<AppDbContext>(option =>
 
     option.UseSqlServer("Data Source=DESKTOP-CGR2LP5\\MSSQLSERVER2022;Initial Catalog=DotNetShopDb; Encrypt=False; TrustServerCertificate=True;Integrated Security=true");
 });
-//brand
+builder.Services.AddIdentity<IdentityUser<int>,IdentityRole<int>>(
+    options=>
+    {
+        options.SignIn.RequireConfirmedAccount = false;
+        options.SignIn.RequireConfirmedPhoneNumber= false;
+        options.SignIn.RequireConfirmedEmail= false;
+        options.Password.RequireDigit = false;
+        options.Password.RequireLowercase = false;
+        options.Password.RequireUppercase = false;
+        options.Password.RequireNonAlphanumeric = false;
+        options.Password.RequiredUniqueChars = 1;
+        options.Password.RequiredLength = 3;
+        //options.User.AllowedUserNameCharacters
+        //options.User.RequireUniqueEmail
+        
+
+      
+      
+
+
+    })
+    .AddEntityFrameworkStores<AppDbContext>();
 
 builder.Services.AddScoped<IBrandAppService, BrandAppService>();
 builder.Services.AddScoped<IBrandService, BrandService>();
@@ -71,6 +93,7 @@ app.UseHttpsRedirection();
 app.UseStaticFiles();
 
 app.UseRouting();
+app.UseAuthentication();
 
 app.UseAuthorization();
 

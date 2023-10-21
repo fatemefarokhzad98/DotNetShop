@@ -21,7 +21,7 @@ namespace App.Infrastructure.Repository.Ef.Product
 
         public async Task<ProductDto?> GetProduct(int id)
         {
-            var product = await _appDbContext.Products.Where(x => x.Id == id).AsNoTracking().Select(p => new ProductDto()
+            var product = await _appDbContext.Products.AsNoTracking().Where(x => x.Id == id).Select(p => new ProductDto()
             {
 
                 Id = id,
@@ -53,7 +53,7 @@ namespace App.Infrastructure.Repository.Ef.Product
 
         public async Task<ProductDto?> GetProduct(string name)
         {
-            var product = await _appDbContext.Products.Where(x => x.Name == name).AsNoTracking().Select(p => new ProductDto()
+            var product = await _appDbContext.Products.AsNoTracking().Where(x => x.Name == name).Select(p => new ProductDto()
             {
                 Name = p.Name,
                 Id = p.Id,
@@ -112,5 +112,11 @@ namespace App.Infrastructure.Repository.Ef.Product
             return products;
 
         }
+
+        //public Task<List<ProductBriefDto>>? Search(int? categoryId, string? keyWord, int? minPrice, int? maxPrice, int? brandId)
+        //{
+            
+
+        //}
     }
 }

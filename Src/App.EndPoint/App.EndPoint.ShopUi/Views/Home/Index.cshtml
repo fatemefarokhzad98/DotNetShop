@@ -1,8 +1,27 @@
 ﻿@{
-    ViewData["Title"] = "Home Page";
+    ViewData["Title"] = "صقحه اصلی";
 }
-
-<div class="text-center">
-    <h1 class="display-4">Welcome</h1>
-    <p>Learn about <a href="https://docs.microsoft.com/aspnet/core">building Web apps with ASP.NET Core</a>.</p>
-</div>
+ <partial name="_Amazing" />
+   <partial name="_ProductBanner" />
+       <partial name="_CategoryBox" />
+        <partial name="_ProductBox" />
+            <partial name="_ProductBoxTwo" />
+             <div class="banner py-20">
+        <div class="container-fluid">
+            <div class="row">
+                <div class="col-md-6 mt-md-0 mt-2">
+                    <a href="">
+                        <img src="~/image/banner-2.jpg" class="img-fluid rounded-3 shadow-box" alt="">
+                    </a>
+                </div>
+                <div class="col-md-6 mt-md-0 mt-2">
+                    <a href="">
+                        <img src="~/image/banner-3.jpg" class="img-fluid rounded-3 shadow-box" alt="">
+                    </a>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- end banner -->
+        <partial name="_ProductBoxThree" />
+    <partial name="_BrandBox" />

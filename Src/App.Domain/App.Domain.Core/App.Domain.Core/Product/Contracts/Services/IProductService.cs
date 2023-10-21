@@ -15,5 +15,7 @@ namespace App.Domain.Core.Product.Contracts.Services
         Task<int> InsertProduct(ProductInsertDto product);
         Task<ProductDto> RemoveProduct(int id);
         Task<int> UpdateProduct(ProductDto product);
+        //Task<List<ProductBriefDto>> GetProductsList(int? categoryId, string? keyWord, int? minPrice, int? maxPrice, int? brandId);
+
     }
 }

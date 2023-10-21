@@ -9,12 +9,18 @@ using ColorEntities = App.Domain.Core.BaseData.Entities;
 using Microsoft.EntityFrameworkCore;
 
 using App.Domain.Core.User.Entities;
+using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
+using Microsoft.AspNetCore.Identity;
 
 namespace App.Infrastructure.DataBase.Data;
 
-public partial class AppDbContext : DbContext
+public partial class AppDbContext : IdentityDbContext<IdentityUser<int>,IdentityRole<int>,int>
 {
-   
+
+    public AppDbContext()
+    {
+
+    }
     public AppDbContext(DbContextOptions<AppDbContext> options)
         : base(options)
     {
@@ -63,6 +69,7 @@ public partial class AppDbContext : DbContext
 
     protected override void OnModelCreating(ModelBuilder modelBuilder)
     {
+        base.OnModelCreating(modelBuilder);
         modelBuilder.Entity<Brand>(entity =>
         {
             entity.HasKey(e => e.Id).HasName("PK__Brands__3214EC07D5C50981");
