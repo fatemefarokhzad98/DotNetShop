@@ -6,6 +6,7 @@ using App.Domain.Core.BaseData.Contracts.Services;
 using App.Domain.Core.Product.Contracts.AppServices;
 using App.Domain.Core.Product.Contracts.Repositories;
 using App.Domain.Core.Product.Contracts.Services;
+using App.Domain.Core.User.Entities;
 using App.Domain.Services.BaseData;
 using App.Domain.Services.Product;
 using App.Infrastructure.DataBase.Data;
@@ -41,7 +42,7 @@ builder.Services.AddDbContext<AppDbContext>(option =>
 });
 
 
-builder.Services.AddIdentity<IdentityUser<int>,IdentityRole<int>>(
+builder.Services.AddIdentity<IdentityUser<int>,Role>(
     options=>
     {
         options.SignIn.RequireConfirmedAccount = false;

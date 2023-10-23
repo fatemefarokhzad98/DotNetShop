@@ -14,7 +14,7 @@ using Microsoft.AspNetCore.Identity;
 
 namespace App.Infrastructure.DataBase.Data;
 
-public partial class AppDbContext : IdentityDbContext<IdentityUser<int>,IdentityRole<int>,int>
+public partial class AppDbContext : IdentityDbContext<IdentityUser<int>,Role,int>
 {
 
     public AppDbContext()
@@ -70,7 +70,7 @@ public partial class AppDbContext : IdentityDbContext<IdentityUser<int>,Identity
     protected override void OnModelCreating(ModelBuilder modelBuilder)
     {
         base.OnModelCreating(modelBuilder);
-        modelBuilder.Entity<ApplicationRole>().ToTable("IdentityRole");
+        modelBuilder.Entity<Role>().ToTable("AspNetRoles").ToTable("AppRoles");
 
         modelBuilder.Entity<Brand>(entity =>
         {
