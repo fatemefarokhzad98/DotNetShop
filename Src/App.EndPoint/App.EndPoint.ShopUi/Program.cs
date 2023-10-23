@@ -16,14 +16,31 @@ using Microsoft.EntityFrameworkCore;
 
 var builder = WebApplication.CreateBuilder(args);
 
+
+builder.Services.ConfigureApplicationCookie(options =>
+{
+    options.LoginPath = "/Account/Login";
+    options.LogoutPath = "/Acount/Logout";
+
+
+
+
+
+
+}); 
+
 // Add services to the container.
 builder.Services.AddControllersWithViews();
 //.AddRazorRuntimeCompilation();
+
+builder.Services.AddRazorPages();
 builder.Services.AddDbContext<AppDbContext>(option =>
 {
 
     option.UseSqlServer("Data Source=DESKTOP-CGR2LP5\\MSSQLSERVER2022;Initial Catalog=DotNetShopDb; Encrypt=False; TrustServerCertificate=True;Integrated Security=true");
 });
+
+
 builder.Services.AddIdentity<IdentityUser<int>,IdentityRole<int>>(
     options=>
     {
@@ -100,16 +117,25 @@ app.UseAuthorization();
 
 app.UseEndpoints(endpoints=>
 {
+
+    endpoints.MapDefaultControllerRoute();
+
     endpoints.MapControllerRoute(
         name: "areaRoute",
       pattern: "{area:exists}/{controller=Home}/{action=Index}/{id?}");
 
 
+
     endpoints.MapControllerRoute(
-        name: "default",
-        pattern: "{contoller=Home}/{action=Index}/{id?}"
-        );
-    endpoints.MapDefaultControllerRoute();
+      name: "default",
+      pattern: "{contoller=Home}/{action=Index}/{id?}"
+      );
+
+
+    
+
+  
+   
 
   
 });

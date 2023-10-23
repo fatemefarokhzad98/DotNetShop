@@ -70,6 +70,8 @@ public partial class AppDbContext : IdentityDbContext<IdentityUser<int>,Identity
     protected override void OnModelCreating(ModelBuilder modelBuilder)
     {
         base.OnModelCreating(modelBuilder);
+        modelBuilder.Entity<ApplicationRole>().ToTable("IdentityRole");
+
         modelBuilder.Entity<Brand>(entity =>
         {
             entity.HasKey(e => e.Id).HasName("PK__Brands__3214EC07D5C50981");
@@ -304,6 +306,7 @@ public partial class AppDbContext : IdentityDbContext<IdentityUser<int>,Identity
                 .HasForeignKey(d => d.StatusId)
                 .OnDelete(DeleteBehavior.ClientSetNull)
                 .HasConstraintName("FK_Users_Statuses");
+           
         });
 
         OnModelCreatingPartial(modelBuilder);
