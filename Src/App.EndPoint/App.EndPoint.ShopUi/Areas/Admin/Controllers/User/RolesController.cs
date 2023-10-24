@@ -1,4 +1,5 @@
-﻿using App.EndPoint.ShopUi.Areas.Admin.Models.ViewModels.User;
+﻿using App.Domain.Core.Identity;
+using App.EndPoint.ShopUi.Areas.Admin.Models.ViewModels.User;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using X.PagedList;
@@ -8,8 +9,8 @@ namespace App.EndPoint.ShopUi.Areas.Admin.Controllers.User
     [Area("Admin")]
     public class RolesController : Controller
     {
-        private readonly RoleManager<IdentityRole<int>> _roleManager;
-        public RolesController(RoleManager<IdentityRole<int>> roleManager)
+        private readonly RoleManager<AppRole> _roleManager;
+        public RolesController(RoleManager<AppRole> roleManager)
         {
             _roleManager = roleManager;
         }
@@ -19,6 +20,7 @@ namespace App.EndPoint.ShopUi.Areas.Admin.Controllers.User
             {
                 RoleId = p.Id,
                 RoleName = p.Name,
+                RoleDescription=p.Description
                 
 
 
@@ -43,12 +45,13 @@ namespace App.EndPoint.ShopUi.Areas.Admin.Controllers.User
         {
             if (ModelState.IsValid)
             {
-                var result = await _roleManager.CreateAsync(new IdentityRole<int>(model.RoleName));
+                var result = await _roleManager.CreateAsync(new AppRole(model.RoleName,model.RoleDescription));
           
                 if (result.Succeeded)
                 {
                     return RedirectToAction("ReadRoles");
 
+                    ViewBag.errorcreate = "اطلاعات با موفقیت ذخیره شد";
                 }
                 ViewBag.errorcreate = "خطا در ذخیره نقش رخ داده است";
                 return View(result);
@@ -77,16 +80,17 @@ namespace App.EndPoint.ShopUi.Areas.Admin.Controllers.User
         {
             if (ModelState.IsValid)
             {
-               await _roleManager.UpdateAsync(new IdentityRole<int>
+               await _roleManager.UpdateAsync(new AppRole
                 {
-                     Name=model.RoleName
+                     Name=model.RoleName,
+                     Description=model.RoleDescription
                 });
                 ViewBag.successfull = "باموفقیت تغییر پیدا کرد";
                 return RedirectToAction("ReadRoles");
 
             }
 
-            ViewBag.errorudatepot = "خطایی در تغییر نقش رخ داد است";
+            ViewBag.error = "خطایی در تغییر نقش رخ داد است";
 
 
             return View();

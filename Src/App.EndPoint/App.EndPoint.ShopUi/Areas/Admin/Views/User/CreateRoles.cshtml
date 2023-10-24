@@ -1,0 +1,75 @@
+﻿@using App.EndPoint.ShopUi.Areas.Admin.Models.ViewModels.User
+
+
+@model RolesViewModel
+@{
+    ViewData["Title"] = "اضافه کردن نقش جدید";
+    Layout = "_AdminLayout";
+}
+<div class="row">
+    <div class="col-md-12">
+        <div class="card">
+            <div class="card-header bg-light">
+                افزودن نقش جدید
+            </div>
+            @if (ViewBag.errorcreate != null)
+            {
+                <div class="alert alert-danger alert-dismissable">
+                    @ViewBag.errorcreate
+                    <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+            }
+                   @if (ViewBag.errorcreate != null)
+            {
+                <div class="alert alert-success alert-dismissable">
+                    @ViewBag.errorcreate
+                    <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+            }
+            <form asp-action="CreateRoles" asp-controller="Roles">
+                <div class="row card-body mb-3">
+                    <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+                    <div class="col-md-7 form-group">
+                        <div class="row">
+
+                            <div class="col-md-12">
+                                <label asp-for="RoleName" class="control-label"></label>
+                            </div>
+                            <div class="col-md-9">
+                                <input asp-for="RoleName" class="form-control" />
+                                <span asp-validation-for="RoleName" class="text-danger"></span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-7 form-group">
+                        <div class="row">
+
+                            <div class="col-md-12">
+                                <label asp-for="RoleDescription" class="control-label"></label>
+                            </div>
+                            <div class="col-md-9">
+                                <textarea asp-for="RoleDescription" class="form-control"></textarea>
+                                <span asp-validation-for="RoleDescription" class="text-danger"></span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-7">
+                        <div class="col-md-9">
+                            <button type="submit" class="btn btn-info float-left">افزودن نقش</button>
+                        </div>
+                        
+                    </div>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+
+@section Scripts {
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+}
+

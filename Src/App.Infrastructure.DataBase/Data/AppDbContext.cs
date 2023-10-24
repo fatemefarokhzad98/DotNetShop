@@ -11,10 +11,11 @@ using Microsoft.EntityFrameworkCore;
 using App.Domain.Core.User.Entities;
 using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 using Microsoft.AspNetCore.Identity;
+using App.Domain.Core.Identity;
 
 namespace App.Infrastructure.DataBase.Data;
 
-public partial class AppDbContext : IdentityDbContext<IdentityUser<int>,Role,int>
+public partial class AppDbContext : IdentityDbContext<IdentityUser<int>,AppRole,int>
 {
 
     public AppDbContext()
@@ -70,7 +71,7 @@ public partial class AppDbContext : IdentityDbContext<IdentityUser<int>,Role,int
     protected override void OnModelCreating(ModelBuilder modelBuilder)
     {
         base.OnModelCreating(modelBuilder);
-        modelBuilder.Entity<Role>().ToTable("AspNetRoles").ToTable("AppRoles");
+        modelBuilder.Entity<AppRole>().ToTable("AspNetRoles").ToTable("AppicationRoles");
 
         modelBuilder.Entity<Brand>(entity =>
         {
