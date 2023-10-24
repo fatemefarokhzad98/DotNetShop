@@ -20,7 +20,7 @@ namespace App.Domain.Core.Identity
         }
         public AppRole(string name,string description):base(name)
         {
-            description = description;
+           Description = description;
         }
         public string Description { get; set; } = null!;
     }

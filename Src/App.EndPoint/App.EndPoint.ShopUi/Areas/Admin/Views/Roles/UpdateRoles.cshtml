@@ -1,38 +1,41 @@
-﻿@using App.EndPoint.ShopUi.Areas.Admin.Models.ViewModels.User
-
+﻿@using App.EndPoint.ShopUi.Areas.Admin.Models.ViewModels.User;
 
 @model RolesViewModel
 @{
-    ViewData["Title"] = "اضافه کردن نقش جدید";
-    Layout = "_AdminLayout";
+    ViewData["Title"] = "تغییر دادن نقش";
+     Layout = "_AdminLayout";
 }
+
 <div class="row">
     <div class="col-md-12">
         <div class="card">
             <div class="card-header bg-light">
-                افزودن نقش جدید
+                ویرایش نقش
             </div>
-            @if (ViewBag.errorcreate != null)
-            {
-                <div class="alert alert-danger alert-dismissable">
-                    @ViewBag.errorcreate
-                    <button type="button" class="close" data-dismiss="alert" aria-label="Close">
-                        <span aria-hidden="true">&times;</span>
-                    </button>
-                </div>
-            }
-                   @if (ViewBag.errorcreate != null)
+            @if (ViewBag.successfull != null)
             {
                 <div class="alert alert-success alert-dismissable">
-                    @ViewBag.errorcreate
+                    @ViewBag.successfull
                     <button type="button" class="close" data-dismiss="alert" aria-label="Close">
                         <span aria-hidden="true">&times;</span>
                     </button>
                 </div>
             }
-            <form asp-action="CreateRoles" asp-controller="Roles">
+
+            @if (ViewBag.error != null)
+            {
+                <div class="alert alert-danger alert-dismissable">
+                    @ViewBag.error
+                    <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+            }
+
+            <form  asp-area="Admin" asp-controller="Roles" asp-action="UpdateRoles">
                 <div class="row card-body mb-3">
                     <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+                    <input type="hidden" asp-for="RoleId" />
                     <div class="col-md-7 form-group">
                         <div class="row">
 
@@ -59,7 +62,7 @@
                     </div>
                     <div class="col-md-7">
                         <div class="col-md-9">
-                            <button type="submit" class="btn btn-info float-left">افزودن نقش</button>
+                            <button type="submit" class="btn btn-info float-left">ذخیره تغییرات</button>
                         </div>
                         
                     </div>

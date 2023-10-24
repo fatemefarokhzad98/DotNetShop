@@ -51,7 +51,7 @@ namespace App.EndPoint.ShopUi.Areas.Admin.Controllers.User
                 {
                     return RedirectToAction("ReadRoles");
 
-                    ViewBag.errorcreate = "اطلاعات با موفقیت ذخیره شد";
+                    ViewBag.Succeeded = "اطلاعات با موفقیت ذخیره شد";
                 }
                 ViewBag.errorcreate = "خطا در ذخیره نقش رخ داده است";
                 return View(result);
@@ -64,9 +64,10 @@ namespace App.EndPoint.ShopUi.Areas.Admin.Controllers.User
             return View(model);
         }
         [HttpGet]
-        public async Task< IActionResult> UpdateRoles(int modelId)
+        public async Task< IActionResult> UpdateRoles(string modelName)
         {
-           var result= await _roleManager.FindByIdAsync(string.Empty+modelId);
+       
+           var result= await _roleManager.FindByNameAsync(modelName);
             if (result is null)
             {
                 return NotFound();
@@ -96,9 +97,9 @@ namespace App.EndPoint.ShopUi.Areas.Admin.Controllers.User
             return View();
         }
         [HttpGet]
-        public async Task<IActionResult> RemoveRoles(int modelId)
+        public async Task<IActionResult> RemoveRoles(string modelName)
         {
-            var rolemodel = await _roleManager.FindByIdAsync(string.Empty+ modelId);
+            var rolemodel = await _roleManager.FindByNameAsync(modelName);
             if (rolemodel == null)
             {
                 return NotFound();
@@ -110,7 +111,7 @@ namespace App.EndPoint.ShopUi.Areas.Admin.Controllers.User
 
                 return RedirectToAction("ReadRoles");
             }
-            ViewBag.errordelete = "در عملیات حذف مشکل ایجاد شده";
+           
 
             return RedirectToAction("ReadRoles");
         }

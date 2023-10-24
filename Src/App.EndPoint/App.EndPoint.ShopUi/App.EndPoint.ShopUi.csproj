@@ -24,6 +24,7 @@
   <ItemGroup>
     <Folder Include="Areas\Admin\Controllers\Comment\" />
     <Folder Include="Areas\Admin\Views\ManagmentUser\" />
+    <Folder Include="Areas\Admin\Views\User\" />
   </ItemGroup>
 
   <ItemGroup>

@@ -2,7 +2,6 @@
 @using X.PagedList.Mvc.Core;
 @using X.PagedList;
 @using X.PagedList.Web.Common;
-
 @model IEnumerable<RolesViewModel>
 @{
     ViewData["Title"] = "نمایش نقش ها";
@@ -18,7 +17,7 @@
             </div>
             <div class="card-body">
                 <p>
-                    <a asp-action="CreateRoles" class="btn btn-primary">افزودن نقش جدید</a>
+                    <a   asp-area="Admin" asp-action="CreateRoles" asp-controller="Roles"  class="btn btn-primary">افزودن نقش جدید</a>
                 </p>
                 <table class="table table-striped table-bordered">
                     <thead>
@@ -38,15 +37,17 @@
                         <tr>
                             <td>
                                 @Html.DisplayFor(modelItem => item.RoleName)
+                          
                             </td>
                             <td>
                                 @Html.DisplayFor(modelItem => item.RoleDescription)
+                              
                             </td>
                             <td class="text-center">
-                                <a asp-action="EditRoles" asp-route-id="@item.RoleId " class="btn btn-success btn-icon">
+                                <a   asp-area="Admin"  asp-controller="Roles"    asp-action="UpdateRoles"  asp-route-id= "@item.RoleName"  class="btn btn-success btn-icon">
                                     <i class="fa fa-edit"></i>
                                 </a>
-                                <a asp-action="RemoveRoles" asp-route-id="@item.RoleId" class="btn btn-danger btn-icon">
+                                <a  asp-area="Admin"  asp-controller="Roles"  asp-action="RemoveRoles" asp-route-id= "@item.RoleName" class="btn btn-danger btn-icon">
                                     <i class="fa fa-trash"></i>
                                 </a>
                             </td>
@@ -55,7 +56,7 @@
                     </tbody>
                 </table>
                 <nav>
-                   @Html.PagedListPager((IPagedList)Model,page => Url.Action("ReadRoles") ,new PagedListRenderOptions{
+                   @Html.PagedListPager((IPagedList)Model,page => Url.Action("ReadRoles",new {page}) ,new PagedListRenderOptions{
                        LiElementClasses = new string[]{"Page-item"},
                        PageClasses=new string[]{"page-link"} })
 
