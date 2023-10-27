@@ -61,6 +61,6 @@ namespace App.Domain.Core.Product.Entities
 
         public virtual StatusEntities.Status Status { get; set; } = null!;
 
-        public virtual UserEntities.User SubmitOperator { get; set; } = null!;
+        public virtual UserEntities.Customers SubmitOperator { get; set; } = null!;
     }
 }

@@ -34,5 +34,5 @@ public partial class Comment
 
     public virtual StatusEntities.Status Status { get; set; } = null!;
 
-    public virtual USerEntities.User SubmitUser { get; set; } = null!;
+    public virtual USerEntities.Customers SubmitUser { get; set; } = null!;
 }

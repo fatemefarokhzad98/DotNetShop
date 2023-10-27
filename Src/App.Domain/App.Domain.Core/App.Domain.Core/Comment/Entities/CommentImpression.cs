@@ -20,5 +20,5 @@ public partial class CommentImpression
 
     public virtual ImpressionType ImpressionType { get; set; } = null!;
 
-    public virtual USerEntities.User SubmmitUser { get; set; } = null!;
+    public virtual USerEntities.Customers SubmmitUser { get; set; } = null!;
 }

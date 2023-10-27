@@ -11,11 +11,11 @@ using Microsoft.EntityFrameworkCore;
 using App.Domain.Core.User.Entities;
 using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 using Microsoft.AspNetCore.Identity;
-using App.Domain.Core.Identity;
+
 
 namespace App.Infrastructure.DataBase.Data;
 
-public partial class AppDbContext : IdentityDbContext<IdentityUser<int>,AppRole,int>
+public partial class AppDbContext : IdentityDbContext<AppUser, AppRole,int,IdentityUserClaim<int>,AppUserRole,IdentityUserLogin<int>,IdentityRoleClaim<int>,IdentityUserToken<int>>
 {
 
     public AppDbContext()
@@ -35,7 +35,7 @@ public partial class AppDbContext : IdentityDbContext<IdentityUser<int>,AppRole,
 
     public virtual DbSet<CollectionProduct> CollectionProducts { get; set; }
 
-    public virtual DbSet<ColorEntities.Color> Colors { get; set; }
+    public virtual DbSet<Color> Colors { get; set; }
 
     public virtual DbSet<Comment> Comments { get; set; }
 
@@ -65,20 +65,35 @@ public partial class AppDbContext : IdentityDbContext<IdentityUser<int>,AppRole,
 
     public virtual DbSet<TypeFile> TypeFiles { get; set; }
 
-    public virtual DbSet<User> Users { get; set; }
+    public virtual DbSet<Customers> Users { get; set; }
 
 
     protected override void OnModelCreating(ModelBuilder modelBuilder)
     {
         base.OnModelCreating(modelBuilder);
-        modelBuilder.Entity<AppRole>().ToTable("AspNetRoles").ToTable("AppicationRoles");
+        modelBuilder.Entity<AppRole>().ToTable("AspNetRoles").ToTable("ApplicationRoles");
+        modelBuilder.Entity<AppUser>().ToTable("AspNetUsers").ToTable("ApplicationUsers");
+        modelBuilder.Entity<AppUserRole>().ToTable("AspNetUserRoles").ToTable("ApplicationUserRoles");
+        modelBuilder.Entity<AppUserRole>(entity =>
+        {
+
+
+            entity.HasOne(e => e.Role).WithMany(r => r.Users).HasForeignKey(k => k.RoleId);
+            entity.HasOne(e => e.User).WithMany(u => u.Roles).HasForeignKey(k => k.UserId);
+
+        });
+
+
+
 
         modelBuilder.Entity<Brand>(entity =>
         {
             entity.HasKey(e => e.Id).HasName("PK__Brands__3214EC07D5C50981");
 
             entity.Property(e => e.Name).HasMaxLength(150);
+
         });
+
 
         modelBuilder.Entity<Category>(entity =>
         {
@@ -103,7 +118,7 @@ public partial class AppDbContext : IdentityDbContext<IdentityUser<int>,AppRole,
                 .HasConstraintName("FK_CollectionProducts_Products");
         });
 
-        modelBuilder.Entity<ColorEntities.Color>(entity =>
+        modelBuilder.Entity<Color>(entity =>
         {
             entity.Property(e => e.ColorCode).HasMaxLength(150);
             entity.Property(e => e.Name).HasMaxLength(150);
@@ -287,7 +302,7 @@ public partial class AppDbContext : IdentityDbContext<IdentityUser<int>,AppRole,
             entity.Property(e => e.ValidExtentions).HasMaxLength(150);
         });
 
-        modelBuilder.Entity<User>(entity =>
+        modelBuilder.Entity<Customers>(entity =>
         {
             entity.Property(e => e.Email).HasMaxLength(150);
             entity.Property(e => e.FirstName).HasMaxLength(150);

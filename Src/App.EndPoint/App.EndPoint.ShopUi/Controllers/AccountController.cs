@@ -1,4 +1,5 @@
-﻿using App.EndPoint.ShopUi.Models;
+﻿using App.Domain.Core.User.Entities;
+using App.EndPoint.ShopUi.Models;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 
@@ -6,9 +7,9 @@ namespace App.EndPoint.ShopUi.Controllers
 {
     public class AccountController : Controller
     {
-        private readonly UserManager<IdentityUser<int>> _userManager;
-        private readonly SignInManager<IdentityUser<int>>  _signInManager;
-        public AccountController(UserManager<IdentityUser<int>> userManager, SignInManager<IdentityUser<int>> signInManager)
+        private readonly UserManager<AppUser> _userManager;
+        private readonly SignInManager<AppUser>  _signInManager;
+        public AccountController(UserManager<AppUser> userManager, SignInManager<AppUser> signInManager)
         {
             _userManager = userManager;
             _signInManager = signInManager;
@@ -74,7 +75,8 @@ namespace App.EndPoint.ShopUi.Controllers
         {
             if (ModelState.IsValid)
             {
-                var user=new IdentityUser<int>{
+                var user=new AppUser
+                {
                     UserName=model.Email,
                     Email=model.Email,
                     PhoneNumber=model.Mobile,

@@ -13,7 +13,10 @@ namespace App.EndPoint.ShopUi.Areas.Admin.Models.ViewModels.User
         [Required]
         [Display(Name = "توضیحات نقش")]
         public string RoleDescription { get; set; }
-      
+        [Display(Name = "تعداد کاربران")]
+        public  int CountUser { get; set; }
+        public string RecentRoleName { get; set; }
+
 
     }
 }

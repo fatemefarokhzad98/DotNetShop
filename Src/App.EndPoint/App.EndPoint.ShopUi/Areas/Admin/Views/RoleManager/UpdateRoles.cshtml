@@ -17,25 +17,26 @@
                 <div class="alert alert-success alert-dismissable">
                     @ViewBag.successfull
                     <button type="button" class="close" data-dismiss="alert" aria-label="Close">
-                        <span aria-hidden="true">&times;</span>
+                        <span aria-hidden="true"></span>
                     </button>
                 </div>
             }
 
-            @if (ViewBag.error != null)
+            @if (ViewBag.Error != null)
             {
                 <div class="alert alert-danger alert-dismissable">
-                    @ViewBag.error
+                    @ViewBag.Error
                     <button type="button" class="close" data-dismiss="alert" aria-label="Close">
-                        <span aria-hidden="true">&times;</span>
+                        <span aria-hidden="true"></span>
                     </button>
                 </div>
             }
 
-            <form  asp-area="Admin" asp-controller="Roles" asp-action="UpdateRoles">
+            <form  asp-area="Admin" asp-controller="RoleManager" asp-action="UpdateRoles">
                 <div class="row card-body mb-3">
                     <div asp-validation-summary="ModelOnly" class="text-danger"></div>
-                    <input type="hidden" asp-for="RoleId" />
+                     <input type="hidden" asp-for="RoleId" />
+                    <input type="hidden" asp-for="RecentRoleName" />
                     <div class="col-md-7 form-group">
                         <div class="row">
 

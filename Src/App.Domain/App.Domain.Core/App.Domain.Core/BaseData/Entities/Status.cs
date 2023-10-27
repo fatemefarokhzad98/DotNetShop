@@ -23,5 +23,5 @@ public partial class Status
 
     public virtual ICollection<ProductEntities.Product> Products { get; set; } = new List<ProductEntities.Product>();
 
-    public virtual ICollection<UserEntities.User> Users { get; set; } = new List<UserEntities.User>();
+    public virtual ICollection<UserEntities.Customers> Users { get; set; } = new List<UserEntities.Customers>();
 }

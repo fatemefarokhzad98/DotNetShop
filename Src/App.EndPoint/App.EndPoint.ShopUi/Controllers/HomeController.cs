@@ -1,4 +1,6 @@
-﻿using App.Domain.Core.Identity;
+﻿
+using App.Domain.AppServices.User;
+using App.Domain.Core.User.Entities;
 using App.EndPoint.ShopUi.Models;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
@@ -9,18 +11,13 @@ namespace App.EndPoint.ShopUi.Controllers
     public class HomeController : Controller
     {
         private readonly ILogger<HomeController> _logger;
-        private readonly UserManager<IdentityUser<int>> _userManager;
-        private readonly RoleManager<AppRole> _roleManager;
+        
 
         public HomeController(ILogger<HomeController> logger
-            ,UserManager<IdentityUser<int>> userManager
-            ,RoleManager<AppRole> roleManager)
+            )
         {
             _logger = logger;
-            _roleManager = roleManager;
-            _userManager = userManager;
-
-
+        
         }
 
         public IActionResult Index()

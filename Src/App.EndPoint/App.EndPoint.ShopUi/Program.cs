@@ -1,13 +1,15 @@
 using App.Domain.AppServices.BaseData;
 using App.Domain.AppServices.Product;
+using App.Domain.AppServices.User;
 using App.Domain.Core.BaseData.Contracts.AppServices;
 using App.Domain.Core.BaseData.Contracts.Repositories;
 using App.Domain.Core.BaseData.Contracts.Services;
-using App.Domain.Core.Identity;
+
 using App.Domain.Core.Product.Contracts.AppServices;
 using App.Domain.Core.Product.Contracts.Repositories;
 using App.Domain.Core.Product.Contracts.Services;
-
+using App.Domain.Core.User.Contracts.AppServices;
+using App.Domain.Core.User.Entities;
 using App.Domain.Services.BaseData;
 using App.Domain.Services.Product;
 using App.Infrastructure.DataBase.Data;
@@ -42,8 +44,8 @@ builder.Services.AddDbContext<AppDbContext>(option =>
     option.UseSqlServer("Data Source=DESKTOP-CGR2LP5\\MSSQLSERVER2022;Initial Catalog=DotNetShopDb; Encrypt=False; TrustServerCertificate=True;Integrated Security=true");
 });
 
-
-builder.Services.AddIdentity<IdentityUser<int>,AppRole>(
+#region Identity
+builder.Services.AddIdentity<AppUser,AppRole>(
     options=>
     {
         options.SignIn.RequireConfirmedAccount = false;
@@ -57,47 +59,58 @@ builder.Services.AddIdentity<IdentityUser<int>,AppRole>(
         options.Password.RequiredLength = 3;
         //options.User.AllowedUserNameCharacters
         //options.User.RequireUniqueEmail
-        
-
       
-      
-
-
     })
     .AddEntityFrameworkStores<AppDbContext>();
 
+
+#endregion
+
+builder.Services.AddScoped<AppDbContext>();
+#region Brand
 builder.Services.AddScoped<IBrandAppService, BrandAppService>();
 builder.Services.AddScoped<IBrandService, BrandService>();
 builder.Services.AddScoped<IBrandSurnessService, BrandSurenessService>();
 builder.Services.AddScoped<IBrandCommandRepository, BrandCommandRepository>();
 builder.Services.AddScoped<IBrandQueryRepository, BrandQueryRepository>();
-builder.Services.AddScoped<AppDbContext>();
+#endregion 
+
+#region Color
 builder.Services.AddScoped<IColorAppService, ColorAppService>();
 builder.Services.AddScoped<IColorService, ColorService>();
 builder.Services.AddScoped<IColorCommandRepository, ColorCommandRepository>();
 builder.Services.AddScoped<IColorQueryRepository, ColorQueryRepository>();
 builder.Services.AddScoped<IColorSurnessService, ColorSurenessService>();
-
+#endregion
+#region Model
 builder.Services.AddScoped<IModelAppService, ModelAppService>();
 builder.Services.AddScoped<IModelService, ModelService>();
 builder.Services.AddScoped<IModelCommandRepository, ModelCommandRepository>();
 builder.Services.AddScoped<IModelQueryRepository, ModelQueryRepository>();
 builder.Services.AddScoped<IModelSurnessService, ModelSurenessService>();
+#endregion
+#region Category
 builder.Services.AddScoped<ICategoryAppService, CategoryAppService>();
 builder.Services.AddScoped<ICategoryService, CategoryService>();
 builder.Services.AddScoped<ICategoryCommandRepository, CategoryCommandRepository>();
 builder.Services.AddScoped<ICategoryQueryRepository, CategoryQueryRepository>();
 builder.Services.AddScoped<ICategorySurnessService, CategorySurenessService>();
+#endregion
+#region Collection
 builder.Services.AddScoped<ICollectionAppService, CollectionAppService>();
 builder.Services.AddScoped<ICollectionService, CollectionService>();
 builder.Services.AddScoped<ICollectionCommandRepository, CollectionCommandRepository>();
 builder.Services.AddScoped<ICollectionQueryRepository, CollectionQueryRepository>();
 builder.Services.AddScoped<IColletionSurnessService, CollectionSurenessService>();
+#endregion
+#region Product
 builder.Services.AddScoped<IProductCommandRepository, ProductCommandRepository>();
 builder.Services.AddScoped<IProductQueryRepository, ProductQueryRepository>();
 builder.Services.AddScoped<IProductService, ProductService>();
 builder.Services.AddScoped<IProductSurnessService, ProductSurnessService>();
 builder.Services.AddScoped<IProductAppService, ProductAppService>();
+#endregion
+builder.Services.AddScoped<IAppRoleManager, AppRoleManager>();
 var app = builder.Build();
 
 // Configure the HTTP request pipeline.
@@ -120,8 +133,6 @@ app.UseAuthorization();
 app.UseEndpoints(endpoints=>
 {
 
-  
-
     endpoints.MapControllerRoute(
         name: "areaRoute",
       pattern: "{area:exists}/{controller=Home}/{action=Index}/{id?}");
@@ -133,17 +144,6 @@ app.UseEndpoints(endpoints=>
       pattern: "{contoller=Home}/{action=Index}/{id?}"
       );
 
-
-    
-
-  
-   
-
-  
 });
-
-
-
-
 
 app.Run();

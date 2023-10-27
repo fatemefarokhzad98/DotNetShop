@@ -14,10 +14,8 @@
     <Folder Include="Comment\Enums\" />
     <Folder Include="Comment\Dtos\" />
     <Folder Include="Product\Enums\" />
-    <Folder Include="User\Contracts\AppServices\" />
     <Folder Include="User\Contracts\Services\" />
     <Folder Include="User\Contracts\Repositories\" />
-    <Folder Include="User\Dtos\" />
     <Folder Include="User\Enums\" />
   </ItemGroup>
 

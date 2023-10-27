@@ -12,25 +12,25 @@
             <div class="card-header bg-light">
                 افزودن نقش جدید
             </div>
-            @if (ViewBag.errorcreate != null)
+            @if (ViewBag.Error != null)
             {
                 <div class="alert alert-danger alert-dismissable">
-                    @ViewBag.errorcreate
+                    @ViewBag.Error
                     <button type="button" class="close" data-dismiss="alert" aria-label="Close">
-                        <span aria-hidden="true">&times;</span>
+                        <span aria-hidden="true"></span>
                     </button>
                 </div>
             }
-                   @if (ViewBag.Succeeded != null)
+                   @if (ViewBag.successfull != null)
             {
                 <div class="alert alert-success alert-dismissable">
-                    @ViewBag.Succeeded
+                    @ViewBag.successfull
                     <button type="button" class="close" data-dismiss="alert" aria-label="Close">
-                        <span aria-hidden="true">&times;</span>
+                        <span aria-hidden="true"></span>
                     </button>
                 </div>
             }
-            <form  asp-area="Admin" asp-action="CreateRoles"   asp-controller="Roles">
+            <form  asp-area="Admin" asp-action="CreateRoles"   asp-controller="RoleManager">
                 <div class="row card-body mb-3">
                     <div asp-validation-summary="ModelOnly" class="text-danger"></div>
                     <div class="col-md-7 form-group">
