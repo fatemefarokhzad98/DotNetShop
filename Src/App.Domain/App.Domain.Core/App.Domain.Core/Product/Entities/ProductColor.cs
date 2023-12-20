@@ -12,7 +12,7 @@ public partial class ProductColor
 
     public int ColorId { get; set; }
 
-    public bool Isexit { get; set; }
+    public bool IsExit { get; set; }
 
     public virtual ColorEntities.Color Color { get; set; } = null!;
 

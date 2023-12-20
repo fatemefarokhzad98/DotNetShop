@@ -20,7 +20,7 @@ namespace App.Infrastructure.Repository.Ef.BaseData
 
         public async Task<ModelDto?> GetModel(string name)
         {
-            var model = await _appDbContext.Models.Where(x => x.Name == name).AsNoTracking().Select(c => new ModelDto()
+            var model = await _appDbContext.Modell.Where(x => x.Name == name).AsNoTracking().Select(c => new ModelDto()
             {
                 Id = c.Id,
                 Name = c.Name,
@@ -38,7 +38,7 @@ namespace App.Infrastructure.Repository.Ef.BaseData
         public async Task<ModelDto?> GetModel(int id)
         {
 
-            var model = await _appDbContext.Models.Where(x => x.Id== id).AsNoTracking().Select(c => new ModelDto()
+            var model = await _appDbContext.Modell.Where(x => x.Id== id).AsNoTracking().Select(c => new ModelDto()
             {
                 Id = c.Id,
                 Name = c.Name,
@@ -55,7 +55,7 @@ namespace App.Infrastructure.Repository.Ef.BaseData
 
         public async Task<List<ModelDto>> ReadModle()
         {
-            var models = await _appDbContext.Models.AsNoTracking().Select(c => new ModelDto()
+            var models = await _appDbContext.Modell.AsNoTracking().Select(c => new ModelDto()
             {
                 Id = c.Id,
                 Name = c.Name,

@@ -31,15 +31,15 @@ namespace App.Infrastructure.Repository.Ef.BaseData
                 DisplayOrder = displayOrder,
             
             };
-            await _appDbContext.Categories.AddAsync(category);
+            await _appDbContext.Category.AddAsync(category);
             await _appDbContext.SaveChangesAsync();
             return category.Id;
         }
 
         public async Task<CategoryDto> RemoveCategory(int id)
         {
-            var category = await _appDbContext.Categories.Where(x => x.Id == id).SingleAsync();
-            var categoryDto = await _appDbContext.Categories.Where(x => x.Id == id).AsNoTracking().Select(c => new CategoryDto()
+            var category = await _appDbContext.Category.Where(x => x.Id == id).SingleAsync();
+            var categoryDto = await _appDbContext.Category.Where(x => x.Id == id).AsNoTracking().Select(c => new CategoryDto()
             {
                 DisplayOrder = c.DisplayOrder,
                 Id = c.Id,
@@ -58,7 +58,7 @@ namespace App.Infrastructure.Repository.Ef.BaseData
 
         public async Task<int> UpdateCategory(bool isActive, int displayOrder, string name, int? parentCategoryId, int id)
         {
-            var category = await _appDbContext.Categories.Where(x => x.Id == id).FirstOrDefaultAsync();
+            var category = await _appDbContext.Category.Where(x => x.Id == id).FirstOrDefaultAsync();
             category.Name = name;
             category.ParentCategoryId = parentCategoryId;
             category.DisplayOrder= displayOrder;

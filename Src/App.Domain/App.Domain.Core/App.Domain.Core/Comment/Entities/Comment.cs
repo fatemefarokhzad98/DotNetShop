@@ -1,4 +1,5 @@
-﻿using System;
+﻿using App.Domain.Core.User.Entities;
+using System;
 using System.Collections.Generic;
 using ProductEntities = App.Domain.Core.Product.Entities;
 using StatusEntities = App.Domain.Core.BaseData.Entities;
@@ -20,13 +21,17 @@ public partial class Comment
 
     public int StatusId { get; set; }
 
+    
     public int SubmitUserId { get; set; }
 
     public int? ParentCommentId { get; set; }
+    public Comment? ParentComment { get; set; }
+
 
     public DateTime? LastEditTimeStatus { get; set; }
 
     public int? Rate { get; set; }
+    public bool IsDeleted { get; set; }
 
     public virtual ICollection<CommentImpression> CommentImpressions { get; set; } = new List<CommentImpression>();
 
@@ -34,5 +39,5 @@ public partial class Comment
 
     public virtual StatusEntities.Status Status { get; set; } = null!;
 
-    public virtual USerEntities.Customers SubmitUser { get; set; } = null!;
+    public virtual AppUser SubmitUser { get; set; } = null!;
 }

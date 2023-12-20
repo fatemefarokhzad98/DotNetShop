@@ -15,5 +15,5 @@ public partial class ProductView
 
     public virtual Product Product { get; set; } = null!;
 
-    public virtual UserEntities.Customers? ViewerUser { get; set; }
+    public virtual UserEntities.AppUser? ViewerUser { get; set; }
 }

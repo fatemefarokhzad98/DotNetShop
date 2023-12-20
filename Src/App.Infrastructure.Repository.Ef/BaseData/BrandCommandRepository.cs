@@ -38,7 +38,7 @@ namespace App.Infrastructure.Repository.Ef.BaseData
 
         public async Task RemoveBrand(int Id)
         {
-            var brand = await _appDbContext.Brands.Where(x => x.Id == Id).SingleAsync();
+            var brand = await _appDbContext.Brand.Where(x => x.Id == Id).SingleAsync();
             _appDbContext.Remove(brand);
            await _appDbContext.SaveChangesAsync();
 
@@ -47,7 +47,7 @@ namespace App.Infrastructure.Repository.Ef.BaseData
 
         public async Task UpdateBrand(string name, int displayOrder,int id,DateTime datetime)
         {
-          var brand=await  _appDbContext.Brands.Where(x => x.Id == id).SingleAsync();
+          var brand=await  _appDbContext.Brand.Where(x => x.Id == id).SingleAsync();
             brand.Name= name;
             brand.DisplayOrder= displayOrder;
             brand.Id= id;

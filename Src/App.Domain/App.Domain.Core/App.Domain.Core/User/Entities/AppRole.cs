@@ -23,6 +23,6 @@ namespace App.Domain.Core.User.Entities
             Description = description;
         }
         public string Description { get; set; } = null!;
-        public  virtual ICollection< AppUserRole> Users { get; set; }= null!;
+        public  virtual ICollection<AppRoleUser> Users { get; set; }= null!;
     }
 }

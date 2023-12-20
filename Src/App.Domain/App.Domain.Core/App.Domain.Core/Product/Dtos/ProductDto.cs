@@ -23,7 +23,7 @@ namespace App.Domain.Core.Product.Dtos
         public string? Description { get; set; }
 
         public int? ModelId { get; set; }
-        public string ModelName { get; set; }
+        public string? ModelName { get; set; }
 
         public int Count { get; set; }
 

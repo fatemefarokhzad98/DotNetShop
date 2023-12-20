@@ -14,6 +14,6 @@ namespace App.Domain.Core.Product.Entities
 
 
         public virtual Product Product { get; set; } = null!;
-        public virtual Orders Order { get; set; } = null!;
+        public virtual Order Order { get; set; } = null!;
     }
 }

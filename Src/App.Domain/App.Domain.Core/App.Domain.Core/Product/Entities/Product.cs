@@ -1,4 +1,5 @@
 ﻿using App.Domain.Core.BaseData.Entities;
+using App.Domain.Core.User.Entities;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -30,26 +31,20 @@ namespace App.Domain.Core.Product.Entities
         public int Count { get; set; }
 
         public decimal Price { get; set; }
-
+    
         public bool IsShowPrice { get; set; }
 
         public bool IsActive { get; set; }
         //TODO:
         public DateTime SubmitTime { get; set; }
+        public DateTime SubmitEditTime { get; set; }
+
 
         public int StatusId { get; set; }
 
-        public int SubmitOperatorId { get; set; }
-
-        public virtual Brand Brand { get; set; } = null!;
-
-        public virtual Category Category { get; set; } = null!;
-
-        public virtual ICollection<CollectionProduct> CollectionProducts { get; set; } = new List<CollectionProduct>();
+        public virtual ICollection<Collection> Collections { get; set; } = new List<Collection>();
 
         public virtual ICollection<CommentEntities.Comment> Comments { get; set; } = new List<CommentEntities.Comment>();
-
-        public virtual Model? Model { get; set; }
 
         public virtual ICollection<ProductColor> ProductColors { get; set; } = new List<ProductColor>();
 
@@ -59,8 +54,14 @@ namespace App.Domain.Core.Product.Entities
 
         public virtual ICollection<ProductView> ProductViews { get; set; } = new List<ProductView>();
 
-        public virtual StatusEntities.Status Status { get; set; } = null!;
+      
+        public virtual ICollection<ProductOrder>?Orders { get; set; }
+       
+        public virtual Brand Brand { get; set; } = null!;
 
-        public virtual UserEntities.Customers SubmitOperator { get; set; } = null!;
+        public virtual Category Category { get; set; } = null!;
+        public virtual StatusEntities.Status Status { get; set; } = null!;
+        public virtual Model? Model { get; set; }
+
     }
 }

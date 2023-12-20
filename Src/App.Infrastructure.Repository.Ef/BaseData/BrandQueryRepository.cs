@@ -22,7 +22,7 @@ namespace App.Infrastructure.Repository.Ef.BaseData
 
         public async Task< List<BrandDto>> GetBrnds()
         {
-            return await _appDbContext.Brands.AsNoTracking().Select(b => new BrandDto()
+            return await _appDbContext.Brand.AsNoTracking().Select(b => new BrandDto()
             {
                 Id = b.Id,
                 Name = b.Name,
@@ -36,7 +36,7 @@ namespace App.Infrastructure.Repository.Ef.BaseData
 
         public async Task <BrandDto?> GetBrand(int Id)
         {
-            return await _appDbContext.Brands.AsNoTracking().Where(b => b.Id == Id).Select(p => new BrandDto()
+            return await _appDbContext.Brand.AsNoTracking().Where(b => b.Id == Id).Select(p => new BrandDto()
             {
                 Name = p.Name,
                 DisplayOrder = p.DisplayOrder,
@@ -50,7 +50,7 @@ namespace App.Infrastructure.Repository.Ef.BaseData
 
         public async Task< BrandDto?> GetBrand(string Name)
         {
-            return await _appDbContext.Brands.AsNoTracking().Where(b => b.Name == Name).Select(p => new BrandDto()
+            return await _appDbContext.Brand.AsNoTracking().Where(b => b.Name == Name).Select(p => new BrandDto()
             {
                 Name = p.Name,
                 DisplayOrder = p.DisplayOrder,

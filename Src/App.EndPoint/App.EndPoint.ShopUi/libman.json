@@ -3,12 +3,16 @@
   "defaultProvider": "cdnjs",
   "libraries": [
     {
-      "library": "jquery-validate@1.19.5",
+      "library": "jquery-validate@1.20.0",
       "destination": "wwwroot/AdminFiles/plugins/jquery-validate/"
     },
     {
       "library": "jquery-validation-unobtrusive@4.0.0",
       "destination": "wwwroot/AdminFiles/plugins/jquery-validation-unobtrusive/"
+    },
+    {
+      "library": "jquery@3.7.1",
+      "destination": "wwwroot/AdminFile/js/plugin/jquery/"
     }
   ]
 }

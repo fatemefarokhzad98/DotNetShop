@@ -40,7 +40,7 @@ namespace App.Infrastructure.Repository.Ef.BaseData
 
         public async Task RemoveColor(int id)
         {
-            var color = await _appDbContext.Colors.Where(x => x.Id == id).SingleAsync();
+            var color = await _appDbContext.Color.Where(x => x.Id == id).SingleAsync();
            _appDbContext.Remove(color);
            await _appDbContext.SaveChangesAsync();
 
@@ -48,7 +48,7 @@ namespace App.Infrastructure.Repository.Ef.BaseData
 
         public async Task UpdateColor(int id, string name, string ColorCode,bool isDeleted)
         {
-           var color= await _appDbContext.Colors.Where(x => x.Id == id).SingleAsync();
+           var color= await _appDbContext.Color.Where(x => x.Id == id).SingleAsync();
             color.Name = name;
             color.Id = id;
             color.ColorCode = ColorCode;

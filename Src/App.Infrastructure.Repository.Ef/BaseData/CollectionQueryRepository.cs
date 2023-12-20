@@ -20,7 +20,7 @@ namespace App.Infrastructure.Repository.Ef.BaseData
 
         public async Task<CollectionDto?> GetCollection(int id)
         {
-            var collection = await _appDbContext.Collections.Where(x => x.Id == id).AsNoTracking().Select(c => new CollectionDto()
+            var collection = await _appDbContext.Collection.Where(x => x.Id == id).AsNoTracking().Select(c => new CollectionDto()
             {
                 Id= c.Id,   
                 IsDeleted=c.IsDeleted,
@@ -33,7 +33,7 @@ namespace App.Infrastructure.Repository.Ef.BaseData
 
         public async Task<CollectionDto?> GetCollection(string name)
         {
-            var collection = await _appDbContext.Collections.Where(x => x.Name== name).AsNoTracking().Select(c => new CollectionDto()
+            var collection = await _appDbContext.Collection.Where(x => x.Name== name).AsNoTracking().Select(c => new CollectionDto()
             {
                 Id = c.Id,
                 IsDeleted = c.IsDeleted,
@@ -45,7 +45,7 @@ namespace App.Infrastructure.Repository.Ef.BaseData
 
         public async Task<List<CollectionDto>> ReadCollection()
         {
-            var collections = await _appDbContext.Collections.AsNoTracking().Select(c => new CollectionDto()
+            var collections = await _appDbContext.Collection.AsNoTracking().Select(c => new CollectionDto()
             {
                 Name = c.Name,
                 Id = c.Id,

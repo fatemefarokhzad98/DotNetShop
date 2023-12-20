@@ -47,7 +47,7 @@ namespace App.Infrastructure.DataBase.Migrations
                     b.HasKey("Id")
                         .HasName("PK__Brands__3214EC07D5C50981");
 
-                    b.ToTable("Brands");
+                    b.ToTable("Brand");
                 });
 
             modelBuilder.Entity("App.Domain.Core.BaseData.Entities.Category", b =>
@@ -79,7 +79,7 @@ namespace App.Infrastructure.DataBase.Migrations
 
                     b.HasIndex("ParentCategoryId");
 
-                    b.ToTable("Categories");
+                    b.ToTable("Category");
                 });
 
             modelBuilder.Entity("App.Domain.Core.BaseData.Entities.Collection", b =>
@@ -103,7 +103,7 @@ namespace App.Infrastructure.DataBase.Migrations
 
                     b.HasKey("Id");
 
-                    b.ToTable("Collections");
+                    b.ToTable("Collection");
                 });
 
             modelBuilder.Entity("App.Domain.Core.BaseData.Entities.Color", b =>
@@ -116,8 +116,8 @@ namespace App.Infrastructure.DataBase.Migrations
 
                     b.Property<string>("ColorCode")
                         .IsRequired()
-                        .HasMaxLength(150)
-                        .HasColumnType("nvarchar(150)");
+                        .HasMaxLength(100)
+                        .HasColumnType("nvarchar(100)");
 
                     b.Property<bool>("IsDeleted")
                         .HasColumnType("bit");
@@ -129,7 +129,7 @@ namespace App.Infrastructure.DataBase.Migrations
 
                     b.HasKey("Id");
 
-                    b.ToTable("Colors");
+                    b.ToTable("Color");
                 });
 
             modelBuilder.Entity("App.Domain.Core.BaseData.Entities.Model", b =>
@@ -160,7 +160,7 @@ namespace App.Infrastructure.DataBase.Migrations
 
                     b.HasIndex("ParentModelId");
 
-                    b.ToTable("Models");
+                    b.ToTable("Modell");
                 });
 
             modelBuilder.Entity("App.Domain.Core.BaseData.Entities.Status", b =>
@@ -185,12 +185,12 @@ namespace App.Infrastructure.DataBase.Migrations
 
                     b.Property<string>("Title")
                         .IsRequired()
-                        .HasMaxLength(150)
-                        .HasColumnType("nvarchar(150)");
+                        .HasMaxLength(500)
+                        .HasColumnType("nvarchar(500)");
 
                     b.HasKey("Id");
 
-                    b.ToTable("Statuses");
+                    b.ToTable("Status");
                 });
 
             modelBuilder.Entity("App.Domain.Core.Comment.Entities.Comment", b =>
@@ -203,6 +203,9 @@ namespace App.Infrastructure.DataBase.Migrations
 
                     b.Property<DateTime>("CommentTime")
                         .HasColumnType("datetime2");
+
+                    b.Property<bool>("IsDeleted")
+                        .HasColumnType("bit");
 
                     b.Property<DateTime?>("LastEditTimeStatus")
                         .HasColumnType("datetime2");
@@ -223,15 +226,16 @@ namespace App.Infrastructure.DataBase.Migrations
                         .HasColumnType("int");
 
                     b.Property<string>("TextComment")
-                        .HasMaxLength(1500)
-                        .HasColumnType("nvarchar(1500)");
+                        .HasMaxLength(1000)
+                        .HasColumnType("nvarchar(1000)");
 
                     b.Property<string>("Title")
-                        .HasMaxLength(300)
-                        .HasColumnType("nchar(300)")
-                        .IsFixedLength();
+                        .HasMaxLength(200)
+                        .HasColumnType("nvarchar(200)");
 
                     b.HasKey("Id");
+
+                    b.HasIndex("ParentCommentId");
 
                     b.HasIndex("ProductId");
 
@@ -239,7 +243,7 @@ namespace App.Infrastructure.DataBase.Migrations
 
                     b.HasIndex("SubmitUserId");
 
-                    b.ToTable("Comments");
+                    b.ToTable("Comment");
                 });
 
             modelBuilder.Entity("App.Domain.Core.Comment.Entities.CommentImpression", b =>
@@ -262,8 +266,7 @@ namespace App.Infrastructure.DataBase.Migrations
                     b.Property<int>("SubmmitUserId")
                         .HasColumnType("int");
 
-                    b.HasKey("Id")
-                        .HasName("PK__CommentI__3214EC07A9D6DC18");
+                    b.HasKey("Id");
 
                     b.HasIndex("CommentId");
 
@@ -271,7 +274,7 @@ namespace App.Infrastructure.DataBase.Migrations
 
                     b.HasIndex("SubmmitUserId");
 
-                    b.ToTable("CommentImpressions");
+                    b.ToTable("CommentImpression");
                 });
 
             modelBuilder.Entity("App.Domain.Core.Comment.Entities.ImpressionType", b =>
@@ -284,15 +287,15 @@ namespace App.Infrastructure.DataBase.Migrations
 
                     b.Property<string>("Name")
                         .IsRequired()
-                        .HasMaxLength(150)
-                        .HasColumnType("nvarchar(150)");
+                        .HasMaxLength(200)
+                        .HasColumnType("nvarchar(200)");
 
                     b.HasKey("Id");
 
-                    b.ToTable("ImpressionTypes");
+                    b.ToTable("ImpressionType");
                 });
 
-            modelBuilder.Entity("App.Domain.Core.Product.Entities.CollectionProduct", b =>
+            modelBuilder.Entity("App.Domain.Core.Product.Entities.Order", b =>
                 {
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
@@ -300,19 +303,33 @@ namespace App.Infrastructure.DataBase.Migrations
 
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
 
-                    b.Property<int>("CollectionId")
+                    b.Property<long>("AmountPaid")
+                        .HasColumnType("bigint");
+
+                    b.Property<DateTime>("BuyDate")
+                        .HasColumnType("datetime2");
+
+                    b.Property<int>("Count")
                         .HasColumnType("int");
 
-                    b.Property<int>("ProductId")
+                    b.Property<string>("DispatchNumber")
+                        .IsRequired()
+                        .HasMaxLength(200)
+                        .HasColumnType("nvarchar(200)");
+
+                    b.Property<int>("StatusId")
+                        .HasColumnType("int");
+
+                    b.Property<int>("UserId")
                         .HasColumnType("int");
 
                     b.HasKey("Id");
 
-                    b.HasIndex("CollectionId");
+                    b.HasIndex("StatusId");
 
-                    b.HasIndex("ProductId");
+                    b.HasIndex("UserId");
 
-                    b.ToTable("CollectionProducts");
+                    b.ToTable("Order");
                 });
 
             modelBuilder.Entity("App.Domain.Core.Product.Entities.Product", b =>
@@ -333,7 +350,8 @@ namespace App.Infrastructure.DataBase.Migrations
                         .HasColumnType("int");
 
                     b.Property<string>("Description")
-                        .HasColumnType("nvarchar(max)");
+                        .HasMaxLength(1000)
+                        .HasColumnType("nvarchar(1000)");
 
                     b.Property<bool>("IsActive")
                         .HasColumnType("bit");
@@ -361,8 +379,8 @@ namespace App.Infrastructure.DataBase.Migrations
                     b.Property<int>("StatusId")
                         .HasColumnType("int");
 
-                    b.Property<int>("SubmitOperatorId")
-                        .HasColumnType("int");
+                    b.Property<DateTime>("SubmitEditTime")
+                        .HasColumnType("datetime2");
 
                     b.Property<DateTime>("SubmitTime")
                         .HasColumnType("datetime2");
@@ -377,9 +395,7 @@ namespace App.Infrastructure.DataBase.Migrations
 
                     b.HasIndex("StatusId");
 
-                    b.HasIndex("SubmitOperatorId");
-
-                    b.ToTable("Products");
+                    b.ToTable("Product");
                 });
 
             modelBuilder.Entity("App.Domain.Core.Product.Entities.ProductColor", b =>
@@ -393,9 +409,9 @@ namespace App.Infrastructure.DataBase.Migrations
                     b.Property<int>("ColorId")
                         .HasColumnType("int");
 
-                    b.Property<bool>("Isexit")
+                    b.Property<bool>("IsExit")
                         .HasColumnType("bit")
-                        .HasColumnName("ISExit");
+                        .HasColumnName("IsExit");
 
                     b.Property<int>("ProductId")
                         .HasColumnType("int");
@@ -406,7 +422,7 @@ namespace App.Infrastructure.DataBase.Migrations
 
                     b.HasIndex("ProductId");
 
-                    b.ToTable("ProductColors");
+                    b.ToTable("ProductColor");
                 });
 
             modelBuilder.Entity("App.Domain.Core.Product.Entities.ProductFile", b =>
@@ -440,7 +456,30 @@ namespace App.Infrastructure.DataBase.Migrations
 
                     b.HasIndex("ProductId");
 
-                    b.ToTable("ProductFiles");
+                    b.ToTable("ProductFile");
+                });
+
+            modelBuilder.Entity("App.Domain.Core.Product.Entities.ProductOrder", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
+
+                    b.Property<int>("OrderId")
+                        .HasColumnType("int");
+
+                    b.Property<int>("PrductId")
+                        .HasColumnType("int");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("OrderId");
+
+                    b.HasIndex("PrductId");
+
+                    b.ToTable("ProductOrder");
                 });
 
             modelBuilder.Entity("App.Domain.Core.Product.Entities.ProductTag", b =>
@@ -458,8 +497,8 @@ namespace App.Infrastructure.DataBase.Migrations
                         .HasColumnType("int");
 
                     b.Property<string>("Value")
-                        .HasMaxLength(500)
-                        .HasColumnType("nvarchar(500)");
+                        .HasMaxLength(150)
+                        .HasColumnType("nvarchar(150)");
 
                     b.HasKey("Id");
 
@@ -467,7 +506,7 @@ namespace App.Infrastructure.DataBase.Migrations
 
                     b.HasIndex("TagId");
 
-                    b.ToTable("ProductTags");
+                    b.ToTable("ProductTag");
                 });
 
             modelBuilder.Entity("App.Domain.Core.Product.Entities.ProductView", b =>
@@ -493,7 +532,7 @@ namespace App.Infrastructure.DataBase.Migrations
 
                     b.HasIndex("ViewerUserId");
 
-                    b.ToTable("ProductViews");
+                    b.ToTable("ProductView");
                 });
 
             modelBuilder.Entity("App.Domain.Core.Product.Entities.Tag", b =>
@@ -509,8 +548,8 @@ namespace App.Infrastructure.DataBase.Migrations
 
                     b.Property<string>("Name")
                         .IsRequired()
-                        .HasMaxLength(200)
-                        .HasColumnType("nvarchar(200)");
+                        .HasMaxLength(300)
+                        .HasColumnType("nvarchar(300)");
 
                     b.Property<int>("TagCategoryId")
                         .HasColumnType("int");
@@ -519,7 +558,7 @@ namespace App.Infrastructure.DataBase.Migrations
 
                     b.HasIndex("TagCategoryId");
 
-                    b.ToTable("Tags");
+                    b.ToTable("Tag");
                 });
 
             modelBuilder.Entity("App.Domain.Core.Product.Entities.TagCategory", b =>
@@ -537,7 +576,7 @@ namespace App.Infrastructure.DataBase.Migrations
 
                     b.HasKey("Id");
 
-                    b.ToTable("TagCategories");
+                    b.ToTable("TagCategory");
                 });
 
             modelBuilder.Entity("App.Domain.Core.Product.Entities.TypeFile", b =>
@@ -557,10 +596,9 @@ namespace App.Infrastructure.DataBase.Migrations
                         .HasMaxLength(150)
                         .HasColumnType("nvarchar(150)");
 
-                    b.HasKey("Id")
-                        .HasName("PK_FileTypes");
+                    b.HasKey("Id");
 
-                    b.ToTable("TypeFiles");
+                    b.ToTable("TypeFile");
                 });
 
             modelBuilder.Entity("App.Domain.Core.User.Entities.AppRole", b =>
@@ -577,7 +615,8 @@ namespace App.Infrastructure.DataBase.Migrations
 
                     b.Property<string>("Description")
                         .IsRequired()
-                        .HasColumnType("nvarchar(max)");
+                        .HasMaxLength(200)
+                        .HasColumnType("nvarchar(200)");
 
                     b.Property<string>("Name")
                         .HasMaxLength(256)
@@ -594,7 +633,22 @@ namespace App.Infrastructure.DataBase.Migrations
                         .HasDatabaseName("RoleNameIndex")
                         .HasFilter("[NormalizedName] IS NOT NULL");
 
-                    b.ToTable("ApplicationRoles", (string)null);
+                    b.ToTable("ApplicationRole", (string)null);
+                });
+
+            modelBuilder.Entity("App.Domain.Core.User.Entities.AppRoleUser", b =>
+                {
+                    b.Property<int>("UserId")
+                        .HasColumnType("int");
+
+                    b.Property<int>("RoleId")
+                        .HasColumnType("int");
+
+                    b.HasKey("UserId", "RoleId");
+
+                    b.HasIndex("RoleId");
+
+                    b.ToTable("ApplicationRoleUsers", (string)null);
                 });
 
             modelBuilder.Entity("App.Domain.Core.User.Entities.AppUser", b =>
@@ -608,6 +662,9 @@ namespace App.Infrastructure.DataBase.Migrations
                     b.Property<int>("AccessFailedCount")
                         .HasColumnType("int");
 
+                    b.Property<DateTime>("BrithDay")
+                        .HasColumnType("datetime2");
+
                     b.Property<string>("ConcurrencyStamp")
                         .IsConcurrencyToken()
                         .HasColumnType("nvarchar(max)");
@@ -618,6 +675,25 @@ namespace App.Infrastructure.DataBase.Migrations
 
                     b.Property<bool>("EmailConfirmed")
                         .HasColumnType("bit");
+
+                    b.Property<string>("FirstName")
+                        .IsRequired()
+                        .HasMaxLength(200)
+                        .HasColumnType("nvarchar(200)");
+
+                    b.Property<string>("Image")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<bool>("IsActive")
+                        .HasColumnType("bit");
+
+                    b.Property<string>("LastName")
+                        .IsRequired()
+                        .HasMaxLength(200)
+                        .HasColumnType("nvarchar(200)");
+
+                    b.Property<DateTime>("LastVisitDate")
+                        .HasColumnType("datetime2");
 
                     b.Property<bool>("LockoutEnabled")
                         .HasColumnType("bit");
@@ -642,8 +718,14 @@ namespace App.Infrastructure.DataBase.Migrations
                     b.Property<bool>("PhoneNumberConfirmed")
                         .HasColumnType("bit");
 
+                    b.Property<DateTime>("RigesterDate")
+                        .HasColumnType("datetime2");
+
                     b.Property<string>("SecurityStamp")
                         .HasColumnType("nvarchar(max)");
+
+                    b.Property<int>("StatusId")
+                        .HasColumnType("int");
 
                     b.Property<bool>("TwoFactorEnabled")
                         .HasColumnType("bit");
@@ -662,25 +744,12 @@ namespace App.Infrastructure.DataBase.Migrations
                         .HasDatabaseName("UserNameIndex")
                         .HasFilter("[NormalizedUserName] IS NOT NULL");
 
-                    b.ToTable("ApplicationUsers", (string)null);
+                    b.HasIndex("StatusId");
+
+                    b.ToTable("ApplicationUser", (string)null);
                 });
 
-            modelBuilder.Entity("App.Domain.Core.User.Entities.AppUserRole", b =>
-                {
-                    b.Property<int>("UserId")
-                        .HasColumnType("int");
-
-                    b.Property<int>("RoleId")
-                        .HasColumnType("int");
-
-                    b.HasKey("UserId", "RoleId");
-
-                    b.HasIndex("RoleId");
-
-                    b.ToTable("ApplicationUserRoles", (string)null);
-                });
-
-            modelBuilder.Entity("App.Domain.Core.User.Entities.Role", b =>
+            modelBuilder.Entity("App.Domain.Core.User.Entities.City", b =>
                 {
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
@@ -688,9 +757,28 @@ namespace App.Infrastructure.DataBase.Migrations
 
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
 
-                    b.Property<string>("Description")
+                    b.Property<string>("Name")
                         .IsRequired()
-                        .HasColumnType("nvarchar(max)");
+                        .HasMaxLength(200)
+                        .HasColumnType("nvarchar(200)");
+
+                    b.Property<int>("ProvinceId")
+                        .HasColumnType("int");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("ProvinceId");
+
+                    b.ToTable("City");
+                });
+
+            modelBuilder.Entity("App.Domain.Core.User.Entities.Province", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
 
                     b.Property<string>("Name")
                         .IsRequired()
@@ -699,71 +787,7 @@ namespace App.Infrastructure.DataBase.Migrations
 
                     b.HasKey("Id");
 
-                    b.ToTable("Roles");
-                });
-
-            modelBuilder.Entity("App.Domain.Core.User.Entities.User", b =>
-                {
-                    b.Property<int>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("int");
-
-                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
-
-                    b.Property<DateTime?>("BrithDay")
-                        .HasColumnType("datetime2");
-
-                    b.Property<string>("Email")
-                        .HasMaxLength(150)
-                        .HasColumnType("nvarchar(150)");
-
-                    b.Property<string>("FirstName")
-                        .IsRequired()
-                        .HasMaxLength(150)
-                        .HasColumnType("nvarchar(150)");
-
-                    b.Property<bool?>("IsEmailVerified")
-                        .HasColumnType("bit");
-
-                    b.Property<bool?>("IsMobileVerified")
-                        .HasColumnType("bit");
-
-                    b.Property<string>("LastName")
-                        .IsRequired()
-                        .HasMaxLength(150)
-                        .HasColumnType("nvarchar(150)");
-
-                    b.Property<string>("Mobile")
-                        .HasMaxLength(20)
-                        .HasColumnType("nchar(20)")
-                        .IsFixedLength();
-
-                    b.Property<string>("PassWord")
-                        .IsRequired()
-                        .HasMaxLength(150)
-                        .HasColumnType("nvarchar(150)");
-
-                    b.Property<int>("RoleId")
-                        .HasColumnType("int");
-
-                    b.Property<int>("StatusId")
-                        .HasColumnType("int");
-
-                    b.Property<DateTime>("SubmitTime")
-                        .HasColumnType("datetime2");
-
-                    b.Property<string>("UserName")
-                        .IsRequired()
-                        .HasMaxLength(150)
-                        .HasColumnType("nvarchar(150)");
-
-                    b.HasKey("Id");
-
-                    b.HasIndex("RoleId");
-
-                    b.HasIndex("StatusId");
-
-                    b.ToTable("Users");
+                    b.ToTable("Province");
                 });
 
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityRoleClaim<int>", b =>
@@ -854,6 +878,21 @@ namespace App.Infrastructure.DataBase.Migrations
                     b.ToTable("AspNetUserTokens", (string)null);
                 });
 
+            modelBuilder.Entity("ProductCollections", b =>
+                {
+                    b.Property<int>("CollectionsId")
+                        .HasColumnType("int");
+
+                    b.Property<int>("ProductsId")
+                        .HasColumnType("int");
+
+                    b.HasKey("CollectionsId", "ProductsId");
+
+                    b.HasIndex("ProductsId");
+
+                    b.ToTable("ProductCollections");
+                });
+
             modelBuilder.Entity("App.Domain.Core.BaseData.Entities.Category", b =>
                 {
                     b.HasOne("App.Domain.Core.BaseData.Entities.Category", "ParentCategory")
@@ -868,8 +907,7 @@ namespace App.Infrastructure.DataBase.Migrations
                     b.HasOne("App.Domain.Core.BaseData.Entities.Brand", "Brand")
                         .WithMany("Models")
                         .HasForeignKey("BrandId")
-                        .IsRequired()
-                        .HasConstraintName("FK_Models_Brands");
+                        .IsRequired();
 
                     b.HasOne("App.Domain.Core.BaseData.Entities.Model", "ParentModel")
                         .WithMany()
@@ -882,23 +920,27 @@ namespace App.Infrastructure.DataBase.Migrations
 
             modelBuilder.Entity("App.Domain.Core.Comment.Entities.Comment", b =>
                 {
+                    b.HasOne("App.Domain.Core.Comment.Entities.Comment", "ParentComment")
+                        .WithMany()
+                        .HasForeignKey("ParentCommentId");
+
                     b.HasOne("App.Domain.Core.Product.Entities.Product", "Product")
                         .WithMany("Comments")
                         .HasForeignKey("ProductId")
-                        .IsRequired()
-                        .HasConstraintName("FK_Comments_Products");
+                        .IsRequired();
 
                     b.HasOne("App.Domain.Core.BaseData.Entities.Status", "Status")
                         .WithMany("Comments")
                         .HasForeignKey("StatusId")
-                        .IsRequired()
-                        .HasConstraintName("FK_Comments_Statuses");
+                        .OnDelete(DeleteBehavior.ClientCascade)
+                        .IsRequired();
 
-                    b.HasOne("App.Domain.Core.User.Entities.User", "SubmitUser")
+                    b.HasOne("App.Domain.Core.User.Entities.AppUser", "SubmitUser")
                         .WithMany("Comments")
                         .HasForeignKey("SubmitUserId")
-                        .IsRequired()
-                        .HasConstraintName("FK_Comments_Users");
+                        .IsRequired();
+
+                    b.Navigation("ParentComment");
 
                     b.Navigation("Product");
 
@@ -912,20 +954,18 @@ namespace App.Infrastructure.DataBase.Migrations
                     b.HasOne("App.Domain.Core.Comment.Entities.Comment", "Comment")
                         .WithMany("CommentImpressions")
                         .HasForeignKey("CommentId")
-                        .IsRequired()
-                        .HasConstraintName("FK_CommentImpressions_Comments");
+                        .IsRequired();
 
                     b.HasOne("App.Domain.Core.Comment.Entities.ImpressionType", "ImpressionType")
                         .WithMany("CommentImpressions")
                         .HasForeignKey("ImpressionTypeId")
-                        .IsRequired()
-                        .HasConstraintName("FK_CommentImpressions_ImpressionTypes");
+                        .IsRequired();
 
-                    b.HasOne("App.Domain.Core.User.Entities.User", "SubmmitUser")
-                        .WithMany("CommentImpressions")
+                    b.HasOne("App.Domain.Core.User.Entities.AppUser", "SubmmitUser")
+                        .WithMany()
                         .HasForeignKey("SubmmitUserId")
-                        .IsRequired()
-                        .HasConstraintName("FK_CommentImpressions_Users");
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
 
                     b.Navigation("Comment");
 
@@ -934,23 +974,22 @@ namespace App.Infrastructure.DataBase.Migrations
                     b.Navigation("SubmmitUser");
                 });
 
-            modelBuilder.Entity("App.Domain.Core.Product.Entities.CollectionProduct", b =>
+            modelBuilder.Entity("App.Domain.Core.Product.Entities.Order", b =>
                 {
-                    b.HasOne("App.Domain.Core.BaseData.Entities.Collection", "Collection")
-                        .WithMany("CollectionProducts")
-                        .HasForeignKey("CollectionId")
-                        .IsRequired()
-                        .HasConstraintName("FK_CollectionProducts_Collections");
+                    b.HasOne("App.Domain.Core.BaseData.Entities.Status", "Status")
+                        .WithMany("Orders")
+                        .HasForeignKey("StatusId")
+                        .IsRequired();
 
-                    b.HasOne("App.Domain.Core.Product.Entities.Product", "Product")
-                        .WithMany("CollectionProducts")
-                        .HasForeignKey("ProductId")
-                        .IsRequired()
-                        .HasConstraintName("FK_CollectionProducts_Products");
+                    b.HasOne("App.Domain.Core.User.Entities.AppUser", "User")
+                        .WithMany("Order")
+                        .HasForeignKey("UserId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
 
-                    b.Navigation("Collection");
+                    b.Navigation("Status");
 
-                    b.Navigation("Product");
+                    b.Navigation("User");
                 });
 
             modelBuilder.Entity("App.Domain.Core.Product.Entities.Product", b =>
@@ -958,31 +997,22 @@ namespace App.Infrastructure.DataBase.Migrations
                     b.HasOne("App.Domain.Core.BaseData.Entities.Brand", "Brand")
                         .WithMany("Products")
                         .HasForeignKey("BrandId")
-                        .IsRequired()
-                        .HasConstraintName("FK_Products_Brands");
+                        .IsRequired();
 
                     b.HasOne("App.Domain.Core.BaseData.Entities.Category", "Category")
                         .WithMany("Products")
                         .HasForeignKey("CategoryId")
-                        .IsRequired()
-                        .HasConstraintName("FK_Products_Categories");
+                        .IsRequired();
 
                     b.HasOne("App.Domain.Core.BaseData.Entities.Model", "Model")
                         .WithMany("Products")
-                        .HasForeignKey("ModelId")
-                        .HasConstraintName("FK_Products_Models");
+                        .HasForeignKey("ModelId");
 
                     b.HasOne("App.Domain.Core.BaseData.Entities.Status", "Status")
                         .WithMany("Products")
                         .HasForeignKey("StatusId")
-                        .IsRequired()
-                        .HasConstraintName("FK_Products_Statuses");
-
-                    b.HasOne("App.Domain.Core.User.Entities.User", "SubmitOperator")
-                        .WithMany("Products")
-                        .HasForeignKey("SubmitOperatorId")
-                        .IsRequired()
-                        .HasConstraintName("FK_Products_Users");
+                        .OnDelete(DeleteBehavior.ClientCascade)
+                        .IsRequired();
 
                     b.Navigation("Brand");
 
@@ -991,8 +1021,6 @@ namespace App.Infrastructure.DataBase.Migrations
                     b.Navigation("Model");
 
                     b.Navigation("Status");
-
-                    b.Navigation("SubmitOperator");
                 });
 
             modelBuilder.Entity("App.Domain.Core.Product.Entities.ProductColor", b =>
@@ -1000,14 +1028,12 @@ namespace App.Infrastructure.DataBase.Migrations
                     b.HasOne("App.Domain.Core.BaseData.Entities.Color", "Color")
                         .WithMany("ProductColors")
                         .HasForeignKey("ColorId")
-                        .IsRequired()
-                        .HasConstraintName("FK_ProductColors_Colors");
+                        .IsRequired();
 
                     b.HasOne("App.Domain.Core.Product.Entities.Product", "Product")
                         .WithMany("ProductColors")
                         .HasForeignKey("ProductId")
-                        .IsRequired()
-                        .HasConstraintName("FK_ProductColors_Products");
+                        .IsRequired();
 
                     b.Navigation("Color");
 
@@ -1019,16 +1045,34 @@ namespace App.Infrastructure.DataBase.Migrations
                     b.HasOne("App.Domain.Core.Product.Entities.TypeFile", "FileType")
                         .WithMany("ProductFiles")
                         .HasForeignKey("FileTypeId")
-                        .IsRequired()
-                        .HasConstraintName("FK_ProductFiles_TypeFiles");
+                        .OnDelete(DeleteBehavior.ClientCascade)
+                        .IsRequired();
 
                     b.HasOne("App.Domain.Core.Product.Entities.Product", "Product")
                         .WithMany("ProductFiles")
                         .HasForeignKey("ProductId")
-                        .IsRequired()
-                        .HasConstraintName("FK_ProductFiles_Products");
+                        .IsRequired();
 
                     b.Navigation("FileType");
+
+                    b.Navigation("Product");
+                });
+
+            modelBuilder.Entity("App.Domain.Core.Product.Entities.ProductOrder", b =>
+                {
+                    b.HasOne("App.Domain.Core.Product.Entities.Order", "Order")
+                        .WithMany("Products")
+                        .HasForeignKey("OrderId")
+                        .OnDelete(DeleteBehavior.ClientCascade)
+                        .IsRequired();
+
+                    b.HasOne("App.Domain.Core.Product.Entities.Product", "Product")
+                        .WithMany("Orders")
+                        .HasForeignKey("PrductId")
+                        .OnDelete(DeleteBehavior.ClientCascade)
+                        .IsRequired();
+
+                    b.Navigation("Order");
 
                     b.Navigation("Product");
                 });
@@ -1038,14 +1082,13 @@ namespace App.Infrastructure.DataBase.Migrations
                     b.HasOne("App.Domain.Core.Product.Entities.Product", "Product")
                         .WithMany("ProductTags")
                         .HasForeignKey("ProductId")
-                        .IsRequired()
-                        .HasConstraintName("FK_ProductTags_Products");
+                        .IsRequired();
 
                     b.HasOne("App.Domain.Core.Product.Entities.Tag", "Tag")
                         .WithMany("ProductTags")
                         .HasForeignKey("TagId")
-                        .IsRequired()
-                        .HasConstraintName("FK_ProductTags_Tags");
+                        .OnDelete(DeleteBehavior.ClientCascade)
+                        .IsRequired();
 
                     b.Navigation("Product");
 
@@ -1057,13 +1100,11 @@ namespace App.Infrastructure.DataBase.Migrations
                     b.HasOne("App.Domain.Core.Product.Entities.Product", "Product")
                         .WithMany("ProductViews")
                         .HasForeignKey("ProductId")
-                        .IsRequired()
-                        .HasConstraintName("FK_ProductViews_Products");
+                        .IsRequired();
 
-                    b.HasOne("App.Domain.Core.User.Entities.User", "ViewerUser")
+                    b.HasOne("App.Domain.Core.User.Entities.AppUser", "ViewerUser")
                         .WithMany("ProductViews")
-                        .HasForeignKey("ViewerUserId")
-                        .HasConstraintName("FK_ProductViews_Users");
+                        .HasForeignKey("ViewerUserId");
 
                     b.Navigation("Product");
 
@@ -1075,24 +1116,22 @@ namespace App.Infrastructure.DataBase.Migrations
                     b.HasOne("App.Domain.Core.Product.Entities.TagCategory", "TagCategory")
                         .WithMany("Tags")
                         .HasForeignKey("TagCategoryId")
-                        .IsRequired()
-                        .HasConstraintName("FK_Tags_TagCategories");
+                        .OnDelete(DeleteBehavior.ClientCascade)
+                        .IsRequired();
 
                     b.Navigation("TagCategory");
                 });
 
-            modelBuilder.Entity("App.Domain.Core.User.Entities.AppUserRole", b =>
+            modelBuilder.Entity("App.Domain.Core.User.Entities.AppRoleUser", b =>
                 {
                     b.HasOne("App.Domain.Core.User.Entities.AppRole", "Role")
                         .WithMany("Users")
                         .HasForeignKey("RoleId")
-                        .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
                     b.HasOne("App.Domain.Core.User.Entities.AppUser", "User")
                         .WithMany("Roles")
                         .HasForeignKey("UserId")
-                        .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
                     b.Navigation("Role");
@@ -1100,23 +1139,25 @@ namespace App.Infrastructure.DataBase.Migrations
                     b.Navigation("User");
                 });
 
-            modelBuilder.Entity("App.Domain.Core.User.Entities.User", b =>
+            modelBuilder.Entity("App.Domain.Core.User.Entities.AppUser", b =>
                 {
-                    b.HasOne("App.Domain.Core.User.Entities.Role", "Role")
-                        .WithMany("Users")
-                        .HasForeignKey("RoleId")
-                        .IsRequired()
-                        .HasConstraintName("FK_Users_Roles");
-
                     b.HasOne("App.Domain.Core.BaseData.Entities.Status", "Status")
                         .WithMany("Users")
                         .HasForeignKey("StatusId")
-                        .IsRequired()
-                        .HasConstraintName("FK_Users_Statuses");
-
-                    b.Navigation("Role");
+                        .IsRequired();
 
                     b.Navigation("Status");
+                });
+
+            modelBuilder.Entity("App.Domain.Core.User.Entities.City", b =>
+                {
+                    b.HasOne("App.Domain.Core.User.Entities.Province", "Province")
+                        .WithMany("Cities")
+                        .HasForeignKey("ProvinceId")
+                        .OnDelete(DeleteBehavior.ClientCascade)
+                        .IsRequired();
+
+                    b.Navigation("Province");
                 });
 
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityRoleClaim<int>", b =>
@@ -1155,6 +1196,21 @@ namespace App.Infrastructure.DataBase.Migrations
                         .IsRequired();
                 });
 
+            modelBuilder.Entity("ProductCollections", b =>
+                {
+                    b.HasOne("App.Domain.Core.BaseData.Entities.Collection", null)
+                        .WithMany()
+                        .HasForeignKey("CollectionsId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.HasOne("App.Domain.Core.Product.Entities.Product", null)
+                        .WithMany()
+                        .HasForeignKey("ProductsId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+                });
+
             modelBuilder.Entity("App.Domain.Core.BaseData.Entities.Brand", b =>
                 {
                     b.Navigation("Models");
@@ -1165,11 +1221,6 @@ namespace App.Infrastructure.DataBase.Migrations
             modelBuilder.Entity("App.Domain.Core.BaseData.Entities.Category", b =>
                 {
                     b.Navigation("Products");
-                });
-
-            modelBuilder.Entity("App.Domain.Core.BaseData.Entities.Collection", b =>
-                {
-                    b.Navigation("CollectionProducts");
                 });
 
             modelBuilder.Entity("App.Domain.Core.BaseData.Entities.Color", b =>
@@ -1186,6 +1237,8 @@ namespace App.Infrastructure.DataBase.Migrations
                 {
                     b.Navigation("Comments");
 
+                    b.Navigation("Orders");
+
                     b.Navigation("Products");
 
                     b.Navigation("Users");
@@ -1201,11 +1254,16 @@ namespace App.Infrastructure.DataBase.Migrations
                     b.Navigation("CommentImpressions");
                 });
 
+            modelBuilder.Entity("App.Domain.Core.Product.Entities.Order", b =>
+                {
+                    b.Navigation("Products");
+                });
+
             modelBuilder.Entity("App.Domain.Core.Product.Entities.Product", b =>
                 {
-                    b.Navigation("CollectionProducts");
-
                     b.Navigation("Comments");
+
+                    b.Navigation("Orders");
 
                     b.Navigation("ProductColors");
 
@@ -1238,23 +1296,18 @@ namespace App.Infrastructure.DataBase.Migrations
 
             modelBuilder.Entity("App.Domain.Core.User.Entities.AppUser", b =>
                 {
-                    b.Navigation("Roles");
-                });
-
-            modelBuilder.Entity("App.Domain.Core.User.Entities.Role", b =>
-                {
-                    b.Navigation("Users");
-                });
-
-            modelBuilder.Entity("App.Domain.Core.User.Entities.User", b =>
-                {
-                    b.Navigation("CommentImpressions");
-
                     b.Navigation("Comments");
+
+                    b.Navigation("Order");
 
                     b.Navigation("ProductViews");
 
-                    b.Navigation("Products");
+                    b.Navigation("Roles");
+                });
+
+            modelBuilder.Entity("App.Domain.Core.User.Entities.Province", b =>
+                {
+                    b.Navigation("Cities");
                 });
 #pragma warning restore 612, 618
         }

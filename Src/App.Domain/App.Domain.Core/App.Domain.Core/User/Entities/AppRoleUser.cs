@@ -7,10 +7,11 @@ using System.Threading.Tasks;
 
 namespace App.Domain.Core.User.Entities
 {
-    public class AppUserRole:IdentityUserRole<int>
+    public class AppRoleUser:IdentityUserRole<int>
     {
         public virtual AppRole Role { get; set; } = null!;
         public virtual AppUser User { get; set; } = null!;
+     
       
 
 

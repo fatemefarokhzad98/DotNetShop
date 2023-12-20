@@ -1,4 +1,5 @@
-﻿using System;
+﻿using App.Domain.Core.Product.Entities;
+using System;
 using System.Collections.Generic;
 using CommnetEntities = App.Domain.Core.Comment.Entities;
 using ProductEntities = App.Domain.Core.Product.Entities;
@@ -23,5 +24,6 @@ public partial class Status
 
     public virtual ICollection<ProductEntities.Product> Products { get; set; } = new List<ProductEntities.Product>();
 
-    public virtual ICollection<UserEntities.Customers> Users { get; set; } = new List<UserEntities.Customers>();
+    public virtual ICollection<UserEntities.AppUser> Users { get; set; } = new List<UserEntities.AppUser>();
+    public virtual ICollection<Order> Orders { get; set; } = new List<Order>();
 }

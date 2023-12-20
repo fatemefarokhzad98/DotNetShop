@@ -11,7 +11,7 @@ public partial class Model
     public int BrandId { get; set; }
 
     public int? ParentModelId { get; set; }
-    public  Model ParentModel { get; set; }
+    public  Model? ParentModel { get; set; }
     public bool IsDeleted { get; set; }
 
 

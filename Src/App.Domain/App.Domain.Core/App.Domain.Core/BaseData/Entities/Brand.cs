@@ -7,7 +7,7 @@ namespace App.Domain.Core.BaseData.Entities;
 
 public partial class Brand
 {
-    public int Id { get; set; }
+    public int Id { get; set; } 
 
     public string Name { get; set; } = null!;
 

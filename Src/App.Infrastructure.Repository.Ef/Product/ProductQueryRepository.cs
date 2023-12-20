@@ -21,29 +21,28 @@ namespace App.Infrastructure.Repository.Ef.Product
 
         public async Task<ProductDto?> GetProduct(int id)
         {
-            var product = await _appDbContext.Products.AsNoTracking().Where(x => x.Id == id).Select(p => new ProductDto()
+            var product = await _appDbContext.Product.AsNoTracking().Where(x => x.Id == id).Select(p => new ProductDto()
             {
-
+                
                 Id = id,
                 BrandId = p.BrandId,
                 BrandName = p.Brand.Name,
                 Name = p.Name,
                 CategoryId = p.CategoryId,
-                CategoryName=p.Category.Name,
-                Count=p.Count,
-                Description=p.Description,
-                IsActive=p.IsActive,
-                IsDeleted=p.IsDeleted,
-                IsOrginal=p.IsOrginal,
-                IsShowPrice=p.IsShowPrice,
-                ModelId=p.ModelId,
-                ModelName=p.Model.Name,
-                Price=p.Price,
-                StatusId=p.StatusId,
-                 StatusName=p.Status.Title,
-                 SubmitOperatorId=p.SubmitOperatorId,
-                 SubmitTime=p.SubmitTime,
-                 SubmitOperatorName=p.SubmitOperator.UserName
+                CategoryName = p.Category.Name,
+                Count = p.Count,
+                Description = p.Description,
+                IsActive = p.IsActive,
+                IsDeleted = p.IsDeleted,
+                IsOrginal = p.IsOrginal,
+                IsShowPrice = p.IsShowPrice,
+                ModelId = p.ModelId,
+                ModelName = p.Model!.Name,
+                Price = p.Price,
+                StatusId = p.StatusId,
+                StatusName = p.Status.Title,
+              
+                SubmitTime = p.SubmitTime,
 
 
             }).FirstOrDefaultAsync();
@@ -53,7 +52,7 @@ namespace App.Infrastructure.Repository.Ef.Product
 
         public async Task<ProductDto?> GetProduct(string name)
         {
-            var product = await _appDbContext.Products.AsNoTracking().Where(x => x.Name == name).Select(p => new ProductDto()
+            var product = await _appDbContext.Product.AsNoTracking().Where(x => x.Name == name).Select(p => new ProductDto()
             {
                 Name = p.Name,
                 Id = p.Id,
@@ -69,13 +68,11 @@ namespace App.Infrastructure.Repository.Ef.Product
                 IsOrginal = p.IsOrginal,
                 IsShowPrice = p.IsShowPrice,
                 ModelId = p.ModelId,
-                ModelName = p.Model.Name,
+                ModelName = p.Model!.Name,
                 Price = p.Price,
                 StatusId = p.StatusId,
                 StatusName = p.Status.Title,
-                SubmitOperatorId = p.SubmitOperatorId,
                 SubmitTime = p.SubmitTime,
-                SubmitOperatorName = p.SubmitOperator.UserName
             }).SingleOrDefaultAsync();
             return product;
 
@@ -84,7 +81,7 @@ namespace App.Infrastructure.Repository.Ef.Product
 
         public async Task<List<ProductDto>> GetProducts()
         {
-            var products = await _appDbContext.Products.AsNoTracking().Select(p => new ProductDto()
+            var products = await _appDbContext.Product.AsNoTracking().Select(p => new ProductDto()
             {
 
                 BrandId = p.BrandId,
@@ -100,13 +97,11 @@ namespace App.Infrastructure.Repository.Ef.Product
                 IsOrginal=p.IsOrginal,
                 IsShowPrice=p.IsShowPrice,
                 ModelId=p.ModelId,
-                ModelName=p.Model.Name,
+                ModelName=p.Model!.Name,
                 Price=p.Price,
                 StatusId=p.StatusId,
                 StatusName=p.Status.Title,
-                SubmitOperatorId=p.SubmitOperatorId,
-                SubmitOperatorName=p.SubmitOperator.UserName,
-                SubmitTime=p.SubmitTime
+                SubmitTime =p.SubmitTime
  
             }).ToListAsync();
             return products;

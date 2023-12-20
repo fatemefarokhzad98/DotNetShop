@@ -48,7 +48,7 @@ namespace App.EndPoint.ShopUi.Areas.Admin.Controllers.User
             return View();
         }
         [HttpPost]
-        public async Task <IActionResult> CreateRoles(RolesViewModel model)
+        public async Task <IActionResult> CreateRoles(CreateRoleViewModel model)
         {
             if (ModelState.IsValid)
             {
@@ -89,11 +89,12 @@ namespace App.EndPoint.ShopUi.Areas.Admin.Controllers.User
             var result = new RolesViewModel
             {
                 RoleDescription=role.Description,
-                RoleName =role.Name
-
+                RoleName =role.Name,
+                 RecentRoleName=role.Name ,
+                 RoleId=role.Id
+               
             };
          
-
             return View(result);
         }
         [HttpPost]
@@ -101,31 +102,39 @@ namespace App.EndPoint.ShopUi.Areas.Admin.Controllers.User
         {
             if (ModelState.IsValid)
             {
-                if (await _roleManager.RoleExistsAsync(model.RoleName)&& model.RoleName!=model.RecentRoleName  )
+                var role = await _roleManager.FindByIdAsync(model.RoleId + string.Empty);
+                if (role == null)
+                {
+                    return NotFound();
+                }
+                if (await _roleManager.RoleExistsAsync(model.RoleName) && model.RoleName != model.RecentRoleName)
                 {
                     ViewBag.Error = "خطا!این نقش وجود دارد";
 
                 }
-              var result= await _roleManager.UpdateAsync(new AppRole
+                else
                 {
-                     Name=model.RoleName,
-                     Description=model.RoleDescription
-                });
-                if (result.Succeeded)
-                {
-                    ViewBag.successfull = "اطلاعات با موفقیت ذخیره شد.";
-                    return RedirectToAction("ReadRoles");
+
+                    role.Name = model.RoleName;
+                    role.Description = model.RoleDescription;
+                    var result = await _roleManager.UpdateAsync(role);
+                  
+                    if (result.Succeeded)
+                    {
+                        ViewBag.successfull = "اطلاعات با موفقیت ذخیره شد.";
+                        return RedirectToAction("ReadRoles");
+                    }
+
+
+
                 }
-               
-                
 
+                ViewBag.Error = "خطایی در ذخیره اطلاعات رخ داد است";
             }
-
-            ViewBag.Error= "خطایی در ذخیره اطلاعات رخ داد است";
 
 
             return View(model);
-        }
+         }
         [HttpGet]
         public async Task<IActionResult> RemoveRoles(int Id)
         {

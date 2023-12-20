@@ -29,7 +29,7 @@ namespace App.Infrastructure.Repository.Ef.BaseData
                 ParentModelId = parentModelId,
 
             };
-             await _appDbContext.Models.AddAsync(model);
+             await _appDbContext.Modell.AddAsync(model);
             await _appDbContext.SaveChangesAsync();
             return model.Id;
            
@@ -38,8 +38,8 @@ namespace App.Infrastructure.Repository.Ef.BaseData
 
         public async Task<ModelDto> RemoveModel(int id)
         {
-            var model = await _appDbContext.Models.Where(x => x.Id == id).SingleAsync();
-            var modelDto = await _appDbContext.Models.Where(x => x.Id == id).AsNoTracking().Select(c => new ModelDto()
+            var model = await _appDbContext.Modell.Where(x => x.Id == id).SingleAsync();
+            var modelDto = await _appDbContext.Modell.Where(x => x.Id == id).AsNoTracking().Select(c => new ModelDto()
             {
                 Id = c.Id,
                 BrandId = c.BrandId,
@@ -56,7 +56,7 @@ namespace App.Infrastructure.Repository.Ef.BaseData
 
         public async Task<int> UpdateModel(int brandid, int ?parentModelId, string name, int id)
         {
-           var model=await _appDbContext.Models.Where(x=>x.Id==id).SingleAsync();
+            var model = await _appDbContext.Modell.Where(x=>x.Id==id).SingleAsync();
             model.Name= name;
            
             model.BrandId= brandid;

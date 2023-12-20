@@ -39,12 +39,13 @@ namespace App.Infrastructure.Repository.Ef.Product
                  Name=product.Name,
                  StatusId=product.StatusId,
                  Price=product.Price,
-                 SubmitOperatorId=product.SubmitOperatorId,
-                 SubmitTime=DateTime.Now                
+              
+                 SubmitTime=DateTime.Now ,
+                 
            
             };
 
-            await _appDbContext.Products.AddAsync(productInsert);
+            await _appDbContext.Product.AddAsync(productInsert);
             await _appDbContext.SaveChangesAsync();
             return productInsert.Id;
 
@@ -52,8 +53,8 @@ namespace App.Infrastructure.Repository.Ef.Product
 
         public async Task<ProductDto> RemoveProduct(int id)
         {
-            var product = await _appDbContext.Products.Where(x => x.Id == id).SingleAsync();
-            var productDto = await _appDbContext.Products.Where(x => x.Id == id).AsNoTracking().Select(p => new ProductDto()
+            var product = await _appDbContext.Product.Where(x => x.Id == id).SingleAsync();
+            var productDto = await _appDbContext.Product.Where(x => x.Id == id).AsNoTracking().Select(p => new ProductDto()
             {
                 Id = id,
                 BrandId = p.BrandId,
@@ -62,9 +63,7 @@ namespace App.Infrastructure.Repository.Ef.Product
                 CategoryId = p.CategoryId,
                 CategoryName = p.Category.Name,
                 ModelId = p.ModelId,
-                ModelName = p.Model.Name,
-                SubmitOperatorId = p.SubmitOperatorId,
-                SubmitOperatorName = p.SubmitOperator.UserName,
+                ModelName = p.Model!.Name,
                 Count = p.Count,
                 Description = p.Description,
                 IsActive = p.IsActive,
@@ -84,7 +83,7 @@ namespace App.Infrastructure.Repository.Ef.Product
         public async Task<int> UpdateProduct(ProductDto product)
         {
 
-            var productUpdate = await _appDbContext.Products.Where(x => x.Id == product.Id).SingleAsync();
+            var productUpdate = await _appDbContext.Product.Where(x => x.Id == product.Id).SingleAsync();
             ProductEntities.Product productDtoUpdate = new()
             {
 
@@ -93,7 +92,6 @@ namespace App.Infrastructure.Repository.Ef.Product
                 CategoryId = product.CategoryId,
                 ModelId = product.ModelId,
                 StatusId = product.StatusId,
-                SubmitOperatorId = product.SubmitOperatorId,
                 Count = product.Count,
                 Description = product.Description,
                 IsActive = product.IsActive,
@@ -102,10 +100,10 @@ namespace App.Infrastructure.Repository.Ef.Product
                 IsShowPrice = product.IsShowPrice,
                 Name = product.Name,
                 Price = product.Price,
-                SubmitTime = DateTime.Now
-
+                SubmitTime = DateTime.Now,
+             
             };
-            _appDbContext.Update(productDtoUpdate);
+            _appDbContext.Update(productDtoUpdate); 
             await _appDbContext.SaveChangesAsync();
             return productDtoUpdate.Id;
 

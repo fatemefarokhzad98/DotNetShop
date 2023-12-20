@@ -135,7 +135,7 @@ a:hover {
 .text-overflow {
     white-space: nowrap;
     overflow: hidden;
-    text-overflow: ellipsis;
+    text-overflow: ellipsi s;
 }
 
 .def-color {

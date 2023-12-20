@@ -25,6 +25,7 @@
     <!-- Chartist CSS -->
     <link rel="stylesheet" href="~/AdminFile/dist/plugins/chartist-js/chartist.min.css">
     <link rel="stylesheet" href="~/AdminFile/dist/plugins/chartist-js/chartist-plugin-tooltip.css">
+ 
 
     <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
     <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
@@ -107,29 +108,20 @@
                     <li class="active treeview">
                         <a href="#"> <i class="fa fa-dashboard"></i> <span>داشبورد</span> <span class="pull-right-container"> <i class="fa fa-angle-left pull-right"></i> </span> </a>
                         <ul class="treeview-menu">
-                            <li><a asp-area="Admin" asp-controller="User" asp-action="Index">مدیریت کاربران
-                                <ul class="treeview-menu"   >
-                                   <li><a   asp-area="Admin" asp-controller="Roles" asp-action="ReadRoles"  >
-                                       مدیریت نقش ها
-                                   </a>
-
-                                   </li>
-                                    <li>
-                                        مدیریت ادمین
-                                    </li>
-
-
-
-
-
-                                </ul>
-
-
-                            </a></li>
-                           
-                            <li><a asp-area="Admin" asp-controller="Product" asp-action="Index">مدیریت محصولات</a></li>
-                            <li><a asp-area="Admin" asp-controller="Store" asp-action="Index">مدیریت غرفه ها</a></li>
+                          
+                            <li><span>مدیریت محصولات</span>
+                                 <ul class="treeview-menu">
+                          
+                            <li><a asp-area="Admin" asp-controller="Product" asp-action="ReadProduct">نمایش محصولات</a></li>
+                            <li><a asp-area="Admin" asp-controller="Category" asp-action="ReadCategory">دسته بندی ها</a></li>
+                            <li><a asp-area="Admin" asp-controller="Color" asp-action="ReadColor">رنگ ها</a></li>
+                            <li><a asp-area="Admin" asp-controller="Collection" asp-action="ReadCollection">کالکشن ها</a></li>
+                            <li><a asp-area="Admin" asp-controller="Brand" asp-action="ReadBrand">برند ها</a></li>
+                            <li><a asp-area="Admin" asp-controller="Model" asp-action="ReadModel">مدل ها</a></li>
+                        </ul>
+                            </li>
                             <li><a asp-area="Admin" asp-controller="Comment" asp-action="Index">مدیریت نظرات</a></li>
+                            <li><a asp-area="Admin" asp-controller="UserManager" asp-action="Index">مدیریت کاربران</a></li>
                             <li><a asp-area="Admin" asp-controller="Commission" asp-action="Index">درآمد سایت</a></li>
                         </ul>
                     </li>
@@ -187,7 +179,9 @@
 
     <script src="~/AdminFile/lib/jquery/dist/jquery.min.js"></script>
     <script src="~/AdminFile/lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
+@*    <script  src="~/AdminFile/js/bootstrap-fileinput.js" ></script>*@
     <script src="~/AdminFile/js/site.js" asp-append-version="true"></script>
+  
     @await RenderSectionAsync("Scripts", required: false)
 </body>
 </html>
