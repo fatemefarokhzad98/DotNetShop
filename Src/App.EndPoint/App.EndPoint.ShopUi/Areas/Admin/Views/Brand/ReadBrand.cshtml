@@ -4,6 +4,7 @@
 @model List<BrandReadViewModel>
 @{
     ViewData["Title"] = "لیست برند ها";
+     Layout = "_AdminLayout";
     Model.OrderBy(x => x.DisplayOrder);
     int rowCount = 1;
 }

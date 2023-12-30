@@ -21,26 +21,42 @@ namespace App.Domain.Services.BaseData
 
         }
 
-        public async Task<CollectionDto> GetCollection(int id)
+        public async Task<List<CollectionDto>?> GetCollection()
         {
-            return await _collectionQueryRepository.GetCollection(id);
-           
+            var collection= await _collectionQueryRepository.GetCollection();
+            if (collection==null)
+            {
+                throw new Exception();
+            }
+            return collection;
         }
 
-        public async Task<CollectionDto> GetCollection(string name)
+        public async Task<CollectionDto?> GetCollection(int id)
         {
-            return await _collectionQueryRepository.GetCollection(name);
-          
+            var model = await _collectionQueryRepository.GetCollection(id);
+            if (model==null)
+            {
+                throw new Exception();
+            }
+            return model;
         }
 
-        public async Task<List<CollectionDto>> GetCollectionDtos()
+        public async Task<CollectionDto?> GetCollection(string name)
         {
-            return await _collectionQueryRepository.ReadCollection();
+            var model = await _collectionQueryRepository.GetCollection(name);
+            if (model==null)
+            {
+                throw new Exception();
+            }
+            return model;  
         }
 
+      
         public async Task<int> InsertCollection(string name)
         {
-            return await _collectionCommandRepository.InsertCollection(name, false,DateTime.Now);
+            return await _collectionCommandRepository.InsertCollection(name,false,DateTime.Now);
+             
+
         }
 
         public async Task<CollectionDto> RemoveCollection(int id)
@@ -49,10 +65,10 @@ namespace App.Domain.Services.BaseData
 
         }
 
+
         public async Task<int> UpdateCollection(string name, int id)
         {
-            return await _collectionCommandRepository.UpdateCollection(name, id,false,DateTime.Now);
-
+            return await _collectionCommandRepository.UpdateCollection(name, id);
         }
     }
 }

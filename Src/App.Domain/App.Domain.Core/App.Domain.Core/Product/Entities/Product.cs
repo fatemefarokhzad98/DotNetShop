@@ -22,9 +22,12 @@ namespace App.Domain.Core.Product.Entities
 
         public int BrandId { get; set; }
 
+      
+
         public bool IsOrginal { get; set; }
 
         public string? Description { get; set; }
+        public string ImageName { get; set; }
 
         public int? ModelId { get; set; }
 
@@ -35,33 +38,35 @@ namespace App.Domain.Core.Product.Entities
         public bool IsShowPrice { get; set; }
 
         public bool IsActive { get; set; }
+        public string OperatorInsert { get; set; }
+        public string? OperatorEdit { get; set; }
+        public string? OperatorRemove { get; set; }
+
         //TODO:
         public DateTime SubmitTime { get; set; }
-        public DateTime SubmitEditTime { get; set; }
+        public DateTime? SubmitEditTime { get; set; }
+        public DateTime? SubmitRemoveTime { get; set; }
 
 
         public int StatusId { get; set; }
 
-        public virtual ICollection<Collection> Collections { get; set; } = new List<Collection>();
+        public virtual ICollection<ProductCollection> Collections { get; set; } = new List<ProductCollection>();
 
         public virtual ICollection<CommentEntities.Comment> Comments { get; set; } = new List<CommentEntities.Comment>();
 
         public virtual ICollection<ProductColor> ProductColors { get; set; } = new List<ProductColor>();
 
-        public virtual ICollection<ProductFile> ProductFiles { get; set; } = new List<ProductFile>();
-
-        public virtual ICollection<ProductTag> ProductTags { get; set; } = new List<ProductTag>();
-
-        public virtual ICollection<ProductView> ProductViews { get; set; } = new List<ProductView>();
-
-      
-        public virtual ICollection<ProductOrder>?Orders { get; set; }
+        public virtual ICollection<OrderDetail>?OrderDetails { get; set; }
        
         public virtual Brand Brand { get; set; } = null!;
 
         public virtual Category Category { get; set; } = null!;
         public virtual StatusEntities.Status Status { get; set; } = null!;
         public virtual Model? Model { get; set; }
+      
+       
+
+
 
     }
 }

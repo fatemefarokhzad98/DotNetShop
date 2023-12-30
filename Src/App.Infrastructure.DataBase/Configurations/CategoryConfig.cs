@@ -18,8 +18,8 @@ namespace App.Infrastructure.DataBase.Configurations
                 .WithOne(x => x.Category)
                 .HasForeignKey(x => x.CategoryId)
                 .HasPrincipalKey(x => x.Id)
-                 .OnDelete(DeleteBehavior.ClientSetNull); 
-
+                 .OnDelete(DeleteBehavior.ClientSetNull);
+           
 
         }
     }

@@ -30,7 +30,7 @@ namespace App.Infrastructure.Repository.Ef.BaseData
                 IsDeleted = isDeleted
 
             };
-            await _appDbContext.AddAsync(color);
+             _appDbContext.Color.Add(color);
             await _appDbContext.SaveChangesAsync(); 
 
             
@@ -41,7 +41,8 @@ namespace App.Infrastructure.Repository.Ef.BaseData
         public async Task RemoveColor(int id)
         {
             var color = await _appDbContext.Color.Where(x => x.Id == id).SingleAsync();
-           _appDbContext.Remove(color);
+            color.IsDeleted = true;
+
            await _appDbContext.SaveChangesAsync();
 
         }

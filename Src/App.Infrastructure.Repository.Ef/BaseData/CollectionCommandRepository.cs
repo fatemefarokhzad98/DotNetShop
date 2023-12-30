@@ -26,10 +26,11 @@ namespace App.Infrastructure.Repository.Ef.BaseData
             {
                 Name = name,
                 IsDeleted = isDeleted,
-                CreationDate= CreationDate
-
+                CreationDate= CreationDate,
+          
+            
             };
-            await _appDbContext.Collection.AddAsync(collection);
+             _appDbContext.Collection.Add(collection);
             await _appDbContext.SaveChangesAsync();
             return collection.Id;
 
@@ -41,25 +42,24 @@ namespace App.Infrastructure.Repository.Ef.BaseData
             var collectionto = await _appDbContext.Collection.Where(x => x.Id == id).AsNoTracking().Select(c => new CollectionDto()
             {
                 Id = c.Id,
-                IsDeleted = c.IsDeleted,
-                Name = c.Name
+                IsDeleted = true,
+                Name = c.Name,
+                 DeleteDate =DateTime.Now,
+
             }).FirstOrDefaultAsync();
            _appDbContext.Remove(collection);
             await _appDbContext.SaveChangesAsync();
+
             return collectionto;
 
-            
-
-           
         }
 
-        public async Task<int> UpdateCollection(string name,int id,bool isDeleted,DateTime CreationDate)
+        public async Task<int> UpdateCollection(string name,int id)
         {
             var collection = await _appDbContext.Collection.Where(x => x.Id == id).SingleAsync();
           
             collection.Name = name;
-            collection.CreationDate = CreationDate;
-            collection.IsDeleted = isDeleted;
+           
             return collection.Id;
         }
 

@@ -1,4 +1,5 @@
 ﻿using App.Domain.Core.BaseData.Dtos;
+using App.Domain.Core.Product.Dtos;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -11,9 +12,9 @@ namespace App.Domain.Core.BaseData.Contracts.Repositories
     {
         Task<List<CategoryDto>> GetCategories();
 
-        Task<CategoryDto?> GetCategory(int? id);
+        Task<CategoryDto?> GetCategory(int id);
         Task<CategoryDto?> GetCategory(string name);
-
+        Task<List<ProductBriefDto?>> GetCategoryWithProduct(int? id, string? name);
 
     }
 }

@@ -25,26 +25,30 @@ namespace App.Domain.Services.Product
 
         }
 
-        public async Task<ProductDto?> GetProduct(int id)
+        public async Task<ProductReadDto?> GetProduct(int id)
         {
-           return await _productQueryRepsitory.GetProduct(id);
+           var product= await _productQueryRepsitory.GetProduct(id);
+           
+            return product;
 
         }
 
-        public async Task<ProductDto?> GetProduct(string name)
+        public async Task<List<ProductReadDto>?> GetProduct(string name)
         {
-            return await _productQueryRepsitory.GetProduct(name);
+            var product= await _productQueryRepsitory.GetProduct(name);
+           
+            return product;
         }
 
-        public async Task<List<ProductDto>> GetProducts()
+        public async Task<List<ProductReadDto>> GetProducts()
         {
-            return await _productQueryRepsitory.GetProducts();
+
+            var product= await _productQueryRepsitory.GetProducts();
+            
+            return product;
         }
 
-        public Task<List<ProductBriefDto>> GetProductsList(int? categoryId, string? keyWord, int? minPrice, int? maxPrice, int? brandId)
-        {
-            throw new NotImplementedException();
-        }
+      
 
         public async Task<int> InsertProduct(ProductInsertDto product)
         {
@@ -52,14 +56,24 @@ namespace App.Domain.Services.Product
 
         }
 
-        public async Task<ProductDto> RemoveProduct(int id)
+        public async Task<int> RemoveProduct(int id, string userRemoveName)
         {
-            return await _productCommandRepository.RemoveProduct(id);
+            return await _productCommandRepository.RemoveProduct(id,userRemoveName);
         }
 
         public async Task<int> UpdateProduct(ProductDto product)
         {
             return await _productCommandRepository.UpdateProduct(product);
         }
+        public async Task<List<ProductBriefDto>>? Search(int? categoryId, string? keyWord, int? minPrice, int? maxPrice, int? brandId)
+        {
+         var products= await  _productQueryRepsitory.Search(categoryId, keyWord, minPrice,maxPrice, brandId)!;
+            if (products==null)
+            {
+                throw new Exception();
+            }
+            return products;
+        }
+
     }
 }

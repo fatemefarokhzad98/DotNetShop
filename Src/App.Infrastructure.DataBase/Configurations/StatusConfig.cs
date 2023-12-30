@@ -20,6 +20,7 @@ namespace App.Infrastructure.DataBase.Configurations
                 .HasForeignKey(x => x.StatusId)
                 .HasPrincipalKey(x => x.Id)
                 .OnDelete(DeleteBehavior.ClientCascade);
+
             builder.HasMany(x => x.Comments)
                 .WithOne(x => x.Status)
                 .HasForeignKey(x => x.StatusId)
@@ -27,11 +28,8 @@ namespace App.Infrastructure.DataBase.Configurations
                 .OnDelete(DeleteBehavior.ClientCascade);
 
 
-            builder.HasMany(x => x.Users)
-                 .WithOne(x => x.Status)
-                .HasForeignKey(x => x.StatusId)
-                .HasPrincipalKey(x => x.Id)
-                .OnDelete(DeleteBehavior.ClientSetNull);
+         
+
             builder.HasMany(x => x.Orders)
                 .WithOne(x => x.Status)
                 .HasForeignKey(x => x.StatusId)

@@ -7,14 +7,14 @@ namespace App.EndPoint.ShopUi.Area.Admin.Controllers.BaseData
     [Area("Admin")]
     public class CollectionController : Controller
     {
-        private readonly ICollectionAppService _coolectionAppService;
-        public CollectionController(ICollectionAppService coolectionAppService)
+        private readonly ICollectionAppService _collectionApp;
+        public CollectionController(ICollectionAppService collectionApp)
         {
-            _coolectionAppService = coolectionAppService;
+            _collectionApp = collectionApp;
         }
         public async Task< IActionResult> ReadCollection()
         {
-          var collection=  await _coolectionAppService.GetCollectionDtos();
+            var collection = await  _collectionApp.GetCollection();
             var collectionviewmodel = collection.Select(c => new CollectionReadViewModel()
             {
                 
@@ -28,7 +28,7 @@ namespace App.EndPoint.ShopUi.Area.Admin.Controllers.BaseData
         }
         public async Task<IActionResult> RemoveCollection(int id)
         {
-            await _coolectionAppService.RemoveCollection(id);
+            await _collectionApp.RemoveCollection(id);
             return RedirectToAction("ReadCollection");
         }
         [HttpGet]
@@ -41,9 +41,7 @@ namespace App.EndPoint.ShopUi.Area.Admin.Controllers.BaseData
         {
             if (ModelState.IsValid)
             {
-
-
-                await _coolectionAppService.InsertCollection(collection.Name);
+                await _collectionApp.InsertCollection(collection.Name);
                 return RedirectToAction("ReadCollection");
             }
             return View(collection);
@@ -56,14 +54,14 @@ namespace App.EndPoint.ShopUi.Area.Admin.Controllers.BaseData
             {
 
 
-                await _coolectionAppService.UpdateCollection(collection.Name, collection.Id);
+                await _collectionApp.UpdateCollection(collection.Name, collection.Id);
                 return RedirectToAction("ReadCollection");
             }
             return View(collection);
         }
         public async Task<IActionResult> UpdateCollection(int id)
         {
-            var collection = await _coolectionAppService.GetCollection(id);
+            var collection = await _collectionApp.GetCollection(id);
             CollectionUpdateViewModel collectionViewModel = new()
             {
                 Id = id,

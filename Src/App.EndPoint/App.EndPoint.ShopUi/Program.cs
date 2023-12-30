@@ -12,6 +12,7 @@ using App.Domain.Core.User.Contracts.AppServices;
 using App.Domain.Core.User.Entities;
 using App.Domain.Services.BaseData;
 using App.Domain.Services.Product;
+using App.EndPoint.ShopUi.Services;
 using App.Infrastructure.DataBase.Data;
 using App.Infrastructure.Repository.Ef.BaseData;
 using App.Infrastructure.Repository.Ef.Product;
@@ -25,11 +26,6 @@ builder.Services.ConfigureApplicationCookie(options =>
 {
     options.LoginPath = "/Account/Login";
     options.LogoutPath = "/Acount/Logout";
-
-
-
-
-
 
 }); 
 
@@ -59,12 +55,14 @@ builder.Services.AddIdentity<AppUser, AppRole>(
         options.Password.RequiredLength = 7;
         options.User.AllowedUserNameCharacters = "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789-._@+";
         options.User.RequireUniqueEmail = true;
+        options.Lockout.DefaultLockoutTimeSpan = TimeSpan.FromMinutes(20);
+        options.Lockout.MaxFailedAccessAttempts = 3;
         
-
-
     })
-    .AddErrorDescriber<AppErrorDescriber>()
+ 
     .AddEntityFrameworkStores<AppDbContext>();
+     
+
 
 
 #endregion
@@ -77,7 +75,6 @@ builder.Services.AddScoped<IBrandSurnessService, BrandSurenessService>();
 builder.Services.AddScoped<IBrandCommandRepository, BrandCommandRepository>();
 builder.Services.AddScoped<IBrandQueryRepository, BrandQueryRepository>();
 #endregion 
-
 #region Color
 builder.Services.AddScoped<IColorAppService, ColorAppService>();
 builder.Services.AddScoped<IColorService, ColorService>();
@@ -113,7 +110,57 @@ builder.Services.AddScoped<IProductService, ProductService>();
 builder.Services.AddScoped<IProductSurnessService, ProductSurnessService>();
 builder.Services.AddScoped<IProductAppService, ProductAppService>();
 #endregion
+#region Tag
+//builder.Services.AddScoped<ITagCommandRepository , TagCommandRepository>();
+//builder.Services.AddScoped<ITagQueryRepository,TagQueryRepository>();
+//builder.Services.AddScoped<ITagService, TagService>();
+//builder.Services.AddScoped<ITagSurnessService, TagSurnessService>();
+//builder.Services.AddScoped<ITagAppService, TagAppService>();
+#endregion
+#region TagCategory
+//builder.Services.AddScoped<ITagCategoryCommandRepository, TagCategoryCommandRepository>();
+//builder.Services.AddScoped<ITagCategoryQueryRepository, TagCategoryQueryRepository>();
+//builder.Services.AddScoped<ITagCategoryService, TagCategoryService>();
+//builder.Services.AddScoped<ITagCategorySurnessService, TagCategorySurnessService>();
+//builder.Services.AddScoped<ITagCategoryAppService, TagCategoryAppService>();
+#endregion
+#region Status
+builder.Services.AddScoped<IStatusCommandRepository, StatusCommandRepository>();
+builder.Services.AddScoped<IStatusQueryRepository, StatusQueryRepository>();
+builder.Services.AddScoped<IStatusService, StatusService>();
+builder.Services.AddScoped<IStatusSurnessService, StatusSurnessService>();
+builder.Services.AddScoped<IStatusAppService, StatusAppService>();
+#endregion
+#region Order
+builder.Services.AddScoped<IOrderCommandRepository, OrderCommandRepository>();
+builder.Services.AddScoped<IOrderQueryRepository, OrderQueryRepository>();
+builder.Services.AddScoped<IOrderSurnessService, OrderSurnessService>();
+builder.Services.AddScoped<IOrderAppService, OrderAppService>();
+builder.Services.AddScoped<IOrderService, OrderService>();
+
+#endregion
+#region OrderDetail
+builder.Services.AddScoped<IOrderDetailCommandRepository, OrderDetailCommandRepository>();
+builder.Services.AddScoped<IOrderDetailAppService, OrderDetailAppService>();
+builder.Services.AddScoped<IOrderDetailService, OrderDetailService>();
+
+#endregion
+#region ProductCollection
+builder.Services.AddScoped<IProductCollectionQueryRepository, ProductCollectionQueryRepository>();
+builder.Services.AddScoped<IProductCollectionAppService, ProductCollectionAppService>();
+ builder.Services.AddScoped<IProductCollectionService, ProductCollectionService>();
+#endregion
+
 builder.Services.AddScoped<IAppRoleManager, AppRoleManager>();
+builder.Services.AddScoped<IAppUserManager, AppUserManager>();
+
+
+
+builder.Services.AddScoped<AppErrorDescriber>();
+builder.Services.AddScoped<SignInManager<AppUser>>();
+builder.Services.AddScoped<IConverting,Converting>();
+
+
 var app = builder.Build();
 
 // Configure the HTTP request pipeline.
@@ -133,20 +180,12 @@ app.UseAuthentication();
 app.UseAuthorization();
 
 
-app.UseEndpoints(endpoints=>
-{
+app.MapAreaControllerRoute(
+    areaName: "Admin",
+    name: "Areas",
+    pattern: "Admin/{controller=Dashboard}/{action=Index}/{id?}");
 
-    endpoints.MapControllerRoute(
-        name: "areaRoute",
-      pattern: "{area:exists}/{controller=Home}/{action=Index}/{id?}");
-
-
-    endpoints.MapDefaultControllerRoute();
-    endpoints.MapControllerRoute(
-      name: "default",
-      pattern: "{contoller=Home}/{action=Index}/{id?}"
-      );
-
-});
-
+app.MapControllerRoute(
+    name: "default",
+    pattern: "{controller=Search}/{action=ReadProduct}/{id?}");
 app.Run();

@@ -14,5 +14,6 @@ namespace App.Domain.Core.BaseData.Dtos
 
         public string ColorCode { get; set; } = null!;
         public bool IsDeleted { get; set; }
+
     }
 }

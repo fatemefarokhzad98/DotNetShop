@@ -10,23 +10,20 @@ namespace App.Domain.Core.Product.Dtos
     public class ProductBriefDto
     {
         public int Id { get; set; }
-
         public string Name { get; set; } = null!;
-
-        public string CategoryName { get; set; }
-
-
-
+        public string CategoryName { get; set; } = null!;
+        public string BrandName { get; set; } = null!;
         public bool IsOrginal { get; set; }
-
         public int Count { get; set; }
-
         public decimal Price { get; set; }
+        public string ImageName { get; set; }
+        public string StatusName  { get; set; }
 
-      
         public bool IsDeleted { get; set; }
-        public List<ColorDto>? Colors { get; set; }
-        public List<ProductFileDto>? Files { get; set; }
+        public List<ColorDto> Colors { get; set; } = null!;
+
+
+
 
 
 

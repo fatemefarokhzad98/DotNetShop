@@ -14,8 +14,9 @@ public partial class Status
     public string Title { get; set; } = null!;
 
     public bool ForComment { get; set; }
+    public bool ForOrder { get; set; }
 
-    public bool ForUser { get; set; }
+  
 
     public bool ForProduct { get; set; }
     public bool IsDeleted { get; set; }
@@ -23,7 +24,6 @@ public partial class Status
     public virtual ICollection<CommnetEntities.Comment> Comments { get; set; } = new List<CommnetEntities.Comment>();
 
     public virtual ICollection<ProductEntities.Product> Products { get; set; } = new List<ProductEntities.Product>();
-
-    public virtual ICollection<UserEntities.AppUser> Users { get; set; } = new List<UserEntities.AppUser>();
+ 
     public virtual ICollection<Order> Orders { get; set; } = new List<Order>();
 }

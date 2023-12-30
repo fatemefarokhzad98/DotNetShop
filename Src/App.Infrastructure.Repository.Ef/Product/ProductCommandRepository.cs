@@ -11,6 +11,7 @@ using System.Threading.Tasks;
 using App.Domain.Core.BaseData.Entities;
 using App.Infrastructure.DataBase.Data;
 using Microsoft.EntityFrameworkCore;
+using App.Domain.Core.BaseData.Dtos;
 
 namespace App.Infrastructure.Repository.Ef.Product
 {
@@ -25,6 +26,8 @@ namespace App.Infrastructure.Repository.Ef.Product
 
         public async Task<int> InsertProduct(ProductInsertDto product)
         {
+
+
             ProductEntities.Product productInsert = new()
             {
                 BrandId = product.BrandId,
@@ -39,46 +42,42 @@ namespace App.Infrastructure.Repository.Ef.Product
                  Name=product.Name,
                  StatusId=product.StatusId,
                  Price=product.Price,
-              
                  SubmitTime=DateTime.Now ,
+                 ImageName=product.ImageName,
+                 OperatorInsert=product.SubmitOperatorName
                  
-           
+             
             };
+           
+            List<ColorDto> colorDtos = new List<ColorDto>();
+            foreach (var item in product.Colors)
+            {
+                colorDtos.Add(new ColorDto()
+                {
+                    Id = item.Id,
+                    ColorCode = item.ColorCode,
+                    Name = item.Name,
+                    IsDeleted = item.IsDeleted
+                });
 
-            await _appDbContext.Product.AddAsync(productInsert);
+            }
+        
+
+             _appDbContext.Product.Add(productInsert);
             await _appDbContext.SaveChangesAsync();
             return productInsert.Id;
 
         }
 
-        public async Task<ProductDto> RemoveProduct(int id)
+        public async Task<int> RemoveProduct(int id,string userRemoveName)
         {
             var product = await _appDbContext.Product.Where(x => x.Id == id).SingleAsync();
-            var productDto = await _appDbContext.Product.Where(x => x.Id == id).AsNoTracking().Select(p => new ProductDto()
-            {
-                Id = id,
-                BrandId = p.BrandId,
-                BrandName = p.Brand.Name,
-                Name = p.Name,
-                CategoryId = p.CategoryId,
-                CategoryName = p.Category.Name,
-                ModelId = p.ModelId,
-                ModelName = p.Model!.Name,
-                Count = p.Count,
-                Description = p.Description,
-                IsActive = p.IsActive,
-                IsDeleted = p.IsDeleted,
-                IsOrginal = p.IsOrginal,
-                IsShowPrice = p.IsShowPrice,
-                Price = p.Price,
-                StatusId = p.StatusId,
-                StatusName = p.Status.Title,
-                SubmitTime = DateTime.Now
 
-
-            }).FirstOrDefaultAsync();
-             _appDbContext.Remove(product);
-            return productDto;
+            product.IsDeleted = true;
+            product.SubmitRemoveTime = DateTime.Now;
+            product.OperatorRemove = userRemoveName;
+           await _appDbContext.SaveChangesAsync();
+            return product.Id;
         }
         public async Task<int> UpdateProduct(ProductDto product)
         {
@@ -89,6 +88,7 @@ namespace App.Infrastructure.Repository.Ef.Product
 
                 Id = product.Id,
                 BrandId = product.BrandId,
+                SubmitEditTime=DateTime.Now,
                 CategoryId = product.CategoryId,
                 ModelId = product.ModelId,
                 StatusId = product.StatusId,
@@ -100,9 +100,23 @@ namespace App.Infrastructure.Repository.Ef.Product
                 IsShowPrice = product.IsShowPrice,
                 Name = product.Name,
                 Price = product.Price,
-                SubmitTime = DateTime.Now,
-             
+                SubmitTime = product.SubmitTime,
+                OperatorEdit=product.EditUserName,
+            
             };
+       
+            List<ColorDto> colorDtos = new List<ColorDto>();
+            foreach (var item in product.Colors)
+            {
+                colorDtos.Add(new ColorDto()
+                {
+                    Id = item.Id,
+                    ColorCode = item.ColorCode,
+                    Name = item.Name,
+                    IsDeleted = item.IsDeleted
+                });
+
+            }
             _appDbContext.Update(productDtoUpdate); 
             await _appDbContext.SaveChangesAsync();
             return productDtoUpdate.Id;

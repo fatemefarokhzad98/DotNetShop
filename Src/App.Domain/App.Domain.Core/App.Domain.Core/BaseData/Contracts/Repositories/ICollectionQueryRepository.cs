@@ -9,9 +9,10 @@ namespace App.Domain.Core.BaseData.Contracts.Repositories
 {
     public interface ICollectionQueryRepository
     {
-        Task<List<CollectionDto>> ReadCollection();
+        Task<List<CollectionDto>?> GetCollection();
         Task<CollectionDto?>GetCollection(int id);
         Task<CollectionDto?>GetCollection(string name);
+        
 
     }
 }

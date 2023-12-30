@@ -17,42 +17,41 @@ namespace App.Infrastructure.DataBase.Configurations
                  .IsRequired();
             builder.Property(e => e.Price).HasColumnType("decimal(18, 0)");
             builder.Property(x => x.Description).HasMaxLength(1000);
+
+
             builder.HasMany(x => x.Collections)
-                .WithMany(x => x.Products)
-                .UsingEntity("ProductCollections");
+                .WithOne(x => x.Product)
+                .HasForeignKey(x => x.ProductId)
+                .HasPrincipalKey(x => x.Id);
+
+
             builder.HasMany(x => x.Comments)
                 .WithOne(x => x.Product)
                 .HasForeignKey(x => x.ProductId)
                 .HasPrincipalKey(x => x.Id)
                  .OnDelete(DeleteBehavior.ClientSetNull);
+
+
             builder.HasMany(x=>x.ProductColors)
                  .WithOne(x => x.Product)
                 .HasForeignKey(x => x.ProductId)
                 .HasPrincipalKey(x => x.Id)
                  .OnDelete(DeleteBehavior.ClientSetNull);
-            builder.HasMany(x=>x.ProductFiles)
-                 .WithOne(x => x.Product)
-                .HasForeignKey(x => x.ProductId)
-                .HasPrincipalKey(x => x.Id)
-                 .OnDelete(DeleteBehavior.ClientSetNull);
-            builder.HasMany(x=>x.ProductTags)
-                 .WithOne(x => x.Product)
-                .HasForeignKey(x => x.ProductId)
-                .HasPrincipalKey(x => x.Id)
-                 .OnDelete(DeleteBehavior.ClientSetNull); 
-            builder.HasMany(x=>x.ProductViews)
-                 .WithOne(x => x.Product)
-                .HasForeignKey(x => x.ProductId)
-                .HasPrincipalKey(x => x.Id)
-                 .OnDelete(DeleteBehavior.ClientSetNull);
+           
+            //builder.HasMany(x=>x.ProductTags)
+            //     .WithOne(x => x.Product)
+            //    .HasForeignKey(x => x.ProductId)
+            //    .HasPrincipalKey(x => x.Id)
+            //     .OnDelete(DeleteBehavior.ClientSetNull); 
+          
 
-
-            builder.HasMany(x => x.Orders)
+            builder.HasMany(x => x.OrderDetails)
                 .WithOne(x=>x.Product)
-                .HasForeignKey(x=>x.PrductId)
+                .HasForeignKey(x=>x.ProductId)
                 .HasPrincipalKey(x=>x.Id)
                 .OnDelete(DeleteBehavior.ClientCascade);
 
+         
 
         }
 

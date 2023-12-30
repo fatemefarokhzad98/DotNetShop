@@ -1,4 +1,5 @@
-﻿using System;
+﻿using App.Domain.Core.Product.Entities;
+using System;
 using System.Collections.Generic;
 using ProductEntities = App.Domain.Core.Product.Entities;
 
@@ -19,4 +20,5 @@ public partial class Category
     public bool IsDeleted { get; set; }
 
     public virtual ICollection<ProductEntities.Product> Products { get; set; } = new List<ProductEntities.Product>();
+    //public virtual ICollection<CategorySpecification> CategorySpecifications { get; set; } = new List<CategorySpecification>();
 }

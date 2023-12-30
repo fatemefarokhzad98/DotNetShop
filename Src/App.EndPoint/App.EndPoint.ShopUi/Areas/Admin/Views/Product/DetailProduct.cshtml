@@ -1,0 +1,77 @@
+﻿@inject IConverting convert
+@using App.EndPoint.ShopUi.Areas.Admin.Models.ViewModels.Product
+@using App.EndPoint.ShopUi.Services
+@model DetailProductViewModel
+@{
+    ViewData["Title"] = "جزئیات محصول";   
+      Layout = "_AdminLayout";
+}
+<style>
+    .modal-dialog {
+        max-width: 65% !important;
+    }
+</style>
+
+<div class="modal fade" id="myModal">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h4 class="modal-title">جزئیات محصول</h4>
+                <button type="button" class="close" data-dismiss="modal"></button>
+            </div>
+
+            <div class="modal-body">
+                <div class="row">
+                    <div class="col-md-3">
+                      
+                            <img  class="img-thumbnail"   src=@Model.UerlImage height="250" />
+                       
+                    </div>
+
+                    <div class="col-md-9">
+                        <div class="row">
+                            <div class="col-md-6">
+                                <p>نام محصول  : @Model.Name</p>
+                                <p>برند : @Model.BrandName</p>
+                                <p>قیمت : @Model.Price</p>
+                                <p>موجودی : @Model.Count</p>
+                                <p> نام مدل: @Model.ModelName</p>
+                            </div>
+                            <div class="col-md-6">
+
+                               
+                                <p>
+                                     اپراتورثبت کننده: @Model.operatornameinsert
+
+                                </p>
+                                 <p>
+                                     تاریخ ثبت محصول: @convert.ConvertMiladiToShamsi((DateTime)Model.SubmitTime, "yyyy/MM/dd")
+
+                                </p>
+                                
+                                <p>
+                                    دسته بندی ها : @Model.CategoryName
+                                </p>
+                               
+                            
+
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="col-md-12">
+                        <hr />
+                        <p>
+                            توضیحات محصول : @Model.Description
+                        </p>
+                    </div>
+
+                </div>
+            </div>
+
+            <div class="modal-footer">
+                <a type="button" asp-action="ReadProduct" asp-controller="Product" asp-area="Admin" class="btn btn-danger" data-dismiss="modal">بستن</a>
+            </div>
+        </div>
+    </div>
+</div>

@@ -20,59 +20,40 @@ namespace App.EndPoint.ShopUi.Areas.Admin.Controllers.User
         public  IActionResult ReadRoles(int? page)
         {
             var roleDto = _roleManager.GetAllRolesAndCountUser(); 
-         
-           
-       
             var result=roleDto.Select(x=>new RolesViewModel
             {
-
                 RoleId=x.RoleId,
                 RoleName=x.RoleName,
                 RoleDescription=x.RoleDescription,
                 CountUser=x.CountUser,
-                RecentRoleName=x.RoleName
-                
-
+            
             }).ToList().ToPagedList(page ?? 1, 5);
-
 
             return View(result);
         }
         [HttpGet]
         public IActionResult CreateRoles()
         {
-           
-
-
-
             return View();
         }
         [HttpPost]
+        [AutoValidateAntiforgeryToken]
+        
         public async Task <IActionResult> CreateRoles(CreateRoleViewModel model)
         {
             if (ModelState.IsValid)
             {
-                if (await _roleManager.RoleExistsAsync(model.RoleName))
-                {
-                    ViewBag.Eroor = "خطا!این نقش وجود دارد";
-                }
-                
                 var result = await _roleManager.CreateAsync(new AppRole(model.RoleName,model.RoleDescription));
           
                 if (result.Succeeded)
                 {
-                   
-
-                    ViewBag.successfull = "اطلاعات با موفقیت ذخیره شد";
                     return RedirectToAction("ReadRoles");
                 }
-                ViewBag.Error = "خطا در ذخیره نقش رخ داده است";
-                return View();
-
+                foreach (var item in result.Errors)
+                {
+                    ModelState.AddModelError("", item.Description);
+                }
             }
-
-
-
 
             return View(model);
         }
@@ -90,11 +71,8 @@ namespace App.EndPoint.ShopUi.Areas.Admin.Controllers.User
             {
                 RoleDescription=role.Description,
                 RoleName =role.Name,
-                 RecentRoleName=role.Name ,
                  RoleId=role.Id
-               
             };
-         
             return View(result);
         }
         [HttpPost]
@@ -104,35 +82,20 @@ namespace App.EndPoint.ShopUi.Areas.Admin.Controllers.User
             {
                 var role = await _roleManager.FindByIdAsync(model.RoleId + string.Empty);
                 if (role == null)
-                {
                     return NotFound();
-                }
-                if (await _roleManager.RoleExistsAsync(model.RoleName) && model.RoleName != model.RecentRoleName)
-                {
-                    ViewBag.Error = "خطا!این نقش وجود دارد";
-
-                }
-                else
-                {
-
                     role.Name = model.RoleName;
                     role.Description = model.RoleDescription;
                     var result = await _roleManager.UpdateAsync(role);
-                  
                     if (result.Succeeded)
                     {
-                        ViewBag.successfull = "اطلاعات با موفقیت ذخیره شد.";
+                        ViewBag.Success = "اطلاعات با موفقیت ذخیره شد.";
                         return RedirectToAction("ReadRoles");
                     }
-
-
-
+                foreach (var item in result.Errors)
+                {
+                    ModelState.AddModelError("", item.Description);
                 }
-
-                ViewBag.Error = "خطایی در ذخیره اطلاعات رخ داد است";
             }
-
-
             return View(model);
          }
         [HttpGet]

@@ -31,11 +31,11 @@ namespace App.EndPoint.ShopUi.Area.Admin.Controllers.BaseData
 
             if (ModelState.IsValid)
             {
-
-
                 await _modelAppService.InsertModel(model.BrandId, model.ParentModelId, model.Name);
                 return RedirectToAction("ReadModel");
             }
+            ViewBag.Models = new SelectList(await _modelAppService.GetModels(), "Id", "Name");
+            ViewBag.Brands = new SelectList(await _brandAppService.GetBrands(), "Id", "Name");
             return View(model);
 
         }
@@ -68,6 +68,8 @@ namespace App.EndPoint.ShopUi.Area.Admin.Controllers.BaseData
                 await _modelAppService.UpdateModel(model.BrandId, model.ParentModelId, model.Name, model.Id);
                 return RedirectToAction("ReadModel");
             }
+            ViewBag.Models = new SelectList(await _modelAppService.GetModels(), "Id", "Name");
+            ViewBag.Brands = new SelectList(await _brandAppService.GetBrands(), "Id", "Name");
             return View(model);
         }
 

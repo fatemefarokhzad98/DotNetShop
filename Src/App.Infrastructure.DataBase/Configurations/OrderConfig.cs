@@ -13,13 +13,14 @@ namespace App.Infrastructure.DataBase.Configurations
     {
         public void Configure(EntityTypeBuilder<Order> builder)
         {
-            builder.Property(x => x.DispatchNumber).HasMaxLength(200)
-                .IsRequired();
-            builder.HasMany(x => x.Products)
+         
+            builder.HasMany(x => x.OrderDetails)
                 .WithOne(x=>x.Order)
                 .HasForeignKey(x=>x.OrderId)
                 .HasPrincipalKey(x=>x.Id)
                 .OnDelete(DeleteBehavior.ClientCascade);
+
+
 
          
         }

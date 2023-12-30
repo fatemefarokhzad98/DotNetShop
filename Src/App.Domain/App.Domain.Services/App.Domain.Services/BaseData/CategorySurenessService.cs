@@ -25,7 +25,7 @@ namespace App.Domain.Services.BaseData
                 throw new Exception();
         }
 
-        public async Task EnSureModelIsExist(string name)
+        public async Task EnsureModelIsExist(string name)
         {
             var category = await _categoryQueryRepository.GetCategory(name);
             if (category == null)

@@ -11,7 +11,7 @@ namespace App.Domain.Core.BaseData.Contracts.Repositories
     {
        
         Task CreateBrand(string name,int displayOrder,DateTime dateTime,bool isDeleted);
-        Task UpdateBrand(string name, int displayOrder,int id,DateTime dateTime);
+        Task UpdateBrand(string name, int displayOrder,int id);
         Task RemoveBrand(int id);
        
       

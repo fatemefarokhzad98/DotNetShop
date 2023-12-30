@@ -7,6 +7,7 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <PackageReference Include="MD.PersianDateTime.Core" Version="2.3.5" />
     <PackageReference Include="Microsoft.AspNetCore.Mvc.Razor.RuntimeCompilation" Version="6.0.20" />
     <PackageReference Include="Microsoft.EntityFrameworkCore.Design" Version="7.0.9">
       <PrivateAssets>all</PrivateAssets>
@@ -24,8 +25,8 @@
 
   <ItemGroup>
     <Folder Include="Areas\Admin\Controllers\Comment\" />
-    <Folder Include="Areas\Admin\Views\ManagmentUser\" />
-    <Folder Include="Areas\Admin\Views\User\" />
+    <Folder Include="wwwroot\UserFile\" />
+    <Folder Include="wwwroot\ProductFile\" />
   </ItemGroup>
 
   <ItemGroup>

@@ -1,7 +1,7 @@
 ﻿using ProductEntity = App.Domain.Core.Product.Entities;
 using System;
 using System.Collections.Generic;
-
+using App.Domain.Core.Product.Entities;
 
 namespace App.Domain.Core.BaseData.Entities;
 
@@ -14,5 +14,6 @@ public partial class Collection
 
     public bool IsDeleted { get; set; }
     public DateTime CreationDate { get; set; }
-    public virtual ICollection<ProductEntity.Product> Products { get; set; } = new List<ProductEntity.Product>();
+    public DateTime? DeleteDate { get; set; }
+    public virtual ICollection<ProductCollection> Products { get; set; } = new List<ProductCollection>();
 }

@@ -12,11 +12,11 @@ namespace App.Domain.Services.BaseData
 {
     public  class BrandSurenessService: IBrandSurnessService
     {
-        private readonly IBrandCommandRepository _brandCommandRepository;
+       
         private readonly IBrandQueryRepository _brandQueryRepository;
-        public BrandSurenessService(IBrandCommandRepository brandCommandRepository, IBrandQueryRepository brandQueryRepository)
+        public BrandSurenessService( IBrandQueryRepository brandQueryRepository)
         {
-            _brandCommandRepository = brandCommandRepository;
+          
             _brandQueryRepository = brandQueryRepository;
 
         }
@@ -44,7 +44,7 @@ namespace App.Domain.Services.BaseData
                 throw new Exception();
         }
 
-        public async Task EnSureModelIsExist(string name)
+        public async Task EnsureModelIsExist(string name)
         {
             var brand = await _brandQueryRepository.GetBrand(name);
             if (brand == null)

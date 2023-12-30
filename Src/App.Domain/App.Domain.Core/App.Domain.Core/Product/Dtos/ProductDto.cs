@@ -1,4 +1,6 @@
-﻿using System;
+﻿using App.Domain.Core.BaseData.Dtos;
+using App.Domain.Core.Product.Entities;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -24,6 +26,7 @@ namespace App.Domain.Core.Product.Dtos
 
         public int? ModelId { get; set; }
         public string? ModelName { get; set; }
+        public string ImangeName { get; set; }
 
         public int Count { get; set; }
 
@@ -32,18 +35,18 @@ namespace App.Domain.Core.Product.Dtos
         public bool IsShowPrice { get; set; }
 
         public bool IsActive { get; set; }
-
+       
         public DateTime SubmitTime { get; set; }
+        public DateTime? SubmitEditTime { get; set; }
+        public DateTime? SubmitRemoveTime { get; set; }
 
         public int StatusId { get; set; }
         public string StatusName { get; set; }
+        public string? EditUserName { get; set; }
 
-        public int SubmitOperatorId { get; set; }
-        public string SubmitOperatorName { get; set; }
+
         public bool IsDeleted { get; set; }
-
-
-
+        public List<ColorDto> Colors { get; set; } = null!;
 
 
     }

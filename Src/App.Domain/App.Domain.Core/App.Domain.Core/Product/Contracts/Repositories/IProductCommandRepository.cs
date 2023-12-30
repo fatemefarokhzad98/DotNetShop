@@ -10,7 +10,8 @@ namespace App.Domain.Core.Product.Contracts.Repositories
     public interface IProductCommandRepository
     {
         Task<int> InsertProduct(ProductInsertDto product);
-        Task<ProductDto> RemoveProduct(int id);
+        Task<int> RemoveProduct(int id,string userRemoveName);
+
         Task<int> UpdateProduct(ProductDto product);
     }
 }

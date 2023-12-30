@@ -10,10 +10,11 @@ namespace App.Domain.Core.Product.Contracts.Repositories
     public interface IProductQueryRepository
     {
 
-        Task<ProductDto?> GetProduct(int id);
-        Task<ProductDto?> GetProduct(string name);
-        Task<List<ProductDto>> GetProducts();
-        //Task<List<ProductBriefDto>> Search(int? categoryId, string? keyWord, int? minPrice, int? maxPrice, int? brandId);
+        Task<ProductReadDto?> GetProduct(int id);
+        Task<List<ProductReadDto>?> GetProduct(string name);
+        Task<List<ProductReadDto>> GetProducts();
+        Task<List<ProductBriefDto>>? Search(int? categoryId, string? keyWord, int? minPrice, int? maxPrice, int? brandId);
+
 
 
     }

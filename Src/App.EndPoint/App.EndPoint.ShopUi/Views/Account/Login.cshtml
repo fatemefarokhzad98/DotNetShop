@@ -1,8 +1,28 @@
 ﻿@model LoginViewModel
 @{
     ViewData["Title"] = "ورود";
-
+    Layout=null;
 }
+<html lang="FA-IR" dir="rtl">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0,user-scalable=no"1.0">
+    <title>فروشگاه دات نت شاپ </title>
+    <link rel="stylesheet" href="~/css/bootstrap.rtl.min.css">
+     <link rel="stylesheet" href="~/font/bootstrap-icon/bootstrap-icons.css">
+     <link rel="stylesheet" href="~/plugin/waves/waves.min.css">
+     <link rel="stylesheet" href="~/plugin/swiper/swiper-bundle.min.css">
+     <link rel="stylesheet" href="~/plugin/timer/timer.css">
+     <link rel="stylesheet" href="~/plugin/hint-css/hint-css.css">
+     <link rel="stylesheet" href="~/plugin/bootstrap-touchspin/jquery.bootstrap-touchspin.min.css">
+     <link rel="stylesheet" href="~/css/style.css">
+     <link rel="stylesheet" href="~/css/responsive.css">
+
+</head>
+
+<body>
     <div class="content">
         <div class="container-fluid">
             <div class="content-box">
@@ -11,16 +31,17 @@
                         <div class="auth shadow-box rounded-4 p-4">
                             <div class="auth-content">
                                 <h3 class="font-20 text-center auth-title-form">ورود به فروشگاه</h3>
+                                     <div asp-validation-summary="ModelOnly" class="text-danger"></div>
                                 <form  class="mt-3" asp-controller="Account" asp-action="Login" method="post">
                                     <div class="form-floating mb-3">
-                                        <input type="email" class="form-control float-input" id="floatingInput"
-                                            asp-for="Email">
-                                        <label asp-for="Email"> </label>
+                                        <input type="text" class="form-control float-input" id="floatingInput"
+                                            asp-for="UserName">
+                                        <label asp-for="UserName"> </label>
                                     </div>
                                     <div class="form-floating mb-3">
                                         <input type="password" class="form-control float-input" id="floatingPassword"
-                                           asp-for="Email">
-                                        <label asp-for="Email"> </label>
+                                           asp-for="Password">
+                                        <label asp-for="Password"> </label>
                                         
                                     </div>
                                     <div class="row gy-3 mb-3">
@@ -55,3 +76,21 @@
             </div>
         </div>
     </div>
+    <script src="~/js/jquery.min.js"></script>
+    <script src="~/js/bootstrap.bundle.min.js"></script>
+    <script src="~/plugin/waves/waves.min.js"></script>
+    <script src="~/plugin/swiper/swiper-bundle.min.js"></script>
+    <script src="~/plugin/timer/timer.js"></script>
+    <script src="~/plugin/hint-css/hint-css.js"></script>
+    <script src="~/plugin/bootstrap-touchspin/jquery.bootstrap-touchspin.min.js"></script>
+    <script src="~/js/app.js"></script>
+    <script src="~/js/jquery-app.js"></script>
+
+    <!-- ===== start new update 3.2.0 -->
+    <script src="~/plugin/go-to-top/script.js"></script>
+    <script src="~/plugin/rasta-contact/script.js"></script>
+
+    <link rel="stylesheet" href="~/plugin/go-to-top/style.css">
+    <link rel="stylesheet" href="~/plugin/rasta-contact/style.css">
+    </body>
+    </html>

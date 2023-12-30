@@ -21,51 +21,49 @@ namespace App.Domain.AppServices.Product
 
         }
 
-        public async Task<ProductDto?> GetProduct(int id)
+        public async Task<ProductReadDto?> GetProduct(int id)
         {
-            var product = await _productService.GetProduct(id);
-            if (product == null)
-                throw new Exception();
-            return product;
+           return await _productService.GetProduct(id);
+            
+          
        
         }
 
-        public async Task<ProductDto?> GetProduct(string name)
+        public async Task<List<ProductReadDto>?> GetProduct(string name)
         {
-            var product = await _productService.GetProduct(name);
-            if (product == null)
-                throw new Exception();
-            return product;
+            return await _productService.GetProduct(name);
+            
         }
 
-        public async Task<List<ProductDto>> GetProducts()
+        public async Task<List<ProductReadDto>> GetProducts()
         {
             return await _productService.GetProducts();
         }
 
-        //public Task<List<ProductBriefDto>> GetProductsList(int? categoryId, string? keyWord, int? minPrice, int? maxPrice, int? brandId)
-        //{
-        //    throw new NotImplementedException();
-        //}
-
         public async Task<int> InsertProduct(ProductInsertDto product)
         {
-            await _productSurnessService.EnsureModelIsNotExist(product.Name);
+           
             return await _productService.InsertProduct(product);
         }
 
-        public async Task<ProductDto> RemoveProduct(int id)
+        public async Task<int> RemoveProduct(int id, string userRemoveName)
         {
             await _productSurnessService.EnsureModelIsExist(id);
-            return await _productService.RemoveProduct(id);
+            return await _productService.RemoveProduct(id,userRemoveName);
+        }
+
+        public async Task<List<ProductBriefDto>>? Search(int? categoryId, string? keyWord, int? minPrice, int? maxPrice, int? brandId)
+        {
+           return await _productService.Search(categoryId, keyWord, minPrice, maxPrice, brandId)!;
         }
 
         public async Task<int> UpdateProduct(ProductDto product)
         {
-            await _productSurnessService.EnSureModelIsExist(product.Name);
+           
             return await _productService.UpdateProduct(product);
 
         }
+
        
     }
 }

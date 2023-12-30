@@ -80,10 +80,10 @@ namespace App.EndPoint.ShopUi.Area.Admin.Controllers.BaseData
         {
             if (ModelState.IsValid)
             {
-
-
                 await _categoryAppService.InsertCategory(category.IsActive, category.DisplayOrder, category.Name, category.ParentCategoryId);
                 return RedirectToAction("ReadCategory");
+
+                ViewBag.Categories = new SelectList(await _categoryAppService.GetCategories(), "Id", "Name");
             }
             return View(category);
         }

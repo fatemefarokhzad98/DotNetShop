@@ -22,6 +22,7 @@ namespace App.EndPoint.ShopUi.Controllers
 
         public IActionResult Index()
         {
+           
             return View();
         }
 
@@ -35,31 +36,6 @@ namespace App.EndPoint.ShopUi.Controllers
         {
             return View(new ErrorViewModel { RequestId = Activity.Current?.Id ?? HttpContext.TraceIdentifier });
         }
-        public async Task< IActionResult> SetData()
-        {
-            //var adminrole = await _roleManager.CreateAsync(new AppRole( "AdminRole"));
-            //var CustomerRole = await _roleManager.CreateAsync(new AppRole("CustomerRole"));
-            //var adminuserresult = await _userManager.CreateAsync(new IdentityUser<int>("Admin"));
-            //if (adminuserresult.Succeeded)
-            //{
-            //    var adminuser = await _userManager.FindByNameAsync("Admin");
-            //    await _userManager.AddToRoleAsync(adminuser, "AdminRole");
-
-
-            //}
-            //var testuserresult = await _userManager.CreateAsync(new IdentityUser<int>("test"));
-            //if (testuserresult.Succeeded)
-            //{
-            //    var  testuser = await _userManager.FindByNameAsync("test");
-
-            //    await _userManager.AddToRoleAsync(testuser,"CustomerRole");
-
-
-            //}
-
-
-
-            return View();
-        }
+      
     }
 }

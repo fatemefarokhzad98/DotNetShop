@@ -15,7 +15,7 @@ namespace App.EndPoint.ShopUi.Area.Admin.Models.ViewModels.BaseData
         public int DisplayOrder { get; set; }
         [Display(Name = "دسته بندی اصلی")]
       
-        public string ParentName { get; set; }
+        public string? ParentName { get; set; }
         [Display(Name = "دسته بندی اصلی")]
    
         public int? ParentCategoryId { get; set; }

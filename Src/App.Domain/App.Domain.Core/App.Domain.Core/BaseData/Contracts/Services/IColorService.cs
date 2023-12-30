@@ -11,10 +11,10 @@ namespace App.Domain.Core.BaseData.Contracts.Services
     {
 
         Task UpdateColor(int id, string name, string colorCode);
-        Task InsertColor( string name, string colorCode);
+        Task InsertColor(string name, string colorCode);
         Task RemoveColor(int id);
         Task<List<ColorDto>> GetColors();
-        Task<ColorDto> GetColor(int id);
-        Task<ColorDto> GetColor(string name);
+        Task<ColorDto?> GetColor(int id);
+        Task<ColorDto?> GetColor(string code);
     }
 }

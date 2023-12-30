@@ -1,17 +1,19 @@
-﻿using App.Domain.Core.BaseData.Contracts.Repositories;
-using App.Domain.Core.BaseData.Dtos;
-using App.Domain.Core.BaseData.Entities;
-using App.Infrastructure.DataBase.Data;
-using Microsoft.EntityFrameworkCore;
+﻿
+
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using App.Domain.Core.BaseData.Dtos;
+using App.Domain.Core.BaseData.Contracts.Repositories;
+using App.Domain.Core.BaseData.Entities;
+using App.Infrastructure.DataBase.Data;
+using Microsoft.EntityFrameworkCore;
 
 namespace App.Infrastructure.Repository.Ef.BaseData
 {
-    public class ModelCommandRepository: IModelCommandRepository
+    public class ModelCommandRepository: Domain.Core.BaseData.Contracts.Repositories.IModelCommandRepository
     {
         private readonly AppDbContext _appDbContext;
         public ModelCommandRepository(AppDbContext appDbContext)
@@ -29,7 +31,7 @@ namespace App.Infrastructure.Repository.Ef.BaseData
                 ParentModelId = parentModelId,
 
             };
-             await _appDbContext.Modell.AddAsync(model);
+              _appDbContext.Model.Add(model);
             await _appDbContext.SaveChangesAsync();
             return model.Id;
            
@@ -38,12 +40,12 @@ namespace App.Infrastructure.Repository.Ef.BaseData
 
         public async Task<ModelDto> RemoveModel(int id)
         {
-            var model = await _appDbContext.Modell.Where(x => x.Id == id).SingleAsync();
-            var modelDto = await _appDbContext.Modell.Where(x => x.Id == id).AsNoTracking().Select(c => new ModelDto()
+            var model = await _appDbContext.Model.Where(x => x.Id == id).SingleAsync();
+            var modelDto = await _appDbContext.Model.Where(x => x.Id == id).AsNoTracking().Select(c => new ModelDto()
             {
                 Id = c.Id,
                 BrandId = c.BrandId,
-                IsDeleted = c.IsDeleted,
+                IsDeleted = true,
                 Name = c.Name,
                 ParentModelId =c.ParentModelId
 
@@ -56,7 +58,7 @@ namespace App.Infrastructure.Repository.Ef.BaseData
 
         public async Task<int> UpdateModel(int brandid, int ?parentModelId, string name, int id)
         {
-            var model = await _appDbContext.Modell.Where(x=>x.Id==id).SingleAsync();
+            var model = await _appDbContext.Model.Where(x=>x.Id==id).SingleAsync();
             model.Name= name;
            
             model.BrandId= brandid;

@@ -31,7 +31,7 @@ namespace App.Infrastructure.Repository.Ef.BaseData
                 DisplayOrder = displayOrder,
             
             };
-            await _appDbContext.Category.AddAsync(category);
+             _appDbContext.Category.Add(category);
             await _appDbContext.SaveChangesAsync();
             return category.Id;
         }
@@ -44,7 +44,7 @@ namespace App.Infrastructure.Repository.Ef.BaseData
                 DisplayOrder = c.DisplayOrder,
                 Id = c.Id,
                 IsActive = c.IsActive,
-                IsDeleted = c.IsDeleted,
+                IsDeleted = true,
                 Name = c.Name,
                 ParentCategoryId = c.ParentCategoryId,
                  ParentName=c.ParentCategory.Name

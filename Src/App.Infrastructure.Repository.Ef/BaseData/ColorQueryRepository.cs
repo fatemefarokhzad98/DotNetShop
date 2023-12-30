@@ -20,20 +20,20 @@ namespace App.Infrastructure.Repository.Ef.BaseData
         }
         public async Task<ColorDto?> GetColor(int id)
         {
-            return await _appDbContext.Color.AsNoTracking().Where(x => x.Id == id).Select(c => new ColorDto()
+            return await _appDbContext.Color.AsNoTracking().Where(x => x.Id == id && x.IsDeleted==false).Select(c => new ColorDto()
             {
                 Id = c.Id,
                 Name = c.Name,
                 ColorCode = c.ColorCode,
-                IsDeleted=c.IsDeleted
+                IsDeleted=false
                 
             }).FirstOrDefaultAsync();
             
         }
 
-        public  async Task<ColorDto?> GetColor(string name)
+        public  async Task<ColorDto?> GetColor(string code)
         {
-           return await _appDbContext.Color.AsNoTracking().Where(x => x.Name == name).Select(c => new ColorDto()
+           return await _appDbContext.Color.AsNoTracking().Where(x => x.ColorCode == code).Select(c => new ColorDto()
             {
                 Id = c.Id,
                 Name = c.Name,
@@ -46,16 +46,18 @@ namespace App.Infrastructure.Repository.Ef.BaseData
 
         public async Task<List<ColorDto>> GetColors()
         {
-            return await _appDbContext.Color.AsNoTracking().Select(x => new ColorDto()
+            return await _appDbContext.Color.Where(x=>x.IsDeleted==false).Select(x => new ColorDto()
             {
                 Id = x.Id,
                 Name = x.Name,
                 ColorCode = x.ColorCode,
                 IsDeleted=x.IsDeleted
-                
+
+           
             }).ToListAsync();
           
         }
+       
 
 
     }

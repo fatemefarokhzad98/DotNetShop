@@ -1,4 +1,5 @@
 ﻿using App.Domain.Core.BaseData.Dtos;
+using App.Domain.Core.Product.Dtos;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -9,12 +10,14 @@ namespace App.Domain.Core.BaseData.Contracts.Services
 {
     public interface ICategoryService
     {
-        Task<List<CategoryDto>> GetCategories();
-        Task<CategoryDto> GetCategory(int? id);
-        Task<CategoryDto> GetCategory(string name);
-        Task<int> UpdateCategory( bool isActive, int displayOrder, string name, int ?parentCategoryId,int id);
+        Task<int> UpdateCategory(bool isActive, int displayOrder, string name, int? parentCategoryId, int id);
         Task<CategoryDto> RemoveCategory(int id);
 
-        Task<int> InsertCategory(bool isActive, int displayOrder, string name, int? parentCategoryId);
+        Task<int> InsertCategory( bool isActive, int displayOrder, string name, int? parentCaregoryId);
+        Task<List<CategoryDto>> GetCategories();
+
+        Task<CategoryDto?> GetCategory(int id);
+        Task<CategoryDto?> GetCategory(string name);
+        Task<List<ProductBriefDto?>> GetCategoryWithProduct(int? id, string? name);
     }
 }

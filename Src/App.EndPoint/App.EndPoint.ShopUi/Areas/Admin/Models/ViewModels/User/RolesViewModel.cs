@@ -15,7 +15,7 @@ namespace App.EndPoint.ShopUi.Areas.Admin.Models.ViewModels.User
         public string RoleDescription { get; set; } = null!;
         [Display(Name = "تعداد کاربران")]
         public  int CountUser { get; set; }
-        public string? RecentRoleName { get; set; }
+      
 
 
     }

@@ -1,116 +1,175 @@
 ﻿@using App.EndPoint.ShopUi.Area.Admin.Models.ViewModels.Product
 
+
 @model ProductUpdateViewModel
 @{
-    ViewData["Title"] = " ویرایش محصولات ";   
+    ViewData["Title"] = "ویرایش محصول";   
+      Layout = "_AdminLayout";
 }
-<h3>ویرایش محصولات </h3>
+<h3>ویرایش محصول</h3>
 
-<form asp-controller="Product" asp-action="UpdateProduct" asp-area="Admin" method="post" >
-      <div  class="form-group"> 
-        <label asp-for="Name"  > </label>
-      <input   class="form-control" asp-for="Name" />
-         <span asp-validation-for="Name"  ></span>
+<form method="post" asp-controller="Product" asp-action="UpdateProduct" enctype="multipart/form-data">
 
-    </div>
-         <div  class="form-group">
-      <label asp-for="BrandId"  > </label>
-        <br />
 
-        <select  asp-for="BrandId" asp-items="@ViewBag.Brands" class="form-control">
-
-            <option style="display:none;" value="">انتخاب کنید</option>
-
-        </select>
-           <span asp-validation-for="BrandId"  ></span>
-
-    </div>
-     <div  class="form-group">
-      <label asp-for="ModelId"  > </label>
-        <br />
-
-        <select  asp-for="ModelId" asp-items="@ViewBag.Models" class="form-control">
-
-            <option style="display:none;" value="">انتخاب کنید</option>
-
-        </select>
-              <span asp-validation-for="ModelId"  ></span>
-
-    </div>
-     <div  class="form-group"> 
-        <label asp-for="Price"  > </label>
-      <input   class="form-control" asp-for="Price" />
-          <span asp-validation-for="Price"  ></span>
-
-    </div>
-       <div  class="form-group"> 
-        <label asp-for="Count"  > </label>
-      <input   class="form-control" asp-for="Count" />
-       <span asp-validation-for="Count"  ></span>
-
-    </div>
-         <div  class="form-group"> 
-        <label asp-for="Description"  > </label>
-      <input   class="form-control" asp-for="Description" />
-       <span asp-validation-for="Description"  ></span>
-
-    </div>
-         <div  class="form-group"> 
-        <label asp-for="IsActive"  > </label>
-      <input   class="form-control" asp-for="IsActive" />
-     
-
-    </div>
-      <span asp-validation-for="IsActive"  ></span>
-           <div  class="form-group"> 
-        <label asp-for="IsOrginal"  > </label>
-      <input   class="form-control" asp-for="IsOrginal" />
-     
-
-    </div>
-       <span asp-validation-for="IsOrginal"  ></span>
-
-         <div  class="form-group">
-      <label asp-for="SubmitOperatorId"  > </label>
-        <br />
-
-        <select  asp-for="SubmitOperatorId" asp-items="@ViewBag.SubmitOperators" class="form-control">
-
-            <option style="display:none;" value="">انتخاب کنید</option>
-
-        </select>
-              <span asp-validation-for="SubmitOperatorId"  ></span>
-
-    </div>
-           <div  class="form-group">
-      <label asp-for="StatusId"  > </label>
-        <br />
-
-        <select  asp-for="StatusId" asp-items="@ViewBag.Statuses" class="form-control">
-
-            <option style="display:none;" value="">انتخاب کنید</option>
-
-        </select>
-              <span asp-validation-for="StatusId"  ></span>
-
+    <div class="form-group row">
+        <h2 class="text-info pl-3">ثبت محصول جدید</h2>
     </div>
 
-       <div  class="form-group">
-      <label asp-for="CategoryId"  > </label>
-        <br />
+    <div class="row">
+        <div class="col-8">
+            <div class="form-group row p-3">
+                <div class="col-4">
+                    <label asp-for="Name"></label>
+                </div>
+                <div class="col-8">
+                    <input asp-for="Name" class="form-control" />
+                    <span asp-validation-for="Name" class="text-danger"></span>
+                </div>
 
-        <select  asp-for="CategoryId" asp-items="@ViewBag.Categories" class="form-control">
-
-            <option style="display:none;" value="">انتخاب کنید</option>
-
-        </select>
-          <span asp-validation-for="CategoryId"  ></span>
-
-    </div>
-  
-        <div class="form-group">
+            </div>
 
 
-        <input type="submit" value="ثبت " class="btn btn-primary"  style="float:right"  />
-    </div>
-    </form>
+            <div class="form-group row p-3">
+                <div class="col-4">
+                    <label asp-for="CategoryId"></label>
+                </div>
+                <div class="col-8">
+                    <select asp-for="CategoryId" class="form-control" asp-items="@ViewBag.Categories">
+                        <option disabled selected>-- Select Category --</option>
+                    </select>
+                    <span asp-validation-for="CategoryId" class="text-danger"></span>
+                </div>
+            </div>
+
+            <div class="form-group row p-3">
+                <div class="col-4">
+                    <label asp-for="BrandId"></label>
+                </div>
+                <div class="col-8">
+                    <select asp-for="BrandId" class="form-control" asp-items="@ViewBag.Brands">
+                        <option disabled selected>-- Select Brand --</option>
+                    </select>
+                    <span asp-validation-for="BrandId" class="text-danger"></span>
+                </div>
+            </div>
+
+            <div class="form-group row p-3">
+                <div class="col-4">
+                    <label asp-for="ModelId"></label>
+                </div>
+                <div class="col-8">
+                    <select asp-for="ModelId" class="form-control" asp-items="@ViewBag.Models">
+                        <option disabled selected>-- Select Model --</option>
+                    </select>
+                    <span asp-validation-for="ModelId" class="text-danger"></span>
+                </div>
+            </div>
+             <div class="form-group row p-3">
+                <div class="col-4">
+                    <label asp-for="StatusId"></label>
+                </div>
+                <div class="col-8">
+                    <select asp-for="StatusId" class="form-control" asp-items="@ViewBag.Status">
+                        <option disabled selected>-- Select Model --</option>
+                    </select>
+                    <span asp-validation-for="StatusId" class="text-danger"></span>
+                </div>
+            </div>
+
+            <div class="form-group row p-3">
+                <div class="col-4">
+                    <label asp-for="Description"></label>
+                </div>
+                <div class="col-8">
+                    <textarea asp-for="Description" class="form-control summernote"></textarea>
+                    <span asp-validation-for="Description" class="text-danger"></span>
+                </div>
+
+            </div>
+
+            <div class="form-group row p-3">
+                <div class="col-4">
+                    <label asp-for="Count"></label>
+                </div>
+                <div class="col-8">
+                    <input asp-for="Count" class="form-control" />
+                    <span asp-validation-for="Count" class="text-danger"></span>
+                </div>
+            </div>
+           
+
+            <div class="form-group row p-3">
+                                <button class="btn btn-primary mb-3" type="button" data-toggle="collapse" data-target="#demo">افزودن رنگ</button>
+
+                                <div id="demo" class="collapse col-8" >
+                                    <select asp-for="Colors" class="form-control" asp-items=@(new SelectList(ViewBag.Colors,"Value","Text"))>
+                                    </select>
+                                    <span asp-validation-for="Colors" class="text-danger">
+
+                                    </span>
+                                </div>
+                            </div>
+
+
+
+            <div class="form-group row p-3">
+                <div class="col-4">
+                    <label asp-for="Price"></label>
+                </div>
+                <div class="col-8">
+                    <input asp-for="Price" class="form-control" />
+                    <span asp-validation-for="Price" class="text-danger"></span>
+                </div>
+            </div>
+
+            
+            <div class="form-group row p-3">
+                <div class="col-4">
+                    <label asp-for="File"></label>
+                </div>
+                <div class="col-8">
+                   
+                  <input class="form-control" asp-for="File" type="file" accept=".jpg, .png, .jpeg, .gif, .tif, .tiff, .JPG" />
+                     <span asp-validation-for="File" class="text-danger"></span>
+                </div>
+            </div>
+
+            <div class="form-group my-2">
+                <input asp-for=IsActive type="radio" id="true" name="IsActive" value="True" />
+                <label for="true">فعال</label>
+                <input asp-for=IsActive type="radio" id="false" name="IsActive" value="False" />
+                <label for="false">غیر فعال</label>
+                <span asp-validation-for="IsActive" class="text-danger"></span>
+            </div>
+             <div class="form-group my-2">
+                <input asp-for=IsOrginal type="radio" id="true" name="IsOrginal" value="True" />
+                <label for="true">فعال</label>
+                <input asp-for=IsOrginal type="radio" id="false" name="IsOrginal" value="False" />
+                <label for="false">غیر فعال</label>
+                <span asp-validation-for="IsOrginal" class="text-danger"></span>
+            </div>
+
+            <div class="form-group my-2">
+                <input asp-for=IsShowPrice type="radio" id="true" name="IsShowPrice" value="True" />
+                <label for="true">قیمت نمایش داده شود</label>
+                <input asp-for=IsShowPrice type="radio" id="false" name="IsShowPrice" value="False" />
+                <label for="false">قیمت نمایش داده نشود</label>
+                <span asp-validation-for="IsShowPrice" class="text-danger"></span>
+                
+                
+            </div>
+            <div class="form-group row p-3">
+                <div class="col-8 offset-4 row">
+                    <div class="col">
+                        <input type="submit" value="ذخیره" class="btn btn-primary w-100" />
+                    </div>
+                    <div class="col">
+                        <a asp-controller="Product" asp-action="ReadProduct" class="btn btn-secondary" ><i class="fas fa-sign-out-alt">باز گشت به لیست</i></a>
+                    </div>
+                </div>
+            </div>
+        </div>  
+   
+
+
+</form>

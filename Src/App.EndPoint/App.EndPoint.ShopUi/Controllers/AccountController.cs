@@ -1,90 +1,93 @@
-﻿using App.Domain.Core.User.Entities;
+﻿using App.Domain.AppServices.User;
+using App.Domain.Core.User.Contracts.AppServices;
+using App.Domain.Core.User.Entities;
 using App.EndPoint.ShopUi.Models;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
+using System.Security.Claims;
 
 namespace App.EndPoint.ShopUi.Controllers
 {
     public class AccountController : Controller
     {
-        private readonly UserManager<AppUser> _userManager;
+        private readonly IAppUserManager _userManager;
         private readonly SignInManager<AppUser>  _signInManager;
-        public AccountController(UserManager<AppUser> userManager, SignInManager<AppUser> signInManager)
+        private readonly IAppRoleManager _appRoleManager;
+
+        public AccountController(IAppUserManager userManager
+            , SignInManager<AppUser> signInManager
+            ,IAppRoleManager appRoleManager)
+            
         {
             _userManager = userManager;
             _signInManager = signInManager;
+            _appRoleManager = appRoleManager;
         }
         public IActionResult Login()
         {
             return View();
         }
         [HttpPost]
+      
         public async Task< IActionResult> Login(LoginViewModel model)
         {
             if (ModelState.IsValid)
             {
               
-                var result= await _signInManager.PasswordSignInAsync(model.Email, model.Password, model.RememberMe, false);
+                var result= await _signInManager.PasswordSignInAsync(model.UserName, model.Password, model.RememberMe,true);
                 if (result.Succeeded)
                 {
-                    return RedirectToAction("index");
+                    return RedirectToAction("Index");
+                }
+                if (result.IsLockedOut)
+                {
+                    ModelState.AddModelError(string.Empty, "حساب کاربری شما به مدت 20دقیقه به دلیل تلاش های ناموفق قفل شده است");
+                    return View();
                 }
                 else
                 {
-                    ModelState.AddModelError(string.Empty, "خطا در لاگین");
+                    ModelState.AddModelError(string.Empty, "نام کاربری یاکلمه عبور نادرست است");
 
                 }
             }
 
             return View(model);
         }
-        public IActionResult ModalLogin()
-        {
-            return View();
-        }
 
-    
-        [HttpPost]
-        public  async Task< IActionResult> ModalLogin(LoginViewModel model)
-        {
-
-            if (ModelState.IsValid)
-            {
-
-                var result = await _signInManager.PasswordSignInAsync(model.Email, model.Password, model.RememberMe, false);
-                if (result.Succeeded)
-                {
-                    return RedirectToAction("index");
-                }
-                else
-                {
-                    ModelState.AddModelError(string.Empty, "خطا در لاگین");
-
-                }
-            }
-
-            return View(model);
-        }
 
         public IActionResult Register()
         {
             return View();
         }
         [HttpPost]
+    
         public async Task< IActionResult> Register(RegisterViewModel model)
         {
             if (ModelState.IsValid)
             {
                 var user=new AppUser
                 {
-                    UserName=model.Email,
-                    Email=model.Email,
+                    UserName=model.UserName,
                     PhoneNumber=model.Mobile,
-              
+                    RigesterDate=DateTime.Now,
+                    IsActive=true,
+                  
                 };
-           var result=await _userManager.CreateAsync(user,model.Password);       
+
+                  IdentityResult result=await _userManager.CreateAsync(user,model.Password);       
                 if (result.Succeeded)
                 {
+                    var role = await _appRoleManager.FindByNameAsync("کاربر");
+                    if (role == null)
+                    
+                        await _appRoleManager.CreateAsync(new AppRole("کاربر"));
+                        result = await _userManager.AddToRoleAsync(user, "کاربر");
+
+                    if (result.Succeeded)
+                    {
+
+                    }
+
                     await _signInManager.SignInAsync(user, isPersistent: false);
                     return RedirectToAction("Index");
                 }
@@ -100,13 +103,38 @@ namespace App.EndPoint.ShopUi.Controllers
             }
             return View(model);
         }
+        [HttpPost]
+    
         public async  Task <IActionResult> LogOut()
         {
             await _signInManager.SignOutAsync();
             
+            
+            return RedirectToAction("Index","Home");
+        }
+        
+        public IActionResult Index()
+        {
+            return View();
+        }
+        public async Task<IActionResult> SetData()
+        {
 
-            return RedirectToAction("Login");
+            var user = new AppUser();
+            user.UserName = "FatemeFarokhzad98";
+            user.FirstName = "زهرا";
+            user.LastName = "فرخزاد";
+            user.PhoneNumber = "09109560198";
+            await _userManager.CreateAsync(user);
+            await _userManager.AddToRoleAsync(user, "ادمین");
+            await _userManager.AddPasswordAsync(user,"123456789AAFF@");
+            
+          
+
+            return View();
         }
 
+
     }
+
 }

@@ -7,14 +7,14 @@ namespace App.EndPoint.ShopUi.Models
 
         [Required (ErrorMessage ="وارد کردن{0}الزامی است. ")]
         [EmailAddress]
-        [Display(Name ="ایمیل")]
-        public string Email { get; set; }
+        [Display(Name ="نام کاربری")]
+        public string UserName { get; set; }
         [Required(ErrorMessage = "وارد کردن{0}الزامی است. ")]
 
-        [StringLength(maximumLength:100,ErrorMessage ="  .{0} شامل حداقل {1}  و حداکثر {2} کاراکتر می باشد ",MinimumLength =3)]
-        [Display(Name ="رمز عبور")]
+        [StringLength(maximumLength: 100, ErrorMessage = "  .{0} شامل حداقل {1}  و حداکثر {2} کاراکتر می باشد ", MinimumLength = 3)]
+        [Display(Name = "رمز عبور")]
         [DataType(DataType.Password)]
-        public string Password { get; set; }
+        public string Password { get; set; } 
         [Required(ErrorMessage = "وارد کردن{0}الزامی است. ")]
 
         [Display(Name = "تکرار رمز عبور")]

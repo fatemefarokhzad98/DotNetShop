@@ -4,6 +4,7 @@
 @model List<CategoryReadViewModel>
 @{
     ViewData["Title"] = "لیست دسته بندی ها";
+      Layout = "_AdminLayout";
 
     Model.OrderBy(x => x.DisplayOrder);
    int countRow = 1;

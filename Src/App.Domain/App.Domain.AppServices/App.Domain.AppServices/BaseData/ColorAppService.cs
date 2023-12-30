@@ -19,32 +19,28 @@ namespace App.Domain.AppServices.BaseData
             _colorService = colorService;
 
         }
-        public async Task<ColorDto> GetColor(int id)
+      
+        public async Task<ColorDto?> GetColor(int id)
         {
-            var color = await _colorService.GetColor(id);
-            
-            return color;
-
-
+            return await _colorService.GetColor(id);
         }
 
-        public async Task<ColorDto> GetColor(string name)
+        public async Task<ColorDto?> GetColor(string code)
         {
-            var color= await _colorService.GetColor(name);
-          
-            return color;
-            
+            return await _colorService.GetColor(code);
         }
 
         public async Task<List<ColorDto>> GetColors()
         {
-            return await _colorService.GetColors();
+            var color= await _colorService.GetColors();
+            return color;
         }
+
 
         public async Task InsertColor(string name, string colorCode)
         {
-            await _colorSurenessService.EnsureModelIsNotExist(name);
-            await _colorService.InsertColor(name, colorCode);
+          await  _colorSurenessService.EnsureModelIsNotExist(name);
+             await _colorService.InsertColor(name, colorCode);
         }
 
         public async Task RemoveColor(int id)
@@ -53,11 +49,10 @@ namespace App.Domain.AppServices.BaseData
             await _colorService.RemoveColor(id);
         }
 
-        public  async Task UpdateColor(int id, string name, string colorCode)
+        public async Task UpdateColor(int id, string name, string colorCode)
         {
-            await _colorSurenessService.EnsureModelIsExist(id);
-            await _colorService.UpdateColor(id, name, colorCode);
-            
+           await _colorSurenessService.EnsureModelIsExist(id);
+            await _colorService.UpdateColor(id,name, colorCode); 
         }
     }
 }

@@ -24,16 +24,13 @@ namespace App.Infrastructure.DataBase.Configurations
                 .HasForeignKey(x => x.UserId)
                 .HasPrincipalKey(x => x.Id)
                  .OnDelete(DeleteBehavior.ClientSetNull);
+
             builder.HasMany(x => x.Comments)
                 .WithOne(x => x.SubmitUser)
                 .HasForeignKey(x => x.SubmitUserId)
                 .HasPrincipalKey(x => x.Id)
                  .OnDelete(DeleteBehavior.ClientSetNull); 
-            builder.HasMany(x => x.ProductViews)
-                .WithOne(x => x.ViewerUser)
-                .HasForeignKey(x => x.ViewerUserId)
-                .HasPrincipalKey(x => x.Id)
-                 .OnDelete(DeleteBehavior.ClientSetNull); 
+        
 
 
 

@@ -21,30 +21,27 @@ namespace App.Domain.AppServices.BaseData
 
         }
 
-        public async Task<CollectionDto> GetCollection(int id)
+     
+
+        public async Task<List<CollectionDto>?> GetCollection()
         {
-            var collection= await _collectionService.GetCollection(id);
-            if (collection == null)
-                throw new Exception();
-            return collection;
+           return await _collectionService.GetCollection();
         }
 
-        public async Task<CollectionDto> GetCollection(string name)
+        public async Task<CollectionDto?> GetCollection(int id)
         {
-            var collection = await _collectionService.GetCollection(name);
-            if (collection == null)
-                throw new Exception();
-            return collection;
+            return await _collectionService.GetCollection(id);
         }
 
-        public async Task<List<CollectionDto>> GetCollectionDtos()
+        public async Task<CollectionDto?> GetCollection(string name)
         {
-            return await _collectionService.GetCollectionDtos();
+            return await _collectionService.GetCollection(name);
         }
 
-        public async Task<int> InsertCollection(string name)
+     
+        public async Task<int> InsertCollection(string name )
         {
-            await _collectionSurnessService.EnsureModelIsNotExist(name);
+           await _collectionSurnessService.EnsureModelIsNotExist(name);
             return await _collectionService.InsertCollection(name);
         }
 
@@ -58,8 +55,8 @@ namespace App.Domain.AppServices.BaseData
 
         public async Task<int> UpdateCollection(string name, int id)
         {
-            await _collectionSurnessService.EnsureModelIsExist(id);
-            return await _collectionService.UpdateCollection(name  ,id);
+          await  _collectionSurnessService.EnsureModelIsExist(id);
+            return await _collectionService.UpdateCollection(name, id);
         }
     }
 }

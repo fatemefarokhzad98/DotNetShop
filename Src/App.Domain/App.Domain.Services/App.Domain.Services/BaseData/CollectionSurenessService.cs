@@ -26,7 +26,7 @@ namespace App.Domain.Services.BaseData
                 throw new Exception();
         }
 
-        public async Task EnSureModelIsExist(string name)
+        public async Task EnsureModelIsExist(string name)
         {
             var collection = await _collectionQueryRepository.GetCollection(name);
             if (collection == null)

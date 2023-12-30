@@ -9,13 +9,13 @@ namespace App.Domain.Core.Product.Contracts.AppServices
 {
     public interface IProductAppService
     {
+        Task<ProductReadDto?> GetProduct(int id);
+        Task<List<ProductReadDto>?> GetProduct(string name);
+        Task<List<ProductReadDto>> GetProducts();
+        Task<List<ProductBriefDto>>? Search(int? categoryId, string? keyWord, int? minPrice, int? maxPrice, int? brandId);
         Task<int> InsertProduct(ProductInsertDto product);
-        Task<ProductDto> RemoveProduct(int id);
+        Task<int> RemoveProduct(int id, string userRemoveName);
         Task<int> UpdateProduct(ProductDto product);
-        Task<ProductDto?> GetProduct(int id);
-        Task<ProductDto?> GetProduct(string name);
-        Task<List<ProductDto>> GetProducts();
-        //Task<List<ProductBriefDto>> GetProductsList(int? categoryId,string? keyWord,int? minPrice,int? maxPrice,int?brandId);
 
 
     }

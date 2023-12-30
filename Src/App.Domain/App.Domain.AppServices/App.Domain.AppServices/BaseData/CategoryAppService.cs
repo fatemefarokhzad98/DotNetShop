@@ -1,6 +1,7 @@
 ﻿using App.Domain.Core.BaseData.Contracts.AppServices;
 using App.Domain.Core.BaseData.Contracts.Services;
 using App.Domain.Core.BaseData.Dtos;
+using App.Domain.Core.Product.Dtos;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -22,46 +23,41 @@ namespace App.Domain.AppServices.BaseData
 
         public async Task<List<CategoryDto>> GetCategories()
         {
-              return await  _categoryService.GetCategories();
-          
-        }
-
-        public async Task<CategoryDto> GetCategory(int? id)
-        {
-           return  await _categoryService.GetCategory(id);
+            return await _categoryService.GetCategories();
             
-
         }
 
-        public async Task<CategoryDto> GetCategory(string name)
+        public async Task<CategoryDto?> GetCategory(int id)
+        {
+            return await _categoryService.GetCategory(id);
+        }
+
+        public async Task<CategoryDto?> GetCategory(string name)
         {
             return await _categoryService.GetCategory(name);
-           
-
         }
 
-      
-        public async Task<int> InsertCategory(bool isActive, int displayOrder, string name, int? parentCategoryId)
+        public async Task<List<ProductBriefDto?>> GetCategoryWithProduct(int? id, string? name)
         {
-            await _categorySurnessService.EnsureModelIsNotExist(name);
-           return await _categoryService.InsertCategory(isActive, displayOrder, name, parentCategoryId);
+            return await _categoryService.GetCategoryWithProduct(id, name);
+        }
+
+        public async Task<int> InsertCategory(bool isActive, int displayOrder, string name, int? parentCaregoryId)
+        {
+           await _categorySurnessService.EnsureModelIsNotExist(name);
+            return await _categoryService.InsertCategory( isActive, displayOrder, name, parentCaregoryId);
         }
 
         public async Task<CategoryDto> RemoveCategory(int id)
         {
-            await _categorySurnessService.EnsureModelIsExist(id);
+           await _categorySurnessService.EnsureModelIsExist(id);
             return await _categoryService.RemoveCategory(id);
         }
 
-        public async Task<int> UpdateCategory( bool isActive, int displayOrder, string name, int? parentCategoryId, int id)
+        public async Task<int> UpdateCategory(bool isActive, int displayOrder, string name, int? parentCategoryId, int id)
         {
-            await _categorySurnessService.EnsureModelIsExist(id);
-          return  await _categoryService.UpdateCategory(isActive, displayOrder, name, parentCategoryId, id);
-         
-
-            
+           await _categorySurnessService.EnsureModelIsExist(id);
+            return await _categoryService.UpdateCategory(isActive,displayOrder,name,parentCategoryId,id);
         }
-
-
     }
 }

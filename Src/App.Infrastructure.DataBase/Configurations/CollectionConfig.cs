@@ -1,4 +1,5 @@
 ﻿using App.Domain.Core.BaseData.Entities;
+using App.Domain.Core.Product.Entities;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Metadata.Builders;
 using System;
@@ -17,8 +18,10 @@ namespace App.Infrastructure.DataBase.Configurations
             builder.Property(e => e.Name).HasMaxLength(150);
             builder.Property(x => x.Name).IsRequired();
             builder.HasMany(x => x.Products)
-                .WithMany(x => x.Collections)
-                .UsingEntity("ProductCollections");
+                .WithOne(x => x.Collection)
+                .HasForeignKey(x => x.CollectionId)
+                .HasPrincipalKey(x => x.Id);
+                
             
 
         }

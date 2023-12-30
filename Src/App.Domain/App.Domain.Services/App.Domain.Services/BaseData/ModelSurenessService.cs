@@ -26,7 +26,7 @@ namespace App.Domain.Services.BaseData
 
         }
 
-        public async Task EnSureModelIsExist(string name)
+        public async Task EnsureModelIsExist(string name)
         {
             var model = await _modelQueryRepository.GetModel(name);
             if (model == null)

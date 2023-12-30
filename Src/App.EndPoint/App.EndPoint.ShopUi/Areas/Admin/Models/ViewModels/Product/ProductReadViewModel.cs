@@ -31,12 +31,15 @@ namespace App.EndPoint.ShopUi.Area.Admin.Models.ViewModels.Product
         public int StatusId { get; set; }
         [Display(Name = "وضعیت")]
         public string StatusName { get; set; }
-        [Display(Name = "حدف شده یانشده")]
+      
+        [Display(Name = "فعال یا غیر فعال بودن")]
         public bool IsActive { get; set; }
+    
         [Display(Name = "اپراتورثبت کننده")]
-        public int SubmitOperatorId { get; set; }
-        [Display(Name = "اپراتورثبت کننده")]
+    
         public string SubmitOperatorName { get; set; }
+        [Display(Name = "اپراتور ویرایش کننده")]
+        public string? EditOperatorName { get; set; }
         [Display(Name = "تاریخ ثبت محصول")]
         public DateTime SubmitTime { get; set; }
 

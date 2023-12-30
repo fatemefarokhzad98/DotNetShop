@@ -9,11 +9,13 @@ namespace App.Domain.Core.BaseData.Contracts.AppServices
 {
     public interface ICollectionAppService
     {
-        Task<List<CollectionDto>> GetCollectionDtos();
-        Task<CollectionDto> GetCollection(int id);
-        Task<CollectionDto> GetCollection(string name);
-        Task<int> UpdateCollection(string name,int id);
+        Task<int> UpdateCollection(string name, int id);
         Task<CollectionDto> RemoveCollection(int id);
         Task<int> InsertCollection(string name);
+        Task<List<CollectionDto>?> GetCollection();
+        Task<CollectionDto?> GetCollection(int id);
+        Task<CollectionDto?> GetCollection(string name);
+
+
     }
 }

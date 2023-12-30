@@ -13,6 +13,7 @@ namespace App.Infrastructure.DataBase.Configurations
     {
         public void Configure(EntityTypeBuilder<Model> builder)
         {
+           
            builder.Property(e => e.Name).HasMaxLength(200);
             builder.HasMany(x => x.Products)
                 .WithOne(x => x.Model)

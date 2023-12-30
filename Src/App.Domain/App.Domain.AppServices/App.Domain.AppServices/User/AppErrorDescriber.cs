@@ -21,8 +21,10 @@ namespace App.Domain.Core.User.Entities
         public override IdentityError PasswordTooShort(int length) => new IdentityError { Code = nameof(PasswordTooShort), Description = $"کلمه ی عبور شامل حداقل{length}کاراکتر باشد" };
 
         public override IdentityError DuplicateEmail(string email) => new IdentityError { Code = nameof(DuplicateEmail), Description = $"   شما باایمیل '{email}'قبلا ثبت نام کرده اید." };
-       
 
+        public override IdentityError DuplicateRoleName(string role) => new IdentityError { Code = nameof(DuplicateRoleName), Description = $" نقش '{role}' تکراری است" };
+
+       
 
 
 

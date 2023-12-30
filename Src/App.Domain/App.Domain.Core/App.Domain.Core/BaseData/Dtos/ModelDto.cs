@@ -1,4 +1,5 @@
 ﻿using App.Domain.Core.BaseData.Entities;
+using App.Domain.Core.Product.Dtos;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -19,7 +20,9 @@ namespace App.Domain.Core.BaseData.Dtos
         public bool IsDeleted { get; set; }
 
         public string Name { get; set; } = null!;
+        public virtual ICollection<ProductDto> Products { get; set; } = new List<ProductDto>();
 
-       
+
+
     }
 }

@@ -16,13 +16,14 @@ namespace App.EndPoint.ShopUi.Area.Admin.Controllers.BaseData
             _brandAppService = brandAppService;
         }
         [HttpPost]
+      
         public async Task< IActionResult> UpdateBrand(BrandUpdateViewModel brand )
         {
             if (ModelState.IsValid)
             {
 
 
-                await _brandAppService.UpdateBrand(brand.Id, brand.DisPlayOrder, brand.Name);
+                await _brandAppService.UpdateBrand(brand.Name, brand.DisPlayOrder, brand.Id);
 
 
                 return RedirectToAction("ReadBrand");
@@ -81,11 +82,12 @@ namespace App.EndPoint.ShopUi.Area.Admin.Controllers.BaseData
 
         }
         [HttpPost]
+       
         public async Task< IActionResult> InsertBrand(BrandInsertViewModel brand)
         {
             if (ModelState.IsValid)
             {
-                await _brandAppService.SetBrand(brand.DisPlayOrder, brand.Name);
+                await _brandAppService.CreateBrand(brand.Name, brand.DisPlayOrder);
                 return RedirectToAction("ReadBrand");
             }
             else

@@ -1,4 +1,5 @@
 ﻿using App.Domain.Core.BaseData.Dtos;
+using App.Domain.Core.Product.Dtos;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -9,12 +10,14 @@ namespace App.Domain.Core.BaseData.Contracts.AppServices
 {
     public interface IBrandAppService
     {
-      Task<  List<BrandDto>> GetBrands();
-        Task SetBrand(int displayOrder, string name);
-       Task <BrandDto> GetBrand(int id);
-       Task <BrandDto > GetBrand(string name);
-        Task  UpdateBrand(int id,int displayOrder, string name);
+
+        Task CreateBrand(string name, int displayOrder);
+        Task UpdateBrand(string name, int displayOrder, int id);
         Task RemoveBrand(int id);
+        Task<BrandDto?> GetBrand(int id);
+        Task<List<ProductBriefDto>?> GetBrandsWithProduct(int? id, string? name);
+        Task<BrandDto?> GetBrand(string Name);
+        Task<List<BrandDto>?> GetBrands();
 
 
     }

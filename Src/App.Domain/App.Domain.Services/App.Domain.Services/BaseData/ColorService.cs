@@ -23,32 +23,35 @@ namespace App.Domain.Services.BaseData
 
 
         }
-        public async Task<ColorDto> GetColor(int id)
+       
+
+        public async Task<ColorDto?> GetColor(string code)
         {
-          var color=  await _colorQueryRepository.GetColor(id);
-            if (color == null)
-                throw new Exception();
+            var color= await _colorQueryRepository.GetColor(code);
+         
             return color;
         }
 
-        public async Task<ColorDto> GetColor(string name)
+        public async Task<ColorDto?> GetColor(int id)
         {
-            var color= await _colorQueryRepository.GetColor(name);
-            if (color == null)
-                throw new Exception();
+            var color = await _colorQueryRepository.GetColor(id);
+           
             return color;
         }
 
         public async Task<List<ColorDto>> GetColors()
         {
-            return await _colorQueryRepository.GetColors();
-           
+            var color = await _colorQueryRepository.GetColors();
+        
+            return color;
+
         }
 
+       
         public async Task InsertColor(string name, string colorCode)
         {
-           
-            await _colorCommandRepository.InsertColor(name,colorCode,false);
+            await _colorCommandRepository.InsertColor(name, colorCode, false);
+       
         }
 
         public async Task RemoveColor(int id)
@@ -57,10 +60,10 @@ namespace App.Domain.Services.BaseData
             await _colorCommandRepository.RemoveColor(id);
         }
 
+
         public async Task UpdateColor(int id, string name, string colorCode)
         {
-           
-            await _colorCommandRepository.UpdateColor(id, name, colorCode,false);
+          await  _colorCommandRepository.UpdateColor(id,name, colorCode, false);
         }
     }
 }

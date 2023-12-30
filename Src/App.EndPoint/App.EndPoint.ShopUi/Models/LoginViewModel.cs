@@ -5,9 +5,9 @@ namespace App.EndPoint.ShopUi.Models
     public class LoginViewModel
     {
         [Required]
-        [EmailAddress]
-        [Display(Name = "ایمیل")]
-        public string Email { get; set; }
+      
+        [Display(Name = "نام کاربری")]
+        public string UserName { get; set; } 
         [Required]
         [StringLength(maximumLength: 100, ErrorMessage = "  .{0} شامل حداقل {1}  و حداکثر {2} کاراکتر می باشد ", MinimumLength = 3)]
         [Display(Name = "رمز عبور")]

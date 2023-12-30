@@ -10,14 +10,14 @@ namespace App.Domain.Services.Product
 {
     public class ProductSurnessService : IProductSurnessService
     {
-        private readonly IProductCommandRepository _productCommandRepository;
+       
         private readonly IProductQueryRepository _productQueryRepsitory;
 
-        public ProductSurnessService(IProductCommandRepository productCommandRepository, IProductQueryRepository productQueryRepsitory)
+        public ProductSurnessService( IProductQueryRepository productQueryRepsitory)
         {
 
 
-            _productCommandRepository = productCommandRepository;
+           
             _productQueryRepsitory = productQueryRepsitory;
 
         }
@@ -28,13 +28,6 @@ namespace App.Domain.Services.Product
                 throw new Exception();
         }
 
-        public async Task EnSureModelIsExist(string name)
-        {
-            var product = await _productQueryRepsitory.GetProduct(name);
-            if (product == null)
-                throw new Exception();
-
-        }
 
         public async Task EnsureModelIsNotExist(int id)
         {
@@ -44,12 +37,7 @@ namespace App.Domain.Services.Product
 
         }
 
-        public async Task EnsureModelIsNotExist(string name)
-        {
-            var product = await _productQueryRepsitory.GetProduct(name);
-            if (product != null)
-                throw new Exception();
-
-        }
+      
+        
     }
 }

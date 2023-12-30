@@ -1,0 +1,83 @@
+﻿@using App.EndPoint.ShopUi.Areas.Admin.Models.ViewModels.BaseData
+@model List<StatusReadViewModel>
+@{
+    ViewData["Title"] = "لیست وضعیت ها ";
+    Layout = "_AdminLayout";
+
+}
+<h3 style="float:right">لیست وضعیت ها</h3>
+<div style="float:left">
+    <a class="btn btn-success" asp-controller="Status" asp-action="CreateStatus" asp-area="Admin">جدید  </a>
+</div>
+<br />
+<table class=" table table-striped">
+    <thead>
+        <tr>
+             
+            <th scope="col" >وضعیت</th>
+            <th scope="col" >برای کامنت</th>
+            <th scope="col" >برای محصول </th>
+            <th scope="col" >برای سفارش </th>
+
+            <th scope="col" >عملیات</th>
+
+        </tr>
+    </thead>
+      
+    
+    <tbody>
+       @foreach(var Item in Model){
+        <tr>
+           
+        
+            
+            <td>@Item.Title</td>
+            <td >
+                    @if (Item.ForComment == true)
+                    {
+                        <p><span class="w3-tag w3-blue">فعال</span></p>
+                    }
+                    else
+                    {
+                        <p><span class="w3-tag w3-blue">غیرفعال</span></p>
+                    }
+                        
+                </td>
+            <td>
+                 @if (Item.ForProduct == true)
+                    {
+                        <p><span class="w3-tag w3-blue">فعال</span></p>
+                    }
+                    else
+                    {
+                         <p><span class="w3-tag w3-blue">غیرفعال</span></p>
+                    }
+            </td>
+           <td>
+                 @if (Item.ForOrder == true)
+                    {
+                         <p><span class="w3-tag w3-blue">فعال</span></p>
+                    }
+                    else
+                    {
+                         <p><span class="w3-tag w3-blue">غیرفعال</span></p>
+                    }
+            </td>
+            <td>
+                <a  class="btn btn-primary"  asp-controller="Status"  asp-action="UpdateStatus" asp-area="Admin"  asp-route-id="@Item.Id">
+                    ویرایش 
+                </a>
+                <a   class="btn btn-danger" asp-controller="Status" asp-action="RemoveStatus" asp-area="Admin" asp-route-id="@Item.Id" >
+                    حذف
+                </a>
+            </td>
+
+
+        </tr>}
+
+
+
+    </tbody>
+</table>
+
+

@@ -28,9 +28,9 @@ namespace App.Domain.Services.BaseData
                 throw new Exception();
         }
 
-        public  async Task EnSureModelIsExist(string name)
+        public  async Task EnsureModelIsExist(string code)
         {
-            var color = await _colorQueryRepository.GetColor(name);
+            var color = await _colorQueryRepository.GetColor(code);
             if (color == null)
                 throw new Exception();
         }

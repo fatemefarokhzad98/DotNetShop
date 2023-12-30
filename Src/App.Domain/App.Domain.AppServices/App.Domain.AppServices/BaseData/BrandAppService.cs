@@ -2,6 +2,7 @@
 
 using App.Domain.Core.BaseData.Contracts.Services;
 using App.Domain.Core.BaseData.Dtos;
+using App.Domain.Core.Product.Dtos;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -24,22 +25,58 @@ namespace App.Domain.AppServices.BaseData
 
         }
 
-        public async Task< BrandDto> GetBrand(int id)
+        public async Task CreateBrand(string name, int displayOrder)
         {
-            return await _brandService.GetBrand(id);
+            await _brandService.CreateBrand(name, displayOrder);
         }
 
-        public async Task < BrandDto> GetBrand(string name)
+        public async Task< BrandDto?> GetBrand(int id)
         {
-           
-              return await _brandService.GetBrand(name);
+           var model= await _brandService.GetBrand(id);
+            if (model==null)
+            {
+                throw new Exception();
+
+            }
+            return model;
         }
 
-        public async Task< List<BrandDto>> GetBrands()
+
+        public async Task<BrandDto?> GetBrand(string Name)
+        {
+            var model = await _brandService.GetBrand(Name);
+            if (model == null)
+            {
+                throw new Exception();
+
+            }
+            return model;
+
+        }
+
+        public async Task< List<BrandDto>?> GetBrands()
         { 
-            return await _brandService.GetBrands();
-            
+           var model= await _brandService.GetBrands();
+            if (model == null)
+            {
+                throw new Exception();
+
+            }
+            return model;
+
         }
+
+        public async Task<List<ProductBriefDto>?> GetBrandsWithProduct(int? id, string? name)
+        {
+            var product = await _brandService.GetBrandsWithProduct(id, name);
+            if (product==null)
+            {
+                throw new Exception();
+            }
+            return product;
+        }
+
+   
 
         public async Task RemoveBrand(int id)
         {
@@ -48,21 +85,14 @@ namespace App.Domain.AppServices.BaseData
             await _brandService.RemoveBrand(id);
         }
 
-        public async Task SetBrand(int disPlayOrder, string name)
-        {
-            //دسترسی رو اول چک میکنیم
-            await _brandSurenessService.EnsureModelIsNotExist(name);
-            await  _brandService.SetBrand(disPlayOrder, name);
-            
-        }
+       
 
-        public async Task UpdateBrand(int id, int displayOrder, string name)
+        public async Task UpdateBrand(string name, int displayOrder, int id)
         {
-            //دسترسی رو اول چک میکنیم
             await _brandSurenessService.EnsureModelIsExist(id);
 
 
-            await  _brandService.UpdateBrand(id, displayOrder, name);
+            await _brandService.UpdateBrand(name, displayOrder, id);
         }
     }
 }

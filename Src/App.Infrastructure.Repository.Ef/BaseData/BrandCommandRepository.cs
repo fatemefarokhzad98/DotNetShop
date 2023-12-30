@@ -28,30 +28,31 @@ namespace App.Infrastructure.Repository.Ef.BaseData
             {
                 Name = name,
                 CreationDate = dateTime,
-                IsDeleted = isDeleted,
+                IsDeleted =isDeleted,
                 DisplayOrder = displayOrder,
+                
 
             };
-           await _appDbContext.AddAsync(brand);
+           _appDbContext.Brand.Add(brand);
            await _appDbContext.SaveChangesAsync();
         }
 
         public async Task RemoveBrand(int Id)
         {
             var brand = await _appDbContext.Brand.Where(x => x.Id == Id).SingleAsync();
-            _appDbContext.Remove(brand);
+            brand.IsDeleted = true;
            await _appDbContext.SaveChangesAsync();
 
 
         }
 
-        public async Task UpdateBrand(string name, int displayOrder,int id,DateTime datetime)
+        public async Task UpdateBrand(string name, int displayOrder,int id)
         {
           var brand=await  _appDbContext.Brand.Where(x => x.Id == id).SingleAsync();
             brand.Name= name;
             brand.DisplayOrder= displayOrder;
             brand.Id= id;
-            brand.CreationDate = datetime;
+          
            await _appDbContext.SaveChangesAsync();
         }
     }
