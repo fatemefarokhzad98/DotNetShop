@@ -21,9 +21,9 @@ namespace App.Domain.AppServices.Product
 
         }
 
-        public Task<int> CreateOrder(int productId, int currentUserId, CancellationToken cancellationToken)
+        public async Task<int> CreateOrder(int productId, int currentUserId, CancellationToken cancellationToken)
         {
-            throw new NotImplementedException();
+           return await _orderService.CreateOrder(productId, currentUserId, cancellationToken);
         }
 
         public Task<List<OrderForOrderDetailDto>> GetAll(CancellationToken cancellationToken)
@@ -40,7 +40,10 @@ namespace App.Domain.AppServices.Product
         {
             throw new NotImplementedException();
         }
-
+        public async Task<List<OrderDetailForOrderDto>?> GetOrderByUserID(int currentUserId, CancellationToken cancellationToken)
+        {
+            return await _orderService.GetOrderByUserID(currentUserId, cancellationToken);
+        }
         public Task<int> RemoveOrder(int id, CancellationToken cancellationToken)
         {
             throw new NotImplementedException();

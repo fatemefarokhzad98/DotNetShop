@@ -26,6 +26,7 @@ namespace App.EndPoint.ShopUi.Controllers
             return View();
         }
         public async Task<IActionResult> ReadProduct()
+        
         {
             var product = await _productAppService.GetProducts();
             var vm = product.Select(x => new ShortProductViewModel()

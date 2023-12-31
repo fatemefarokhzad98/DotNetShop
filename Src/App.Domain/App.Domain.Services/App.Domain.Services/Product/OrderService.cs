@@ -21,9 +21,9 @@ namespace App.Domain.Services.Product
             _orderQueryRepository = orderQueryRepository;
         }
 
-        public Task<int> CreateOrder(int productId, int currentUserId, CancellationToken cancellationToken)
+        public async Task<int> CreateOrder(int productId, int currentUserId, CancellationToken cancellationToken)
         {
-            throw new NotImplementedException();
+            return await _orderCommandRepositpry.CreateOrder(productId, currentUserId, cancellationToken);
         }
 
         public Task<List<OrderForOrderDetailDto>> GetAll(CancellationToken cancellationToken)
@@ -44,6 +44,10 @@ namespace App.Domain.Services.Product
         public Task<int> RemoveOrder(int id, CancellationToken cancellationToken)
         {
             throw new NotImplementedException();
+        }
+       public async Task<List<OrderDetailForOrderDto>?> GetOrderByUserID(int currentUserId, CancellationToken cancellationToken)
+        {
+            return await _orderQueryRepository.GetOrderByUserID(currentUserId, cancellationToken);
         }
     }
 }

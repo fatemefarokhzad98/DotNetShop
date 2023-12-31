@@ -31,56 +31,79 @@ namespace App.Infrastructure.Repository.Ef.Product
             var order = await _appDbContext.Order.SingleOrDefaultAsync(o => o.BuyerId == currentUserId &&o.IsFinal==false,cancellationToken);
             if (order == null)
             {
-                order = new Order()
+                var userOrder = new Order()
                 {
-                   BuyerId=currentUserId,
-                   CreatedAt=DateTime.Now,
-                   IsDeleted=false,
-                   IsFinal=false,
-                   TotalAmount=0,
-                   SiteCommission=0,
-                 
-                };
-                _appDbContext.Order.Add(order);
-                _appDbContext.OrderDetail.Add(new OrderDetail()
-                {
+                    BuyerId = currentUserId,
+                    CreatedAt = DateTime.Now,
+                    IsFinal = false,
+                    IsDeleted = false,
+                    SiteCommission = 20000,
+                    TotalAmount = 0,
+                     Status=
+                     
 
-                    OrderId = order.Id,
-                    Count = 1,
-                    Price=  _appDbContext.Product.Find(productId).Price,
-                    ProductId=productId
-                }) ;
-                await _appDbContext.SaveChangesAsync(cancellationToken);
+                };
             }
-            else
-            {
-                var orderDetail = await _appDbContext.OrderDetail.SingleOrDefaultAsync(d => d.OrderId == order.Id && d.ProductId == productId,cancellationToken);
-                if (orderDetail == null)
-                {
-                    _appDbContext.OrderDetail.Add(new OrderDetail()
-                    {
-                         ProductId = productId,
-                         Count=1,
-                         OrderId=order.Id,
-                         Price=_appDbContext.Product.Find(productId).Price,
+            //if (order == null)
+            //{
+            //    order = new Order()
+            //    {
+            //       BuyerId=currentUserId,
+            //       CreatedAt=DateTime.Now,
+            //       IsDeleted=false,
+            //       IsFinal=false,
+            //       TotalAmount=0,
+            //       SiteCommission=20000,
+                 
+            //    };
+            //    _appDbContext.Add(order);
+
+            //    _appDbContext.OrderDetail.Add(new OrderDetail()
+            //    {
+
+            //        OrderId = order.Id,
+            //        Count = 1,
+            //        ProductId
+                   
+                     
+            //    }) ;
+            //    await _appDbContext.SaveChangesAsync(cancellationToken);
+            //}
+            //else
+            //{
+            //    var orderDetail = await _appDbContext.OrderDetail.SingleOrDefaultAsync(d => d.OrderId == order.Id && d.ProductId == productId,cancellationToken);
+            //    if (orderDetail == null)
+            //    {
+            //        //_appDbContext.OrderDetail.Add(new OrderDetail()
+            //        //{
+            //        //     ProductId = productId,
+            //        //     Count=1,
+            //        //     OrderId=order.Id,
+            //        //     Price=_appDbContext.Product.Find(productId).Price,
                            
 
 
-                    });
-                }
-                else
-                {
-                    orderDetail.Count += 1;
-                    _appDbContext.Update(orderDetail);
-                }
-                await _appDbContext.SaveChangesAsync(cancellationToken);
-            }
-            order.TotalAmount = Convert.ToInt32(_appDbContext.OrderDetail.Where(S => S.OrderId == order.Id).Select(x => x.Count * x.Price).Sum());
-            order.SiteCommission = order.TotalAmount + 20000;
-            _appDbContext.Update(order);
-            await _appDbContext.SaveChangesAsync(cancellationToken);
+            //        //});
+            //        var orderdetail=new OrderDetail()
+            //        {
+            //            Id=orderDetail.Id,
+            //            ProductId=productId,
+                        
+            //        }
+            //    }
+            //    else
+            //    {
+            //        orderDetail.Count += 1;
+            //        _appDbContext.Update(orderDetail);
+            //    }
+            //    await _appDbContext.SaveChangesAsync(cancellationToken);
+            //}
+            //order.TotalAmount = Convert.ToInt32(_appDbContext.OrderDetail.Where(S => S.OrderId == order.Id).Select(x => x.Count * x.Price).Sum())+order.SiteCommission;
+           
+            //_appDbContext.Update(order);
+            //await _appDbContext.SaveChangesAsync(cancellationToken);
 
-            return order.Id;
+            //return order.Id;
 
         }
 
