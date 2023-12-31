@@ -85,11 +85,11 @@ namespace App.EndPoint.ShopUi.Controllers
 
                     if (result.Succeeded)
                     {
-
+                        await _signInManager.SignInAsync(user, isPersistent: false);
+                        return RedirectToAction("Index");
                     }
 
-                    await _signInManager.SignInAsync(user, isPersistent: false);
-                    return RedirectToAction("Index");
+                    
                 }
                 else
                 {

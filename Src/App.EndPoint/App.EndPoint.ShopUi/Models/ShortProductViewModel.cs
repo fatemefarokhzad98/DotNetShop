@@ -15,7 +15,7 @@ namespace App.EndPoint.ShopUi.Models
            public decimal Price { get; set; }
     
         public string Image { get; set; }
-        public List<int> Colors{ get; set; }
+        public List<ColorDto> Colors{ get; set; }
 
 
 

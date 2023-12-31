@@ -187,5 +187,5 @@ app.MapAreaControllerRoute(
 
 app.MapControllerRoute(
     name: "default",
-    pattern: "{controller=Search}/{action=ReadProduct}/{id?}");
+    pattern: "{controller=Home}/{action=Index}/{id?}");
 app.Run();

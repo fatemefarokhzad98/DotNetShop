@@ -34,8 +34,8 @@ namespace App.EndPoint.ShopUi.Controllers
               
                  Name=x.Name,
                   Price=x.Price,
-                   Image= $"~/ProductFile/{x.ImangeName}",
-                Colors = x.Colors.Select(x=>x.Id).ToList(),
+                   Image= $"/ProductFile/{x.ImangeName}",
+                Colors = x.Colors,
                  BrandName=x.BrandName
 
             }).ToList();

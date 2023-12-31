@@ -1,1 +1,329 @@
-﻿<partial name="_ProductBox" />
+﻿
+@model List<ShortProductViewModel>
+@{
+    ViewData["Title"] ="لیست محصولات "; 
+   
+}
+
+     <div class="row">
+                <div class="col-lg-3 d-lg-block d-none">
+                    <div class="item-boxs">
+                        <div class="item-box bg-white shadow-box">
+                            <div class="title">
+                                <div class="d-flex align-items-center justify-content-between">
+                                    <h6 class="font-14">فیلتر های اعمال شده</h6>
+                                    <a class="btn border-0" data-bs-toggle="collapse" href="#collapseItemBox"
+                                        role="button" aria-expanded="false">
+                                        <i class="bi bi-chevron-up"></i>
+                                    </a>
+                                </div>
+                            </div>
+                            <div class="desc collapse show" id="collapseItemBox">
+                                <a href=""
+                                    class="btn btn-outline-dark btn-sm rounded-pill border-1 border-muted me-1 font-14 mb-2">
+                                    <span>گوشی الجی</span>
+                                    <span class="ms-3"><i class="bi bi-x text-danger"></i></span></a>
+                                <a href=""
+                                    class="btn btn-outline-dark btn-sm rounded-pill border-1 border-muted me-1 font-14 mb-2">
+                                    <span>دوربین 108</span>
+                                    <span class="ms-3"><i class="bi bi-x text-danger"></i></span></a>
+                            </div>
+                        </div>
+
+                        <div class="item-box bg-white shadow-box">
+                            <div class="title">
+                                <div class="d-flex align-items-center justify-content-between">
+                                    <h6 class="font-14">محدوده قیمت</h6>
+                                    <a class="btn border-0" data-bs-toggle="collapse" href="#collapsePrice"
+                                        role="button" aria-expanded="false">
+                                        <i class="bi bi-chevron-up"></i>
+                                    </a>
+                                </div>
+                            </div>
+                            <div class="desc collapse show" id="collapsePrice">
+                                <form action="" method="get">
+                                    <div class="form-group">
+                                        <input type="range" class="catRange" name="range[]">
+                                        <div class="show-more-btn mt-2 text-center">
+                                            <button
+                                                class="btn border-0 main-color-two-bg shadow-box waves-effect waves-light"
+                                                type="submit">اعمال فیلتر <i class="bi bi-filter"></i></button>
+                                        </div>
+                                    </div>
+                                </form>
+                            </div>
+                        </div>
+
+                        <div class="item-box bg-white shadow-box">
+                            <div class="title">
+                                <div class="d-flex align-items-center justify-content-between">
+                                    <h6 class="font-14">موجودیت</h6>
+                                    <a class="btn border-0" data-bs-toggle="collapse" href="#collapseItemBoxExist"
+                                        role="button" aria-expanded="false">
+                                        <i class="bi bi-chevron-up"></i>
+                                    </a>
+                                </div>
+                            </div>
+                            <div class="desc collapse show" id="collapseItemBoxExist">
+                                <form action="">
+                                    <div class="form-check">
+                                        <label for="existCheck2" class="form-check-label">فقط کالاهای موجود</label>
+                                        <input type="checkbox" name="exist" id="existCheck2" value="1"
+                                            class="form-check-input">
+                                    </div>
+                                </form>
+                            </div>
+                        </div>
+
+                        <div class="item-box bg-white shadow-box">
+                            <div class="title">
+                                <div class="d-flex align-items-center justify-content-between">
+                                    <h6 class="font-14">فیلتر براساس رنگ</h6>
+                                    <a class="btn border-0" data-bs-toggle="collapse" href="#collapseItemBoxColor"
+                                        role="button" aria-expanded="false">
+                                        <i class="bi bi-chevron-up"></i>
+                                    </a>
+                                </div>
+                            </div>
+                            <div class="desc collapse show" id="collapseItemBoxColor">
+                                <form action="">
+                                    <div class="d-flex align-items-center justify-content-between flex-wrap mb-3">
+                                        <div class="form-check">
+                                            <label for="colorCheck11" class="form-check-label">بنفش</label>
+                                            <input type="checkbox" name="" id="colorCheck1" class="form-check-input">
+                                        </div>
+                                        <div>
+                                            <span class="fw-bold font-16">(3)</span>
+                                        </div>
+                                    </div>
+                                    <div class="d-flex align-items-center justify-content-between flex-wrap mb-3">
+                                        <div class="form-check">
+                                            <label for="colorCheck55" class="form-check-label">گوجه ای</label>
+                                            <input type="checkbox" name="" id="colorCheck55" class="form-check-input">
+                                        </div>
+                                        <div>
+                                            <span class="fw-bold font-16">(3)</span>
+                                        </div>
+                                    </div>
+                                    <div class="d-flex align-items-center justify-content-between flex-wrap mb-3">
+                                        <div class="form-check">
+                                            <label for="colorCheck44" class="form-check-label">زرد</label>
+                                            <input type="checkbox" name="" id="colorCheck44" class="form-check-input">
+                                        </div>
+                                        <div>
+                                            <span class="fw-bold font-16">(3)</span>
+                                        </div>
+                                    </div>
+                                    <div class="d-flex align-items-center justify-content-between flex-wrap mb-3">
+                                        <div class="form-check">
+                                            <label for="colorCheck33" class="form-check-label">سبز</label>
+                                            <input type="checkbox" name="" id="colorCheck33" class="form-check-input">
+                                        </div>
+                                        <div>
+                                            <span class="fw-bold font-16">(3)</span>
+                                        </div>
+                                    </div>
+                                    <div class="d-flex align-items-center justify-content-between flex-wrap mb-3">
+                                        <div class="form-check">
+                                            <label for="colorCheck22" class="form-check-label">قرمز</label>
+                                            <input type="checkbox" name="" id="colorCheck22" class="form-check-input">
+                                        </div>
+                                        <div>
+                                            <span class="fw-bold font-16">(3)</span>
+                                        </div>
+                                    </div>
+                                    <div class="form-group">
+                                        <button type="submit"
+                                            class="btn border-0 main-color-one-bg mx-auto d-block rounded-pill px-3">
+                                            <i class="bi bi-filter-square me-2"></i>
+                                            صافی</button>
+                                    </div>
+                                </form>
+                            </div>
+                        </div>
+
+                        <div class="item-box bg-white shadow-box">
+                            <div class="title">
+                                <div class="d-flex align-items-center justify-content-between">
+                                    <h6 class="font-14">جستجو</h6>
+                                    <a class="btn border-0" data-bs-toggle="collapse" href="#collapseItemBoxSearch"
+                                        role="button" aria-expanded="false">
+                                        <i class="bi bi-chevron-up"></i>
+                                    </a>
+                                </div>
+                            </div>
+                            <div class="desc collapse show" id="collapseItemBoxSearch">
+                                <form action="">
+                                    <div class="position-relative">
+                                        <input type="text" name="search"
+                                            class="form-control font-14 rounded-pill text-muted py-3 border-muted bg-light"
+                                            placeholder="نام محصول مورد نظر خود را وارد کنید">
+                                        <button type="submit"
+                                            class="position-absolute top-50 translate-middle-y btn rounded-circle border-0"
+                                            style="left: 5px;">
+                                            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16"
+                                                fill="currentColor" class="bi bi-search" viewBox="0 0 16 16">
+                                                <path
+                                                    d="M11.742 10.344a6.5 6.5 0 1 0-1.397 1.398h-.001c.03.04.062.078.098.115l3.85 3.85a1 1 0 0 0 1.415-1.414l-3.85-3.85a1.007 1.007 0 0 0-.115-.1zM12 6.5a5.5 5.5 0 1 1-11 0 5.5 5.5 0 0 1 11 0z" />
+                                            </svg>
+                                        </button>
+                                    </div>
+                                </form>
+                            </div>
+                        </div>
+
+                        <div class="item-box bg-white shadow-box">
+                            <div class="title">
+                                <div class="d-flex align-items-center justify-content-between">
+                                    <h6 class="font-14">فیلتر براساس دسته بندی</h6>
+                                    <a class="btn border-0" data-bs-toggle="collapse" href="#collapseItemBoxCategory"
+                                        role="button" aria-expanded="false">
+                                        <i class="bi bi-chevron-up"></i>
+                                    </a>
+                                </div>
+                            </div>
+                            <div class="desc collapse show" id="collapseItemBoxCategory">
+                                <form action="">
+                                    <div class="form-check">
+                                        <label for="catCheck11" class="form-check-label">کالادیجیتال</label>
+                                        <input type="checkbox" name="" id="catCheck11" class="form-check-input">
+                                    </div>
+                                    <div class="form-check">
+                                        <label for="catCheck22" class="form-check-label">گوشی موبایل</label>
+                                        <input type="checkbox" name="" id="catCheck22" class="form-check-input">
+                                    </div>
+                                    <div class="form-check">
+                                        <label for="catCheck33" class="form-check-label">فروش ویژه</label>
+                                        <input type="checkbox" name="" id="catCheck33" class="form-check-input">
+                                    </div>
+                                    <div class="form-group">
+                                        <button type="submit"
+                                            class="btn border-0 main-color-one-bg mx-auto d-block rounded-pill px-3">
+                                            <i class="bi bi-filter-square me-2"></i>
+                                            صافی</button>
+                                    </div>
+                                </form>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-lg-9">
+                    <div class="content-box">
+                        <div class="filter-items shadow-box">
+                            <div class="items">
+                                <div class="link d-md-block d-none">
+                                    <a href="" class="active">پیشفرض</a>
+                                    <a href="" class="waves-effect waves-light">محبوب ترین</a>
+                                    <a href="" class="waves-effect waves-light">پرفروش ترین</a>
+                                    <a href="" class="waves-effect waves-light">جدیدترین</a>
+                                    <a href="" class="waves-effect waves-light">ارزان ترین</a>
+                                    <a href="" class="waves-effect waves-light">گران ترین</a>
+                                </div>
+                                <div class="count">
+                                    <div class="font-14">مشاهده همه <span class="fw-bold">3</span> نتیجه</div>
+                                </div>
+                                <div class="link-responsive d-md-none d-block">
+                                    <form action="">
+                                        <select class="form-select bg-light">
+                                            <option>پیشفرض</option>
+                                            <option>محبوب ترین</option>
+                                            <option>پر فروش ترین</option>
+                                            <option>جدیدترین</option>
+                                            <option>ارزان ترین</option>
+                                            <option>گران ترین</option>
+                                        </select>
+                                    </form>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row">
+                            @foreach(var item in Model){
+                            <div class="col-lg-4 col-sm-6">
+                                <div class="product-box-item bg-white w-100">
+                                    <div class="hover">
+                                        <div class="hover-btn">
+                                            <a href="" data-hint="مقایسه محصول" class="hint--right"><i
+                                                    class="bi bi-arrow-left-right"></i></a>
+                                            <a href="" data-hint="افزودن به علاقه مندی" class="hint--right"><i
+                                                    class="bi bi-heart"></i></a>
+                                            <a href="#productModal" data-hint="مشاهده سریع" class="hint--right"
+                                                data-bs-toggle="modal" data-bs-target="#productModal"><i
+                                                    class="bi bi-eye"></i></a>
+                                        </div>
+                                        @foreach(var color in item.Colors)
+                                        {
+                                        <div class="hover-color">
+                                            <span style="background-color: @color.ColorCode;" data-hint="رنگ @color.Name"
+                                                class="hint--left"></span>
+                                            
+                                        </div>
+                                        }
+                                    </div>
+                                    <a href="">
+                                        <div class="image text-center">
+                                            <img src=@item.Image alt=""
+                                                class="img-fluid one-image">
+                                            <img src=@item.Image alt=""
+                                                class="img-fluid two-image">
+                                        </div>
+                                        <div class="desc">
+                                            <div class="title">
+                                                <h6 class="title-fa def-color fw-bold text-overflow-2">
+                                                   @item.Name
+                                                </h6>
+                                                <h6 class="title-en text-muted text-overflow-2">
+                                                    @item.BrandName
+                                                </h6>
+                                            </div>
+                                            <div class="foot d-flex justify-content-between align-items-center">
+                                                <div class="d-flex align-items-center justify-content-center">
+                                                    <div class="add" data-hint="افزودن به سبد خرید" class="hint--right">
+                                                        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16"
+                                                            fill="currentColor" class="bi bi-bag" viewBox="0 0 16 16">
+                                                            <path
+                                                                d="M8 1a2.5 2.5 0 0 1 2.5 2.5V4h-5v-.5A2.5 2.5 0 0 1 8 1zm3.5 3v-.5a3.5 3.5 0 1 0-7 0V4H1v10a2 2 0 0 0 2 2h10a2 2 0 0 0 2-2V4h-3.5zM2 5h12v9a1 1 0 0 1-1 1H3a1 1 0 0 1-1-1V5z" />
+                                                        </svg>
+                                                    </div>
+
+                                                </div>
+                                                <div class="price d-flex flex-column justify-content-end">
+                                                    <div>
+                                                        <span class="fw-bold font-18 def-color">299,000</span>
+                                                       
+                                                    </div>
+                                                    <div class="d-flex justify-content-center align-items-center">
+                                                       
+                                                        <span class="text-muted font-14 ms-2">تومان</span>
+                                                    </div>
+                                                </div>
+
+                                            </div>
+                                        </div>
+                                    </a>
+                                </div>
+                            </div>
+                          }
+                        </div>
+
+                        <div class="my-paginate my-4">
+                            <nav aria-label="Page navigation example">
+                                <ul class="pagination justify-content-center">
+                                    <li class="page-item disabled">
+                                        <a class="page-link rounded-3" href="#"><i class="bi bi-chevron-right"></i></a>
+                                    </li>
+                                    <li class="page-item active"><a class="page-link rounded-3" href="#">1</a></li>
+                                    <li class="page-item"><a class="page-link rounded-3" href="#">2</a></li>
+                                    <li class="page-item"><a class="page-link rounded-3" href="#">3</a></li>
+                                    <li class="page-item"><a class="page-link rounded-3" href="#">...</a></li>
+                                    <li class="page-item"><a class="page-link rounded-3" href="#">14</a></li>
+                                    <li class="page-item"><a class="page-link rounded-3" href="#">15</a></li>
+                                    <li class="page-item"><a class="page-link rounded-3" href="#">16</a></li>
+                                    <li class="page-item">
+                                        <a class="page-link rounded-3" href="#"><i class="bi bi-chevron-left"></i></a>
+                                    </li>
+                                </ul>
+                            </nav>
+                        </div>
+                    </div>
+                </div>
+            </div>

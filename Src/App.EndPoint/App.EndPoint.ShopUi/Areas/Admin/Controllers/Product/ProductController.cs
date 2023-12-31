@@ -234,6 +234,7 @@ namespace App.EndPoint.ShopUi.Area.Admin.Controllers.Product
         [Authorize]
         public async Task<IActionResult> InsertProduct(ProductInsertViewModel product)
         {
+            
             if (ModelState.IsValid)
             {
                 if (product.File != null)
@@ -247,10 +248,10 @@ namespace App.EndPoint.ShopUi.Area.Admin.Controllers.Product
                     }
                     product.ImageName = NewImageName;
                 }
-                var colors = await _colorAppService.GetColors();
 
-                var selectedColors = colors.Where(x => product.Colors.Contains(x.Id)).ToList();
+                var color = await _colorAppService.GetColors();
 
+                var selectedColors = color.Where(x => product.Colors.Contains(x.Id)).ToList();
                 ProductInsertDto productInsertDto = new()
                 {
                     Name = product.Name,

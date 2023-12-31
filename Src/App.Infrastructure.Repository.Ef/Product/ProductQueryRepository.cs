@@ -18,10 +18,10 @@ namespace App.Infrastructure.Repository.Ef.Product
         {
             _appDbContext = appDbContext;
         }
-
+         
         public async Task<ProductReadDto?> GetProduct(int id)
         {
-            var product = await _appDbContext.Product.AsNoTracking().Where(x => x.Id == id && x.IsDeleted == false).Select(p => new ProductReadDto()
+            var product = await _appDbContext.Product.AsNoTracking().Where(x => x.Id == id && x.IsDeleted == false).Include(x => x.ProductColors) .Select(p => new ProductReadDto()
             {
 
                 Id = id,
@@ -62,7 +62,7 @@ namespace App.Infrastructure.Repository.Ef.Product
 
         public async Task<List<ProductReadDto>?> GetProduct(string name)
         {
-            var product = await _appDbContext.Product.AsNoTracking().Where(x => x.Name == name && x.IsDeleted == false).Select(p => new ProductReadDto()
+            var product = await _appDbContext.Product.AsNoTracking().Where(x => x.Name == name && x.IsDeleted == false).Include(x=>x.ProductColors).Select(p => new ProductReadDto()
             {
                 Name = p.Name,
                 Id = p.Id,
@@ -106,7 +106,7 @@ namespace App.Infrastructure.Repository.Ef.Product
 
         public async Task<List<ProductReadDto>> GetProducts()
         {
-            var products = await _appDbContext.Product.AsNoTracking().Where(x => x.IsDeleted == false).Select(p => new ProductReadDto()
+            var products = await _appDbContext.Product.AsNoTracking().Where(x => x.IsDeleted == false).Include(x=>x.ProductColors).ThenInclude(x=>x.Color).Select(p => new ProductReadDto()
             {
 
                 BrandId = p.BrandId,
